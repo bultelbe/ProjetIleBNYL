@@ -1,3 +1,5 @@
+package projetilebnyl;
+
 public class Tuile {
 	private String _nomCase;
 	private int _colonne;

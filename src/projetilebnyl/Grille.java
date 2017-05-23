@@ -1,3 +1,6 @@
+package projetilebnyl;
+
+import projetilebnyl.Tuile;
 import java.util.Vector;
 
 public class Grille {

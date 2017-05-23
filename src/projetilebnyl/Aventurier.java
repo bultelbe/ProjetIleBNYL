@@ -1,3 +1,5 @@
+package projetilebnyl;
+
 public class Aventurier {
 	private String _nom;
 	private int _capacité;
