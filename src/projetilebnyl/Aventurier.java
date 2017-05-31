@@ -1,35 +1,57 @@
 package projetilebnyl;
 
-public class Aventurier {
-	private String _nom;
-	private int _capacité;
-	private int _colonne;
-	private int _ligne;
-	public Pilote _pilote;
-	public Explorateur _explorateur;
-	public Ingénieur _ingénieur;
-	public Navigateur _navigateur;
-	public Messager _messager;
-	public Plongeur _plongeur;
-	public Tuile _positionCourante;
+import java.util.ArrayList;
 
-	public void getCapacité() {
-		throw new UnsupportedOperationException();
+public class Aventurier {
+        private String nomJ;
+	private int capacite;
+	private int colonne;
+	private int ligne;
+	public Pilote pilote;
+	public Explorateur explorateur;
+	public Ingénieur ingénieur;
+	public Navigateur navigateur;
+	public Messager messager;
+	public Plongeur plongeur;
+	public Tuile positionCourante;
+        
+        Aventurier joueur = new Aventurier(nomJ, capacite, positionCourante);
+        
+        public Aventurier(String nomJ, int capacite, Tuile positionCourante) {
+            this.nomJ = nomJ;
+            this.capacite = capacite;
+            this.positionCourante = positionCourante;
+        }
+
+	public int getCapacite() {
+		return capacite;
 	}
 
 	public Tuile getTuile() {
-		throw new UnsupportedOperationException();
+		return positionCourante;
 	}
 
-	public void positionGrille(Grille aGrille) {
-		throw new UnsupportedOperationException();
+	public void positionGrille(Grille grille) {
+		
 	}
 
-	public void DeplaceJoueur() {
-		throw new UnsupportedOperationException();
+	public void deplacementsPossibles(Grille grille) {
+                
+            if (joueur.getCapacite() == 1) { //pilote - Déplacement possible sur toutes les tuiles non coulées
+                for(int i = 1; i <= 36; i++) {
+                    if (getStatut(i) == 1 || getStatut(i) == 2) {
+                        
+                    }
+                }
+            } else if (joueur.getCapacite() == 2) { //plongeur - Déplacement possible en 1 action à travers toutes
+                
+            } else {
+                
+            }
 	}
-
-	public void DeplacementsPossibles(Grille aGrille) {
-		throw new UnsupportedOperationException();
+        
+	public void deplaceJoueur() {
+                
 	}
+        
 }
