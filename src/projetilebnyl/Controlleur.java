@@ -6,7 +6,9 @@ public class Controlleur {
 	public Grille grille;
 	public Vector<Aventurier> _joueurs = new Vector<Aventurier>();
 	public VueAventurier vueAventurier;
-
+        
+        
+        
 	public void mouvPossible() {
 		throw new UnsupportedOperationException();
 	}

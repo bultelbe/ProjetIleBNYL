@@ -5,8 +5,16 @@ public class Tuile {
 	private int colonne;
 	private int ligne;
 	private int statut;
-
-   	public String getNomCase() {
+        
+    Tuile(String nomCase,int colonne,int ligne){
+        this.nomCase=nomCase;
+        this.colonne=colonne;
+        this.ligne=ligne;
+        this.statut=1;
+    }
+        
+        
+    public String getNomCase() {
 		return this.nomCase;
 	}
 
@@ -14,7 +22,7 @@ public class Tuile {
         return colonne;
     }
 
-    public void setColonne(int _colonne) {
+    public void setColonne(int colonne) {
         this.colonne = colonne;
     }
 
@@ -22,13 +30,13 @@ public class Tuile {
         return ligne;
     }
 
-    public void setLigne(int _ligne) {
+    public void setLigne(int ligne) {
         this.ligne = ligne;
     }
         
 
-	public int getStatut(String aNomCase) {
-		return this.statut;
+	public int getStatut() {
+             return this.statut;
 	}
 
 	public void setStatut(int statut) {
