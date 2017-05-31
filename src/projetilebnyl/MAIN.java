@@ -9,7 +9,7 @@ package projetilebnyl;
  *
  * @author bultelbe
  */
-public class ProjetIleBNYL {
+public class MAIN {
 
     /**
      * @param args the command line arguments

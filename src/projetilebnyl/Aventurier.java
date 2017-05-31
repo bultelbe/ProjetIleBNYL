@@ -12,7 +12,9 @@ public class Aventurier {
 	public Messager messager;
 	public Plongeur plongeur;
 	public Tuile positionCourante;
-
+        
+        
+        
 	public void getCapacité() {
 		throw new UnsupportedOperationException();
 	}
