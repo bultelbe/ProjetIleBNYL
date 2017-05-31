@@ -1,17 +1,17 @@
 package projetilebnyl;
 
 public class Aventurier {
-	private String _nom;
-	private int _capacité;
-	private int _colonne;
-	private int _ligne;
-	public Pilote _pilote;
-	public Explorateur _explorateur;
-	public Ingénieur _ingénieur;
-	public Navigateur _navigateur;
-	public Messager _messager;
-	public Plongeur _plongeur;
-	public Tuile _positionCourante;
+	private String nom;
+	private int capacité;
+	private int colonne;
+	private int ligne;
+	public Pilote pilote;
+	public Explorateur explorateur;
+	public Ingénieur ingénieur;
+	public Navigateur navigateur;
+	public Messager messager;
+	public Plongeur plongeur;
+	public Tuile positionCourante;
 
 	public void getCapacité() {
 		throw new UnsupportedOperationException();
@@ -21,7 +21,7 @@ public class Aventurier {
 		throw new UnsupportedOperationException();
 	}
 
-	public void positionGrille(Grille aGrille) {
+	public void positionGrille(Grille grille) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -29,7 +29,7 @@ public class Aventurier {
 		throw new UnsupportedOperationException();
 	}
 
-	public void DeplacementsPossibles(Grille aGrille) {
+	public void DeplacementsPossibles(Grille grille) {
 		throw new UnsupportedOperationException();
 	}
 }
