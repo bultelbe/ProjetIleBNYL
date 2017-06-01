@@ -109,7 +109,7 @@ public class VueAventurier  {
         // Instanciation de la fenêtre 
         VueAventurier vueAventurier = new VueAventurier ("Manon", "Explorateur",Pion.ROUGE.getCouleur() );
     }
-}
+    }
 
  
 

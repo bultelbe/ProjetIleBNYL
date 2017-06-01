@@ -44,7 +44,11 @@ public class Grille {
         private Tuile t36=new Tuile("Le Jardin des Murmures");
 
         public Grille() {
-               
+               for (int i=1; i<=36; ++i){
+                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i=12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
+                       
+                   }
+               }
         }
       
         //public Grille(){
@@ -242,3 +246,4 @@ public class Grille {
         
         
 }
+
