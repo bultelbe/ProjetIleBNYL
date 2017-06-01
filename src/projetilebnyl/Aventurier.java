@@ -20,15 +20,16 @@ public class Aventurier {
 	}
 
 	public Tuile getTuile() {
-		throw new UnsupportedOperationException();
+		return this._positionCourante;
 	}
 
 	public void positionGrille(Grille grille) {
 		throw new UnsupportedOperationException();
 	}
-
-	public void DeplaceJoueur() {
-		throw new UnsupportedOperationException();
+        
+	public void DeplaceJoueur(int Colonne, int ligne) {
+		this.setColonne(Colonne);
+                this.setLigne(ligne);
 	}
 
 	public void DeplacementsPossibles(Grille grille) {

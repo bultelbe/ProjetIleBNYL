@@ -33,7 +33,11 @@ public class Tuile {
     public void setLigne(int ligne) {
         this.ligne = ligne;
     }
-        
+       
+    
+    public int getStatut(String aNomCase) {
+	return this._statut;
+    }
 
 	public int getStatut() {
              return this.statut;
