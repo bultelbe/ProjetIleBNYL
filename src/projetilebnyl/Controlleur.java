@@ -9,7 +9,7 @@ public class Controlleur {
 
 	public void mouvPossible() {
 		throw new UnsupportedOperationException();
-	}
+        }
 
 	public void TourDeJeu() {
 		throw new UnsupportedOperationException();

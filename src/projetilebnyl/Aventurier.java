@@ -12,11 +12,8 @@ public class Aventurier {
             this._ligne = _ligne;
             this._positionCourante = _positionCourante;
         }
-
-
-        
-        
-         public void setColonne(int _colonne) {
+      
+        public void setColonne(int _colonne) {
             this._colonne = _colonne;
         }
 
@@ -42,6 +39,14 @@ public class Aventurier {
 	}
 
 	public void DeplacementsPossibles(Grille aGrille) {
-		throw new UnsupportedOperationException();
-	}
+            int cap = this.getCapacité();
+            if(cap==4){//plongeur
+                
+            }else if(cap==5){//pilote
+                
+            }else{
+                
+            }
+            
+        }
 }
