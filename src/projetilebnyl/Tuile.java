@@ -1,48 +1,50 @@
 package projetilebnyl;
 
 public class Tuile {
-	private String _nomCase;
-	private int _colonne;
-	private int _ligne;
-	private int _statut;
-        //0=sec 1=innodé 2=coulée
-
-    public Tuile(String _nomCase) {
-        this._nomCase = _nomCase;
-        this._statut=0;
+	private String nomCase;
+	private int colonne;
+	private int ligne;
+	private int statut;
+        
+    Tuile(String nomCase,int colonne,int ligne){
+        this.nomCase=nomCase;
+        this.colonne=colonne;
+        this.ligne=ligne;
+        this.statut=1;
     }
-   
+        
         
     public String getNomCase() {
-		return this._nomCase;
-    }
+		return this.nomCase;
+	}
 
     public int getColonne() {
-        return _colonne;
+        return colonne;
     }
 
-    public void setColonne(int _colonne) {
-        this._colonne = _colonne;
+    public void setColonne(int colonne) {
+        this.colonne = colonne;
     }
 
     public int getLigne() {
-        return _ligne;
+        return ligne;
     }
 
-    public void setLigne(int _ligne) {
-        this._ligne = _ligne;
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
     }
        
-    
-    public int getStatut(String aNomCase) {
-	return this._statut;
-    }
 
-    public void setStatut(int aStatut) {
-	this._statut=aStatut;
-    }
 
-    public String getPosition() {
-        return ("("+this.getColonne()+","+this.getLigne()+")");
-    }
+	public int getStatut() {
+             return this.statut;
+	}
+
+	public void setStatut(int statut) {
+		this.statut=statut;
+	}
+
+	public String getPosition() {
+            return ("("+this.getColonne()+","+this.getLigne()+")");
+        }
 }

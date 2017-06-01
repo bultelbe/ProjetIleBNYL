@@ -58,9 +58,10 @@ public class Aventurier {
         }
     }
 
-    public void deplaceJoueur(int Colonne, int ligne) {
-            this.setColonne(Colonne);
-            this.setLigne(ligne);
-    }
+        
+        
+	public void DeplaceJoueur(int Colonne, int ligne) {
+		this.setColonne(Colonne);
+                this.setLigne(ligne);
+	}
 }
-
