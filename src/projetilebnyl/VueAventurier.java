@@ -105,10 +105,10 @@ public class VueAventurier  {
  
 
     
-    /* public static void main(String [] args) {
+     public static void main(String [] args) {
         // Instanciation de la fenêtre 
         VueAventurier vueAventurier = new VueAventurier ("Manon", "Explorateur",Pion.ROUGE.getCouleur() );
-    }*/
+    }
     }
 
  

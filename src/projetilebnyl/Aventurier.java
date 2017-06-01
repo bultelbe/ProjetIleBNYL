@@ -1,29 +1,35 @@
 package projetilebnyl;
 
 public class Aventurier {
-	private String nom;
 	private int capacité;
 	private int colonne;
 	private int ligne;
-	public Pilote pilote;
-	public Explorateur explorateur;
-	public Ingénieur ingénieur;
-	public Navigateur navigateur;
-	public Messager messager;
-	public Plongeur plongeur;
-	public Tuile positionCourante;
+	private Tuile positionCourante;
+
+        public Aventurier(int _capacité, int _colonne, int _ligne, Tuile _positionCourante) {
+            this.capacité = _capacité;
+            this.colonne = _colonne;
+            this.ligne = _ligne;
+            this.positionCourante = _positionCourante;
+        }
+      
+        public void setColonne(int _colonne) {
+            this.colonne = _colonne;
+        }
+
+        public void setLigne(int _ligne) {
+            this.ligne = _ligne;
+         }
         
-        
-        
-	public void getCapacité() {
-		throw new UnsupportedOperationException();
+	public int getCapacité() {
+		return this.capacité;
 	}
 
 	public Tuile getTuile() {
 		return this.positionCourante;
 	}
 
-	public void positionGrille(Grille grille) {
+	public Tuile positionGrille(Grille aGrille) {
 		throw new UnsupportedOperationException();
 	}
         
@@ -32,7 +38,15 @@ public class Aventurier {
                 this.setLigne(ligne);
 	}
 
-	public void DeplacementsPossibles(Grille grille) {
-		throw new UnsupportedOperationException();
-	}
+	public void DeplacementsPossibles(Grille aGrille) {
+            int cap = this.getCapacité();
+            if(cap==4){//plongeur
+                
+            }else if(cap==5){//pilote
+                
+            }else{
+                
+            }
+            
+        }
 }

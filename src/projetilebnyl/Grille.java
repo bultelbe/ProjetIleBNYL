@@ -7,7 +7,6 @@ import java.util.Vector;
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
 
-	
 	public ArrayList<Tuile> getListeTuileAdj(Tuile aPositActu) {
                 ArrayList<Tuile> Liste = new ArrayList();
                 int col = aPositActu.getColonne();
@@ -107,13 +106,7 @@ public class Grille {
                 }                
                 
                 return Liste;
-
 	}
-
-
-
-
-
 
 	public ArrayList<Tuile> getListeTuileDiag(Tuile aPositActu) {
 		ArrayList<Tuile> Liste = new ArrayList();
