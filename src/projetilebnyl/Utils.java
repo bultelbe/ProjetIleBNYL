@@ -24,7 +24,7 @@ public class Utils {
         INONDEE("Inondée"),
         COULEE("Coulée");
 
-        String libelle ;
+        String libelle;
         
         EtatTuile(String libelle) {
             this.libelle = libelle ;
@@ -32,7 +32,7 @@ public class Utils {
 
         @Override
         public String toString() {
-            return this.libelle ;
+            return this.libelle;
         }
     }
 
