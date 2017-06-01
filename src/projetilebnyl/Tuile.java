@@ -5,7 +5,7 @@ public class Tuile {
 	private int colonne;
 	private int ligne;
 	private int statut;
-        //0=sec 1=innodé 2=coulée
+        //1=sec 2=innodé 3=coulée
 
     public Tuile(String _nomCase) {
         this.nomCase = _nomCase;
