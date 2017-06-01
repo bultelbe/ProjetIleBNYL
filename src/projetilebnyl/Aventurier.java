@@ -39,16 +39,16 @@ public class Aventurier {
             return positionCourante;
     }
 
-    public void positionGrille(Grille aGrille) {
+    public void positionGrille(Grille grille) {
 
     }
 
-    public void deplacementsPossibles(Grille aGrille) {
+    public void deplacementsPossibles(Grille grille) {
 
         if (joueur.getCapacite() == 1) { //pilote - Déplacement possible sur toutes les tuiles non coulées
-            for(int i = 1; i <= 36; i++) {
+            for(int i = 1; i <= grille.getGrille().size(); i++) {
                 if (getStatut(i) == 1 || getStatut(i) == 2) {
-
+                    
                 }
             }
         } else if (joueur.getCapacite() == 2) { //plongeur - Déplacement possible en 1 action à travers toutes
@@ -58,10 +58,9 @@ public class Aventurier {
         }
     }
 
-        
-        
-	public void DeplaceJoueur(int Colonne, int ligne) {
-		this.setColonne(Colonne);
-                this.setLigne(ligne);
-	}
+    public void DeplaceJoueur(int colonne, int ligne) {
+            this.setColonne(colonne);
+            this.setLigne(ligne);
+    }
+    
 }
