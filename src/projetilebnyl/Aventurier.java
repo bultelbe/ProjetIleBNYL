@@ -6,12 +6,9 @@ public class Aventurier {
 	private int _ligne;
 	private Tuile _positionCourante;
 
-        public Aventurier(int _capacité, int _colonne, int _ligne, Tuile _positionCourante) {
+        public Aventurier(int _capacité) {
             this._capacité = _capacité;
-            this._colonne = _colonne;
-            this._ligne = _ligne;
-            this._positionCourante = _positionCourante;
-        }
+                                               }
       
         public void setColonne(int _colonne) {
             this._colonne = _colonne;

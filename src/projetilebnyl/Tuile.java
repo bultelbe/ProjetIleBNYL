@@ -1,45 +1,45 @@
 package projetilebnyl;
 
 public class Tuile {
-	private String _nomCase;
-	private int _colonne;
-	private int _ligne;
-	private int _statut;
+	private String nomCase;
+	private int colonne;
+	private int ligne;
+	private int statut;
         //0=sec 1=innodé 2=coulée
 
     public Tuile(String _nomCase) {
-        this._nomCase = _nomCase;
-        this._statut=0;
+        this.nomCase = _nomCase;
+        this.statut=0;
     }
    
         
     public String getNomCase() {
-		return this._nomCase;
+		return this.nomCase;
     }
 
     public int getColonne() {
-        return _colonne;
+        return colonne;
     }
 
     public void setColonne(int _colonne) {
-        this._colonne = _colonne;
+        this.colonne = _colonne;
     }
 
     public int getLigne() {
-        return _ligne;
+        return ligne;
     }
 
     public void setLigne(int _ligne) {
-        this._ligne = _ligne;
+        this.ligne = _ligne;
     }
        
     
     public int getStatut(String aNomCase) {
-	return this._statut;
+	return this.statut;
     }
 
     public void setStatut(int aStatut) {
-	this._statut=aStatut;
+	this.statut=aStatut;
     }
 
     public String getPosition() {
