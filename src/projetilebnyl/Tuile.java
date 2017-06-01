@@ -9,7 +9,7 @@ public class Tuile {
 
     public Tuile(String _nomCase) {
         this.nomCase = _nomCase;
-        this.statut=0;
+        this.statut=1;
     }
    
         
