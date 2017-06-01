@@ -6,10 +6,9 @@ public class Tuile {
 	private int ligne;
 	private int statut;
         
-    Tuile(String nomCase,int colonne,int ligne){
+    Tuile(String nomCase){
         this.nomCase=nomCase;
-        this.colonne=colonne;
-        this.ligne=ligne;
+
         this.statut=1;
     }
         
