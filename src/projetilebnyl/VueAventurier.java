@@ -21,7 +21,7 @@ public class VueAventurier  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-    private final JFrame window;
+    private final JFrame window,grille;
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JButton btnAller  ;
@@ -32,6 +32,7 @@ public class VueAventurier  {
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
+        
         this.window = new JFrame();
         window.setSize(350, 200);
 
@@ -81,6 +82,10 @@ public class VueAventurier  {
 
         this.window.setVisible(true);
         mainPanel.repaint();
+        
+        this.grille = new JFrame();
+        grille.setSize(700, 700);
+        this.grille.setVisible(true);
     }  
 
      public JButton getBtnAutreAction() {
