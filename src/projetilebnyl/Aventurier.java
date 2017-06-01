@@ -36,14 +36,6 @@ public class Aventurier {
 	}
 
 	public void DeplacementsPossibles(Grille aGrille) {
-            int cap = this.getCapacité();
-            if(cap==4){//plongeur
-                
-            }else if(cap==5){//pilote
-                
-            }else{
-                
-            }
-            
+        	throw new UnsupportedOperationException();           
         }
 }
