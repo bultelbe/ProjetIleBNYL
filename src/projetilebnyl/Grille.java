@@ -4,7 +4,7 @@ import projetilebnyl.Tuile;
 import java.util.Vector;
 
 public class Grille {
-	public Vector<Tuile> _tuiles = new Vector<Tuile>();
+	public HashMap<Tuile> _tuiles = new Vector<Tuile>();
 
 	public Collection<Tuile> getListeTuileAdj(Tuile aPositActu) {
 		throw new UnsupportedOperationException();

@@ -5,10 +5,17 @@ public class Tuile {
 	private int _colonne;
 	private int _ligne;
 	private int _statut;
+        //0=sec 1=innodé 2=coulée
 
-   	public String getNomCase() {
+    public Tuile(String _nomCase) {
+        this._nomCase = _nomCase;
+        this._statut=0;
+    }
+   
+        
+    public String getNomCase() {
 		return this._nomCase;
-	}
+    }
 
     public int getColonne() {
         return _colonne;
@@ -25,17 +32,17 @@ public class Tuile {
     public void setLigne(int _ligne) {
         this._ligne = _ligne;
     }
-        
+       
+    
+    public int getStatut(String aNomCase) {
+	return this._statut;
+    }
 
-	public int getStatut(String aNomCase) {
-		return this._statut;
-	}
+    public void setStatut(int aStatut) {
+	this._statut=aStatut;
+    }
 
-	public void setStatut(int aStatut) {
-		this._statut=aStatut;
-	}
-
-	public String getPosition() {
-            return ("("+this.getColonne()+","+this.getLigne()+")");
-        }
+    public String getPosition() {
+        return ("("+this.getColonne()+","+this.getLigne()+")");
+    }
 }

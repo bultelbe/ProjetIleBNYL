@@ -1,5 +1,8 @@
 package projetilebnyl;
 
 public class Plongeur extends Aventurier {
-	public Aventurier _aventurier;
+
+    public Plongeur(int _colonne, int _ligne, Tuile _positionCourante) {
+        super(5, _colonne, _ligne, _positionCourante);
+    }
 }
