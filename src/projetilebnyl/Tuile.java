@@ -14,7 +14,7 @@ public class Tuile {
    
         
     public String getNomCase() {
-		return this.nomCase;
+        return this.nomCase;
     }
 
     public int getColonne() {
