@@ -27,31 +27,16 @@ public class Aventurier {
             return capacite;
     }
 
-    public Aventurier(int capacite, int colonne, int ligne, Tuile positionCourante) {
-        this.capacite = capacite;
+     public void setColonne(int colonne) {
         this.colonne = colonne;
+    }
+
+    public void setLigne(int ligne) {
         this.ligne = ligne;
-        this.positionCourante = positionCourante;
-    }
-
-
-
-
-     public void setColonne(int _colonne) {
-        this.colonne = _colonne;
-    }
-
-    public void setLigne(int _ligne) {
-        this.ligne = _ligne;
      }
-
-    public int getCapacité() {
-            return this.capacite;
-    }
 
     public Tuile getTuile() {
             return positionCourante;
-            return this._positionCourante;
     }
 
     public void positionGrille(Grille aGrille) {
@@ -73,13 +58,9 @@ public class Aventurier {
         }
     }
 
-    public void DeplaceJoueur(int Colonne, int ligne) {
+    public void deplaceJoueur(int Colonne, int ligne) {
             this.setColonne(Colonne);
             this.setLigne(ligne);
-    }
-
-    public void deplaceJoueur() {
-
     }
 }
 
