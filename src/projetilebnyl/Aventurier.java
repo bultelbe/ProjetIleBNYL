@@ -20,7 +20,7 @@ public class Aventurier {
 	}
 
 	public Tuile getTuile() {
-		return this._positionCourante;
+		return this.positionCourante;
 	}
 
 	public void positionGrille(Grille grille) {
