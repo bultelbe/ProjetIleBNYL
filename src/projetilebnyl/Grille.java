@@ -34,6 +34,14 @@ public class Grille {
 
         public Grille() {
                ArrayList<Tuile> liste= new ArrayList<>();
+               t9.setStatut(3);
+               t14.setStatut(2);
+               t15.setStatut(3);
+               t16.setStatut(2);
+               t17.setStatut(3);
+               t18.setStatut(2);
+               t20.setStatut(3);
+               t24.setStatut(2);
                liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
@@ -63,10 +71,10 @@ public class Grille {
       
 
 
-	public ArrayList<Tuile> getListeTuileAdj(Tuile aPositActu) {
+	public ArrayList<Tuile> getListeTuileAdj(Tuile positionCourante) {
                 ArrayList<Tuile> Liste = new ArrayList();
-                int col = aPositActu.getColonne();
-                int lig = aPositActu.getLigne();
+                int col = positionCourante.getColonne();
+                int lig = positionCourante.getLigne();
                 for(int i=1; i<=tuiles.size();i++) {
                     
                     
@@ -164,10 +172,10 @@ public class Grille {
                 return Liste;
 	}
 
-	public ArrayList<Tuile> getListeTuileDiag(Tuile aPositActu) {
+	public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
 		ArrayList<Tuile> Liste = new ArrayList();
-                int col = aPositActu.getColonne();
-                int lig = aPositActu.getLigne();
+                int col = positionCourante.getColonne();
+                int lig = positionCourante.getLigne();
                 for(int i=1; i<=tuiles.size();i++) {
                     
                     
