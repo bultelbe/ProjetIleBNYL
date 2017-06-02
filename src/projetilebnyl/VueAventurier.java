@@ -86,6 +86,17 @@ public class VueAventurier  {
         this.grille = new JFrame();
         grille.setSize(700, 700);
         this.grille.setVisible(true);
+        grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        // Définit la taille de la fenêtre en pixels
+       
+        
+        JPanel grilletuile = new JPanel(new GridLayout(6, 6));
+        grille.add(grilletuile, BorderLayout.CENTER);
+        
+        for (int i=1; i<=36; i++) {
+            
+             grilletuile.add(getCellule(i));
+        }
     }  
 
      public JButton getBtnAutreAction() {
@@ -108,7 +119,20 @@ public class VueAventurier  {
         return btnTerminerTour;
     }
  
-
+private JPanel getCellule(int i) {
+        int numLigne = (int) (i+5)/6 ;
+        int numCouleur = (i-numLigne) % 4 + 1;
+        
+        if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){   
+            JPanel panelCellule = new JPanel();
+            panelCellule.setBackground(Color.BLACK);
+            return panelCellule ;
+        }  else{    
+        JPanel panelCellule = new JPanel();
+        panelCellule.setBackground((numCouleur==1 ? new Color(255, 106, 0) : (numCouleur==2 || numCouleur==4 ? new Color(173, 234, 80) : new Color(92, 147, 200))));
+        return panelCellule ;
+        }
+    }
     
      public static void main(String [] args) {
         // Instanciation de la fenêtre 

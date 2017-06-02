@@ -1,15 +1,17 @@
 package projetilebnyl;
 
+import projetilebnyl.Utils.EtatTuile;
+
 public class Tuile {
 	private String nomCase;
 	private int colonne;
 	private int ligne;
-	private int statut;
+	private EtatTuile statut;
         
     Tuile(String nomCase){
         this.nomCase=nomCase;
 
-        this.statut=1;
+        this.statut=EtatTuile.ASSECHEE;
     }
         
         
@@ -35,11 +37,11 @@ public class Tuile {
        
 
 
-	public int getStatut() {
+	public EtatTuile getStatut() {
              return this.statut;
 	}
 
-	public void setStatut(int statut) {
+	public void setStatut(EtatTuile statut) {
 		this.statut=statut;
 	}
 
