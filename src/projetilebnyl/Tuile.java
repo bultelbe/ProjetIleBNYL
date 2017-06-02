@@ -8,10 +8,8 @@ public class Tuile {
         
     Tuile(String nomCase){
         this.nomCase=nomCase;
-
         this.statut=1;
     }
-        
         
     public String getNomCase() {
 		return this.nomCase;
@@ -32,18 +30,16 @@ public class Tuile {
     public void setLigne(int ligne) {
         this.ligne = ligne;
     }
-       
 
+    public int getStatut() {
+         return this.statut;
+    }
 
-	public int getStatut() {
-             return this.statut;
-	}
+    public void setStatut(int statut) {
+            this.statut=statut;
+    }
 
-	public void setStatut(int statut) {
-		this.statut=statut;
-	}
-
-	public String getPosition() {
-            return ("("+this.getColonne()+","+this.getLigne()+")");
-        }
+    public String getPosition() {
+        return ("("+this.getColonne()+","+this.getLigne()+")");
+    }
 }

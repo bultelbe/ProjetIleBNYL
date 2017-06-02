@@ -44,8 +44,8 @@ public class Grille {
         private Tuile t36=new Tuile("Le Jardin des Murmures");
 
         public Grille() {
-               for (int i=1; i<=36; ++i){
-                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i=12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
+               for (int i=1; i<=36; ++i) {
+                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i=12 || i==25 || i==30|| i==31 || i==32 || i==35 || i==36) {
                        
                    }
                }
@@ -56,10 +56,10 @@ public class Grille {
         //}
         
 
-	public ArrayList<Tuile> getListeTuileAdj(Tuile aPositActu) {
+	public ArrayList<Tuile> getListeTuileAdj(Tuile positionCourante) {
                 ArrayList<Tuile> Liste = new ArrayList();
-                int col = aPositActu.getColonne();
-                int lig = aPositActu.getLigne();
+                int col = positionCourante.getColonne();
+                int lig = positionCourante.getLigne();
                 for(int i=1; i<=tuiles.size();i++) {
                     
                     
@@ -242,6 +242,15 @@ public class Grille {
 
     public ArrayList<Tuile> getGrille() {
         return tuiles;
+    }
+    
+    public Tuile getTuile(int colonne, int ligne) {
+        for(Tuile t : tuiles) {
+            if(t.getColonne() == colonne && t.getLigne() == ligne) {
+                return t;
+            }
+        }
+        return null;
     }
         
         
