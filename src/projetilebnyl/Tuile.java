@@ -11,10 +11,10 @@ public class Tuile {
 
         this.statut=1;
     }
-        
+              
         
     public String getNomCase() {
-		return this.nomCase;
+		return nomCase;
 	}
 
     public int getColonne() {
@@ -46,4 +46,23 @@ public class Tuile {
 	public String getPosition() {
             return ("("+this.getColonne()+","+this.getLigne()+")");
         }
+
+        public void afficheTuiles(){
+            /*int x = this.getColonne();
+            int y = this.getLigne();*/
+            String nom = this.getNomCase();
+            int stat = this.getStatut();
+            String statut="";
+            if (stat==1){
+                statut="Séche";
+            }else if(stat==2){
+                statut="Innodée";
+            }else if(stat==3){
+                statut="Coulée";
+            }
+            
+            System.out.print(nom +" , "+ /*" , Colone :"+x+" , Ligne : "+y+" , "+*/statut);
+            
+        }
 }
+

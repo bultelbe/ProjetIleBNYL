@@ -1,23 +1,13 @@
 package projetilebnyl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import projetilebnyl.Tuile;
 import java.util.Vector;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
-        private Tuile vide1=null;
-        private Tuile vide2=null;
-        private Tuile vide3=null;
-        private Tuile vide4=null;
-        private Tuile vide5=null;
-        private Tuile vide6=null;
-        private Tuile vide7=null;
-        private Tuile vide8=null;
-        private Tuile vide9=null;
-        private Tuile vide10=null;
-        private Tuile vide11=null;
-        private Tuile vide12=null;
+        private Tuile vide=new Tuile("Vide");       
         private Tuile t1=new Tuile("Le Pont des Abimes");
         private Tuile t2=new Tuile("La Porte de Bronze");
         private Tuile t3=new Tuile("La Caverne Des Ombres");
@@ -26,35 +16,42 @@ public class Grille {
         private Tuile t6=new Tuile("Les Falaises de l'Oubli");
         private Tuile t7=new Tuile("Le Palais de Corail");
         private Tuile t8=new Tuile("La Porte d'Argent");
-        private Tuile t21=new Tuile("Les Dunes de L'Illusion");
-        private Tuile t22=new Tuile("Héliport");
-        private Tuile t23=new Tuile("La Porte de Cuivre");
-        private Tuile t24=new Tuile("Le Jardin des Hurlements");
-        private Tuile t25=new Tuile("La Foret Pourpre");
-        private Tuile t26=new Tuile("Le Lagon Perdu");
-        private Tuile t27=new Tuile("Le Marais Brumeux");
-        private Tuile t28=new Tuile("Observatoire");
-        private Tuile t29=new Tuile("LeRocher Fantome");
-        private Tuile t30=new Tuile("La Caverne du Brasier");
-        private Tuile t31=new Tuile("Le Temple du Soleil");
-        private Tuile t32=new Tuile("Le Temple de la Lune");
-        private Tuile t33=new Tuile("Le Palais des Marées");
-        private Tuile t34=new Tuile("Le Val du Crépuscule");
-        private Tuile t35=new Tuile("La Tour du Guet");
-        private Tuile t36=new Tuile("Le Jardin des Murmures");
+        private Tuile t9=new Tuile("Les Dunes de L'Illusion");
+        private Tuile t10=new Tuile("Héliport");
+        private Tuile t11=new Tuile("La Porte de Cuivre");
+        private Tuile t12=new Tuile("Le Jardin des Hurlements");
+        private Tuile t13=new Tuile("La Foret Pourpre");
+        private Tuile t14=new Tuile("Le Lagon Perdu");
+        private Tuile t15=new Tuile("Le Marais Brumeux");
+        private Tuile t16=new Tuile("Observatoire");
+        private Tuile t17=new Tuile("LeRocher Fantome");
+        private Tuile t18=new Tuile("La Caverne du Brasier");
+        private Tuile t19=new Tuile("Le Temple du Soleil");
+        private Tuile t20=new Tuile("Le Temple de la Lune");
+        private Tuile t21=new Tuile("Le Palais des Marées");
+        private Tuile t22=new Tuile("Le Val du Crépuscule");
+        private Tuile t23=new Tuile("La Tour du Guet");
+        private Tuile t24=new Tuile("Le Jardin des Murmures");
 
         public Grille() {
+               ArrayList<Tuile> liste= new ArrayList<>();
+               liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
+               liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
+               liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
+               //Collections.shuffle(liste);
+               int j =0;
                for (int i=1; i<=36; ++i){
-                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i=12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
-                       
+                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
+                       tuiles.add(vide);
+                   }else{
+                       tuiles.add(liste.get(j));
+                       ++j;
                    }
+                   
                }
         }
       
-        //public Grille(){
-            
-        //}
-        
+
 
 	public ArrayList<Tuile> getListeTuileAdj(Tuile aPositActu) {
                 ArrayList<Tuile> Liste = new ArrayList();
@@ -244,6 +241,11 @@ public class Grille {
         return tuiles;
     }
         
-        
+    public void afficheGrille(){
+        for (int i=0;i<(this.getGrille().size());++i){
+               this.getGrille().get(i).afficheTuiles();System.out.println(" : "+i);
+               
+        }
+    }
 }
 
