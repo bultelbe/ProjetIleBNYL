@@ -48,8 +48,8 @@ public class Tuile {
         }
 
         public void afficheTuiles(){
-            /*int x = this.getColonne();
-            int y = this.getLigne();*/
+            int x = this.getColonne();
+            int y = this.getLigne();
             String nom = this.getNomCase();
             int stat = this.getStatut();
             String statut="";
@@ -61,7 +61,7 @@ public class Tuile {
                 statut="Coulée";
             }
             
-            System.out.print(nom +" , "+ /*" , Colone :"+x+" , Ligne : "+y+" , "+*/statut);
+            System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
             
         }
 }

@@ -7,7 +7,6 @@ import java.util.Vector;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
-        private Tuile vide=new Tuile("Vide");       
         private Tuile t1=new Tuile("Le Pont des Abimes");
         private Tuile t2=new Tuile("La Porte de Bronze");
         private Tuile t3=new Tuile("La Caverne Des Ombres");
@@ -35,17 +34,28 @@ public class Grille {
 
         public Grille() {
                ArrayList<Tuile> liste= new ArrayList<>();
-               liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
+               liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
                //Collections.shuffle(liste);
                int j =0;
+               int col=0;
+               int lig =0;                    
                for (int i=1; i<=36; ++i){
                    if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
-                       tuiles.add(vide);
+                        Tuile vide=new Tuile("Vide");
+                        vide.setColonne(col);
+                        vide.setLigne(lig);
+                        tuiles.add(vide);
                    }else{
-                       tuiles.add(liste.get(j));
-                       ++j;
+                    liste.get(j).setColonne(col);
+                    liste.get(j).setLigne(lig);
+                    tuiles.add(liste.get(j));
+                    ++j;
+                   }
+                   col=(col+1)%6;
+                   if (i%6+1==1){
+                       lig=lig+1;
                    }
                    
                }

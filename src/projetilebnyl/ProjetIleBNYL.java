@@ -22,7 +22,7 @@ public class ProjetIleBNYL {
     */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        grillejeu.getGrille().get(1).setColonne(1);
         grillejeu.afficheGrille();
     }
 
