@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,6 +32,8 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
+    private Controlleur controlleur;
+            
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
         
@@ -79,6 +83,26 @@ public class VueAventurier  {
         this.panelBoutons.add(btnAssecher);
         this.panelBoutons.add(btnAutreAction);
         this.panelBoutons.add(btnTerminerTour);
+        
+        //On rajoute nos ActionListener sur les boutons de l'IHM
+        
+        this.btnTerminerTour.addActionListener((ActionEvent e) -> {
+            controlleur.passerJoueurSuivant();
+        });
+        
+        this.btnAller.addActionListener((ActionEvent e) -> {
+            controlleur.DeplacementJoueur();
+        });
+        
+        this.btnAssecher.addActionListener((ActionEvent e) -> {
+            controlleur.AssechementCase();
+        });
+        
+        this.btnAutreAction.addActionListener((ActionEvent e) -> {
+          
+        });
+        
+        
 
         this.window.setVisible(true);
         mainPanel.repaint();
@@ -130,6 +154,7 @@ private JPanel getCellule(int i) {
         }  else{    
         JPanel panelCellule = new JPanel();
         panelCellule.setBackground((numCouleur==1 ? new Color(255, 106, 0) : (numCouleur==2 || numCouleur==4 ? new Color(173, 234, 80) : new Color(92, 147, 200))));
+        
         return panelCellule ;
         }
     }
