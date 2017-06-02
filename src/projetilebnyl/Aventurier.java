@@ -1,52 +1,76 @@
 package projetilebnyl;
 
+import java.util.ArrayList;
+
 public class Aventurier {
-	private int capacité;
-	private int colonne;
-	private int ligne;
-	private Tuile positionCourante;
+    private String nomJ;
+    private int capacite;
+    private int colonne;
+    private int ligne;
+    public Pilote pilote;
+    public Explorateur explorateur;
+    public Ingénieur ingénieur;
+    public Navigateur navigateur;
+    public Messager messager;
+    public Plongeur plongeur;
+    public Tuile positionCourante;
 
-        public Aventurier(int _capacité, int _colonne, int _ligne, Tuile _positionCourante) {
-            this.capacité = _capacité;
-            this.colonne = _colonne;
-            this.ligne = _ligne;
-            this.positionCourante = _positionCourante;
-        }
-      
-        public void setColonne(int _colonne) {
-            this.colonne = _colonne;
-        }
+    Aventurier joueur = new Aventurier(nomJ, capacite, positionCourante);
 
-        public void setLigne(int _ligne) {
-            this.ligne = _ligne;
-         }
+    public Aventurier(String nomJ, int capacite, Tuile positionCourante) {
+        this.nomJ = nomJ;
+        this.capacite = capacite;
+        this.positionCourante = positionCourante;
+    }
+
+    public int getCapacite() {
+            return capacite;
+    }
+
+     public void setColonne(int colonne) {
+        this.colonne = colonne;
+    }
+
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
+     }
+
+    public Tuile getTuile() {
+            return positionCourante;
+    }
+
+    public void positionGrille(Grille grille) {
+
+    }
+
+    public void deplacementsPossibles(Grille grille) {
         
-	public int getCapacité() {
-		return this.capacité;
-	}
-
-	public Tuile getTuile() {
-		return this.positionCourante;
-	}
-
-	public Tuile positionGrille(Grille aGrille) {
-		throw new UnsupportedOperationException();
-	}
+        /*
+        if (joueur.getCapacite() == 1) { //pilote
+            System.out.println("Vous pouvez vous déplacer sur n'importe quelle case sèche de l'île pour une action.");
+        } else if (joueur.getCapacite() == 2) { //plongeur
+            System.out.println("Vous pouvez vous déplacer au travers d’une ou plusieurs tuiles adjacentes manquantes et/ou inondées pour une action (pas forcément en ligne droite)");
+        }
         
-	public void DeplaceJoueur(int Colonne, int ligne) {
-		this.setColonne(Colonne);
-                this.setLigne(ligne);
-	}
-
-	public void DeplacementsPossibles(Grille aGrille) {
-            int cap = this.getCapacité();
-            if(cap==4){//plongeur
-                
-            }else if(cap==5){//pilote
-                
-            }else{
-                
+        
+        ArrayList<Tuile> tuilesSeches = new ArrayList<>();
+        
+        if (joueur.getCapacite() == 1) { //pilote - Déplacement possible sur toutes les tuiles non coulées
+            for(int i = 1; i <= grille.getGrille().size(); i++) {
+                if (grille.getGrille().get(i).getStatut() == 1) { //case sèche
+                    tuilesSeches.add(grille.getGrille().get(i));
+                }
             }
-            
-        }
+        } else if (joueur.getCapacite() == 2) { //plongeur - Déplacement possible en 1 action à travers toutes
+
+        } else {
+
+        }*/
+    }
+
+    public void DeplaceJoueur(int colonne, int ligne) {
+            this.setColonne(colonne);
+            this.setLigne(ligne);
+    }
+    
 }
