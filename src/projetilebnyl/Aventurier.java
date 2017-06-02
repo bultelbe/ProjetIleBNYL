@@ -1,6 +1,7 @@
 package projetilebnyl;
 
 import java.util.ArrayList;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Aventurier {
     private String nomJ;
@@ -40,9 +41,16 @@ public class Aventurier {
     }
 
     public void deplacementsPossibles(Grille grille) {
-
+        
+        ArrayList<Tuile> tuilesSechesInondees = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj=(grille.getListeTuileAdj(positionCourante));
+        
+        for (Tuile t : tuilesAdj) {
+            if (t.getStatut() == INONDEE || t.getStatut() == ASSECHEE) {
+                tuilesSechesInondees.add(t);
+            }
+        }
     }
 
     public void DeplaceJoueur(int colonne, int ligne) {

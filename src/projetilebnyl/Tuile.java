@@ -1,14 +1,16 @@
 package projetilebnyl;
 
+import projetilebnyl.Utils.EtatTuile;
+import static projetilebnyl.Utils.EtatTuile.*;
+
 public class Tuile {
 	private String nomCase;
 	private int colonne;
 	private int ligne;
-	private int statut;
+	private EtatTuile statut;
         
     Tuile(String nomCase){
         this.nomCase=nomCase;
-        this.statut=1;
     }
               
         
@@ -32,11 +34,11 @@ public class Tuile {
         this.ligne = ligne;
     }
 
-    public int getStatut() {
+    public EtatTuile getStatut() {
          return this.statut;
     }
 
-    public void setStatut(int statut) {
+    public void setStatut(EtatTuile statut) {
             this.statut=statut;
     }
 
@@ -44,36 +46,22 @@ public class Tuile {
         return ("("+this.getColonne()+","+this.getLigne()+")");
     }
 
-    public void afficheTuiles(){
+    public void afficheTuiles() {
         int x = this.getColonne();
         int y = this.getLigne();
         String nom = this.getNomCase();
-        int stat = this.getStatut();
+        EtatTuile stat = this.getStatut();
         String statut="";
-        if (stat==1){
+        
+        //getStatut ne renvoie plus un entier mais un EtatTuile. De ce fait il faut modifier voir enlever ces conditions.
+        if (stat == ASSECHEE) {
             statut="Séche";
-        }else if(stat==2){
-            statut="Innodée";
-        }else if(stat==3){
+        } else if (stat == INONDEE) {
+            statut="Innondée";
+        } else if (stat == COULEE) {
             statut="Coulée";
         }
-
-        public void afficheTuiles(){
-            int x = this.getColonne();
-            int y = this.getLigne();
-            String nom = this.getNomCase();
-            int stat = this.getStatut();
-            String statut="";
-            if (stat==1){
-                statut="Séche";
-            }else if(stat==2){
-                statut="Innodée";
-            }else if(stat==3){
-                statut="Coulée";
-            }
-            
-            System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
-            
-        }
+        System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
+    }
 }
 
