@@ -282,11 +282,12 @@ public class Grille {
         }
         
         //uniquement pour test grille
-        public void afficheGrille(){
-            for (int i=0;i<(this.getGrille().size());++i){
-                   this.getGrille().get(i).afficheTuiles();System.out.println(" : "+i);
-
-            }
+             
+    public void afficheGrille(){
+        for (int i=0;i<(this.getGrille().size());++i){
+               this.getGrille().get(i).afficheTuile();System.out.println(" : "+i);
+               
         }
+    }
 }
 
