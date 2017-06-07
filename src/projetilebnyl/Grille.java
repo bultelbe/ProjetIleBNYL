@@ -196,7 +196,8 @@ public class Grille {
         public void afficheGrille(){
         //fonction servant uniquement a affixhé la grille lors de la création du code
         for (int i=0;i<(this.getGrille().size());++i){
-               this.getGrille().get(i).afficheTuile();System.out.println(" : "+i);
+               this.getGrille().get(i).afficheTuile();
+               System.out.println(" : "+i);
                
         }
     }

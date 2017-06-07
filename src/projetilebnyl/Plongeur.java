@@ -10,9 +10,7 @@ public class Plongeur extends Aventurier {
     }
 
     
-    
-    @Override
-    public void deplacementsPossibles(Grille grille) {
+    public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         
         ArrayList<Tuile> tuilesTrav = new ArrayList<>();
         tuilesTrav.add(positionCourante);
@@ -35,5 +33,6 @@ public class Plongeur extends Aventurier {
                     }
             }
         }
+        return tuilesTrav;
     }
 }

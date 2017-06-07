@@ -17,8 +17,6 @@ public class Aventurier {
     public Plongeur plongeur;
     public Tuile positionCourante;
 
-    Aventurier joueur = new Aventurier(nomJ, capacite, positionCourante);
-
     public Aventurier(String nomJ, int capacite, Tuile positionCourante) {
         this.nomJ = nomJ;
         this.capacite = capacite;
@@ -37,7 +35,7 @@ public class Aventurier {
         this.ligne = ligne;
      }
 
-    public void assechementsPossibles(Grille grille) {
+    public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesInondees = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj = (grille.getListeTuileAdj(positionCourante));
@@ -47,19 +45,21 @@ public class Aventurier {
                 tuilesInondees.add(t);
             }
         }
+        return tuilesInondees;
     }
 
-    public void deplacementsPossibles(Grille grille) {
+    public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         
-        ArrayList<Tuile> tuilesSechesInondees = new ArrayList<>();
+        ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj=(grille.getListeTuileAdj(positionCourante));
         
         for (Tuile t : tuilesAdj) {
             if (t.getStatut() == INONDEE || t.getStatut() == ASSECHEE) {
-                tuilesSechesInondees.add(t);
+                tuilesPossibles.add(t);
             }
         }
+        return tuilesPossibles;
     }
 
     public void DeplaceJoueur(int colonne, int ligne) {
