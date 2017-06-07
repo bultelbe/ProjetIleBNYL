@@ -8,7 +8,7 @@ public class Pilote extends Aventurier {
     private boolean action = true;
 
     public Pilote(String nomJ, int capacite, Tuile positionCourante) {
-        super(nomJ, capacite, positionCourante);
+        super(nomJ,capacite,positionCourante);
     }
 
     

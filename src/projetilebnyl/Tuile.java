@@ -10,7 +10,14 @@ public class Tuile {
 	private EtatTuile statut;
         
     Tuile(String nomCase){
-        this.nomCase = nomCase;
+        this.nomCase=nomCase;
+
+        this.statut=EtatTuile.ASSECHEE;
+    }
+    
+    Tuile(String nomCase,EtatTuile statut){
+        this.nomCase=nomCase;
+        this.statut=statut;
     }
               
         
@@ -38,13 +45,10 @@ public class Tuile {
          return this.statut;
     }
 
-    public void setStatut(EtatTuile statut) {
-            this.statut=statut;
-    }
 
-    public String getPosition() {
-        return ("("+this.getColonne()+","+this.getLigne()+")");
-    }
+	public void setStatut(EtatTuile statut) {
+		this.statut=statut;
+	}
 
     public void afficheTuile() {
         int x = this.getColonne();

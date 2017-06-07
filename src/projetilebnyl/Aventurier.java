@@ -8,6 +8,7 @@ public class Aventurier {
     private int capacite;
     private int colonne;
     private int ligne;
+    private int nbrActions;
     public Pilote pilote;
     public Explorateur explorateur;
     public Ingénieur ingénieur;
