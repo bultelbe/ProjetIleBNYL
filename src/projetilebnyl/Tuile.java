@@ -46,14 +46,13 @@ public class Tuile {
         return ("("+this.getColonne()+","+this.getLigne()+")");
     }
 
-    public void afficheTuiles() {
+    public void afficheTuile() {
         int x = this.getColonne();
         int y = this.getLigne();
         String nom = this.getNomCase();
         EtatTuile stat = this.getStatut();
-        String statut="";
+        String statut = "";
         
-        //getStatut ne renvoie plus un entier mais un EtatTuile. De ce fait il faut modifier voir enlever ces conditions.
         if (stat == ASSECHEE) {
             statut="Séche";
         } else if (stat == INONDEE) {
