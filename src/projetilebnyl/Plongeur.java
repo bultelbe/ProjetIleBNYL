@@ -12,23 +12,36 @@ public class Plongeur extends Aventurier {
     @Override
     public void deplacementsPossibles(Grille grille) {
         
-        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
-        tuilesAdj=(grille.getListeTuileAdj(positionCourante));
+        ArrayList<Tuile> tuilesIC = new ArrayList<>();
+        tuilesIC=(grille.getListeTuileAdj(positionCourante));
         
-        ArrayList<Tuile> tuilesInondeesCoulees = new ArrayList<>();
+        ArrayList<Tuile> tuilesTrav = new ArrayList<>();
         
-        for (Tuile t1 : tuilesAdj) {
+        for (int i = 0; i < tuilesIC.size(); i++) {
+            Tuile t1 = tuilesIC.get(i);
+            
+            if (t1.getStatut() != COULEE) {
+                for (Tuile t2 : grille.getListeTuileAdj(t1))
+                    if (t2.getStatut() == COULEE && tuilesTrav.contains(t2)) {
+                        
+                    } else if (t2.getStatut() != COULEE && !tuilesIC.contains(t2)) {
+                        
+                    }
+            }
+        }
+        
+        /*for (Tuile t1 : tuilesIC) {
             if (t1.getStatut() == INONDEE || t1.getStatut() == COULEE) {
-                tuilesInondeesCoulees.add(t1);
+                tuilesTrav.add(t1);
                 
                 for (Tuile t2 : grille.getListeTuileAdj(t1)) {
                     if (t2.getStatut() == INONDEE || t2.getStatut() == COULEE) {
-                        tuilesInondeesCoulees.add(t2);
-                        tuilesAdj.add(t2);
+                        tuilesTrav.add(t2);
+                        tuilesIC.add(t2);
                     }
                 }
             }
-        }
+        }*/
         
     }
 }

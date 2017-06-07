@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import projetilebnyl.Tuile;
 import java.util.Vector;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
@@ -34,14 +35,16 @@ public class Grille {
 
         public Grille() {
                ArrayList<Tuile> liste= new ArrayList<>();
-               t9.setStatut(3);
-               t14.setStatut(2);
-               t15.setStatut(3);
-               t16.setStatut(2);
-               t17.setStatut(3);
-               t18.setStatut(2);
-               t20.setStatut(3);
-               t24.setStatut(2);
+               
+               
+               t9.setStatut(COULEE);
+               t14.setStatut(INONDEE);
+               t15.setStatut(COULEE);
+               t16.setStatut(INONDEE);
+               t17.setStatut(COULEE);
+               t18.setStatut(INONDEE);
+               t20.setStatut(COULEE);
+               t24.setStatut(INONDEE);
                liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
