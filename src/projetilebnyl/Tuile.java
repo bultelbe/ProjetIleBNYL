@@ -10,7 +10,7 @@ public class Tuile {
 	private EtatTuile statut;
         
     Tuile(String nomCase){
-        this.nomCase=nomCase;
+        this.nomCase = nomCase;
     }
               
         

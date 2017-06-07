@@ -179,7 +179,7 @@ public class Grille {
         public ArrayList<Tuile> getTuilesPossibles(){
             ArrayList<Tuile> liste = new ArrayList();
             for(Tuile t : tuiles) {
-                if(t.getStatut()==ASSECHEE || t.getStatut()==INONDEE){
+                if(t.getStatut() == ASSECHEE || t.getStatut() == INONDEE){
                     liste.add(t);
                 }
             }
@@ -199,7 +199,8 @@ public class Grille {
              
         public void afficheGrille(){
         for (int i=0;i<(this.getGrille().size());++i){
-               this.getGrille().get(i).afficheTuile();System.out.println(" : "+i);
+               this.getGrille().get(i).afficheTuile();
+               System.out.println(" : "+i);
                
         }
     }
