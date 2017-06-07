@@ -12,6 +12,15 @@ public class Explorateur extends Aventurier {
     public void assechementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(positionCourante);
+        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
+        tuilesAdj = grille.getListeTuileAdj(positionCourante);
+        
+        ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
+        tuilesAssechables = tuilesDiag;
+        
+        for (Tuile t : tuilesAdj) {
+            tuilesAssechables.add(t);
+        }
         
     }
     
