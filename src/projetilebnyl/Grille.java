@@ -24,7 +24,7 @@ public class Grille {
         private Tuile t14=new Tuile("Le Lagon Perdu",INONDEE);
         private Tuile t15=new Tuile("Le Marais Brumeux",COULEE);
         private Tuile t16=new Tuile("Observatoire",INONDEE);
-        private Tuile t17=new Tuile("LeRocher Fantome",COULEE);
+        private Tuile t17=new Tuile("Le Rocher Fantome",COULEE);
         private Tuile t18=new Tuile("La Caverne du Brasier",INONDEE);
         private Tuile t19=new Tuile("Le Temple du Soleil",ASSECHEE);
         private Tuile t20=new Tuile("Le Temple de la Lune",COULEE);
@@ -63,99 +63,60 @@ public class Grille {
                }
         }
       
-
+        public ArrayList<Tuile> getGrille() {
+            return tuiles;
+        }
 
 	public ArrayList<Tuile> getListeTuileAdj(Tuile positionCourante) {
+                
                 ArrayList<Tuile> Liste = new ArrayList();
                 int col = positionCourante.getColonne();
                 int lig = positionCourante.getLigne();
-                for(int i=1; i<tuiles.size();i++) {
-                    
-                    
+                for(int i=1; i<tuiles.size();i++) {  
                 if(col==0){
-                    
-                    
+                // Verifie que la tuile positionCourante ne se situe pas sur les bord de la grille
+                // Cad lig !=0 && lig!=5 && col!=0 && col!=5
+                // Sinon gére les exception
                     if (lig==2||lig==3){                       
                         if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
+                            // Verifie si la tuile "tuiles.get(i)" est adjacente a la tuile positionCourante
+                            //Si oui l'ajoute a la liste
                             if (tuiles.get(i).getNomCase()!="Vide"){
+                                // Verifie si la tuile n'est pas definie comme vide
+                                // Si oui l'ajoute à la liste
                                 Liste.add(tuiles.get(i));
                             }
                         }
-                    }
-                    
+                    } 
                 }else if(col==5) {     
                     if (lig==2||lig==3){                       
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
-                            }                        }
-                    }
-                    
+                            }                        
+                        }                        
+                    }  
                 }else if(lig==0) { 
                     if (col==2||col==3){
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
-                            }                        }                   
+                            }                        
+                        }                   
                     }
                 }else if(lig==5) {   
                     if (col==2||col==3){                        
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
-                            }                        }                   
-                    }                    
-                }else{  
-                    if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col ) ){
-                            if (tuiles.get(i).getNomCase()!="Vide"){
-                                Liste.add(tuiles.get(i));
-                            }                    }
-                  }      
-                }                
-                
-                return Liste;
-	}
-
-        public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
-		ArrayList<Tuile> Liste = new ArrayList();
-                int col = positionCourante.getColonne();
-                int lig = positionCourante.getLigne();
-                for(int i=0; i<tuiles.size();i++) {
-                    
-                    if(col==0){                  
-                        if (lig==2||lig==3){
-                            if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig+1 )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col+1))  ){
-                                Liste.add(tuiles.get(i));
-                            }
-                        }
-
-                    }else if(col==5) {     
-                        if (lig==2 || lig==3){
-                            if ( ((tuiles.get(i).getColonne()== col- 1) && tuiles.get(i).getLigne()==lig-1 )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col-1))  ){
-                                Liste.add(tuiles.get(i));
-                            }
-                        }
-                    }else if(lig==0) { 
-                        if (col==2 || col==3){
-                            if ( ((tuiles.get(i).getColonne()== col+1 ) && tuiles.get(i).getLigne()==lig+1 )  ||((tuiles.get(i).getLigne()== lig+1 ) && (tuiles.get(i).getColonne()== col))  ){
-                                Liste.add(tuiles.get(i));
-                            }
-                        }else if (col==3){
-                            if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig -1)  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col-1))  ){
-                                Liste.add(tuiles.get(i));
-                            }                   
-                        }
-                    }else if(lig==5) {   
-                        if (col==2 || col==3){
-                            if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig-1 )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col-1))||((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig-1 )   ){
-                                Liste.add(tuiles.get(i));
-                            }
-                        }
-                    }else{  
-                        if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig+1 )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig+1) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col-1) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col-1 ) ){
-                            if (tuiles.get(i).getNomCase()!="Vide"){
-                                Liste.add(tuiles.get(i));
                             }                        
+                        }                   
+                    }                    
+                }else{  // lig !=0 && lig!=5 && col!=0 && col!=5 
+                        if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col ) ){
+                            if (tuiles.get(i).getNomCase()!="Vide"){
+                                Liste.add(tuiles.get(i));
+                            }                    
                         }
                     }      
                 }                
@@ -163,11 +124,53 @@ public class Grille {
                 return Liste;
 	}
 
-        public ArrayList<Tuile> getGrille() {
-            return tuiles;
-        }
-        
+        public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
+            //retourne une liste des   
+            ArrayList<Tuile> Liste = new ArrayList();
+            int col = positionCourante.getColonne();
+            int lig = positionCourante.getLigne();
+            for(int i=0; i<tuiles.size();i++) {//boucle sur la taille de la grille
+                if(col==0){                  
+                    if (lig==2||lig==3){
+                        if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig+1 )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col+1))  ){
+                            Liste.add(tuiles.get(i));
+                        }
+                    }
+                }else if(col==5) {     
+                    if (lig==2 || lig==3){
+                        if ( ((tuiles.get(i).getColonne()== col- 1) && tuiles.get(i).getLigne()==lig-1 )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col-1))  ){
+                            Liste.add(tuiles.get(i));
+                        }
+                    }
+                }else if(lig==0) { 
+                    if (col==2 || col==3){
+                        if ( ((tuiles.get(i).getColonne()== col+1 ) && tuiles.get(i).getLigne()==lig+1 )  ||((tuiles.get(i).getLigne()== lig+1 ) && (tuiles.get(i).getColonne()== col))  ){
+                            Liste.add(tuiles.get(i));
+                        }
+                    }else if (col==3){
+                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig -1)  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col-1))  ){
+                            Liste.add(tuiles.get(i));
+                        }                   
+                    }
+                }else if(lig==5) {  
+                    if (col==2 || col==3){
+                        if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig-1 )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col-1))||((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig-1 )   ){
+                            Liste.add(tuiles.get(i));
+                        }
+                    }
+                }else{ // lig !=0 && lig!=5 && col!=0 && col!=5 
+                    if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig+1 )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig+1) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col-1) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col-1 ) ){
+                        if (tuiles.get(i).getNomCase()!="Vide"){
+                            Liste.add(tuiles.get(i));
+                        }                        
+                    }
+                }      
+            }                
+            return Liste;
+	}
+       
         public ArrayList<Tuile> getTuilesPossibles(){
+            // retourne la liste des tuiles qui ne sont pas couléé
             ArrayList<Tuile> liste = new ArrayList();
             for(Tuile t : tuiles) {
                 if(t.getNomCase()!="Vide"){
@@ -180,6 +183,8 @@ public class Grille {
         }
     
         public Tuile getTuile(int colonne, int ligne) {
+            // retourne la tuille à l'intersection de colonne et ligne
+            // sinon retourne null
             for(Tuile t : tuiles) {
                 if(t.getColonne() == colonne && t.getLigne() == ligne) {
                     return t;
@@ -187,10 +192,9 @@ public class Grille {
             }
             return null;
         }
-        
-        //uniquement pour test grille
-             
+       
         public void afficheGrille(){
+        //fonction servant uniquement a affixhé la grille lors de la création du code
         for (int i=0;i<(this.getGrille().size());++i){
                this.getGrille().get(i).afficheTuile();
                System.out.println(" : "+i);
