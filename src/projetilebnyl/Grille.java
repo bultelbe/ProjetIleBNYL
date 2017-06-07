@@ -175,7 +175,7 @@ public class Grille {
                 return Liste;
 	}
 
-	public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
+        public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
 		ArrayList<Tuile> Liste = new ArrayList();
                 int col = positionCourante.getColonne();
                 int lig = positionCourante.getLigne();
@@ -258,24 +258,35 @@ public class Grille {
                 return Liste;
 	}
 
-    public ArrayList<Tuile> getGrille() {
-        return tuiles;
-    }
+        public ArrayList<Tuile> getGrille() {
+            return tuiles;
+        }
+        
+        public ArrayList<Tuile> getTuile_seche_innonde(){
+            ArrayList<Tuile> liste = new ArrayList();
+            for(Tuile t : tuiles) {
+                if(t.getStatut()==ASSECHEE || t.getStatut()==INONDEE){
+                    liste.add(t);
+                }
+            }
+            return liste;
+        }
     
-    public Tuile getTuile(int colonne, int ligne) {
-        for(Tuile t : tuiles) {
-            if(t.getColonne() == colonne && t.getLigne() == ligne) {
-                return t;
+        public Tuile getTuile(int colonne, int ligne) {
+            for(Tuile t : tuiles) {
+                if(t.getColonne() == colonne && t.getLigne() == ligne) {
+                    return t;
+                }
+            }
+            return null;
+        }
+        
+        //uniquement pour test grille
+        public void afficheGrille(){
+            for (int i=0;i<(this.getGrille().size());++i){
+                   this.getGrille().get(i).afficheTuiles();System.out.println(" : "+i);
+
             }
         }
-        return null;
-    }
-        
-    public void afficheGrille(){
-        for (int i=0;i<(this.getGrille().size());++i){
-               this.getGrille().get(i).afficheTuiles();System.out.println(" : "+i);
-               
-        }
-    }
 }
 
