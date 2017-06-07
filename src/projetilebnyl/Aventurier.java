@@ -37,7 +37,15 @@ public class Aventurier {
      }
 
     public void assechementsPossibles(Grille grille) {
+        ArrayList<Tuile> tuilesInondees = new ArrayList<>();
+        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
+        tuilesAdj = (grille.getListeTuileAdj(positionCourante));
         
+        for (Tuile t : tuilesAdj) {
+            if (t.getStatut() == INONDEE) {
+                tuilesInondees.add(t);
+            }
+        }
     }
 
     public void deplacementsPossibles(Grille grille) {

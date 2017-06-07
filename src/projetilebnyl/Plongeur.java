@@ -5,9 +5,11 @@ import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Plongeur extends Aventurier {
 
-    public Plongeur(int colonne, int ligne, Tuile positionCourante) {
-        super(5, colonne, ligne, positionCourante);
+    public Plongeur(String nomJ, int capacite, Tuile positionCourante) {
+        super(nomJ, capacite, positionCourante);
     }
+
+    
     
     @Override
     public void deplacementsPossibles(Grille grille) {
@@ -16,7 +18,7 @@ public class Plongeur extends Aventurier {
         tuilesTrav.add(positionCourante);
         
         ArrayList<Tuile> tuilesInondeesCoulees = new ArrayList<>();
-        tuilesInondeesCoulees = grille.getListeTuilesPossibles(grille));
+        tuilesInondeesCoulees = grille.getTuilesPossibles(grille));
         
         for (int i = 0; i < tuilesTrav.size(); i++) {
             Tuile t1 = tuilesTrav.get(i);
