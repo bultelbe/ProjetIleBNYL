@@ -12,6 +12,11 @@ public class Tuile {
     Tuile(String nomCase){
         this.nomCase=nomCase;
     }
+    
+    Tuile(String nomCase,EtatTuile statut){
+        this.nomCase=nomCase;
+        this.statut=statut;
+    }
               
         
     public String getNomCase() {

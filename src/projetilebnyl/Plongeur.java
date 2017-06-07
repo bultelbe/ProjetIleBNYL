@@ -16,7 +16,7 @@ public class Plongeur extends Aventurier {
         tuilesTrav.add(positionCourante);
         
         ArrayList<Tuile> tuilesInondeesCoulees = new ArrayList<>();
-        tuilesInondeesCoulees = grille.getListeTuilesPossibles(grille));
+        tuilesInondeesCoulees = grille.getListeTuilesPossibles();
         
         for (int i = 0; i < tuilesTrav.size(); i++) {
             Tuile t1 = tuilesTrav.get(i);
