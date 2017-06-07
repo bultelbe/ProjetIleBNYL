@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import projetilebnyl.Tuile;
 import java.util.Vector;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
@@ -34,6 +35,16 @@ public class Grille {
 
         public Grille() {
                ArrayList<Tuile> liste= new ArrayList<>();
+               
+               
+               t9.setStatut(COULEE);
+               t14.setStatut(INONDEE);
+               t15.setStatut(COULEE);
+               t16.setStatut(INONDEE);
+               t17.setStatut(COULEE);
+               t18.setStatut(INONDEE);
+               t20.setStatut(COULEE);
+               t24.setStatut(INONDEE);
                liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
@@ -63,10 +74,10 @@ public class Grille {
       
 
 
-	public ArrayList<Tuile> getListeTuileAdj(Tuile aPositActu) {
+	public ArrayList<Tuile> getListeTuileAdj(Tuile positionCourante) {
                 ArrayList<Tuile> Liste = new ArrayList();
-                int col = aPositActu.getColonne();
-                int lig = aPositActu.getLigne();
+                int col = positionCourante.getColonne();
+                int lig = positionCourante.getLigne();
                 for(int i=1; i<=tuiles.size();i++) {
                     
                     
@@ -164,10 +175,10 @@ public class Grille {
                 return Liste;
 	}
 
-	public ArrayList<Tuile> getListeTuileDiag(Tuile aPositActu) {
+	public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
 		ArrayList<Tuile> Liste = new ArrayList();
-                int col = aPositActu.getColonne();
-                int lig = aPositActu.getLigne();
+                int col = positionCourante.getColonne();
+                int lig = positionCourante.getLigne();
                 for(int i=1; i<=tuiles.size();i++) {
                     
                     
@@ -249,6 +260,15 @@ public class Grille {
 
     public ArrayList<Tuile> getGrille() {
         return tuiles;
+    }
+    
+    public Tuile getTuile(int colonne, int ligne) {
+        for(Tuile t : tuiles) {
+            if(t.getColonne() == colonne && t.getLigne() == ligne) {
+                return t;
+            }
+        }
+        return null;
     }
         
     public void afficheGrille(){

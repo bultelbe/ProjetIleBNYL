@@ -1,6 +1,7 @@
 package projetilebnyl;
 
 import projetilebnyl.Utils.EtatTuile;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Tuile {
 	private String nomCase;
@@ -34,8 +35,10 @@ public class Tuile {
     public void setLigne(int ligne) {
         this.ligne = ligne;
     }
-       
 
+    public EtatTuile getStatut() {
+         return this.statut;
+    }
 
 	public EtatTuile getStatut() {
              return this.statut;
@@ -45,26 +48,22 @@ public class Tuile {
 		this.statut=statut;
 	}
 
-	public String getPosition() {
-            return ("("+this.getColonne()+","+this.getLigne()+")");
+    public void afficheTuiles() {
+        int x = this.getColonne();
+        int y = this.getLigne();
+        String nom = this.getNomCase();
+        EtatTuile stat = this.getStatut();
+        String statut="";
+        
+        //getStatut ne renvoie plus un entier mais un EtatTuile. De ce fait il faut modifier voir enlever ces conditions.
+        if (stat == ASSECHEE) {
+            statut="Séche";
+        } else if (stat == INONDEE) {
+            statut="Innondée";
+        } else if (stat == COULEE) {
+            statut="Coulée";
         }
-
-        public void afficheTuiles(){
-            int x = this.getColonne();
-            int y = this.getLigne();
-            String nom = this.getNomCase();
-            int stat = this.getStatut();
-            String statut="";
-            if (stat==1){
-                statut="Séche";
-            }else if(stat==2){
-                statut="Innodée";
-            }else if(stat==3){
-                statut="Coulée";
-            }
-            
-            System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
-            
-        }
+        System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
+    }
 }
 
