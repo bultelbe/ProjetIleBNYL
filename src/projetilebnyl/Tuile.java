@@ -40,9 +40,6 @@ public class Tuile {
          return this.statut;
     }
 
-	public EtatTuile getStatut() {
-             return this.statut;
-	}
 
 	public void setStatut(EtatTuile statut) {
 		this.statut=statut;

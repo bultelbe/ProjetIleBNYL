@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
-import projetilebnyl.Utils.Pion;
+import projetilebnyl.Utils.*;
 
  
 public class VueAventurier  {
@@ -33,7 +33,8 @@ public class VueAventurier  {
     private final JTextField position;
     
     private Controlleur controlleur;
-            
+    
+    
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
         
@@ -108,7 +109,7 @@ public class VueAventurier  {
         mainPanel.repaint();
         
         this.grille = new JFrame();
-        grille.setSize(700, 700);
+        grille.setSize(1000, 1000);
         this.grille.setVisible(true);
         grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
@@ -117,7 +118,7 @@ public class VueAventurier  {
         JPanel grilletuile = new JPanel(new GridLayout(6, 6));
         grille.add(grilletuile, BorderLayout.CENTER);
         
-        for (int i=1; i<=36; i++) {
+        for (int i=0; i<36; i++) {
             
              grilletuile.add(getCellule(i));
         }
@@ -146,16 +147,27 @@ public class VueAventurier  {
 private JPanel getCellule(int i) {
         int numLigne = (int) (i+5)/6 ;
         int numCouleur = (i-numLigne) % 4 + 1;
-        
-        if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){   
+        Grille grilleListe = new Grille();
+        if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){   
             JPanel panelCellule = new JPanel();
             panelCellule.setBackground(Color.BLACK);
             return panelCellule ;
         }  else{    
-        JPanel panelCellule = new JPanel();
-        panelCellule.setBackground((numCouleur==1 ? new Color(255, 106, 0) : (numCouleur==2 || numCouleur==4 ? new Color(173, 234, 80) : new Color(92, 147, 200))));
-        
-        return panelCellule ;
+            JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase());
+            nomCase.setForeground(Color.white);
+            JPanel panelCellule = new JPanel();
+            panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+            panelCellule.add(nomCase);
+            
+            if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.ASSECHEE){
+                panelCellule.setBackground(Color.DARK_GRAY);
+            }else if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.INONDEE){
+                panelCellule.setBackground(Color.ORANGE);
+            } else{
+                panelCellule.setBackground(Color.BLUE);
+            }
+            
+            return panelCellule ;
         }
     }
     

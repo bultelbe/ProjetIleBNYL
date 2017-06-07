@@ -36,7 +36,7 @@ public class Grille {
         public Grille() {
                ArrayList<Tuile> liste= new ArrayList<>();
                
-               
+               t2.setStatut(INONDEE);
                t9.setStatut(COULEE);
                t14.setStatut(INONDEE);
                t15.setStatut(COULEE);
