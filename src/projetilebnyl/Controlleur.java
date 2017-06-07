@@ -1,10 +1,11 @@
 package projetilebnyl;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Controlleur {
 	public Grille grille;
-	public Vector<Aventurier> joueurs = new Vector<Aventurier>();
+	public ArrayList<Aventurier> joueurs = new ArrayList<>();
 	public VueAventurier vueAventurier;
         
         

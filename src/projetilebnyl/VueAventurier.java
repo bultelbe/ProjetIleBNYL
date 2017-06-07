@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,14 +16,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
-import projetilebnyl.Utils.Pion;
+import projetilebnyl.Utils.*;
 
  
 public class VueAventurier  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-    private final JFrame window;
+    private final JFrame window,grille;
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JButton btnAller  ;
@@ -30,8 +32,12 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
+    private Controlleur controlleur;
+    
+    
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
+        
         this.window = new JFrame();
         window.setSize(350, 200);
 
@@ -78,9 +84,44 @@ public class VueAventurier  {
         this.panelBoutons.add(btnAssecher);
         this.panelBoutons.add(btnAutreAction);
         this.panelBoutons.add(btnTerminerTour);
+        
+        //On rajoute nos ActionListener sur les boutons de l'IHM
+        
+        this.btnTerminerTour.addActionListener((ActionEvent e) -> {
+            controlleur.passerJoueurSuivant();
+        });
+        
+        this.btnAller.addActionListener((ActionEvent e) -> {
+            controlleur.DeplacementJoueur();
+        });
+        
+        this.btnAssecher.addActionListener((ActionEvent e) -> {
+            controlleur.AssechementCase();
+        });
+        
+        this.btnAutreAction.addActionListener((ActionEvent e) -> {
+          
+        });
+        
+        
 
         this.window.setVisible(true);
         mainPanel.repaint();
+        
+        this.grille = new JFrame();
+        grille.setSize(1000, 1000);
+        this.grille.setVisible(true);
+        grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        // Définit la taille de la fenêtre en pixels
+       
+        
+        JPanel grilletuile = new JPanel(new GridLayout(6, 6));
+        grille.add(grilletuile, BorderLayout.CENTER);
+        
+        for (int i=0; i<36; i++) {
+            
+             grilletuile.add(getCellule(i));
+        }
     }  
 
      public JButton getBtnAutreAction() {
@@ -103,7 +144,32 @@ public class VueAventurier  {
         return btnTerminerTour;
     }
  
-
+private JPanel getCellule(int i) {
+        int numLigne = (int) (i+5)/6 ;
+        int numCouleur = (i-numLigne) % 4 + 1;
+        Grille grilleListe = new Grille();
+        if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){   
+            JPanel panelCellule = new JPanel();
+            panelCellule.setBackground(Color.BLACK);
+            return panelCellule ;
+        }  else{    
+            JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase());
+            nomCase.setForeground(Color.white);
+            JPanel panelCellule = new JPanel();
+            panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+            panelCellule.add(nomCase);
+            
+            if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.ASSECHEE){
+                panelCellule.setBackground(Color.DARK_GRAY);
+            }else if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.INONDEE){
+                panelCellule.setBackground(Color.ORANGE);
+            } else{
+                panelCellule.setBackground(Color.BLUE);
+            }
+            
+            return panelCellule ;
+        }
+    }
     
      public static void main(String [] args) {
         // Instanciation de la fenêtre 

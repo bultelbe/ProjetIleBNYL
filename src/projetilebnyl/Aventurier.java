@@ -8,6 +8,7 @@ public class Aventurier {
     private int capacite;
     private int colonne;
     private int ligne;
+    private int nbrActions;
     public Pilote pilote;
     public Explorateur explorateur;
     public Ingénieur ingénieur;
@@ -37,7 +38,15 @@ public class Aventurier {
      }
 
     public void assechementsPossibles(Grille grille) {
+        ArrayList<Tuile> tuilesInondees = new ArrayList<>();
+        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
+        tuilesAdj = (grille.getListeTuileAdj(positionCourante));
         
+        for (Tuile t : tuilesAdj) {
+            if (t.getStatut() == INONDEE) {
+                tuilesInondees.add(t);
+            }
+        }
     }
 
     public void deplacementsPossibles(Grille grille) {
