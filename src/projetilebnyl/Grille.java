@@ -24,7 +24,7 @@ public class Grille {
         private Tuile t14=new Tuile("Le Lagon Perdu",INONDEE);
         private Tuile t15=new Tuile("Le Marais Brumeux",COULEE);
         private Tuile t16=new Tuile("Observatoire",INONDEE);
-        private Tuile t17=new Tuile("LeRocher Fantome",COULEE);
+        private Tuile t17=new Tuile("Le Rocher Fantome",COULEE);
         private Tuile t18=new Tuile("La Caverne du Brasier",INONDEE);
         private Tuile t19=new Tuile("Le Temple du Soleil",ASSECHEE);
         private Tuile t20=new Tuile("Le Temple de la Lune",COULEE);
