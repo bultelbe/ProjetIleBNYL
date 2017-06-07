@@ -8,6 +8,9 @@ public class Controlleur {
 	public ArrayList<Aventurier> joueurs = new ArrayList<>();
 	public VueAventurier vueAventurier;
         
+        //Il faut créer différents aventuriers du coup
+        private Aventurier aventurier;
+        
         
         
 	public void mouvPossible() {
@@ -23,7 +26,8 @@ public class Controlleur {
 	}*/
 
 	public void AssechementCase() {
-		throw new UnsupportedOperationException();
+		ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
+                tuilesAssechables = aventurier.assechementsPossibles(grille);
 	}
 
 	public void passerJoueurSuivant() {
