@@ -9,20 +9,20 @@ public class Tuile {
 	private int ligne;
 	private EtatTuile statut;
         
-    Tuile(String nomCase){
+    Tuile(String nomCase) {
         this.nomCase = nomCase;
 
         this.statut = EtatTuile.ASSECHEE;
     }
     
-    Tuile(String nomCase,EtatTuile statut){
+    Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
     }
               
         
     public String getNomCase() {
-		return nomCase;
+        return nomCase;
 	}
 
     public int getColonne() {
@@ -42,7 +42,7 @@ public class Tuile {
     }
 
     public EtatTuile getStatut() {
-         return this.statut;
+        return this.statut;
     }
 
 
@@ -64,7 +64,7 @@ public class Tuile {
         } else if (stat == COULEE) {
             statut="Coulée";
         }
-        System.out.print(nom +" , Colone :"+x+" , Ligne : "+y+" , "+statut);
+        System.out.print(nom + " , Colonne : " + x + " , Ligne : " + y + " , " + statut);
     }
 }
 

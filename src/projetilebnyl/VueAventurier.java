@@ -35,7 +35,6 @@ public class VueAventurier  {
     
     private Controlleur controlleur;
     
-    //A quoi correspondent le nomAventurier et couleur ?
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
         
@@ -89,7 +88,6 @@ public class VueAventurier  {
         //On rajoute nos ActionListener sur les boutons de l'IHM
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
-            controlleur.passerJoueurSuivant();
             controlleur.traiterMessage(CLIC_BoutonTerminer);
         });
         
@@ -177,7 +175,7 @@ private JPanel getCellule(int i) {
     
      public static void main(String [] args) {
         // Instanciation de la fenêtre 
-        VueAventurier vueAventurier = new VueAventurier ("Manon", "Explorateur",Pion.ROUGE.getCouleur() );
+        VueAventurier vueAventurier = new VueAventurier ("Manon", "Explorateur", Pion.ROUGE.getCouleur() );
     }
     }
 

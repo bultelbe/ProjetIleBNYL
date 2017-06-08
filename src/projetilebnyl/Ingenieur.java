@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Ingenieur extends Aventurier {
 
-    public Ingenieur(String nomJ, Tuile positionCourante) {
-        super(nomJ, positionCourante);
+    public Ingenieur(String nomJ, Tuile positionCourante, String noma) {
+        super(nomJ, positionCourante, noma);
     }
     
     

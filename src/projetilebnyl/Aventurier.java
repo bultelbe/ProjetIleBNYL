@@ -8,6 +8,8 @@ public abstract class Aventurier {
     private String nomJ;
     private int colonne;
     private int ligne;
+    private String noma;
+    
     private int nbrActions;
     public Pilote pilote;
     public Explorateur explorateur;
@@ -17,9 +19,10 @@ public abstract class Aventurier {
     public Plongeur plongeur;
     public Tuile positionCourante;
 
-    public Aventurier(String nomJ, Tuile positionCourante) {
+    public Aventurier(String nomJ, Tuile positionCourante, String noma) {
         this.nomJ = nomJ;
         this.positionCourante = positionCourante;
+        this.noma = noma;
     }
 
     public void setColonne(int colonne) {
@@ -80,6 +83,21 @@ public abstract class Aventurier {
     }
     
     public abstract Color getColor();
-    
+
+    public String getNoma() {
+        return noma;
+    }
+
+    public void setNoma(String noma) {
+        this.noma = noma;
+    }
+
+    public String getNomJ() {
+        return nomJ;
+    }
+
+    public void setNomJ(String nomJ) {
+        this.nomJ = nomJ;
+    }
     
 }

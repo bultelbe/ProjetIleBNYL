@@ -18,19 +18,16 @@ public class Controlleur {
     private Tuile spawnExplorateur = grille.getTuile(5, 3);
     
     private Aventurier aventurierCourant;
-    //Il faut créer différents aventuriers
 
     public Controlleur() {
-        joueurs.add(new Messager("Goddefroy", spawnMessager));
-        joueurs.add(new Plongeur("Duck", spawnPlongeur));
-        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur));
-        joueurs.add(new Navigateur("Magelan", spawnNavigateur));
-        joueurs.add(new Pilote("Jones", spawnPilote));
-        joueurs.add(new Explorateur("Colonb", spawnExplorateur));
+        joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
+        joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
+        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
+        joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
+        joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
+        joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         
     }
-
-
 
     public void TourDeJeu() {
         int colAvAct;
@@ -51,11 +48,11 @@ public class Controlleur {
             System.out.println("1-Assécher");
             System.out.println("2-Déplacer");
             System.out.println("3-Finir le tour");
-            System.out.println("Entré 1,2 ou 3");
-            System.out.println();
-            choixAct=sc.nextLine();
-            choix=Integer.parseInt(choixAct);
-            if(choix==1){
+            System.out.println("Entré 1,2 ou 3\n");
+            
+            choixAct = sc.nextLine();
+            choix = Integer.parseInt(choixAct);
+            if (choix == 1) {
                 System.out.println("Déplacement");
                 deplacementJoueur();
                 if(colAvAct!=aventurierCourant.getColonne()||ligAvAct!=aventurierCourant.getLigne()){ //If pour le cas où déplacement impossible
@@ -95,12 +92,6 @@ public class Controlleur {
                 System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
         }
-                
-         
-    }
-
-    public void effectuerAction(ActionEvent clic_bouton) {
-            throw new UnsupportedOperationException();
     }
 
     public void assechementCase() {
@@ -163,7 +154,7 @@ public class Controlleur {
     }
     
     public void traiterMessage(Message m) {
-        switch(m){
+        switch(m) {
             case CLIC_BoutonAller:
                 deplacementJoueur();
                 break;
