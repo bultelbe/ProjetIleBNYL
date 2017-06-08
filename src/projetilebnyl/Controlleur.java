@@ -68,20 +68,19 @@ public class Controlleur {
                 tuileAvAct=aventurierCourant.getPositionCourante();
                 listeAvAct=grille.getListeTuileAdj(tuileAvAct);
                 if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeAvAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                   listeAvAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
                     assechementCase();
                     
                 listeApAct=grille.getListeTuileAdj(tuileAvAct);
                 if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeApAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                   listeApAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
                 
-                while( i<listeAvAct.size()||!action){//loop pour verifier si le statut d'un case adj/diag a été modifié
-                    if(listeAvAct.get(i).getStatut()!=listeApAct.get(i).getStatut()){
+                    if(listeAvAct.size()!=listeApAct.size()){
                        action=true; 
                     }
-                }
+                
                 
                 if(action){//if pour le cas où asséchage impossible
                     act=act-1;
