@@ -45,7 +45,7 @@ public class Controlleur {
         String choixAct;
         int choix;
         Tuile tuileAvAct;
-        ArrayList<Tuile> listeAvAct=new ArrayList();
+        ArrayList<Tuile> listeAvAct = new ArrayList();
         Scanner sc = new Scanner(System.in);
         
         while (act > 0) {
