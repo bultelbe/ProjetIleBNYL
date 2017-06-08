@@ -41,6 +41,7 @@ public class Controlleur {
         Tuile tuileAvAct;
         ArrayList<Tuile> listeAvAct=new ArrayList();
         Scanner sc=new Scanner(System.in);
+        
         while(act>0){
             choix=0;
             colAvAct=aventurierCourant.getColonne();
@@ -62,6 +63,9 @@ public class Controlleur {
                 }
                    
             }else if(choix==2){
+                int i=0;
+                boolean action=false;
+                ArrayList<Tuile> listeApAct=new ArrayList();
                 System.out.println("Asséchage");
                 tuileAvAct=aventurierCourant.getPositionCourante();
                 listeAvAct=grille.getListeTuileAdj(tuileAvAct);
@@ -69,7 +73,19 @@ public class Controlleur {
                    listeAvAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
                 }
                     assechementCase();
-                if(){//if pour le cas où asséssage impossible
+                    
+                listeApAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeApAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                }
+                
+                while( i<listeAvAct.size()||!action){//loop pour verifier si le statut d'un case adj/diag a été modifié
+                    if(listeAvAct.get(i).getStatut()!=listeApAct.get(i).getStatut()){
+                       action=true; 
+                    }
+                }
+                
+                if(action){//if pour le cas où asséssage impossible
                     act=act-1;
                 }
             }else if(choix==3){
