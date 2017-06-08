@@ -37,14 +37,14 @@ public class Controlleur {
         int choix;
         Tuile tuileAvAct;
         ArrayList<Tuile> listeAvAct=new ArrayList();
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
-        while (act>0) {
+        while (act > 0) {
             choix = 0;
             colAvAct = aventurierCourant.getColonne();
             ligAvAct = aventurierCourant.getLigne();
             
-            System.out.println("Il vous reste"+act+" actions.");
+            System.out.println("Il vous reste" + act + " actions.");
             System.out.println("Que vouler vous faire");
             System.out.println("1-Assécher");
             System.out.println("2-Déplacer");
@@ -62,34 +62,35 @@ public class Controlleur {
                    
             } else if (choix == 2) {
                 int i = 0;
-                boolean action=false;
-                ArrayList<Tuile> listeApAct=new ArrayList();
+                boolean action = false;
+                ArrayList<Tuile> listeApAct = new ArrayList();
                 System.out.println("Asséchage");
-                tuileAvAct=aventurierCourant.getPositionCourante();
-                listeAvAct=grille.getListeTuileAdj(tuileAvAct);
-                if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeAvAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                tuileAvAct = aventurierCourant.getPositionCourante();
+                listeAvAct = grille.getListeTuileAdj(tuileAvAct);
+                
+                if (aventurierCourant.getNoma() == "Explorateur") {
+                   listeAvAct = grille.getListeTuileAdjDiag(tuileAvAct);                 
                 }
                     assechementCase();
                     
-                listeApAct=grille.getListeTuileAdj(tuileAvAct);
-                if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeApAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                listeApAct = grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getNoma() == "Explorateur") {
+                   listeApAct = grille.getListeTuileAdjDiag(tuileAvAct);                 
                 }
                 
-                while( i<listeAvAct.size()||!action){//loop pour verifier si le statut d'un case adj/diag a été modifié
-                    if(listeAvAct.get(i).getStatut()!=listeApAct.get(i).getStatut()){
-                       action=true; 
+                while (i < listeAvAct.size() || !action) {//loop pour verifier si le statut d'un case adj/diag a été modifié
+                    if (listeAvAct.get(i).getStatut() != listeApAct.get(i).getStatut()) {
+                       action = true; 
                     }
                 }
                 
-                if(action){//if pour le cas où asséchage impossible
-                    act=act-1;
+                if (action) {//if pour le cas où asséchage impossible
+                    act =act-1;
                 }
-            }else if(choix==3){
+            } else if (choix == 3) {
                 System.out.println("Fin du tour");
-                act=0;
-            }else{
+                act = 0;
+            } else {
                 System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
         }
