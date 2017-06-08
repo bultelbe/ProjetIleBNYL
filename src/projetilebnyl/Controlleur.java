@@ -10,16 +10,25 @@ public class Controlleur {
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
 
-    private Tuile spawnMessager = grille.getTuile(2, 3);
-    private Tuile spawnPlongeur = grille.getTuile(3, 2);
-    private Tuile spawnIngenieur = grille.getTuile(4, 1);
-    private Tuile spawnNavigateur = grille.getTuile(4, 2);
-    private Tuile spawnPilote = grille.getTuile(4, 3);
-    private Tuile spawnExplorateur = grille.getTuile(5, 3);
+    private Tuile spawnMessager;
+    private Tuile spawnPlongeur;
+    private Tuile spawnIngenieur;
+    private Tuile spawnNavigateur;
+    private Tuile spawnPilote;
+    private Tuile spawnExplorateur;
     
     private Aventurier aventurierCourant;
 
     public Controlleur() {
+        
+        grille = new Grille();
+        spawnMessager = grille.getTuile(2, 3);
+        spawnPlongeur = grille.getTuile(3, 2);
+        spawnIngenieur = grille.getTuile(4, 1);
+        spawnNavigateur = grille.getTuile(4, 2);
+        spawnPilote = grille.getTuile(4, 3);
+        spawnExplorateur = grille.getTuile(5, 3);
+        
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
         joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
