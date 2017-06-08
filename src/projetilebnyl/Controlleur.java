@@ -10,16 +10,25 @@ public class Controlleur {
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
 
-    private Tuile spawnMessager = grille.getTuile(2, 3);
-    private Tuile spawnPlongeur = grille.getTuile(3, 2);
-    private Tuile spawnIngenieur = grille.getTuile(4, 1);
-    private Tuile spawnNavigateur = grille.getTuile(4, 2);
-    private Tuile spawnPilote = grille.getTuile(4, 3);
-    private Tuile spawnExplorateur = grille.getTuile(5, 3);
+    private Tuile spawnMessager;
+    private Tuile spawnPlongeur;
+    private Tuile spawnIngenieur;
+    private Tuile spawnNavigateur;
+    private Tuile spawnPilote;
+    private Tuile spawnExplorateur;
     
     private Aventurier aventurierCourant;
 
     public Controlleur() {
+        
+        grille = new Grille();
+        spawnMessager = grille.getTuile(2, 3);
+        spawnPlongeur = grille.getTuile(3, 2);
+        spawnIngenieur = grille.getTuile(4, 1);
+        spawnNavigateur = grille.getTuile(4, 2);
+        spawnPilote = grille.getTuile(4, 3);
+        spawnExplorateur = grille.getTuile(5, 3);
+        
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
         joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
@@ -37,14 +46,14 @@ public class Controlleur {
         int choix;
         Tuile tuileAvAct;
         ArrayList<Tuile> listeAvAct=new ArrayList();
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
-        while (act>0) {
+        while (act > 0) {
             choix = 0;
             colAvAct = aventurierCourant.getColonne();
             ligAvAct = aventurierCourant.getLigne();
             
-            System.out.println("Il vous reste"+act+" actions.");
+            System.out.println("Il vous reste" + act + " actions.");
             System.out.println("Que vouler vous faire");
             System.out.println("1-Assécher");
             System.out.println("2-Déplacer");
@@ -62,8 +71,8 @@ public class Controlleur {
                    
             } else if (choix == 2) {
                 int i = 0;
-                boolean action=false;
-                ArrayList<Tuile> listeApAct=new ArrayList();
+                boolean action = false;
+                ArrayList<Tuile> listeApAct = new ArrayList();
                 System.out.println("Asséchage");
                 tuileAvAct=aventurierCourant.getPositionCourante();
                 listeAvAct=grille.getListeTuileAdj(tuileAvAct);
@@ -82,13 +91,13 @@ public class Controlleur {
                     }
                 
                 
-                if(action){//if pour le cas où asséchage impossible
-                    act=act-1;
+                if (action) {//if pour le cas où asséchage impossible
+                    act =act-1;
                 }
-            }else if(choix==3){
+            } else if (choix == 3) {
                 System.out.println("Fin du tour");
-                act=0;
-            }else{
+                act = 0;
+            } else {
                 System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
         }
@@ -123,7 +132,7 @@ public class Controlleur {
 
 
     public void passerJoueurSuivant() {
-        aventurierCourant=joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
     }
 
 
