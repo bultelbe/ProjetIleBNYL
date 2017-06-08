@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
 import java.util.*;
 import static projetilebnyl.Utils.EtatTuile.*;
+import static java.lang.Integer.parseInt;
 
-public class Controlleur {
+public class Controleur {
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
@@ -19,7 +20,7 @@ public class Controlleur {
     
     private Aventurier aventurierCourant;
 
-    public Controlleur() {
+    public Controleur() {
         
         grille = new Grille();
         spawnMessager = grille.getTuile(2, 3);

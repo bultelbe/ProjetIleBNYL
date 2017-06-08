@@ -33,10 +33,11 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
-    private static Controlleur controlleur;
+    private Controleur controleur;
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
+        controleur = new Controleur();
         
         this.window = new JFrame();
         window.setSize(350, 200);
@@ -88,15 +89,16 @@ public class VueAventurier  {
         //On rajoute nos ActionListener sur les boutons de l'IHM
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
-            controlleur.traiterMessage(CLIC_BoutonTerminer);
+            controleur.traiterMessage(CLIC_BoutonTerminer);
+            this.window.repaint();
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-            controlleur.traiterMessage(CLIC_BoutonAller);
+            controleur.traiterMessage(CLIC_BoutonAller);
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-            controlleur.traiterMessage(CLIC_BoutonAssecher);
+            controleur.traiterMessage(CLIC_BoutonAssecher);
         });
         
         this.btnAutreAction.addActionListener((ActionEvent e) -> {
@@ -110,7 +112,7 @@ public class VueAventurier  {
         
         this.grille = new JFrame();
         grille.setSize(1000, 1000);
-        this.grille.setVisible(true);
+        //this.grille.setVisible(true);
         grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
        
@@ -175,9 +177,9 @@ private JPanel getCellule(int i) {
     
     public static void main(String [] args) {
         // Instanciation de la fenêtre 
-            Controlleur controlleur = new Controlleur();
+        Controleur controleur = new Controleur();
 
-            VueAventurier vueAventurier = new VueAventurier (controlleur.joueurs.get(0).getNomJ(), controlleur.joueurs.get(0).getNoma(), controlleur.joueurs.get(0).getColor() );
+        VueAventurier vueAventurier = new VueAventurier (controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor() );
     }
 }
 
