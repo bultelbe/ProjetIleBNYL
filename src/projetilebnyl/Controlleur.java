@@ -33,7 +33,40 @@ public class Controlleur {
 
 
     public void TourDeJeu() {
-        throw new UnsupportedOperationException();
+        int act=3;
+        String choixAct;
+        int choix=0;
+        Scanner sc=new Scanner(System.in);
+        while(act>0){
+            System.out.println("Il vous reste"+act+" actions.");
+            System.out.println("Que vouler vous faire");
+            System.out.println("1-Assécher");
+            System.out.println("2-Déplacer");
+            System.out.println("3-Finir le tour");
+            System.out.println("Entré 1,2 ou 3");
+            System.out.println();
+            choixAct=sc.nextLine();
+            choix=Integer.parseInt(choixAct);
+            if(choix==1){
+                System.out.println("Déplacement");
+                /*if(){ //If pour le cas ou déplacement impossible
+                    act=act-1;
+                }*/
+                    
+            }else if(choix==2){
+                System.out.println("Asséchage");
+                /*if(){if pour le cas ou asséssage impossible
+                    act=act-1;
+                }*/
+            }else if(choix==3){
+                System.out.println("Fin du tour");
+                act=0;
+            }else{
+                
+            }
+        }
+                
+         
     }
 
     public void assechementCase() {

@@ -145,6 +145,8 @@ public class VueAventurier  {
     public JButton getBtnTerminerTour() {
         return btnTerminerTour;
     }
+    
+    
  
 private JPanel getCellule(int i) {
         int numLigne = (int) (i+5)/6 ;

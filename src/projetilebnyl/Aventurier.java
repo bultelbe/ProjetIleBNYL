@@ -26,6 +26,15 @@ public abstract class Aventurier {
         this.colonne = colonne;
     }
 
+    public int getColonne() {
+        return colonne;
+    }
+
+    public int getLigne() {
+        return ligne;
+    }
+    
+
     public void setLigne(int ligne) {
         this.ligne = ligne;
      }
