@@ -1,11 +1,11 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import static projetilebnyl.Utils.EtatTuile.*;
 
-public class Aventurier {
+public abstract class Aventurier {
     private String nomJ;
-    private int capacite;
     private int colonne;
     private int ligne;
     private int nbrActions;
@@ -17,14 +17,9 @@ public class Aventurier {
     public Plongeur plongeur;
     public Tuile positionCourante;
 
-    public Aventurier(String nomJ, int capacite, Tuile positionCourante) {
+    public Aventurier(String nomJ, Tuile positionCourante) {
         this.nomJ = nomJ;
-        this.capacite = capacite;
         this.positionCourante = positionCourante;
-    }
-
-    public int getCapacite() {
-        return capacite;
     }
 
     public void setColonne(int colonne) {
@@ -75,6 +70,7 @@ public class Aventurier {
         this.positionCourante = positionCourante;
     }
     
+    public abstract Color getColor();
     
     
 }

@@ -10,9 +10,9 @@ public class Tuile {
 	private EtatTuile statut;
         
     Tuile(String nomCase){
-        this.nomCase=nomCase;
+        this.nomCase = nomCase;
 
-        this.statut=EtatTuile.ASSECHEE;
+        this.statut = EtatTuile.ASSECHEE;
     }
     
     Tuile(String nomCase,EtatTuile statut){
