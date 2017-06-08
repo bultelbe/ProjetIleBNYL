@@ -91,6 +91,13 @@ public abstract class Aventurier {
     public void setNoma(String noma) {
         this.noma = noma;
     }
-    
+
+    public String getNomJ() {
+        return nomJ;
+    }
+
+    public void setNomJ(String nomJ) {
+        this.nomJ = nomJ;
+    }
     
 }
