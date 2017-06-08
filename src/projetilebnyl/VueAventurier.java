@@ -89,7 +89,6 @@ public class VueAventurier  {
         //On rajoute nos ActionListener sur les boutons de l'IHM
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
-            controlleur.passerJoueurSuivant();
             controlleur.traiterMessage(CLIC_BoutonTerminer);
         });
         
