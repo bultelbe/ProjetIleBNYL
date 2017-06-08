@@ -6,7 +6,7 @@ import java.util.*;
 import static projetilebnyl.Utils.EtatTuile.*;
 import static java.lang.Integer.parseInt;
 
-public class Controleur {
+public class Controleur implements Observateur{
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;

@@ -89,19 +89,43 @@ public class VueAventurier  {
         //On rajoute nos ActionListener sur les boutons de l'IHM
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
+            btnAller.setEnabled(false);
+            btnAssecher.setEnabled(false);
+            btnAutreAction.setEnabled(false);
+            btnTerminerTour.setEnabled(false);
             controleur.traiterMessage(CLIC_BoutonTerminer);
-            this.window.repaint();
+            btnAller.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnAutreAction.setEnabled(true);
+            btnTerminerTour.setEnabled(true);
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
+            btnAller.setEnabled(false);
+            btnAssecher.setEnabled(false);
+            btnAutreAction.setEnabled(false);
+            btnTerminerTour.setEnabled(false);
             controleur.traiterMessage(CLIC_BoutonAller);
+            btnAller.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnAutreAction.setEnabled(true);
+            btnTerminerTour.setEnabled(true);
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
+            btnAller.setEnabled(false);
+            btnAssecher.setEnabled(false);
+            btnAutreAction.setEnabled(false);
+            btnTerminerTour.setEnabled(false);
             controleur.traiterMessage(CLIC_BoutonAssecher);
+            btnAller.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnAutreAction.setEnabled(true);
+            btnTerminerTour.setEnabled(true);
         });
         
         this.btnAutreAction.addActionListener((ActionEvent e) -> {
+            
           
         });
         
