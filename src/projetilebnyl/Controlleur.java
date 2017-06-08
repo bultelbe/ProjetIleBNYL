@@ -30,13 +30,20 @@ public class Controlleur {
     }
 
     public void TourDeJeu() {
-            int act = 3;
+        int colAvAct;
+        int ligAvAct;
+        int act=3;
         String choixAct;
-        int choix = 0;
-        Scanner sc = new Scanner(System.in);
+        int choix;
+        Tuile tuileAvAct;
+        ArrayList<Tuile> listeAvAct=new ArrayList();
+        Scanner sc=new Scanner(System.in);
         
-        while (act > 0) {
-            System.out.println("Il vous reste" + act + " actions.");
+        while(act>0){
+            choix=0;
+            colAvAct=aventurierCourant.getColonne();
+            ligAvAct=aventurierCourant.getLigne();
+            System.out.println("Il vous reste"+act+" actions.");
             System.out.println("Que vouler vous faire");
             System.out.println("1-Assécher");
             System.out.println("2-Déplacer");
@@ -47,20 +54,42 @@ public class Controlleur {
             choix = Integer.parseInt(choixAct);
             if (choix == 1) {
                 System.out.println("Déplacement");
-                /*if(){ //If pour le cas ou déplacement impossible
+                deplacementJoueur();
+                if(colAvAct!=aventurierCourant.getColonne()||ligAvAct!=aventurierCourant.getLigne()){ //If pour le cas où déplacement impossible
                     act=act-1;
-                }*/
-                    
-            } else if (choix == 2) {
+                }
+                   
+            }else if(choix==2){
+                int i=0;
+                boolean action=false;
+                ArrayList<Tuile> listeApAct=new ArrayList();
                 System.out.println("Asséchage");
-                /*if(){if pour le cas ou asséchage impossible
+                tuileAvAct=aventurierCourant.getPositionCourante();
+                listeAvAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeAvAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                }
+                    assechementCase();
+                    
+                listeApAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeApAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                }
+                
+                while( i<listeAvAct.size()||!action){//loop pour verifier si le statut d'un case adj/diag a été modifié
+                    if(listeAvAct.get(i).getStatut()!=listeApAct.get(i).getStatut()){
+                       action=true; 
+                    }
+                }
+                
+                if(action){//if pour le cas où asséssage impossible
                     act=act-1;
-                }*/
-            } else if (choix == 3) {
+                }
+            }else if(choix==3){
                 System.out.println("Fin du tour");
                 act=0;
-            } else {
-                
+            }else{
+                System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
         }
     }
