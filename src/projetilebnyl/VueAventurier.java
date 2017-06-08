@@ -175,9 +175,9 @@ private JPanel getCellule(int i) {
     
     public static void main(String [] args) {
         // Instanciation de la fenêtre 
-        Controlleur controlleur = new Controlleur();
-        
-        VueAventurier vueAventurier = new VueAventurier (controlleur.joueurs.get(0).getNomJ(), controlleur.joueurs.get(0).getNoma(), controlleur.joueurs.get(0).getColor() );
+            Controlleur controlleur = new Controlleur();
+
+            VueAventurier vueAventurier = new VueAventurier (controlleur.joueurs.get(0).getNomJ(), controlleur.joueurs.get(0).getNoma(), controlleur.joueurs.get(0).getColor() );
     }
 }
 
