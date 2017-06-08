@@ -36,10 +36,6 @@ public class Controlleur {
         throw new UnsupportedOperationException();
     }
 
-    public void effectuerAction(ActionEvent clic_bouton) {
-            throw new UnsupportedOperationException();
-    }
-
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
