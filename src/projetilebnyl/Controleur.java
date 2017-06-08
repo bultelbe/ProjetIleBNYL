@@ -41,7 +41,13 @@ public class Controleur implements Observateur{
     }
     
     public void TourDeJeu() {
-        int colAvAct;
+       
+        aventurierCourant = joueurs.get(0);
+        
+        
+        
+        
+        /* int colAvAct;
         int ligAvAct;
         int act = 3;
         String choixAct;
@@ -49,6 +55,9 @@ public class Controleur implements Observateur{
         Tuile tuileAvAct;
         ArrayList<Tuile> listeAvAct = new ArrayList();
         Scanner sc = new Scanner(System.in);
+        
+        aventurierCourant = joueurs.get(0%6);
+        
         
         while (act > 0) {
             choix = 0;
@@ -60,7 +69,7 @@ public class Controleur implements Observateur{
             System.out.println("1-Assécher");
             System.out.println("2-Déplacer");
             System.out.println("3-Finir le tour");
-            System.out.println("Entré 1,2 ou 3\n");
+            System.out.println("\n\nEntrez 1,2 ou 3 : ");
             
             choixAct = sc.nextLine();
             choix = Integer.parseInt(choixAct);
@@ -69,6 +78,8 @@ public class Controleur implements Observateur{
                 deplacementJoueur();
                 if (colAvAct != aventurierCourant.getColonne() || ligAvAct != aventurierCourant.getLigne()) { //If pour le cas où déplacement impossible
                     act = act-1;
+                    colAvAct = aventurierCourant.getColonne();
+                    ligAvAct = aventurierCourant.getLigne();
                 }
                    
             } else if (choix == 2) {
@@ -104,7 +115,7 @@ public class Controleur implements Observateur{
             } else {
                 System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
-        }
+        }*/
     }
 
     public void assechementCase() {
@@ -143,10 +154,8 @@ public class Controleur implements Observateur{
     public void passerJoueurSuivant() {
         VueAventurier avt = getVueAventurier();
         
-        if (avt != null) {        
-            aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-            getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());    
-        }        
+        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());        
     }
     
     public VueAventurier getVueAventurier() {
