@@ -180,6 +180,12 @@ private JPanel getCellule(int i) {
         Controleur controleur = new Controleur();
 
         VueAventurier vueAventurier = new VueAventurier (controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor() );
+    
+    
+    
+    
+    
+    
     }
 }
 

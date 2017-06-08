@@ -25,7 +25,7 @@ public class ProjetIleBNYL {
     */
     public static void main(String[] args) {
         // TODO code application logic here
-        //grillejeu.afficheGrille();
+        grillejeu.afficheGrille();
        
         
     }
