@@ -127,7 +127,10 @@ public class Controleur implements Observateur{
         }
         
         if (tuilesAssechables.isEmpty()) {
+            if (aventurierCourant.getNoma() != "Ingenieur")
             System.out.println("Il n'y a aucunes tuiles à assécher autour de vous.");
+        } else if (aventurierCourant.getNoma() == "Ingenieur") {
+            
         } else {
             Scanner sc = new Scanner(System.in);
             System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");

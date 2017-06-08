@@ -9,7 +9,7 @@ import static projetilebnyl.Utils.EtatTuile.*;
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
         private Tuile t1=new Tuile("Le Pont des Abimes",ASSECHEE);
-        private Tuile t2=new Tuile("La Porte de Bronze",ASSECHEE);
+        private Tuile t2=new Tuile("La Porte de Bronze",INONDEE);
         private Tuile t3=new Tuile("La Caverne Des Ombres",ASSECHEE);
         private Tuile t4=new Tuile("La Porte de Fer",ASSECHEE);
         private Tuile t5=new Tuile("La Porte d'Or",ASSECHEE);
