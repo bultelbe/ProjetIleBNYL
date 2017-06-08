@@ -33,7 +33,7 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
-    private Controlleur controlleur;
+    private static Controlleur controlleur;
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
@@ -173,11 +173,11 @@ private JPanel getCellule(int i) {
         }
     }
     
-     public static void main(String [] args) {
+    public static void main(String [] args) {
         // Instanciation de la fenêtre 
-        VueAventurier vueAventurier = new VueAventurier ("Manon", "Explorateur", Pion.ROUGE.getCouleur() );
+        VueAventurier vueAventurier = new VueAventurier (controlleur.joueurs.get(0).getNomJ(), controlleur.joueurs.get(0).getNoma(), controlleur.joueurs.get(0).getColor() );
     }
-    }
+}
 
  
 
