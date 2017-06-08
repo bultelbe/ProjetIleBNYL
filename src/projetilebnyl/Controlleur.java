@@ -125,7 +125,7 @@ public class Controlleur {
 
 
     public void passerJoueurSuivant() {
-        aventurierCourant=joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
     }
 
 
