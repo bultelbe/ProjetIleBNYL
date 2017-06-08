@@ -18,7 +18,7 @@ public class Controleur implements Observateur{
     private Tuile spawnNavigateur;
     private Tuile spawnPilote;
     private Tuile spawnExplorateur;
-    
+    private int act = 3;
     private Aventurier aventurierCourant;
 
     public Controleur() {
@@ -43,6 +43,11 @@ public class Controleur implements Observateur{
     public void TourDeJeu() {
        
         aventurierCourant = joueurs.get(0);
+        
+        if (act==0){
+            System.out.println("Vous n'avez plus d'actions possibles");
+            
+        }
         
         
         
@@ -146,6 +151,7 @@ public class Controleur implements Observateur{
             if (tuilesAssechables.contains(t)) {
                 t.setStatut(ASSECHEE);
                 System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                act=act-1;
             } else {
                 System.out.println("Cette tuile n'est pas asséchable.");
 
