@@ -17,7 +17,6 @@ public class Main {
         Controleur controleur = new Controleur();
         VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor(), controleur);
         controleur.setVueAvt(vueAvt);
-        controleur.TourDeJeu();
         
     }
     

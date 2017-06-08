@@ -27,10 +27,10 @@ public class VueAventurier  {
     private final JFrame window,grille;
     private final JPanel panelAventurier;
     private JPanel mainPanel;
-    private final JButton btnAller  ;
-    private final JButton btnAssecher;
-    private final JButton btnAutreAction;
-    private final JButton btnTerminerTour;
+    public final JButton btnAller  ;
+    public final JButton btnAssecher;
+    public final JButton btnAutreAction;
+    public final JButton btnTerminerTour;
     private final JTextField position;
     
     
@@ -93,45 +93,26 @@ public class VueAventurier  {
         //On rajoute nos ActionListener sur les boutons de l'IHM
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
-            btnAller.setEnabled(false);
-            btnAssecher.setEnabled(false);
-            btnAutreAction.setEnabled(false);
-            btnTerminerTour.setEnabled(false);
-            controleur.traiterMessage(CLIC_BoutonTerminer);
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnAutreAction.setEnabled(true);
-            btnTerminerTour.setEnabled(true);
+            controleur.traiterMessage(CLIC_BoutonTerminer);
+
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-            btnAller.setEnabled(false);
-            btnAssecher.setEnabled(false);
-            btnAutreAction.setEnabled(false);
-            btnTerminerTour.setEnabled(false);
+          
             controleur.traiterMessage(CLIC_BoutonAller);
-            btnAller.setEnabled(true);
-            btnAssecher.setEnabled(true);
-            btnAutreAction.setEnabled(true);
-            btnTerminerTour.setEnabled(true);
+           
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-            btnAller.setEnabled(false);
-            btnAssecher.setEnabled(false);
-            btnAutreAction.setEnabled(false);
-            btnTerminerTour.setEnabled(false);
+            
             controleur.traiterMessage(CLIC_BoutonAssecher);
-            btnAller.setEnabled(true);
-            btnAssecher.setEnabled(true);
-            btnAutreAction.setEnabled(true);
-            btnTerminerTour.setEnabled(true);
+        
         });
         
-        this.btnAutreAction.addActionListener((ActionEvent e) -> {
-            
-          
-        });
+        this.btnAutreAction.addActionListener((ActionEvent e) -> {});
         
         
 
