@@ -30,7 +30,7 @@ public class Controlleur {
     }
 
     public void TourDeJeu() {
-        int act = 3;
+            int act = 3;
         String choixAct;
         int choix = 0;
         Scanner sc = new Scanner(System.in);
