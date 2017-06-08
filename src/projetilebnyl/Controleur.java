@@ -141,8 +141,12 @@ public class Controleur {
 
 
     public void passerJoueurSuivant() {
-        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());
+        VueAventurier avt = getVueAventurier();
+        
+        if (avt != null) {        
+            aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+            getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());    
+        }        
     }
     
     public VueAventurier getVueAventurier() {
