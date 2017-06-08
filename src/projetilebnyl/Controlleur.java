@@ -33,11 +33,18 @@ public class Controlleur {
 
 
     public void TourDeJeu() {
+        int colAvAct;
+        int ligAvAct;
         int act=3;
         String choixAct;
-        int choix=0;
+        int choix;
+        Tuile tuileAvAct;
+        ArrayList<Tuile> listeAvAct=new ArrayList();
         Scanner sc=new Scanner(System.in);
         while(act>0){
+            choix=0;
+            colAvAct=aventurierCourant.getColonne();
+            ligAvAct=aventurierCourant.getLigne();
             System.out.println("Il vous reste"+act+" actions.");
             System.out.println("Que vouler vous faire");
             System.out.println("1-Assécher");
@@ -49,20 +56,27 @@ public class Controlleur {
             choix=Integer.parseInt(choixAct);
             if(choix==1){
                 System.out.println("Déplacement");
-                /*if(){ //If pour le cas ou déplacement impossible
+                deplacementJoueur();
+                if(colAvAct!=aventurierCourant.getColonne()||ligAvAct!=aventurierCourant.getLigne()){ //If pour le cas où déplacement impossible
                     act=act-1;
-                }*/
-                    
+                }
+                   
             }else if(choix==2){
                 System.out.println("Asséchage");
-                /*if(){if pour le cas ou asséssage impossible
+                tuileAvAct=aventurierCourant.getPositionCourante();
+                listeAvAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeAvAct=grille.getListeTuileAdjDiag(tuileAvAct);                 
+                }
+                    assechementCase();
+                if(){//if pour le cas où asséssage impossible
                     act=act-1;
-                }*/
+                }
             }else if(choix==3){
                 System.out.println("Fin du tour");
                 act=0;
             }else{
-                
+                System.out.println("Il est demandé de rentre soit 1,2 ou 3");
             }
         }
                 

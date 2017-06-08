@@ -168,7 +168,20 @@ public class Grille {
             }                
             return Liste;
 	}
-       
+               
+        public ArrayList<Tuile> getListeTuileAdjDiag(Tuile positionCourante) {
+            ArrayList<Tuile> listReturn=new ArrayList();
+            ArrayList<Tuile> listDiag;
+            
+            listReturn=this.getListeTuileAdj(positionCourante);
+            listDiag=this.getListeTuileDiag(positionCourante);
+            for(int i=0;i<listDiag.size();i++){
+                listReturn.add(listDiag.get(i));
+            }
+            
+            return listReturn;
+        }
+        
         public ArrayList<Tuile> getTuilesPossibles(){
             // retourne la liste des tuiles qui ne sont pas couléé
             ArrayList<Tuile> liste = new ArrayList();
