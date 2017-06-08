@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
@@ -22,6 +23,11 @@ public class Explorateur extends Aventurier {
             tuilesAssechables.add(t);
         }
         return tuilesAssechables;
+    }
+
+    @Override
+    public Color getColor() {
+        return Utils.Pion.VERT.getCouleur();
     }
     
 }

@@ -11,7 +11,7 @@ public abstract class Aventurier {
     private int nbrActions;
     public Pilote pilote;
     public Explorateur explorateur;
-    public Ingénieur ingénieur;
+    public Ingenieur ingénieur;
     public Navigateur navigateur;
     public Messager messager;
     public Plongeur plongeur;

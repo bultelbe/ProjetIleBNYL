@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import static projetilebnyl.Utils.EtatTuile.*;
 
@@ -38,6 +39,11 @@ public class Pilote extends Aventurier {
 
     public void setAction(boolean etat) {
         this.action = etat;
+    }
+
+    @Override
+    public Color getColor() {
+        return Utils.Pion.BLEU.getCouleur();
     }
     
     

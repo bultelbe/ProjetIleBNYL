@@ -1,11 +1,12 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ingénieur extends Aventurier {
+public class Ingenieur extends Aventurier {
 
-    public Ingénieur(String nomJ, Tuile positionCourante) {
+    public Ingenieur(String nomJ, Tuile positionCourante) {
         super(nomJ, positionCourante);
     }
     
@@ -26,6 +27,11 @@ public class Ingénieur extends Aventurier {
             }   
         }
         return tuilesAdj;
+    }
+
+    @Override
+    public Color getColor() {
+        return Utils.Pion.ROUGE.getCouleur();
     }
     
 }

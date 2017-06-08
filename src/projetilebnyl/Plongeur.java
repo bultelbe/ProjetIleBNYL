@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import static projetilebnyl.Utils.EtatTuile.*;
 
@@ -34,5 +35,10 @@ public class Plongeur extends Aventurier {
             }
         }
         return tuilesTrav;
+    }
+
+    @Override
+    public Color getColor() {
+        return Utils.Pion.NOIR.getCouleur();
     }
 }
