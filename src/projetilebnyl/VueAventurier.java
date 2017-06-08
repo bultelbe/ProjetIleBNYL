@@ -26,7 +26,7 @@ public class VueAventurier  {
     private final JPanel panelCentre ;
     private final JFrame window,grille;
     private final JPanel panelAventurier;
-    private final JPanel mainPanel;
+    private JPanel mainPanel;
     private final JButton btnAller  ;
     private final JButton btnAssecher;
     private final JButton btnAutreAction;
@@ -35,7 +35,7 @@ public class VueAventurier  {
     
     private Controleur controleur;
     
-    public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
+    public VueAventurier (String nomJoueur, String nomAventurier, Color couleur) {
 
         controleur = new Controleur();
         
@@ -146,9 +146,21 @@ public class VueAventurier  {
         return btnTerminerTour;
     }
     
-    
+    public void updateAventurier(String nomJ, String noma, Color couleur) {
+        window.setTitle(nomJ);
+        mainPanel = new JPanel(new BorderLayout());
+        this.window.add(mainPanel);
+
+        mainPanel.setBackground(new Color(230, 230, 230));
+        mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
+        
+        panelAventurier.setBackground(couleur);
+        panelAventurier.add(new JLabel(noma,SwingConstants.CENTER ));
+        mainPanel.add(panelAventurier, BorderLayout.NORTH);
+        
+    }
  
-private JPanel getCellule(int i) {
+    private JPanel getCellule(int i) {
         int numLigne = (int) (i+5)/6 ;
         int numCouleur = (i-numLigne) % 4 + 1;
         Grille grilleListe = new Grille();
@@ -179,16 +191,8 @@ private JPanel getCellule(int i) {
         // Instanciation de la fenêtre 
         Controleur controleur = new Controleur();
 
-        VueAventurier vueAventurier = new VueAventurier (controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor() );
-    
-    
-    
-    
-    
-    
+        VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor());
+
+        controleur.setVueAvt(vueAvt);
     }
 }
-
- 
-
-

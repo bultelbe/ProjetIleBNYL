@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
 import java.util.*;
@@ -38,11 +39,11 @@ public class Controleur {
         joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         
     }
-
+    
     public void TourDeJeu() {
         int colAvAct;
         int ligAvAct;
-        int act=3;
+        int act = 3;
         String choixAct;
         int choix;
         Tuile tuileAvAct;
@@ -77,19 +78,21 @@ public class Controleur {
                 System.out.println("Asséchage");
                 tuileAvAct=aventurierCourant.getPositionCourante();
                 listeAvAct=grille.getListeTuileAdj(tuileAvAct);
+                
                 if (aventurierCourant.getClass().getName()=="Explorateur"){
                    listeAvAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
-                    assechementCase();
-                    
+                
+                assechementCase();
                 listeApAct=grille.getListeTuileAdj(tuileAvAct);
+                
                 if (aventurierCourant.getClass().getName()=="Explorateur"){
                    listeApAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
                 
-                    if(listeAvAct.size()!=listeApAct.size()){
-                       action=true; 
-                    }
+                if(listeAvAct.size()!=listeApAct.size()){
+                   action=true; 
+                }
                 
                 
                 if (action) {//if pour le cas où asséchage impossible
@@ -111,31 +114,44 @@ public class Controleur {
         for (Tuile t : tuilesAssechables) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
-        String tuileX = sc.nextLine();
-        int x = parseInt(tuileX);
-
-        System.out.print("\nY : ");
-        String tuileY = sc.nextLine();
-        int y = parseInt(tuileY);
-
-        Tuile t = grille.getTuile(x, y);
-
-        if (tuilesAssechables.contains(t)) {
-            t.setStatut(ASSECHEE);
+        
+        if (tuilesAssechables.isEmpty()) {
+            System.out.println("Il n'y a aucunes tuiles à assécher autour de vous.");
         } else {
-            System.out.println("Cette tuile n'est pas asséchable.");
-        }
+            Scanner sc = new Scanner(System.in);
+            System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+            String tuileX = sc.nextLine();
+            int x = parseInt(tuileX);
 
+            System.out.print("\nY : ");
+            String tuileY = sc.nextLine();
+            int y = parseInt(tuileY);
+
+            Tuile t = grille.getTuile(x, y);
+
+            if (tuilesAssechables.contains(t)) {
+                t.setStatut(ASSECHEE);
+                System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+            } else {
+                System.out.println("Cette tuile n'est pas asséchable.");
+
+            }
+        }
     }
 
 
     public void passerJoueurSuivant() {
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());
     }
-
+    
+    public VueAventurier getVueAventurier() {
+        return this.vueAventurier;
+    }
+    
+    public void setVueAvt (VueAventurier avt) {
+        this.vueAventurier = avt;
+    }
 
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
