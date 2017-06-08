@@ -2,7 +2,7 @@ package projetilebnyl;
 
 public class Messager extends Aventurier {
 
-    public Messager(String nomJ, int capacite, Tuile positionCourante) {
-        super(nomJ,capacite,positionCourante);
+    public Messager(String nomJ, Tuile positionCourante) {
+        super(nomJ, positionCourante);
     }
 }

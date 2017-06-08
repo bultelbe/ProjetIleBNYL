@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
 
-    public Explorateur(String nomJ, int capacite, Tuile positionCourante) {
-        super(nomJ, capacite, positionCourante);
+    public Explorateur(String nomJ, Tuile positionCourante) {
+        super(nomJ, positionCourante);
     }
     
     

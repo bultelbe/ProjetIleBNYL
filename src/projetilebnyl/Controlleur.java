@@ -11,7 +11,8 @@ public class Controlleur {
 	public VueAventurier vueAventurier;
         
         //Il faut créer différents aventuriers
-        private Aventurier aventurier;
+        
+        
         
         
 	public void TourDeJeu() {
@@ -27,7 +28,7 @@ public class Controlleur {
 
 	public void AssechementCase() {
             ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
-            tuilesAssechables = aventurier.assechementsPossibles(grille);
+            tuilesAssechables = assechementsPossibles(grille);
             
             for (Tuile t : tuilesAssechables) {
                 System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -60,7 +61,7 @@ public class Controlleur {
 
 	public void DeplacementJoueur() {
             ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
-            tuilesPossibles = aventurier.deplacementsPossibles(grille);
+            tuilesPossibles = deplacementsPossibles(grille);
             
             for (Tuile t : tuilesPossibles) {
                 System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());

@@ -5,8 +5,8 @@ import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Plongeur extends Aventurier {
 
-    public Plongeur(String nomJ, int capacite, Tuile positionCourante) {
-        super(nomJ,capacite,positionCourante);
+    public Plongeur(String nomJ, Tuile positionCourante) {
+        super(nomJ, positionCourante);
     }
 
     
