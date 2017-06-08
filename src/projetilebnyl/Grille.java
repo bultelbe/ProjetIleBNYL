@@ -41,8 +41,8 @@ public class Grille {
                 liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
                //Collections.shuffle(liste);
                int j =0;
-               int col=0;
-               int lig =0;                    
+               int col = 1;
+               int lig = 1;                    
                for (int i=1; i<=36; ++i){
                    if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
                         Tuile vide=new Tuile("Vide");
