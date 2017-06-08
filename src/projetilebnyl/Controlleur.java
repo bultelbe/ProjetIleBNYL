@@ -15,7 +15,10 @@ public class Controlleur {
         
         
 	public void TourDeJeu() {
-            throw new UnsupportedOperationException();
+            int act=3;
+            while( act >0){
+                System.out.println("Il vous reste"+act+" action à réalisé");
+            }
 	}
 
 	public void effectuerAction(ActionEvent clic_bouton) {
