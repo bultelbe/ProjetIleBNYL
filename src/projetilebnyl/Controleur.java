@@ -158,6 +158,7 @@ public class Controleur implements Observateur{
 
         if (tuilesPossibles.contains(t)) {
             aventurierCourant.setPositionCourante(t);
+            System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
