@@ -74,24 +74,22 @@ public class Controlleur {
                 boolean action = false;
                 ArrayList<Tuile> listeApAct = new ArrayList();
                 System.out.println("Asséchage");
-                tuileAvAct = aventurierCourant.getPositionCourante();
-                listeAvAct = grille.getListeTuileAdj(tuileAvAct);
-                
-                if (aventurierCourant.getNoma() == "Explorateur") {
-                   listeAvAct = grille.getListeTuileAdjDiag(tuileAvAct);                 
+                tuileAvAct=aventurierCourant.getPositionCourante();
+                listeAvAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeAvAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
                     assechementCase();
                     
-                listeApAct = grille.getListeTuileAdj(tuileAvAct);
-                if (aventurierCourant.getNoma() == "Explorateur") {
-                   listeApAct = grille.getListeTuileAdjDiag(tuileAvAct);                 
+                listeApAct=grille.getListeTuileAdj(tuileAvAct);
+                if (aventurierCourant.getClass().getName()=="Explorateur"){
+                   listeApAct=aventurierCourant.assechementsPossibles(grille);                 
                 }
                 
-                while (i < listeAvAct.size() || !action) {//loop pour verifier si le statut d'un case adj/diag a été modifié
-                    if (listeAvAct.get(i).getStatut() != listeApAct.get(i).getStatut()) {
-                       action = true; 
+                    if(listeAvAct.size()!=listeApAct.size()){
+                       action=true; 
                     }
-                }
+                
                 
                 if (action) {//if pour le cas où asséchage impossible
                     act =act-1;
