@@ -33,6 +33,8 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
+    
+    private JLabel nomAvt;
     private Observateur controleur;
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
@@ -54,7 +56,9 @@ public class VueAventurier  {
 
         this.panelAventurier = new JPanel();
         panelAventurier.setBackground(couleur);
-        panelAventurier.add(new JLabel(nomAventurier,SwingConstants.CENTER ));
+        nomAvt = new JLabel(nomAventurier,SwingConstants.CENTER );
+        
+        panelAventurier.add(nomAvt);
         mainPanel.add(panelAventurier, BorderLayout.NORTH);
    
         // =================================================================================
@@ -133,6 +137,8 @@ public class VueAventurier  {
 
         this.window.setVisible(true);
         mainPanel.repaint();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+
         
         this.grille = new JFrame();
         grille.setSize(1000, 1000);
@@ -170,9 +176,24 @@ public class VueAventurier  {
         return btnTerminerTour;
     }
     
+    
+    
     public void updateAventurier(String nomJ, String noma, Color couleur) {
-        
+        window.setTitle(nomJ);
+        panelAventurier.setBackground(couleur);
+        nomAvt.setText(noma);
     }
+
+    public JLabel getNomAvt() {
+        return nomAvt;
+    }
+
+    public void setNomAvt(JLabel nomAvt) {
+        this.nomAvt = nomAvt;
+    }
+    
+    
+    
  
     private JPanel getCellule(int i) {
         int numLigne = (int) (i+5)/6 ;
