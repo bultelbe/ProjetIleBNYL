@@ -12,11 +12,6 @@ public class Controlleur {
         private Aventurier aventurier;
         
         
-        
-	public void mouvPossible() {
-		throw new UnsupportedOperationException();
-        }
-
 	public void TourDeJeu() {
 		throw new UnsupportedOperationException();
 	}
