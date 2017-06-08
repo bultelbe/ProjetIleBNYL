@@ -39,10 +39,11 @@ public class Controlleur {
         ArrayList<Tuile> listeAvAct=new ArrayList();
         Scanner sc=new Scanner(System.in);
         
-        while(act>0){
-            choix=0;
-            colAvAct=aventurierCourant.getColonne();
-            ligAvAct=aventurierCourant.getLigne();
+        while (act>0) {
+            choix = 0;
+            colAvAct = aventurierCourant.getColonne();
+            ligAvAct = aventurierCourant.getLigne();
+            
             System.out.println("Il vous reste"+act+" actions.");
             System.out.println("Que vouler vous faire");
             System.out.println("1-Assécher");
@@ -55,12 +56,12 @@ public class Controlleur {
             if (choix == 1) {
                 System.out.println("Déplacement");
                 deplacementJoueur();
-                if(colAvAct!=aventurierCourant.getColonne()||ligAvAct!=aventurierCourant.getLigne()){ //If pour le cas où déplacement impossible
-                    act=act-1;
+                if (colAvAct != aventurierCourant.getColonne() || ligAvAct != aventurierCourant.getLigne()) { //If pour le cas où déplacement impossible
+                    act = act-1;
                 }
                    
-            }else if(choix==2){
-                int i=0;
+            } else if (choix == 2) {
+                int i = 0;
                 boolean action=false;
                 ArrayList<Tuile> listeApAct=new ArrayList();
                 System.out.println("Asséchage");
@@ -82,7 +83,7 @@ public class Controlleur {
                     }
                 }
                 
-                if(action){//if pour le cas où asséssage impossible
+                if(action){//if pour le cas où asséchage impossible
                     act=act-1;
                 }
             }else if(choix==3){
