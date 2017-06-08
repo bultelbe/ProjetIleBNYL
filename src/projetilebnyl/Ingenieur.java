@@ -3,6 +3,7 @@ package projetilebnyl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Ingenieur extends Aventurier {
 
@@ -14,19 +15,33 @@ public class Ingenieur extends Aventurier {
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj = grille.getListeTuileAdj(positionCourante);
+        ArrayList<Tuile> tuilesInondees = new ArrayList<>();
         
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
-        String nbrActions = sc.nextLine();
-        int i = Integer.parseInt(nbrActions);
+        tuilesAdj.add(positionCourante);
         
-        if (i > 2) {
-            i = 2;
-        } else {
-            for(int j = 0; j < i; j++) {
-            }   
+        for(Tuile t : tuilesAdj) {
+            if (t.getStatut() == INONDEE) {
+                tuilesInondees.add(t);
+            }
         }
-        return tuilesAdj;
+        
+        if (tuilesInondees.isEmpty()) {
+            System.out.println("Il n'y a aucunes tuiles à assécher autour de vous.");
+        } else {
+
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
+            String nbrActions = sc.nextLine();
+            int i = Integer.parseInt(nbrActions);
+
+            if (i >= 2) {
+                i = 2;
+                for (int j = 0; j < i; j++) {
+                    
+                }
+            }
+        }
+        return tuilesInondees;
     }
 
     @Override

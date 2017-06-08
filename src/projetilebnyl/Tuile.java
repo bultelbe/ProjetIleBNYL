@@ -64,7 +64,7 @@ public class Tuile {
         } else if (stat == COULEE) {
             statut="Coulée";
         }
-        System.out.print(nom + " , Colonne : " + x + " , Ligne : " + y + " , " + statut);
+        System.out.println("Nom de la tuile : " + nom + "\nAux coordonnées : \nX : " + x + "\nY : " + y + "\nStatut : "+ statut + "\n");
     }
 }
 
