@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
 
-    public Explorateur(String nomJ, Tuile positionCourante) {
-        super(nomJ, positionCourante);
+    public Explorateur(String nomJ, Tuile positionCourante,String noma) {
+        super(nomJ, positionCourante, noma);
     }
     
     

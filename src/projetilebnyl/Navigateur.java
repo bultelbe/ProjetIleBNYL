@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class Navigateur extends Aventurier {
 
-    public Navigateur(String nomJ, Tuile positionCourante) {
-        super(nomJ, positionCourante);
+    public Navigateur(String nomJ, Tuile positionCourante, String noma) {
+        super(nomJ, positionCourante, noma);
     }
 
     @Override

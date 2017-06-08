@@ -35,7 +35,6 @@ public class VueAventurier  {
     
     private Controlleur controlleur;
     
-    //A quoi correspondent le nomAventurier et couleur ?
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur){
 
         

@@ -20,12 +20,12 @@ public class Controlleur {
     private Aventurier aventurierCourant;
 
     public Controlleur() {
-        joueurs.add(new Messager("Goddefroy", spawnMessager));
-        joueurs.add(new Plongeur("Duck", spawnPlongeur));
-        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur));
-        joueurs.add(new Navigateur("Magelan", spawnNavigateur));
-        joueurs.add(new Pilote("Jones", spawnPilote));
-        joueurs.add(new Explorateur("Colonb", spawnExplorateur));
+        joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
+        joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
+        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
+        joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
+        joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
+        joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         
     }
 
