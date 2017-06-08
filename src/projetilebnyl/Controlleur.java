@@ -125,7 +125,7 @@ public class Controlleur {
 
 
     public void passerJoueurSuivant() {
-        throw new UnsupportedOperationException();
+        aventurierCourant=joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
     }
 
 
