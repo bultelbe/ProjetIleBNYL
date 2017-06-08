@@ -33,11 +33,11 @@ public class VueAventurier  {
     private final JButton btnTerminerTour;
     private final JTextField position;
     
-    private Controleur controleur;
+    private Observateur controleur;
     
-    public VueAventurier (String nomJoueur, String nomAventurier, Color couleur) {
+    public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
 
-        controleur = new Controleur();
+        this.controleur = ctrl;
         
         this.window = new JFrame();
         window.setSize(350, 200);
@@ -171,16 +171,6 @@ public class VueAventurier  {
     }
     
     public void updateAventurier(String nomJ, String noma, Color couleur) {
-        window.setTitle(nomJ);
-        mainPanel = new JPanel(new BorderLayout());
-        this.window.add(mainPanel);
-
-        mainPanel.setBackground(new Color(230, 230, 230));
-        mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
-        
-        panelAventurier.setBackground(couleur);
-        panelAventurier.add(new JLabel(noma,SwingConstants.CENTER ));
-        mainPanel.add(panelAventurier, BorderLayout.NORTH);
         
     }
  
@@ -209,14 +199,5 @@ public class VueAventurier  {
             
             return panelCellule ;
         }
-    }
-    
-    public static void main(String [] args) {
-        // Instanciation de la fenêtre 
-        Controleur controleur = new Controleur();
-
-        VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor());
-
-        controleur.setVueAvt(vueAvt);
     }
 }
