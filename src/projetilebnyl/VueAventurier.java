@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
+import static projetilebnyl.Message.*;
 import projetilebnyl.Utils.*;
 
  
@@ -89,14 +90,15 @@ public class VueAventurier  {
         
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
             controlleur.passerJoueurSuivant();
+            controlleur.traiterMessage(CLIC_BoutonTerminer);
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-            controlleur.DeplacementJoueur();
+            controlleur.traiterMessage(CLIC_BoutonAller);
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-            controlleur.AssechementCase();
+            controlleur.traiterMessage(CLIC_BoutonAssecher);
         });
         
         this.btnAutreAction.addActionListener((ActionEvent e) -> {
