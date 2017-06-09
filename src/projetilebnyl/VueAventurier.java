@@ -193,8 +193,6 @@ public class VueAventurier  {
     }
     
     
-    
- 
     private JPanel getCellule(int i) {
         int numLigne = (int) (i+5)/6 ;
         int numCouleur = (i-numLigne) % 4 + 1;
