@@ -31,7 +31,7 @@ public class VueAventurier  {
     public final JButton btnAssecher;
     public final JButton btnAutreAction;
     public final JButton btnTerminerTour;
-    private final JTextField position;
+    private final JLabel position;
     
     
     private JLabel nomAvt;
@@ -69,10 +69,11 @@ public class VueAventurier  {
         mainPanel.add(this.panelCentre, BorderLayout.CENTER);
         
         panelCentre.add(new JLabel ("Position", SwingConstants.CENTER));
-        position = new  JTextField(30); 
+        position = new JLabel(); 
         position.setHorizontalAlignment(CENTER);
         panelCentre.add(position);
-
+        
+             
 
         // =================================================================================
         // SUD : les boutons
@@ -123,7 +124,7 @@ public class VueAventurier  {
         
         this.grille = new JFrame();
         grille.setSize(1000, 1000);
-        //this.grille.setVisible(true);
+        this.grille.setVisible(true);
         grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
        
@@ -163,6 +164,7 @@ public class VueAventurier  {
         window.setTitle(nomJ);
         panelAventurier.setBackground(couleur);
         nomAvt.setText(noma);
+        
     }
 
     public JLabel getNomAvt() {

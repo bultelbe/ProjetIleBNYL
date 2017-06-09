@@ -70,7 +70,7 @@ public class Controleur implements Observateur{
                 if(i==2 && tuilesAssechables.size()>=2){
                     while (j<=2){
                         
-                        System.out.println("Vous assechez deux case");
+                        System.out.println("Vous asséchez deux case.");
                         
                         for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -96,7 +96,7 @@ public class Controleur implements Observateur{
                         }
                     }
                 }else{
-                    System.out.println("Vous n'assechez qu'une case");
+                    System.out.println("Vous ne pouvez asséchez qu'une case.");
                     
                     for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());

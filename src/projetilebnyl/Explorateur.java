@@ -23,7 +23,7 @@ public class Explorateur extends Aventurier {
             if (t.getStatut() != COULEE)
                 tuilesPossibles.add(t);
         }
-        return tuilesPossibles;        
+        return tuilesPossibles;
     }
     
     
