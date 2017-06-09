@@ -24,12 +24,12 @@ public class Controleur implements Observateur{
     public Controleur() {
         
         grille = new Grille();
-        spawnMessager = grille.getTuile(2, 3);
-        spawnPlongeur = grille.getTuile(3, 2);
-        spawnIngenieur = grille.getTuile(4, 1);
-        spawnNavigateur = grille.getTuile(4, 2);
-        spawnPilote = grille.getTuile(4, 3);
-        spawnExplorateur = grille.getTuile(5, 3);
+        spawnMessager = grille.getTuile(1, 2);
+        spawnPlongeur = grille.getTuile(2, 1);
+        spawnIngenieur = grille.getTuile(3, 0);
+        spawnNavigateur = grille.getTuile(3, 1);
+        spawnPilote = grille.getTuile(3, 3);
+        spawnExplorateur = grille.getTuile(4, 2);
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
