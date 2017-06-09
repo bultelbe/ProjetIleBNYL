@@ -24,23 +24,6 @@ public class Ingenieur extends Aventurier {
                 tuilesInondees.add(t);
             }
         }
-        
-        if (tuilesInondees.isEmpty()) {
-            System.out.println("Il n'y a aucunes tuiles à assécher autour de vous.");
-        } else {
-
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
-            String nbrActions = sc.nextLine();
-            int i = Integer.parseInt(nbrActions);
-
-            if (i >= 2) {
-                i = 2;
-                for (int j = 0; j < i; j++) {
-                    
-                }
-            }
-        }
         return tuilesInondees;
     }
 

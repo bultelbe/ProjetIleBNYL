@@ -18,7 +18,7 @@ public class Controleur implements Observateur{
     private Tuile spawnNavigateur;
     private Tuile spawnPilote;
     private Tuile spawnExplorateur;
-    
+    private int act = 3;
     private Aventurier aventurierCourant;
 
     public Controleur() {
@@ -37,116 +37,127 @@ public class Controleur implements Observateur{
         joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
         joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
         joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
-        
+        aventurierCourant = joueurs.get(0);
     }
     
     public void TourDeJeu() {
-        int colAvAct;
-        int ligAvAct;
-        int act = 3;
-        String choixAct;
-        int choix;
-        Tuile tuileAvAct;
-        ArrayList<Tuile> listeAvAct = new ArrayList();
-        Scanner sc = new Scanner(System.in);
-        
-        while (act > 0) {
-            choix = 0;
-            colAvAct = aventurierCourant.getColonne();
-            ligAvAct = aventurierCourant.getLigne();
-            
-            System.out.println("Il vous reste" + act + " actions.");
-            System.out.println("Que vouler vous faire");
-            System.out.println("1-Assécher");
-            System.out.println("2-Déplacer");
-            System.out.println("3-Finir le tour");
-            System.out.println("Entré 1,2 ou 3\n");
-            
-            choixAct = sc.nextLine();
-            choix = Integer.parseInt(choixAct);
-            if (choix == 1) {
-                System.out.println("Déplacement");
-                deplacementJoueur();
-                if (colAvAct != aventurierCourant.getColonne() || ligAvAct != aventurierCourant.getLigne()) { //If pour le cas où déplacement impossible
-                    act = act-1;
-                }
-                   
-            } else if (choix == 2) {
-                int i = 0;
-                boolean action = false;
-                ArrayList<Tuile> listeApAct = new ArrayList();
-                System.out.println("Asséchage");
-                tuileAvAct=aventurierCourant.getPositionCourante();
-                listeAvAct=grille.getListeTuileAdj(tuileAvAct);
-                
-                if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeAvAct=aventurierCourant.assechementsPossibles(grille);                 
-                }
-                
-                assechementCase();
-                listeApAct=grille.getListeTuileAdj(tuileAvAct);
-                
-                if (aventurierCourant.getClass().getName()=="Explorateur"){
-                   listeApAct=aventurierCourant.assechementsPossibles(grille);                 
-                }
-                
-                if(listeAvAct.size()!=listeApAct.size()){
-                   action=true; 
-                }
-                
-                
-                if (action) {//if pour le cas où asséchage impossible
-                    act =act-1;
-                }
-            } else if (choix == 3) {
-                System.out.println("Fin du tour");
-                act = 0;
-            } else {
-                System.out.println("Il est demandé de rentre soit 1,2 ou 3");
-            }
+
+        if (act==0){
+            System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
+            vueAventurier.btnAller.setEnabled(false);
+            vueAventurier.btnAssecher.setEnabled(false);
+            vueAventurier.btnAutreAction.setEnabled(false);
+            act=3;
         }
+ 
     }
 
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
-
-        for (Tuile t : tuilesAssechables) {
-            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
-        }
         
         if (tuilesAssechables.isEmpty()) {
             System.out.println("\nIl n'y a aucunes tuiles à assécher autour de vous.");
         } else {
             Scanner sc = new Scanner(System.in);
-            System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
-            String tuileX = sc.nextLine();
-            int x = parseInt(tuileX);
+            
+            if(aventurierCourant.getNoma()=="Ingenieur"){
+                
+                System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
+                String nbrActions = sc.nextLine();
+                int i = Integer.parseInt(nbrActions);
+                int j=0;
+                if(i==2 && tuilesAssechables.size()>=2){
+                    while (j<=2){
+                        
+                        System.out.println("Vous assechez deux case");
+                        
+                        for (Tuile t : tuilesAssechables) {
+                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                        }
+                        
+                        System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+                        String tuileX = sc.nextLine();
+                        int x = parseInt(tuileX);
 
-            System.out.print("\nY : ");
-            String tuileY = sc.nextLine();
-            int y = parseInt(tuileY);
+                        System.out.print("\nY : ");
+                        String tuileY = sc.nextLine();
+                        int y = parseInt(tuileY);
 
-            Tuile t = grille.getTuile(x, y);
+                        Tuile t = grille.getTuile(x, y);
 
-            if (tuilesAssechables.contains(t)) {
-                t.setStatut(ASSECHEE);
-                System.out.println("\nVous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-            } else {
-                System.out.println("Cette tuile n'est pas asséchable.");
+                        if (tuilesAssechables.contains(t)) {
+                            t.setStatut(ASSECHEE);
+                            System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                            act=act-1;
+                            j=j+1;
+                        } else {
+                            System.out.println("Cette tuile n'est pas asséchable.");
+                        }
+                    }
+                }else{
+                    System.out.println("Vous n'assechez qu'une case");
+                    
+                    for (Tuile t : tuilesAssechables) {
+                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                        }
+                    
+                    System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+                    String tuileX = sc.nextLine();
+                    int x = parseInt(tuileX);
 
+                    System.out.print("\nY : ");
+                    String tuileY = sc.nextLine();
+                    int y = parseInt(tuileY);
+
+                    Tuile t = grille.getTuile(x, y);
+
+                    if (tuilesAssechables.contains(t)) {
+                        t.setStatut(ASSECHEE);
+                        System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                        act=act-1;
+                    } else {
+                        System.out.println("Cette tuile n'est pas asséchable."); 
+                        }
+                }
+            }else{
+                
+                 for (Tuile t : tuilesAssechables) {
+                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                        }
+                
+                System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+                String tuileX = sc.nextLine();
+                int x = parseInt(tuileX);
+
+                System.out.print("\nY : ");
+                String tuileY = sc.nextLine();
+                int y = parseInt(tuileY);
+
+                Tuile t = grille.getTuile(x, y);
+
+                if (tuilesAssechables.contains(t)) {
+                    t.setStatut(ASSECHEE);
+                    System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                    act=act-1;
+                } else {
+                    System.out.println("Cette tuile n'est pas asséchable.");
+
+                }
             }
         }
+        
+        this.TourDeJeu();
     }
 
 
     public void passerJoueurSuivant() {
+        
+        act=3;
         VueAventurier avt = getVueAventurier();
         
-        if (avt != null) {        
-            aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-            getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());    
-        }        
+        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());        
     }
     
     public VueAventurier getVueAventurier() {
@@ -179,9 +190,12 @@ public class Controleur implements Observateur{
         if (tuilesPossibles.contains(t)) {
             aventurierCourant.setPositionCourante(t);
             System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+            act=act-1;
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
+        
+        this.TourDeJeu();
     }
     
     public void traiterMessage(Message m) {
