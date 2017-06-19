@@ -8,7 +8,7 @@ import java.util.Collections;
 import static projetilebnyl.Utils.EtatTuile.*;
 
 
-public class CarteInondation {
+public class CarteInondations {
        
     public ArrayList<Carte> piocheInondation = new ArrayList<>();
     public ArrayList<Carte> defausseInondation = new ArrayList<>();
@@ -39,7 +39,7 @@ public class CarteInondation {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    CarteInondation(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
+    public CarteInondations(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
                  
         
         piocheInondation.add(c1);
@@ -79,6 +79,8 @@ public class CarteInondation {
         }
     }
     
+    
+    
     public ArrayList<Carte> getPiocheInondation() {
         return piocheInondation;
     }
@@ -117,6 +119,7 @@ public class CarteInondation {
                 t1.setStatut(INONDEE);
             } else if (t1.getStatut()==INONDEE){
                 t1.setStatut(COULEE);
+                defausseInondation.remove(t1);
             } 
             
             piocheInondation.remove(piocheInondation.get(0));

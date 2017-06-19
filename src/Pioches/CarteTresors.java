@@ -11,7 +11,7 @@ import static projetilebnyl.Utils.Cartes.PIERRE;
 import static projetilebnyl.Utils.Cartes.SABLE;
 import static projetilebnyl.Utils.Cartes.STATUE;
 
-public class CarteTresor {
+public class CarteTresors {
     private ArrayList<Carte> piocheTresor = new ArrayList<>();
     private ArrayList<Carte> defausseTresor = new ArrayList<>();
     
@@ -50,7 +50,7 @@ public class CarteTresor {
             private Carte Sac1= new Carte(SABLE);
             private Carte Sac2= new Carte(SABLE);
     
-    public CarteTresor() {
+    public CarteTresors() {
         piocheTresor.add(cristal1);
         piocheTresor.add(cristal2);
         piocheTresor.add(cristal3);
@@ -111,7 +111,7 @@ public class CarteTresor {
            defausseTresor.add(carte);
        }
     
-       public void remisedefausse(){
+       public void remiseDefausse(){
             ArrayList<Carte> liste = this.getDefausseTresor();
             Collections.shuffle(liste);
             setPiocheTresor(liste);

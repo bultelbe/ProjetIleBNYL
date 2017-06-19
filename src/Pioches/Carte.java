@@ -19,8 +19,8 @@ public class Carte {
         this.nomCarte = nomCarte;
     }
 
-    Carte(Utils.Cartes cartes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Carte(Utils.Cartes carte) {
+        this.nomCarte=carte.toString();
     }
 
     public String getNomCarte() {
