@@ -194,8 +194,7 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
-
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
         this.TourDeJeu();
         
     }
@@ -222,6 +221,10 @@ public class Controleur implements Observateur{
 
     public Aventurier getAventurierCourant() {
         return aventurierCourant;
+    }
+
+    public Grille getGrille() {
+        return grille;
     }
     
     

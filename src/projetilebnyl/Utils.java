@@ -35,6 +35,45 @@ public class Utils {
             return this.libelle;
         }
     }
+    
+    public static enum Tresor{
+        CRISTAL("Le Cristal ardent"), 
+        STATUE("La Statue du zéphir"),
+        PIERRE("La Pierre sacrée"),
+        CALICE("Le Calice de l'onde");
+
+        String libelle;
+        
+        Tresor(String libelle) {
+            this.libelle = libelle ;
+        }
+
+        @Override
+        public String toString() {
+            return this.libelle;
+        }
+    }
+    
+    public static enum Cartes{
+        CRISTAL("Le Cristal ardent"), 
+        STATUE("La Statue du zéphir"),
+        PIERRE("La Pierre sacrée"),
+        CALICE("Le Calice de l'onde"),
+        EAUX("Montée des eaux"),
+        HELICOPTERE("Hélicoptère"),
+        SABLE("Sac de sable");
+
+        String libelle;
+        
+        Cartes(String libelle) {
+            this.libelle = libelle ;
+        }
+
+        @Override
+        public String toString() {
+            return this.libelle;
+        }
+    }
 
     public static enum Pion {
         ROUGE("Rouge", new Color(255, 0, 0)),
@@ -84,7 +123,7 @@ public class Utils {
         return arrayList ;
     }
     
-    /**
+    /*
      * Permet de poser une question à laquelle l'utilisateur répond par oui ou non
      * @param question texte à afficher
      * @return true si l'utilisateur répond oui, false sinon
@@ -96,7 +135,7 @@ public class Utils {
         return reponse == JOptionPane.YES_OPTION;
     }    
     
-    /**
+    /*
      * Permet d'afficher un message d'information avec un bouton OK
      * @param message Message à afficher 
      */

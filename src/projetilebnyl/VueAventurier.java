@@ -24,15 +24,16 @@ public class VueAventurier  {
      
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-    private final JFrame window,grille;
+    private final JFrame window;
     private final JPanel panelAventurier;
-    private JPanel mainPanel;
+    private final JPanel mainPanel;
+    private final JPanel bigPanel;
     public final JButton btnAller  ;
     public final JButton btnAssecher;
     public final JButton btnAutreAction;
     public final JButton btnTerminerTour;
     private final JPanel position;
-    
+    private final JPanel grilletuile ;
     
     private JLabel nomAvt;
     private JLabel nomTuile;
@@ -44,11 +45,13 @@ public class VueAventurier  {
         this.controleur = ctrl;
         
         this.window = new JFrame();
-        window.setSize(350, 200);
+        window.setSize(900, 900);
 
         window.setTitle(nomJoueur);
+        bigPanel = new JPanel(new BorderLayout());
         mainPanel = new JPanel(new BorderLayout());
-        this.window.add(mainPanel);
+        bigPanel.add(mainPanel,BorderLayout.SOUTH);
+        this.window.add(bigPanel);
 
         mainPanel.setBackground(new Color(230, 230, 230));
         mainPanel.setBorder(BorderFactory.createLineBorder(couleur, 2)) ;
@@ -105,15 +108,23 @@ public class VueAventurier  {
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-          
+            btnAller.setEnabled(false);
+            btnAssecher.setEnabled(false);
+            btnAutreAction.setEnabled(false);
             controleur.traiterMessage(CLIC_BoutonAller);
-           
+            btnAller.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnAutreAction.setEnabled(true);
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-            
+            btnAller.setEnabled(false);
+            btnAssecher.setEnabled(false);
+            btnAutreAction.setEnabled(false);
             controleur.traiterMessage(CLIC_BoutonAssecher);
-        
+            btnAller.setEnabled(true);
+            btnAssecher.setEnabled(true);
+            btnAutreAction.setEnabled(true);
         });
         
         this.btnAutreAction.addActionListener((ActionEvent e) -> {});
@@ -124,20 +135,12 @@ public class VueAventurier  {
         mainPanel.repaint();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
-        
-        this.grille = new JFrame();
-        grille.setSize(1000, 1000);
-        this.grille.setVisible(true);
-        grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        // Définit la taille de la fenêtre en pixels
-       
-        
-        JPanel grilletuile = new JPanel(new GridLayout(6, 6));
-        grille.add(grilletuile, BorderLayout.CENTER);
+        grilletuile = new JPanel(new GridLayout(6, 6));
+        bigPanel.add(grilletuile,BorderLayout.CENTER);
         
         for (int i=0; i<36; i++) {
             
-             grilletuile.add(getCellule(i));
+             grilletuile.add(createCellule(i,controleur.getGrille()));
         }
     }  
 
@@ -179,10 +182,15 @@ public class VueAventurier  {
     }
     
     
-    private JPanel getCellule(int i) {
+    /*public void updateCellules(Tuile tuile){
+         int numLigne = (int) (i+5)/6 ;
+         int numCouleur = (i-numLigne) % 4 + 1;
+    }*/
+ 
+    public JPanel createCellule(int i,Grille grilleListe) {
         int numLigne = (int) (i+5)/6 ;
         int numCouleur = (i-numLigne) % 4 + 1;
-        Grille grilleListe = new Grille();
+        
         if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){   
             JPanel panelCellule = new JPanel();
             panelCellule.setBackground(Color.BLACK);
@@ -204,7 +212,12 @@ public class VueAventurier  {
             
             return panelCellule ;
         }
-        
-        
     }
+    
+
+    public JPanel getGrilletuile() {
+        return grilletuile;
+    }
+    
+    
 }
