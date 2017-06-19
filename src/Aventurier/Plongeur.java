@@ -1,7 +1,11 @@
-package projetilebnyl;
+package Aventurier;
 
+import Aventurier.Aventurier;
+import Grille.Grille;
+import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
+import projetilebnyl.Utils;
 import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Plongeur extends Aventurier {
@@ -42,4 +46,5 @@ public class Plongeur extends Aventurier {
     public Color getColor() {
         return Utils.Pion.NOIR.getCouleur();
     }
+
 }

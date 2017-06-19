@@ -1,5 +1,14 @@
 package projetilebnyl;
 
+import Aventurier.Plongeur;
+import Aventurier.Pilote;
+import Aventurier.Navigateur;
+import Aventurier.Messager;
+import Aventurier.Ingenieur;
+import Aventurier.Explorateur;
+import Aventurier.Aventurier;
+import Grille.Grille;
+import Grille.Tuile;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
@@ -88,6 +97,7 @@ public class Controleur implements Observateur{
 
                         if (tuilesAssechables.contains(t)) {
                             t.setStatut(ASSECHEE);
+                            
                             System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
                             act=act-1;
                             j=j+1;
@@ -138,7 +148,6 @@ public class Controleur implements Observateur{
 
                 if (tuilesAssechables.contains(t)) {
                     t.setStatut(ASSECHEE);
-                    this.vueAventurier.updateCellules(t);
                     System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
                     act=act-1;
                 } else {
@@ -147,7 +156,7 @@ public class Controleur implements Observateur{
                 }
             }
         }
-
+        getVueAventurier().updateCellules(t);
         this.TourDeJeu();
     }
 

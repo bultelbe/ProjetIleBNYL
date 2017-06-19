@@ -5,9 +5,11 @@
  */
 package projetilebnyl;
 
+import Grille.Grille;
+
 /**
  *
- * @author schmuckl
+ * @author gervasna
  */
 public class NewMain {
 
