@@ -3,9 +3,11 @@ package Pioches;
 
 import Grille.Grille;
 import Grille.Tuile;
+import Vues.Utils;
+import Vues.Utils.EtatTuile;
 import java.util.ArrayList;
 import java.util.Collections;
-import static projetilebnyl.Utils.EtatTuile.*;
+
 
 
 public class CarteInondation {
@@ -94,10 +96,10 @@ public class CarteInondation {
         for (int i = 0; i < niveauEau; i++){
             defausseInondation.add(piocheInondation.get(0));
             Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
-            if (t1.getStatut()==ASSECHEE){
-                t1.setStatut(INONDEE);
-            } else if (t1.getStatut()==INONDEE){
-                t1.setStatut(COULEE);
+            if (t1.getStatut()==EtatTuile.ASSECHEE){
+                t1.setStatut(EtatTuile.INONDEE);
+            } else if (t1.getStatut()==EtatTuile.INONDEE){
+                t1.setStatut(EtatTuile.COULEE);
             } 
             
             piocheInondation.remove(piocheInondation.get(0));

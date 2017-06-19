@@ -5,8 +5,8 @@ import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
-import projetilebnyl.Utils;
-import static projetilebnyl.Utils.EtatTuile.*;
+import Vues.Utils;
+import static Vues.Utils.EtatTuile.*;
 
 public class Plongeur extends Aventurier {
 
@@ -21,7 +21,7 @@ public class Plongeur extends Aventurier {
         ArrayList<Tuile> tuilesPossibles = super.deplacementsPossibles(grille);
         
         ArrayList<Tuile> tuilesTrav = new ArrayList();
-        tuilesTrav.add(positionCourante);
+        tuilesTrav.add(getPositionCourante());
         
         for (int i = 0; i < tuilesTrav.size(); i++) {
             tuileL = tuilesTrav.get(i);
@@ -38,7 +38,7 @@ public class Plongeur extends Aventurier {
             }
         }   
         
-        tuilesPossibles.remove(positionCourante);
+        tuilesPossibles.remove(getPositionCourante());
         return tuilesPossibles;
     }
 

@@ -3,7 +3,7 @@ package Aventurier;
 import Aventurier.Aventurier;
 import Grille.Tuile;
 import java.awt.Color;
-import projetilebnyl.Utils;
+import Vues.Utils;
 
 public class Messager extends Aventurier {
 
