@@ -1,4 +1,4 @@
-package projetilebnyl;
+package Vues;
 
 import Grille.Grille;
 import java.awt.BorderLayout;
@@ -20,8 +20,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
+import projetilebnyl.Observateur;
+import projetilebnyl.Tuile;
 import static projetilebnyl.Message.*;
-import projetilebnyl.Utils.*;
+import Vues.Utils.*;
 
  
 public class VueAventurier  {
@@ -227,35 +229,6 @@ public class VueAventurier  {
                 panelCellule.setBackground(Color.BLUE);
             }
             cases.put(i, panelCellule);
-            
-            panelCellule.addMouseListener(new MouseListener() {
-                
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            });
-            
             return panelCellule ;
         }
     }

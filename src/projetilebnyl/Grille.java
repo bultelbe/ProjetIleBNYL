@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import projetilebnyl.Tuile;
 import java.util.Vector;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
@@ -73,12 +73,13 @@ public class Grille {
                 ArrayList<Tuile> Liste = new ArrayList();
                 int col = positionCourante.getColonne();
                 int lig = positionCourante.getLigne();
-                for(int i=1; i<tuiles.size();i++) {  
-                if(col==0){
+                
+                for (int i = 1; i < tuiles.size(); i++) {  
+                if (col==0) {
                 // Verifie que la tuile positionCourante ne se situe pas sur les bord de la grille
                 // Cad lig !=0 && lig!=5 && col!=0 && col!=5
                 // Sinon gére les exception
-                    if (lig==2||lig==3){                       
+                    if (lig==2 || lig==3) {                       
                         if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
                             // Verifie si la tuile "tuiles.get(i)" est adjacente a la tuile positionCourante
                             //Si oui l'ajoute a la liste
@@ -89,7 +90,7 @@ public class Grille {
                             }
                         }
                     } 
-                }else if(col==5) {     
+                } else if(col==5) {     
                     if (lig==2||lig==3){                       
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
@@ -97,7 +98,7 @@ public class Grille {
                             }                        
                         }                        
                     }  
-                }else if(lig==0) { 
+                } else if (lig==0) { 
                     if (col==2||col==3){
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
@@ -105,7 +106,7 @@ public class Grille {
                             }                        
                         }                   
                     }
-                }else if(lig==5) {   
+                } else if (lig==5) {   
                     if (col==2||col==3){                        
                         if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
@@ -113,7 +114,7 @@ public class Grille {
                             }                        
                         }                   
                     }                    
-                }else{  // lig !=0 && lig!=5 && col!=0 && col!=5 
+                } else {  // lig !=0 && lig!=5 && col!=0 && col!=5 
                         if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col ) ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));

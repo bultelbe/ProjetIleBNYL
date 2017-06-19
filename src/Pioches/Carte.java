@@ -5,7 +5,7 @@
  */
 package Pioches;
 
-import projetilebnyl.Utils;
+import Vues.Utils;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetilebnyl;
+package Vues;
 
 import projetilebnyl.Parameters;
 import java.awt.Color;
@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 import Aventurier.Aventurier;
+import projetilebnyl.Parameters;
 
 /**
  *

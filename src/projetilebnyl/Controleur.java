@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
 import Aventurier.Navigateur;
@@ -13,7 +14,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
 import java.util.*;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 import static java.lang.Integer.parseInt;
 
 public class Controleur implements Observateur{
@@ -120,16 +121,16 @@ public class Controleur implements Observateur{
                     String tuileY = sc.nextLine();
                     int y = parseInt(tuileY);
 
-                    Tuile t = grille.getTuile(x, y);
+                    Tuile t = getGrille().getTuile(x, y);
 
                     if (tuilesAssechables.contains(t)) {
                         t.setStatut(ASSECHEE);
                         getVueAventurier().updateCellules(t);
                         System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-                        act=act-1;
+                        act = act-1;
                     } else {
                         System.out.println("Cette tuile n'est pas asséchable."); 
-                        }
+                    }
                 }
             }else{
                 

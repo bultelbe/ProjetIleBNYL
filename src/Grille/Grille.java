@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import Grille.Tuile;
 import java.util.Vector;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
