@@ -157,7 +157,7 @@ public class Controleur implements Observateur{
         VueAventurier avt = getVueAventurier();
         
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());        
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
     }
     
     public VueAventurier getVueAventurier() {
@@ -194,8 +194,10 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
+
         this.TourDeJeu();
+        
     }
     
     public void traiterMessage(Message m) {
@@ -213,4 +215,14 @@ public class Controleur implements Observateur{
                 break;
         }
     }
+
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+    
+    
 }
