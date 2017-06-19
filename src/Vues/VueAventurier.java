@@ -24,6 +24,7 @@ import javax.swing.border.MatteBorder;
 import projetilebnyl.Observateur;
 import static projetilebnyl.Message.*;
 import Vues.Utils.*;
+import java.awt.FlowLayout;
 
  
 public class VueAventurier  {
@@ -46,7 +47,7 @@ public class VueAventurier  {
     private JLabel nomTuile;
     private Observateur controleur;
     private HashMap<Integer,JPanel> cases=new HashMap();
-    
+    private HashMap<Integer,JPanel> pions=new HashMap();
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
 
         this.controleur = ctrl;
@@ -193,17 +194,18 @@ public class VueAventurier  {
         
         for (int i=0; i<36; i++) {
             JPanel panel = cases.get(i);
-            
+            JPanel pion = pions.get(i);
             if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
             } else {
                 if (grilleListe.getGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
                        panel.setBackground(Color.DARK_GRAY);
-
+                       pion.setBackground(Color.DARK_GRAY);
                     } else if (grilleListe.getGrille().get(i).getStatut()== EtatTuile.INONDEE) {
                         panel.setBackground(Color.ORANGE);
-
+                        pion.setBackground(Color.ORANGE);
                     } else {
                         panel.setBackground(Color.BLUE);
+                        pion.setBackground(Color.BLUE);
                     }
 
                 panel.repaint();
@@ -215,26 +217,33 @@ public class VueAventurier  {
     public JPanel createCellule(int i,Grille grilleListe) {
 
         if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){   
+            JPanel panelPion = new JPanel();
             JPanel panelCellule = new JPanel();
             panelCellule.setBackground(Color.BLACK);
             return panelCellule ;
             
         } else {    
-            JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase());
+            JPanel panelPion = new JPanel(new FlowLayout());
+            JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase(),SwingConstants.CENTER);
             nomCase.setForeground(Color.white);
-            JPanel panelCellule = new JPanel();
+            JPanel panelCellule = new JPanel(new BorderLayout());
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
-            panelCellule.add(nomCase);
+            panelCellule.add(nomCase,BorderLayout.CENTER);
+            panelCellule.add(panelPion,BorderLayout.NORTH);
             
             if (grilleListe.tuiles.get(i).getStatut() == EtatTuile.ASSECHEE) {
                 panelCellule.setBackground(Color.DARK_GRAY);
+                panelPion.setBackground(Color.DARK_GRAY);
                 
             } else if (grilleListe.tuiles.get(i).getStatut()==EtatTuile.INONDEE) {
                 panelCellule.setBackground(Color.ORANGE);
-                
+                panelPion.setBackground(Color.ORANGE);
             } else {
                 panelCellule.setBackground(Color.BLUE);
+                panelPion.setBackground(Color.BLUE);
             }
+            
+            pions.put(i, panelPion);
             cases.put(i, panelCellule);
             return panelCellule ;
         }
