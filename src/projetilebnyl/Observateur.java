@@ -12,4 +12,5 @@ package projetilebnyl;
  */
 public interface Observateur {
     public void traiterMessage(Message m);
+    public Aventurier getAventurierCourant();
 }

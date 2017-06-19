@@ -49,7 +49,7 @@ public class Grille {
                         vide.setColonne(col);
                         vide.setLigne(lig);
                         tuiles.add(vide);
-                   }else{
+                   } else {
                     liste.get(j).setColonne(col);
                     liste.get(j).setLigne(lig);
                     tuiles.add(liste.get(j));
