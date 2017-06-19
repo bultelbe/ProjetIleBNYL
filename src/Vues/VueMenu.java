@@ -28,7 +28,7 @@ public class VueMenu {
         
         window.setTitle("Menu");
         
-        JPanel mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel panelNbrJoueurs = new JPanel(new BorderLayout());
         JPanel panelChoixAventurier = new JPanel(new BorderLayout());
         JPanel panelBoutons = new JPanel(new BorderLayout());
