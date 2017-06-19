@@ -1,8 +1,8 @@
-package projetilebnyl;
+package Grille;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import projetilebnyl.Tuile;
+import Grille.Tuile;
 import java.util.Vector;
 import static projetilebnyl.Utils.EtatTuile.*;
 

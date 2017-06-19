@@ -1,8 +1,12 @@
-package projetilebnyl;
+package Aventurier;
 
+import Aventurier.Aventurier;
+import Grille.Grille;
+import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
+import projetilebnyl.Utils;
 import static projetilebnyl.Utils.EtatTuile.*;
 
 public class Ingenieur extends Aventurier {

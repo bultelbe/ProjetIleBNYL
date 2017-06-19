@@ -1,5 +1,14 @@
 package projetilebnyl;
 
+import Aventurier.Plongeur;
+import Aventurier.Pilote;
+import Aventurier.Navigateur;
+import Aventurier.Messager;
+import Aventurier.Ingenieur;
+import Aventurier.Explorateur;
+import Aventurier.Aventurier;
+import Grille.Grille;
+import Grille.Tuile;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;

@@ -5,6 +5,8 @@
  */
 package projetilebnyl;
 
+import Grille.Grille;
+
 /**
  *
  * @author gervasna

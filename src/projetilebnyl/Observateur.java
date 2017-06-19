@@ -6,6 +6,8 @@
 
 package projetilebnyl;
 
+import Aventurier.Aventurier;
+import Grille.Grille;
 import java.util.ArrayList;
 
 /**

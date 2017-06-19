@@ -1,6 +1,9 @@
-package projetilebnyl;
+package Aventurier;
 
+import Aventurier.Aventurier;
+import Grille.Tuile;
 import java.awt.Color;
+import projetilebnyl.Utils;
 
 public class Navigateur extends Aventurier {
 
