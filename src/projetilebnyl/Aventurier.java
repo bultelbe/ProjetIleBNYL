@@ -10,13 +10,6 @@ public abstract class Aventurier {
     private int ligne;
     private String noma;
     
-    private int nbrActions;
-    public Pilote pilote;
-    public Explorateur explorateur;
-    public Ingenieur ingénieur;
-    public Navigateur navigateur;
-    public Messager messager;
-    public Plongeur plongeur;
     public Tuile positionCourante;
 
     public Aventurier(String nomJ, Tuile positionCourante, String noma) {
@@ -26,20 +19,20 @@ public abstract class Aventurier {
     }
 
     public void setColonne(int colonne) {
-        this.colonne = colonne;
+        this.colonne = colonne - 1;
     }
 
     public int getColonne() {
-        return colonne;
+        return colonne + 1;
     }
 
     public int getLigne() {
-        return ligne;
+        return ligne + 1;
     }
     
 
     public void setLigne(int ligne) {
-        this.ligne = ligne;
+        this.ligne = ligne - 1;
      }
 
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
@@ -67,11 +60,6 @@ public abstract class Aventurier {
             }
         }
         return tuilesPossibles;
-    }
-
-    public void DeplaceJoueur(int colonne, int ligne) {
-        this.setColonne(colonne);
-        this.setLigne(ligne);
     }
 
     public Tuile getPositionCourante() {

@@ -13,18 +13,7 @@ public class Ingenieur extends Aventurier {
     
     
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
-        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
-        tuilesAdj = grille.getListeTuileAdj(positionCourante);
-        ArrayList<Tuile> tuilesInondees = new ArrayList<>();
-        
-        tuilesAdj.add(positionCourante);
-        
-        for(Tuile t : tuilesAdj) {
-            if (t.getStatut() == INONDEE) {
-                tuilesInondees.add(t);
-            }
-        }
-        return tuilesInondees;
+        return super.assechementsPossibles(grille);
     }
 
     @Override

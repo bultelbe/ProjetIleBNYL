@@ -78,7 +78,8 @@ public class VueAventurier  {
         nomTuile= new JLabel(controleur.getAventurierCourant().getPositionCourante().getNomCase());
         position.add(nomTuile);
         panelCentre.add(position);
-
+        
+             
 
         // =================================================================================
         // SUD : les boutons

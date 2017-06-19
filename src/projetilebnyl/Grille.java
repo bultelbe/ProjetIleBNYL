@@ -49,7 +49,7 @@ public class Grille {
                         vide.setColonne(col);
                         vide.setLigne(lig);
                         tuiles.add(vide);
-                   }else{
+                   } else {
                     liste.get(j).setColonne(col);
                     liste.get(j).setLigne(lig);
                     tuiles.add(liste.get(j));
@@ -207,7 +207,7 @@ public class Grille {
         }
        
         public void afficheGrille(){
-        //fonction servant uniquement a affixhé la grille lors de la création du code
+        //fonction servant uniquement a affiché la grille lors de la création du code
         for (int i=0;i<(this.getGrille().size());++i){
                this.getGrille().get(i).afficheTuile();
                System.out.println(" : "+i);

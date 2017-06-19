@@ -11,30 +11,31 @@ public class Plongeur extends Aventurier {
     }
 
     
+    @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
+        Tuile tuileL;
+        ArrayList<Tuile> tuilesPossibles = super.deplacementsPossibles(grille);
         
-        ArrayList<Tuile> tuilesTrav = new ArrayList<>();
+        ArrayList<Tuile> tuilesTrav = new ArrayList();
         tuilesTrav.add(positionCourante);
         
-        ArrayList<Tuile> tuilesInondeesCoulees = new ArrayList<>();
-        tuilesInondeesCoulees = grille.getTuilesPossibles();
-        
         for (int i = 0; i < tuilesTrav.size(); i++) {
-            Tuile t1 = tuilesTrav.get(i);
+            tuileL = tuilesTrav.get(i);
             
-            if (t1.getStatut() != COULEE) {
-                tuilesInondeesCoulees.add(t1);
+            if (tuileL.getStatut() != COULEE)
+                tuilesPossibles.add(tuileL);
+            
+            for (Tuile tuile : grille.getListeTuileAdj(tuileL)) {
+                if (tuile.getStatut() != COULEE && !tuilesPossibles.contains(tuile))
+                    tuilesPossibles.add(tuile);
                 
-                for (Tuile t2 : grille.getListeTuileAdj(t1))
-                    if (t2.getStatut() == COULEE && tuilesInondeesCoulees.contains(t2)) {
-                        tuilesInondeesCoulees.add(t2);
-                        
-                    } else if (t2.getStatut() != COULEE && !tuilesTrav.contains(t2)) {
-                        tuilesTrav.add(t2);
-                    }
+                else if (tuile.getStatut() != ASSECHEE && !tuilesTrav.contains(tuile))
+                    tuilesTrav.add(tuile);
             }
-        }
-        return tuilesTrav;
+        }   
+        
+        tuilesPossibles.remove(positionCourante);
+        return tuilesPossibles;
     }
 
     @Override
