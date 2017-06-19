@@ -38,6 +38,7 @@ public abstract class Aventurier {
      }
 
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
+        
         ArrayList<Tuile> tuilesInondees = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj = (grille.getListeTuileAdj(positionCourante));

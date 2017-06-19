@@ -31,6 +31,7 @@ public class Explorateur extends Aventurier {
     }
     
     
+    @Override
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesAdj = super.assechementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
