@@ -1,4 +1,4 @@
-package Grille;
+package projetilebnyl;
 
 import projetilebnyl.Utils.EtatTuile;
 import static projetilebnyl.Utils.EtatTuile.*;
@@ -8,6 +8,7 @@ public class Tuile {
 	private int colonne;
 	private int ligne;
 	private EtatTuile statut;
+        private int rang;
         
     Tuile(String nomCase) {
         this.nomCase = nomCase;
@@ -18,10 +19,6 @@ public class Tuile {
     Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
-    }
-
-    public Tuile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
               
         
@@ -52,6 +49,16 @@ public class Tuile {
 
     public void setStatut(EtatTuile statut) {
 	this.statut=statut;
+    }
+
+    public void setRang(int rang) {
+        this.rang = rang;
+    }
+    
+    
+    
+    public int getRang(){
+        return rang;
     }
 
     public void afficheTuile() {
