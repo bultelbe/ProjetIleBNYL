@@ -39,7 +39,7 @@ public class Grille {
                 liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                 liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                 liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
-               //Collections.shuffle(liste);
+               Collections.shuffle(liste);
                int j =0;
                int col = 0;
                int lig = 0;                    
@@ -207,7 +207,7 @@ public class Grille {
         }
        
         public void afficheGrille(){
-        //fonction servant uniquement a affixhé la grille lors de la création du code
+        //fonction servant uniquement a affiché la grille lors de la création du code
         for (int i=0;i<(this.getGrille().size());++i){
                this.getGrille().get(i).afficheTuile();
                System.out.println(" : "+i);

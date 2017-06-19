@@ -13,6 +13,40 @@ public class Plongeur extends Aventurier {
     
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         
+        ArrayList<Tuile> tuilesArret=new ArrayList<>();
+        
+        ArrayList<Tuile> tuilesTrav=new ArrayList<>();
+        ArrayList<Tuile> tuilesTrav2=new ArrayList<>();
+        
+        ArrayList<Tuile> tuilesAdjDiag=new ArrayList<>();
+        
+        if(positionCourante.getStatut()==INONDEE){
+            
+            tuilesAdjDiag=grille.getListeTuileAdjDiag(positionCourante);
+            System.out.println(positionCourante.getNomCase());
+            
+        }else if(positionCourante.getStatut()==ASSECHEE){
+            
+            tuilesAdjDiag=grille.getListeTuileAdj(positionCourante);
+            System.out.println(positionCourante.getNomCase());
+            
+        }
+        
+        tuilesTrav=tuilesTrav2;
+        
+        while(compareTo(tuilesTrav,tuilesTrav2)){
+            
+        }
+        
+        
+        
+        
+        
+         
+        
+        
+        return tuilesArret;
+        /*
         ArrayList<Tuile> tuilesTrav = new ArrayList<>();
         tuilesTrav.add(positionCourante);
         
@@ -34,11 +68,15 @@ public class Plongeur extends Aventurier {
                     }
             }
         }
-        return tuilesTrav;
+        return tuilesTrav;*/
     }
 
     @Override
     public Color getColor() {
         return Utils.Pion.NOIR.getCouleur();
+    }
+
+    private boolean compareTo(ArrayList<Tuile> tuilesTrav, ArrayList<Tuile> tuilesTrav2) {
+        retun tuilesTrav.size==tuilesTrav2.size();
     }
 }
