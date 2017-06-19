@@ -6,6 +6,8 @@
 
 package projetilebnyl;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author laurillau
@@ -13,4 +15,6 @@ package projetilebnyl;
 public interface Observateur {
     public void traiterMessage(Message m);
     public Aventurier getAventurierCourant();
+    public ArrayList<Aventurier> getJoueurs();
+    public Grille getGrille();
 }
