@@ -97,6 +97,7 @@ public class Controleur implements Observateur{
 
                         if (tuilesAssechables.contains(t)) {
                             t.setStatut(ASSECHEE);
+                            
                             System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
                             act=act-1;
                             j=j+1;
@@ -155,7 +156,7 @@ public class Controleur implements Observateur{
                 }
             }
         }
-        
+        getVueAventurier().updateCellules(t);
         this.TourDeJeu();
     }
 

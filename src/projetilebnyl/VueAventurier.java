@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -40,7 +41,7 @@ public class VueAventurier  {
     private JLabel nomAvt;
     private JLabel nomTuile;
     private Observateur controleur;
-    
+    private HashMap<Integer,JPanel> cases=new HashMap();
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
 
@@ -184,15 +185,23 @@ public class VueAventurier  {
     }
     
     
-    /*public void updateCellules(Tuile tuile){
-         int numLigne = (int) (i+5)/6 ;
-         int numCouleur = (i-numLigne) % 4 + 1;
-    }*/
+    public void updateCellules(Tuile tuile){
+        
+        JPanel panel = cases.get(tuile.getRang());
+       
+        if(tuile.getStatut()==EtatTuile.ASSECHEE){
+               panel.setBackground(Color.DARK_GRAY);
+            }else if(tuile.getStatut()==EtatTuile.INONDEE){
+                panel.setBackground(Color.ORANGE);
+            } else{
+                panel.setBackground(Color.BLUE);
+            }
+        
+        panel.repaint();
+    }
  
     public JPanel createCellule(int i,Grille grilleListe) {
-        int numLigne = (int) (i+5)/6 ;
-        int numCouleur = (i-numLigne) % 4 + 1;
-        
+
         if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){   
             JPanel panelCellule = new JPanel();
             panelCellule.setBackground(Color.BLACK);
@@ -211,7 +220,7 @@ public class VueAventurier  {
             } else{
                 panelCellule.setBackground(Color.BLUE);
             }
-            
+            cases.put(i, panelCellule);
             return panelCellule ;
         }
     }
