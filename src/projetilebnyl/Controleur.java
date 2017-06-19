@@ -1,5 +1,9 @@
 package projetilebnyl;
 
+
+import Aventurier.*;
+import Pioches.*;
+
 import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
@@ -16,6 +20,9 @@ import static java.lang.Integer.parseInt;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static Vues.Utils.Cartes.*;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -29,7 +36,10 @@ public class Controleur implements Observateur{
     private final Tuile spawnPilote;
     private final Tuile spawnExplorateur;
     private int act = 3;
+    private int niveauEau =0;
     private Aventurier aventurierCourant;
+    private CarteTresors tresor= new CarteTresors();
+    private CarteInondations inondations= new CarteInondations(grille);
 
     public Controleur() {
         
@@ -165,7 +175,6 @@ public class Controleur implements Observateur{
         this.TourDeJeu();
     }
 
-
     public void passerJoueurSuivant() {
         
         act=3;
@@ -241,6 +250,45 @@ public class Controleur implements Observateur{
     public Grille getGrille() {
         return grille;
     }
+
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+
+    public void setNiveauEau(int niveauEau) {
+        this.niveauEau = niveauEau;
+    }
     
     
+    
+    public void piocherTresor(){
+        Boolean eauxPioche = false;
+        Carte eaux = new Carte(EAUX);
+        Carte pioche1 =tresor.piocheTresor();
+        if (pioche1.getNomCarte()== eaux.getNomCarte()) {
+            tresor.defausseTresor(pioche1);
+            eauxPioche=true;
+            setNiveauEau((getNiveauEau()+1));
+        }else{
+        aventurierCourant.addCarte(pioche1);
+        }
+        if(getNiveauEau()<=9){
+            Carte pioche2 =tresor.piocheTresor();
+            if (pioche2.getNomCarte()== eaux.getNomCarte()) {
+                tresor.defausseTresor(pioche2);
+               setNiveauEau((getNiveauEau()+1));
+
+            }else{
+            aventurierCourant.addCarte(pioche2);
+            }
+
+            if (eauxPioche){
+                inondations.remiseDefausse();
+            }
+        }
+    }
+    
+    public void piocherInnodation(){
+        inondations.piocheInondation(getNiveauEau(),getGrille());       
+    }
 }

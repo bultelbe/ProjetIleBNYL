@@ -3,15 +3,10 @@ package Pioches;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import static Vues.Utils.Cartes.CALICE;
-import static Vues.Utils.Cartes.CRISTAL;
-import static Vues.Utils.Cartes.EAUX;
-import static Vues.Utils.Cartes.HELICOPTERE;
-import static Vues.Utils.Cartes.PIERRE;
-import static Vues.Utils.Cartes.SABLE;
-import static Vues.Utils.Cartes.STATUE;
+import static Vues.Utils.Cartes.*;
 
-public class CarteTresor {
+
+public class CarteTresors {
     private ArrayList<Carte> piocheTresor = new ArrayList<>();
     private ArrayList<Carte> defausseTresor = new ArrayList<>();
     
@@ -50,7 +45,7 @@ public class CarteTresor {
             private Carte Sac1= new Carte(SABLE);
             private Carte Sac2= new Carte(SABLE);
     
-    public CarteTresor() {
+    public CarteTresors() {
         piocheTresor.add(cristal1);
         piocheTresor.add(cristal2);
         piocheTresor.add(cristal3);
@@ -73,7 +68,6 @@ public class CarteTresor {
         piocheTresor.add(calice5);
         piocheTresor.add(eaux1);
         piocheTresor.add(eaux2);
-        piocheTresor.add(eaux3);
         piocheTresor.add(Helicoptere1);
         piocheTresor.add(Helicoptere2);
         piocheTresor.add(Helicoptere3);
@@ -99,7 +93,7 @@ public class CarteTresor {
         }
    
         
-       public Carte piocheTresor() {
+       public Carte piocheTresor(){
            Carte carteRet;
            
            carteRet=piocheTresor.get(0);
@@ -112,7 +106,7 @@ public class CarteTresor {
            defausseTresor.add(carte);
        }
     
-       public void remisedefausse(){
+       public void remiseDefausse(){
             ArrayList<Carte> liste = this.getDefausseTresor();
             Collections.shuffle(liste);
             setPiocheTresor(liste);
