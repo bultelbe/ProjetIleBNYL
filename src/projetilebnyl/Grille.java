@@ -52,6 +52,7 @@ public class Grille {
                    } else {
                     liste.get(j).setColonne(col);
                     liste.get(j).setLigne(lig);
+                    liste.get(j).setRang(j);
                     tuiles.add(liste.get(j));
                     ++j;
                    }
