@@ -10,11 +10,11 @@ public class Explorateur extends Aventurier {
         super(nomJ, positionCourante, noma);
     }
     
+    @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
+        ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(positionCourante);
-        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
-        tuilesAdj = grille.getListeTuileAdj(positionCourante);
         
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = tuilesDiag;
@@ -28,10 +28,9 @@ public class Explorateur extends Aventurier {
     
     
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
+        ArrayList<Tuile> tuilesAdj = super.assechementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(positionCourante);
-        ArrayList<Tuile> tuilesAdj = new ArrayList<>();
-        tuilesAdj = grille.getListeTuileAdj(positionCourante);
         
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = tuilesDiag;

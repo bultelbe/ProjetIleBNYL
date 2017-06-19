@@ -11,30 +11,33 @@ public class Plongeur extends Aventurier {
     }
 
     
+    @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
+        ArrayList<Tuile> tuilesArret = new ArrayList<>();
         
-        ArrayList<Tuile> tuilesTrav = new ArrayList<>();
-        tuilesTrav.add(positionCourante);
+        ArrayList<Tuile> tuilesACotes = new ArrayList<>();
+        tuilesACotes = grille.getListeTuileAdjDiag(positionCourante);
         
         ArrayList<Tuile> tuilesInondeesCoulees = new ArrayList<>();
-        tuilesInondeesCoulees = grille.getTuilesPossibles();
         
-        for (int i = 0; i < tuilesTrav.size(); i++) {
-            Tuile t1 = tuilesTrav.get(i);
-            
-            if (t1.getStatut() != COULEE) {
-                tuilesInondeesCoulees.add(t1);
-                
-                for (Tuile t2 : grille.getListeTuileAdj(t1))
-                    if (t2.getStatut() == COULEE && tuilesInondeesCoulees.contains(t2)) {
-                        tuilesInondeesCoulees.add(t2);
-                        
-                    } else if (t2.getStatut() != COULEE && !tuilesTrav.contains(t2)) {
-                        tuilesTrav.add(t2);
-                    }
+        ArrayList<Tuile> tuilesaCotesInondeesCoulees = new ArrayList<>();
+        
+        for (Tuile t1 : tuilesACotes) {
+            if (t1.getStatut() == INONDEE || t1.getStatut() == ASSECHEE) tuilesArret.add(t1);
+            if (t1.getStatut() == INONDEE || t1.getStatut() == COULEE) tuilesInondeesCoulees.add(t1);
+        }
+        
+        for (Tuile t2 : tuilesInondeesCoulees) {
+            tuilesaCotesInondeesCoulees = grille.getListeTuileAdjDiag(t2);
+
+            for (Tuile t3 : tuilesaCotesInondeesCoulees) {
+                if (t3.getStatut() == INONDEE || t3.getStatut() == COULEE) tuilesInondeesCoulees.add(t3);
+                if (t3.getStatut() == INONDEE || t3.getStatut() == ASSECHEE) tuilesArret.add(t3);
             }
         }
-        return tuilesTrav;
+        
+        return tuilesArret;
+        
     }
 
     @Override
