@@ -45,7 +45,7 @@ public class VueAventurier  {
     private JLabel nomAvt;
     private JLabel nomTuile;
     private Observateur controleur;
-    private HashMap<Integer,JPanel> cases=new HashMap();
+    private HashMap<Integer,JPanel> cases = new HashMap();
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
 
