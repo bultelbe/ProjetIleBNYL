@@ -22,24 +22,26 @@ public class Controleur implements Observateur{
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
 
-    private Tuile spawnMessager;
-    private Tuile spawnPlongeur;
-    private Tuile spawnIngenieur;
-    private Tuile spawnNavigateur;
-    private Tuile spawnPilote;
-    private Tuile spawnExplorateur;
+    private final Tuile spawnMessager;
+    private final Tuile spawnPlongeur;
+    private final Tuile spawnIngenieur;
+    private final Tuile spawnNavigateur;
+    private final Tuile spawnPilote;
+    private final Tuile spawnExplorateur;
     private int act = 3;
     private Aventurier aventurierCourant;
 
     public Controleur() {
         
         grille = new Grille();
-        spawnMessager = grille.getTuile(1, 2);
-        spawnPlongeur = grille.getTuile(2, 1);
-        spawnIngenieur = grille.getTuile(3, 0);
-        spawnNavigateur = grille.getTuile(3, 1);
-        spawnPilote = grille.getTuile(3, 3);
-        spawnExplorateur = grille.getTuile(4, 2);
+        
+        
+        spawnMessager = grille.getTuile("La Porte d'Or");
+        spawnPlongeur = grille.getTuile("La Porte de Fer");
+        spawnIngenieur = grille.getTuile("La Porte de Bronze");
+        spawnNavigateur = grille.getTuile("La Porte d'Argent");
+        spawnPilote = grille.getTuile("Héliport");
+        spawnExplorateur = grille.getTuile("La Porte de Cuivre");
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
@@ -59,7 +61,6 @@ public class Controleur implements Observateur{
             vueAventurier.btnAutreAction.setEnabled(false);
             act=3;
         }
- 
     }
 
     public void assechementCase() {

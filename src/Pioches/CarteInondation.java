@@ -1,8 +1,11 @@
 package Pioches;
 
 
+import Grille.Grille;
+import Grille.Tuile;
 import java.util.ArrayList;
 import java.util.Collections;
+import static projetilebnyl.Utils.EtatTuile.*;
 
 
 public class CarteInondation {
@@ -68,7 +71,57 @@ public class CarteInondation {
         Collections.shuffle(piocheInondation);
     }
     
+    public ArrayList<Carte> getPiocheInondation() {
+        return piocheInondation;
+    }
+
+    public ArrayList<Carte> getDefausseInondation() {
+        return defausseInondation;
+    }
+
+    public void setPiocheInondation(ArrayList<Carte> piocheInondation) {
+        this.piocheInondation = piocheInondation;
+    }
+
+    public void setDefausseInondation(ArrayList<Carte> defausseInondation) {
+        this.defausseInondation = defausseInondation;
+    }
     
+    
+    
+    public void piocheInondation (int niveauEau, Grille grille){
+        
+        for (int i = 0; i < niveauEau; i++){
+            defausseInondation.add(piocheInondation.get(0));
+            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
+            if (t1.getStatut()==ASSECHEE){
+                t1.setStatut(INONDEE);
+            } else if (t1.getStatut()==INONDEE){
+                t1.setStatut(COULEE);
+            } 
+            
+            piocheInondation.remove(piocheInondation.get(0));
+        }
+        
+        
+    }
+    
+    
+    public void remisedefausse(){
+        ArrayList<Carte> listePioche = this.getPiocheInondation();
+        ArrayList<Carte> listeDefausse = this.getDefausseInondation();
+        ArrayList<Carte> listeTemp=new ArrayList<>();
+        Collections.shuffle(listeDefausse);
+        listeTemp=listeDefausse;
+        for (Carte c1 : listePioche){
+            listeTemp.add(c1);
+        }
+        this.setPiocheInondation(listeTemp);
+        ArrayList<Carte> listeVide= new ArrayList<>();
+        setDefausseInondation(listeVide);
+        
+        
+    }    
     
     
     
