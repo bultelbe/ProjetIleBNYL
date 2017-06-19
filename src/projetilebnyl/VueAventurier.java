@@ -123,7 +123,7 @@ public class VueAventurier  {
         
         this.grille = new JFrame();
         grille.setSize(1000, 1000);
-        //this.grille.setVisible(true);
+        this.grille.setVisible(true);
         grille.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         // Définit la taille de la fenêtre en pixels
        
