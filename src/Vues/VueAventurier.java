@@ -189,21 +189,28 @@ public class VueAventurier  {
     }
     
     
-    public void updateCellules(Tuile tuile) {
-        JPanel panel = cases.get(tuile.getRang());
-       
-        if (tuile.getStatut() == EtatTuile.ASSECHEE) {
-               panel.setBackground(Color.DARK_GRAY);
-               
-            } else if (tuile.getStatut() == EtatTuile.INONDEE) {
-                panel.setBackground(Color.ORANGE);
-            
-            } else {
-                panel.setBackground(Color.BLUE);
-            }
+    public void updateCellules(Grille grilleListe) {
         
-        panel.repaint();
-    }
+        for (int i=0; i<36; i++) {
+            JPanel panel = cases.get(i);
+            
+            if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
+            } else {
+                if (grilleListe.getGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
+                       panel.setBackground(Color.DARK_GRAY);
+
+                    } else if (grilleListe.getGrille().get(i).getStatut()== EtatTuile.INONDEE) {
+                        panel.setBackground(Color.ORANGE);
+
+                    } else {
+                        panel.setBackground(Color.BLUE);
+                    }
+
+                panel.repaint();
+                }
+        
+        }    
+}
  
     public JPanel createCellule(int i,Grille grilleListe) {
 

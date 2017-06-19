@@ -7,6 +7,11 @@
 package Vues;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import javax.swing.*;
 
 /**
@@ -17,28 +22,72 @@ public class VueMenu {
     
     private JButton demarrer;
     private JButton quitter;
-    private JCheckBox choixAventuriers;
     private JComboBox nbrJoueurs;
     private JFrame window;
+    private JLabel nbr;
+    private JPanel panelBoutons;
     
     public VueMenu() {
         
         this.window = new JFrame();
-        window.setSize(200, 100);
+        window.setSize(400, 200);
         
         window.setTitle("Menu");
         
         JPanel mainPanel = new JPanel(new BorderLayout());
+        JPanel panelCentre = new JPanel(new GridLayout(4, 4));
+
+        demarrer = new JButton("Démarrer");
+        quitter = new JButton("Quitter");
         
+        panelBoutons = new JPanel(new BorderLayout());
+        panelBoutons.add(demarrer, BorderLayout.EAST);
+        panelBoutons.add(quitter, BorderLayout.WEST);
         
-        JPanel panelNbrJoueurs = new JPanel(new BorderLayout());
-        JPanel panelChoixAventurier = new JPanel(new BorderLayout());
-        JPanel panelBoutons = new JPanel(new BorderLayout());
+        nbrJoueurs = new JComboBox();
+        nbrJoueurs.addItem("1");
+        nbrJoueurs.addItem("2");
+        nbrJoueurs.addItem("3");
+        nbrJoueurs.addItem("4");
         
+        JLabel nbr = new JLabel("Choix du nombre de joueurs", SwingConstants.CENTER);
+        
+        int count = 0;
+        
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                JPanel panel = new JPanel();
+                panel.setLayout(new BorderLayout());
+                
+                if (count == 5) panel.add(new JLabel("Joueurs :"), BorderLayout.CENTER);
+                if (count == 6) panel.add(nbrJoueurs, BorderLayout.CENTER);
+                
+                panelCentre.add(panel);
+                count++;
+            }
+        }
+        
+        mainPanel.add(nbr, BorderLayout.NORTH);
         mainPanel.add(panelBoutons, BorderLayout.SOUTH);
-        mainPanel.add(panelNbrJoueurs, BorderLayout.NORTH);
-        mainPanel.add(panelChoixAventurier, BorderLayout.CENTER);
+        mainPanel.add(panelCentre, BorderLayout.CENTER);
+        window.add(mainPanel);
         
+        quitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
+        demarrer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        this.window.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
 }
