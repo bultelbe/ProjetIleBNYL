@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -36,7 +38,7 @@ public class VueAventurier  {
     public final JButton btnTerminerTour;       
 
     private final JPanel position;
-    private final JPanel grilletuile ;
+    private final JPanel grilletuile;
     
     private JLabel nomAvt;
     private JLabel nomTuile;
@@ -185,15 +187,16 @@ public class VueAventurier  {
     }
     
     
-    public void updateCellules(Tuile tuile){
-        
+    public void updateCellules(Tuile tuile) {
         JPanel panel = cases.get(tuile.getRang());
        
-        if(tuile.getStatut()==EtatTuile.ASSECHEE){
+        if (tuile.getStatut() == EtatTuile.ASSECHEE) {
                panel.setBackground(Color.DARK_GRAY);
-            }else if(tuile.getStatut()==EtatTuile.INONDEE){
+               
+            } else if (tuile.getStatut() == EtatTuile.INONDEE) {
                 panel.setBackground(Color.ORANGE);
-            } else{
+            
+            } else {
                 panel.setBackground(Color.BLUE);
             }
         
@@ -206,21 +209,53 @@ public class VueAventurier  {
             JPanel panelCellule = new JPanel();
             panelCellule.setBackground(Color.BLACK);
             return panelCellule ;
-        }  else{    
+            
+        } else {    
             JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase());
             nomCase.setForeground(Color.white);
             JPanel panelCellule = new JPanel();
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase);
             
-            if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.ASSECHEE){
+            if (grilleListe.tuiles.get(i).getStatut() == EtatTuile.ASSECHEE) {
                 panelCellule.setBackground(Color.DARK_GRAY);
-            }else if(grilleListe.tuiles.get(i).getStatut()==EtatTuile.INONDEE){
+                
+            } else if (grilleListe.tuiles.get(i).getStatut()==EtatTuile.INONDEE) {
                 panelCellule.setBackground(Color.ORANGE);
-            } else{
+                
+            } else {
                 panelCellule.setBackground(Color.BLUE);
             }
             cases.put(i, panelCellule);
+            
+            panelCellule.addMouseListener(new MouseListener() {
+                
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+            
             return panelCellule ;
         }
     }
@@ -229,6 +264,5 @@ public class VueAventurier  {
     public JPanel getGrilletuile() {
         return grilletuile;
     }
-    
     
 }
