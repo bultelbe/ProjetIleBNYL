@@ -40,11 +40,11 @@ public class Grille {
                 liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                 liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
                //Collections.shuffle(liste);
-               int j = 0;
+               int j =0;
                int col = 0;
                int lig = 0;                    
-               for (int i=1; i<=36; ++i) {
-                   if (i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36) {
+               for (int i=1; i<=36; ++i){
+                   if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
                         Tuile vide=new Tuile("Vide");
                         vide.setColonne(col);
                         vide.setLigne(lig);
@@ -55,9 +55,9 @@ public class Grille {
                     tuiles.add(liste.get(j));
                     ++j;
                    }
-                   col = (col+1)%6;
-                   if (i%6 == 0) {
-                       lig = lig + 1;
+                   col=(col+1)%6;
+                   if (i%6 == 0){
+                       lig=lig+1;
                    }
                    
                }

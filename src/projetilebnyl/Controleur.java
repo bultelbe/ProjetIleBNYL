@@ -24,12 +24,12 @@ public class Controleur implements Observateur{
     public Controleur() {
         
         grille = new Grille();
-        spawnMessager = grille.getTuile(2, 3);
-        spawnPlongeur = grille.getTuile(3, 2);
-        spawnIngenieur = grille.getTuile(4, 1);
-        spawnNavigateur = grille.getTuile(4, 2);
-        spawnPilote = grille.getTuile(4, 3);
-        spawnExplorateur = grille.getTuile(5, 3);
+        spawnMessager = grille.getTuile(1, 2);
+        spawnPlongeur = grille.getTuile(2, 1);
+        spawnIngenieur = grille.getTuile(3, 0);
+        spawnNavigateur = grille.getTuile(3, 1);
+        spawnPilote = grille.getTuile(3, 3);
+        spawnExplorateur = grille.getTuile(4, 2);
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
@@ -157,7 +157,7 @@ public class Controleur implements Observateur{
         VueAventurier avt = getVueAventurier();
         
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor());        
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
     }
     
     public VueAventurier getVueAventurier() {
@@ -194,8 +194,10 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
+
         this.TourDeJeu();
+        
     }
     
     public void traiterMessage(Message m) {
@@ -213,4 +215,14 @@ public class Controleur implements Observateur{
                 break;
         }
     }
+
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+    
+    
 }

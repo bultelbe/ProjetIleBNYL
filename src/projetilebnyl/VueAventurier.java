@@ -31,11 +31,13 @@ public class VueAventurier  {
     public final JButton btnAssecher;
     public final JButton btnAutreAction;
     public final JButton btnTerminerTour;
-    private final JLabel position;
+    private final JPanel position;
     
     
     private JLabel nomAvt;
+    private JLabel nomTuile;
     private Observateur controleur;
+    
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
 
@@ -69,8 +71,9 @@ public class VueAventurier  {
         mainPanel.add(this.panelCentre, BorderLayout.CENTER);
         
         panelCentre.add(new JLabel ("Position", SwingConstants.CENTER));
-        position = new JLabel(); 
-        position.setHorizontalAlignment(CENTER);
+        position = new  JPanel();
+        nomTuile= new JLabel(controleur.getAventurierCourant().getPositionCourante().getNomCase());
+        position.add(nomTuile);
         panelCentre.add(position);
         
              
@@ -143,7 +146,7 @@ public class VueAventurier  {
     }
 
     public void setPosition(String pos) {
-        this.position.setText(pos);
+        nomTuile.setText(pos);
     }
 
     public JButton getBtnAller() {
@@ -160,11 +163,11 @@ public class VueAventurier  {
     
     
     
-    public void updateAventurier(String nomJ, String noma, Color couleur) {
+    public void updateAventurier(String nomJ, String noma, Color couleur,String nomT) {
         window.setTitle(nomJ);
         panelAventurier.setBackground(couleur);
         nomAvt.setText(noma);
-        
+        nomTuile.setText(nomT);
     }
 
     public JLabel getNomAvt() {
@@ -201,5 +204,7 @@ public class VueAventurier  {
             
             return panelCellule ;
         }
+        
+        
     }
 }
