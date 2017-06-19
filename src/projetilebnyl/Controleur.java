@@ -54,11 +54,11 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act == 0) {
+        if (getAct() == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
-            vueAventurier.btnAller.setEnabled(false);
-            vueAventurier.btnAssecher.setEnabled(false);
-            vueAventurier.btnAutreAction.setEnabled(false);
+            getVueAventurier().getBtnAller().setEnabled(false);
+            getVueAventurier().getBtnAssecher().setEnabled(false);
+            getVueAventurier().getBtnAutreAction().setEnabled(false);
             act = 3;
         }
     }
@@ -241,6 +241,13 @@ public class Controleur implements Observateur{
     public Grille getGrille() {
         return grille;
     }
-    
+
+    public int getAct() {
+        return act;
+    }
+
+    public void setAct(int act) {
+        this.act = act;
+    }
     
 }
