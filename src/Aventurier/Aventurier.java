@@ -1,5 +1,7 @@
-package projetilebnyl;
+package Aventurier;
 
+import Grille.Grille;
+import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
 import static projetilebnyl.Utils.EtatTuile.*;

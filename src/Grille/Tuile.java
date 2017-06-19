@@ -1,4 +1,4 @@
-package projetilebnyl;
+package Grille;
 
 import projetilebnyl.Utils.EtatTuile;
 import static projetilebnyl.Utils.EtatTuile.*;

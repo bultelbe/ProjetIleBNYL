@@ -1,5 +1,6 @@
 package projetilebnyl;
 
+import Grille.Grille;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -31,7 +32,8 @@ public class VueAventurier  {
     public final JButton btnAller  ;
     public final JButton btnAssecher;
     public final JButton btnAutreAction;
-    public final JButton btnTerminerTour;
+    public final JButton btnTerminerTour;       
+
     private final JPanel position;
     private final JPanel grilletuile ;
     
