@@ -9,7 +9,7 @@ import static projetilebnyl.Utils.EtatTuile.*;
 
 
 public class CarteInondation {
-    private String nomCarte;    
+       
     public ArrayList<Carte> piocheInondation = new ArrayList<>();
     public ArrayList<Carte> defausseInondation = new ArrayList<>();
 
@@ -39,9 +39,8 @@ public class CarteInondation {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    CarteInondation(String nomCarte){
-        this.nomCarte = nomCarte;
-            
+    CarteInondation(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
+                 
         
         piocheInondation.add(c1);
         piocheInondation.add(c2);
@@ -69,6 +68,15 @@ public class CarteInondation {
         piocheInondation.add(c24);
         
         Collections.shuffle(piocheInondation);
+        
+        for (int i = 0; i < 5; i++){
+            defausseInondation.add(piocheInondation.get(0));
+            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
+            t1.setStatut(INONDEE);
+
+            
+            piocheInondation.remove(piocheInondation.get(0));
+        }
     }
     
     public ArrayList<Carte> getPiocheInondation() {
@@ -90,8 +98,19 @@ public class CarteInondation {
     
     
     public void piocheInondation (int niveauEau, Grille grille){
+        int nbPioche=0;
+        if(niveauEau==0||niveauEau==1){
+            nbPioche=2;
+        }else if (niveauEau==2||niveauEau==3||niveauEau==4){
+            nbPioche=3;
+        }else if (niveauEau==5|| niveauEau==6){
+            nbPioche=4;
+        }else if (niveauEau==7||niveauEau==8){
+            nbPioche=5;
+        }        
         
-        for (int i = 0; i < niveauEau; i++){
+        
+        for (int i = 0; i < nbPioche; i++){
             defausseInondation.add(piocheInondation.get(0));
             Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
             if (t1.getStatut()==ASSECHEE){
@@ -101,13 +120,16 @@ public class CarteInondation {
             } 
             
             piocheInondation.remove(piocheInondation.get(0));
+            if (piocheInondation.size()==0){
+                this.remiseDefausse();
+            }
         }
         
         
     }
     
     
-    public void remisedefausse(){
+    public void remiseDefausse(){
         ArrayList<Carte> listePioche = this.getPiocheInondation();
         ArrayList<Carte> listeDefausse = this.getDefausseInondation();
         ArrayList<Carte> listeTemp=new ArrayList<>();

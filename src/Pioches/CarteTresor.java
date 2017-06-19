@@ -73,7 +73,6 @@ public class CarteTresor {
         piocheTresor.add(calice5);
         piocheTresor.add(eaux1);
         piocheTresor.add(eaux2);
-        piocheTresor.add(eaux3);
         piocheTresor.add(Helicoptere1);
         piocheTresor.add(Helicoptere2);
         piocheTresor.add(Helicoptere3);
