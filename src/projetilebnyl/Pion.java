@@ -20,13 +20,13 @@ public class Pion extends JPanel{
     
     
     
-    Pion(String nomAvt,Color color){
+    Pion(){
         setBackground(Color.white);
         
   
     }
     
-    public void paintComponent(Graphics g,Color color) {
+    public void paintComponent(Graphics g) {
         Dimension dimension = getSize(); // Taille de la zone de dessin
         
         // Calcul des coordonnées et du diamètre du bouton.
@@ -34,7 +34,7 @@ public class Pion extends JPanel{
         x=(dimension.width-diametre)/2;
         y=(dimension.height-diametre)/2;
         
-            g.setColor(color);
+            g.setColor(Color.green);
             g.fillOval(x, y,diametre,diametre);
             g.setColor(Color.black);
             g.drawOval(x, y,diametre,diametre);
