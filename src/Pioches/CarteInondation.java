@@ -102,10 +102,13 @@ public class CarteInondation {
                 t1.setStatut(EtatTuile.COULEE);
             } 
             
+            if (t1.getStatut() == EtatTuile.ASSECHEE) {
+                t1.setStatut(EtatTuile.INONDEE);
+            } else if (t1.getStatut() == EtatTuile.INONDEE) {
+                t1.setStatut(EtatTuile.COULEE);
+            }
             piocheInondation.remove(piocheInondation.get(0));
         }
-        
-        
     }
     
     
@@ -115,19 +118,12 @@ public class CarteInondation {
         ArrayList<Carte> listeTemp=new ArrayList<>();
         Collections.shuffle(listeDefausse);
         listeTemp=listeDefausse;
-        for (Carte c1 : listePioche){
+        
+        for (Carte c1 : listePioche) {
             listeTemp.add(c1);
         }
         this.setPiocheInondation(listeTemp);
-        ArrayList<Carte> listeVide= new ArrayList<>();
+        ArrayList<Carte> listeVide = new ArrayList<>();
         setDefausseInondation(listeVide);
-        
-        
-    }    
-    
-    
-    
-    
-    
-    
+    }
 }

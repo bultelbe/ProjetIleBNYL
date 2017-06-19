@@ -54,12 +54,12 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act==0){
+        if (act == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
             vueAventurier.btnAller.setEnabled(false);
             vueAventurier.btnAssecher.setEnabled(false);
             vueAventurier.btnAutreAction.setEnabled(false);
-            act=3;
+            act = 3;
         }
     }
 
@@ -72,7 +72,7 @@ public class Controleur implements Observateur{
         } else {
             Scanner sc = new Scanner(System.in);
             
-            if(aventurierCourant.getNoma()=="Ingenieur"){
+            if (aventurierCourant.getNoma() == "Ingenieur") {
                 
                 System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
                 String nbrActions = sc.nextLine();
