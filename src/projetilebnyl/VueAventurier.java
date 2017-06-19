@@ -1,6 +1,7 @@
 package projetilebnyl;
 
 import Grille.Grille;
+import Grille.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -27,12 +29,12 @@ import projetilebnyl.Utils.*;
  
 public class VueAventurier  {
     
-   /* private final JPanel pionNavigateur;
-    private final JPanel pionMessager;
-    private final JPanel pionPlongeur;
-    private final JPanel pionIngenieur;
-    private final JPanel pionExplorateur;
-    private final JPanel pionPilote;*/
+    private final Pion pionNavigateur;
+    private final Pion pionMessager;
+    private final Pion pionPlongeur;
+    private final Pion pionIngenieur;
+    private final Pion pionExplorateur;
+    private final Pion pionPilote;
     
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
@@ -53,9 +55,26 @@ public class VueAventurier  {
     private Observateur controleur;
     private HashMap<Integer,JPanel> cases=new HashMap();
     private HashMap<Integer,JPanel> panelpions=new HashMap();
+    private ArrayList<Pion> pions = new ArrayList();
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
-
+        
         this.controleur = ctrl;
+        
+        this.pionMessager = new Pion(controleur.getJoueurs().get(0).getNomJ(),controleur.getJoueurs().get(0).getColor());
+        this.pionPlongeur = new Pion(controleur.getJoueurs().get(1).getNomJ(),controleur.getJoueurs().get(1).getColor());
+        this.pionIngenieur = new Pion(controleur.getJoueurs().get(2).getNomJ(),controleur.getJoueurs().get(2).getColor());
+        this.pionNavigateur = new Pion(controleur.getJoueurs().get(3).getNomJ(),controleur.getJoueurs().get(3).getColor());
+        this.pionPilote = new Pion(controleur.getJoueurs().get(4).getNomJ(),controleur.getJoueurs().get(4).getColor());
+        this.pionExplorateur = new Pion(controleur.getJoueurs().get(5).getNomJ(),controleur.getJoueurs().get(5).getColor());
+        
+        pions.add(pionMessager);
+        pions.add(pionPilote);
+        pions.add(pionExplorateur);
+        pions.add(pionNavigateur);
+        pions.add(pionPlongeur);
+        pions.add(pionIngenieur);
+        
+  
         
         this.window = new JFrame();
         window.setSize(900, 900);
@@ -247,6 +266,15 @@ public class VueAventurier  {
             } else {
                 panelCellule.setBackground(Color.BLUE);
                 panelPion.setBackground(Color.BLUE);
+            }
+            
+            for(int j=0; j<6; j++) {
+                if(grilleListe.tuiles.get(i)==controleur.getJoueurs().get(j).getPositionCourante())
+                    if(pions.get(j).getNomAvt()==controleur.getJoueurs().get(j).getNoma()){
+                        panelPion.add(pions.get(j));
+                    }
+                
+                
             }
             cases.put(i, panelCellule);
             panelpions.put(i, panelPion);

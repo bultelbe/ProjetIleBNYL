@@ -89,5 +89,7 @@ public abstract class Aventurier {
     public void setNomJ(String nomJ) {
         this.nomJ = nomJ;
     }
+
+    
     
 }
