@@ -3,13 +3,8 @@ package Pioches;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import static projetilebnyl.Utils.Cartes.CALICE;
-import static projetilebnyl.Utils.Cartes.CRISTAL;
-import static projetilebnyl.Utils.Cartes.EAUX;
-import static projetilebnyl.Utils.Cartes.HELICOPTERE;
-import static projetilebnyl.Utils.Cartes.PIERRE;
-import static projetilebnyl.Utils.Cartes.SABLE;
-import static projetilebnyl.Utils.Cartes.STATUE;
+import static Vues.Utils.Cartes.*;
+
 
 public class CarteTresors {
     private ArrayList<Carte> piocheTresor = new ArrayList<>();

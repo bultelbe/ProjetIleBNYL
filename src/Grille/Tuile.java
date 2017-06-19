@@ -1,7 +1,7 @@
 package Grille;
 
-import projetilebnyl.Utils.EtatTuile;
-import static projetilebnyl.Utils.EtatTuile.*;
+import Vues.Utils.EtatTuile;
+import static Vues.Utils.EtatTuile.*;
 
 public class Tuile {
 	private String nomCase;

@@ -5,8 +5,8 @@ import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
-import projetilebnyl.Utils;
-import static projetilebnyl.Utils.EtatTuile.*;
+import Vues.Utils;
+import static Vues.Utils.EtatTuile.*;
 
 public class Explorateur extends Aventurier {
 
@@ -18,7 +18,7 @@ public class Explorateur extends Aventurier {
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
-        tuilesDiag = grille.getListeTuileDiag(positionCourante);
+        tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
         
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = tuilesDiag;
@@ -31,13 +31,15 @@ public class Explorateur extends Aventurier {
     }
     
     
+    @Override
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesAdj = super.assechementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
-        tuilesDiag = grille.getListeTuileDiag(positionCourante);
+        tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
         
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = tuilesDiag;
+        tuilesAssechables.add(getPositionCourante());
         
         for (Tuile t : tuilesAdj) {
             if (t.getStatut() == INONDEE)

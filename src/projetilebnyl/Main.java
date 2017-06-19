@@ -5,6 +5,8 @@
  */
 package projetilebnyl;
 
+import Vues.VueAventurier;
+
 /**
  *
  * @author schmuckl

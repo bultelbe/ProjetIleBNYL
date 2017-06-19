@@ -5,7 +5,7 @@ import Grille.Grille;
 import Grille.Tuile;
 import java.util.ArrayList;
 import java.util.Collections;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 
 
 public class CarteInondations {

@@ -6,8 +6,8 @@ import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
-import projetilebnyl.Utils;
-import static projetilebnyl.Utils.EtatTuile.*;
+import Vues.Utils;
+import static Vues.Utils.EtatTuile.*;
 
 public class Ingenieur extends Aventurier {
 

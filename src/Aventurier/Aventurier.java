@@ -5,7 +5,7 @@ import Grille.Tuile;
 import Pioches.Carte;
 import java.awt.Color;
 import java.util.ArrayList;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 
 public abstract class Aventurier {
     private String nomJ;
@@ -41,9 +41,11 @@ public abstract class Aventurier {
      }
 
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
+        
         ArrayList<Tuile> tuilesInondees = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
         tuilesAdj = (grille.getListeTuileAdj(positionCourante));
+        tuilesAdj.add(positionCourante);
         
         for (Tuile t : tuilesAdj) {
             if (t.getStatut() == INONDEE) {

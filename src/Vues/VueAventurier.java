@@ -1,6 +1,7 @@
-package projetilebnyl;
+package Vues;
 
 import Grille.Grille;
+import Grille.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -20,8 +21,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
+import projetilebnyl.Observateur;
 import static projetilebnyl.Message.*;
-import projetilebnyl.Utils.*;
+import Vues.Utils.*;
 
  
 public class VueAventurier  {
@@ -146,7 +148,6 @@ public class VueAventurier  {
         for (int i=0; i<36; i++) {
             
              grilletuile.add(createCellule(i,controleur.getGrille()));
-             
         }
     }  
 
@@ -191,11 +192,11 @@ public class VueAventurier  {
     public void updateCellules(Grille grilleListe) {
         
         for (int i=0; i<36; i++) {
-
             JPanel panel = cases.get(i);
-            if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
-            }else{
-                if ( grilleListe.getGrille().get(i).getStatut()== EtatTuile.ASSECHEE) {
+            
+            if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
+            } else {
+                if (grilleListe.getGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
                        panel.setBackground(Color.DARK_GRAY);
 
                     } else if (grilleListe.getGrille().get(i).getStatut()== EtatTuile.INONDEE) {
@@ -209,8 +210,7 @@ public class VueAventurier  {
                 }
         
         }    
-    }
-        
+}
  
     public JPanel createCellule(int i,Grille grilleListe) {
 
@@ -236,34 +236,6 @@ public class VueAventurier  {
                 panelCellule.setBackground(Color.BLUE);
             }
             cases.put(i, panelCellule);
-           /* panelCellule.addMouseListener(new MouseListener() {
-                
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            });*/
-            
             return panelCellule ;
         }
     }

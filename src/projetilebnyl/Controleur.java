@@ -1,30 +1,40 @@
 package projetilebnyl;
 
+
 import Aventurier.*;
 import Pioches.*;
+
+import Vues.VueAventurier;
+import Aventurier.Plongeur;
+import Aventurier.Pilote;
+import Aventurier.Navigateur;
+import Aventurier.Messager;
+import Aventurier.Ingenieur;
+import Aventurier.Explorateur;
+import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
 import java.util.*;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
-import static projetilebnyl.Utils.Cartes.*;
+import static Vues.Utils.Cartes.*;
 
 public class Controleur implements Observateur{
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
 
-    private Tuile spawnMessager;
-    private Tuile spawnPlongeur;
-    private Tuile spawnIngenieur;
-    private Tuile spawnNavigateur;
-    private Tuile spawnPilote;
-    private Tuile spawnExplorateur;
+    private final Tuile spawnMessager;
+    private final Tuile spawnPlongeur;
+    private final Tuile spawnIngenieur;
+    private final Tuile spawnNavigateur;
+    private final Tuile spawnPilote;
+    private final Tuile spawnExplorateur;
     private int act = 3;
     private int niveauEau =0;
     private Aventurier aventurierCourant;
@@ -34,12 +44,14 @@ public class Controleur implements Observateur{
     public Controleur() {
         
         grille = new Grille();
-        spawnMessager = grille.getTuile(1, 2);
-        spawnPlongeur = grille.getTuile(2, 1);
-        spawnIngenieur = grille.getTuile(3, 0);
-        spawnNavigateur = grille.getTuile(3, 1);
-        spawnPilote = grille.getTuile(3, 3);
-        spawnExplorateur = grille.getTuile(4, 2);
+        
+        
+        spawnMessager = grille.getTuile("La Porte d'Or");
+        spawnPlongeur = grille.getTuile("La Porte de Fer");
+        spawnIngenieur = grille.getTuile("La Porte de Bronze");
+        spawnNavigateur = grille.getTuile("La Porte d'Argent");
+        spawnPilote = grille.getTuile("Héliport");
+        spawnExplorateur = grille.getTuile("La Porte de Cuivre");
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
@@ -52,14 +64,13 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act==0){
+        if (act == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
             vueAventurier.btnAller.setEnabled(false);
             vueAventurier.btnAssecher.setEnabled(false);
             vueAventurier.btnAutreAction.setEnabled(false);
-            act=3;
+            act = 3;
         }
- 
     }
 
     public void assechementCase() {
@@ -71,7 +82,7 @@ public class Controleur implements Observateur{
         } else {
             Scanner sc = new Scanner(System.in);
             
-            if(aventurierCourant.getNoma()=="Ingenieur"){
+            if (aventurierCourant.getNoma() == "Ingenieur") {
                 
                 System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
                 String nbrActions = sc.nextLine();
@@ -121,16 +132,16 @@ public class Controleur implements Observateur{
                     String tuileY = sc.nextLine();
                     int y = parseInt(tuileY);
 
-                    Tuile t = grille.getTuile(x, y);
+                    Tuile t = getGrille().getTuile(x, y);
 
                     if (tuilesAssechables.contains(t)) {
                         t.setStatut(ASSECHEE);
 
                         System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-                        act=act-1;
+                        act = act-1;
                     } else {
                         System.out.println("Cette tuile n'est pas asséchable."); 
-                        }
+                    }
                 }
             }else{
                 

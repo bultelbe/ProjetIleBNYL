@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import Grille.Tuile;
 import java.util.Vector;
-import static projetilebnyl.Utils.EtatTuile.*;
+import static Vues.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
@@ -205,7 +205,7 @@ public class Grille {
         }
     
         public Tuile getTuile(int colonne, int ligne) {
-            // retourne la tuille à l'intersection de colonne et ligne
+            // retourne la tuile à l'intersection de colonne et ligne
             // sinon retourne null
             for(Tuile t : tuiles) {
                 if(t.getColonne() == colonne && t.getLigne() == ligne) {
@@ -218,7 +218,7 @@ public class Grille {
         public Tuile getTuile(String nom){
             Tuile tuileRet=new Tuile("");
             for (Tuile T1:tuiles){
-                if (t1.getNomCase()==nom){
+                if (T1.getNomCase()==nom){
                     tuileRet=T1;
                 }
             }
