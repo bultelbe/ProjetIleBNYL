@@ -188,7 +188,12 @@ public class Controleur implements Observateur{
         VueAventurier avt = getVueAventurier();
         
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        
+        
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
+        this.piocherInnodation();
+        getVueAventurier().updateCellules(grille);
+        piocherTresor();
     }
     
     public VueAventurier getVueAventurier() {
@@ -310,7 +315,7 @@ public class Controleur implements Observateur{
     }
     
     public void initGrille(){
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 6; i++){
             piocheCarteInondations.getDefausseInondation().add(piocheCarteInondations.getPiocheInondation().get(0));
             Tuile t1=grille.getTuile(piocheCarteInondations.getPiocheInondation().get(0).getNomCarte());
             t1.setStatut(INONDEE);
