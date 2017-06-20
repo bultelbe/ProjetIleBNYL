@@ -26,14 +26,15 @@ public class Plongeur extends Aventurier {
         for (int i = 0; i < tuilesTrav.size(); i++) {
             tuileL = tuilesTrav.get(i);
             
-            if (tuileL.getStatut() != COULEE)
+            if (tuileL.getStatut() != COULEE && !tuilesPossibles.contains(tuileL))
                 tuilesPossibles.add(tuileL);
             
-            for (Tuile tuile : grille.getListeTuileAdjDiag(tuileL)) {
+            for (Tuile tuile : grille.getListeTuileAdj(tuileL)) {
                 if (tuile.getStatut() != COULEE && !tuilesPossibles.contains(tuile))
                     tuilesPossibles.add(tuile);
-                
-                else if (tuile.getStatut() != ASSECHEE && !tuilesTrav.contains(tuile))
+            }
+            for (Tuile tuile : grille.getListeTuileAdjDiag(tuileL)) {
+                if (tuile.getStatut() != ASSECHEE && !tuilesTrav.contains(tuile))
                     tuilesTrav.add(tuile);
             }
         }
