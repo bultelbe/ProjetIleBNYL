@@ -4,7 +4,7 @@ import Grille.Grille;
 import Grille.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import projetilebnyl.Pion;
+import projetilebnyl.PionJoueur;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -235,7 +235,22 @@ public class VueAventurier  {
                 panelCellule.setBackground(Color.BLUE);
                 panelPion.setBackground(Color.BLUE);
             }
-            //Pion pion = new Pion();
+            
+   
+            
+            for(int k=0; k<6; k++){
+                
+                if(nomCase.getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
+                    PionJoueur pion = controleur.getJoueurs().get(k).getPionjoueur();
+                    panelPion.add(pion);
+                    pion.repaint();
+                }
+       
+            }
+            
+            
+            
+            
             pions.put(i, panelPion);
             cases.put(i, panelCellule);
             return panelCellule ;

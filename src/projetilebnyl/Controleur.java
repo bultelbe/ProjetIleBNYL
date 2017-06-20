@@ -1,9 +1,10 @@
 package projetilebnyl;
 
 
-import Vues.VueAventurier;
+import Pioches_Tresor.Carte;
+import Pioches_Tresor.CarteInondations;
+import Pioches_Tresor.CarteTresors;
 import Aventurier.*;
-import Pioches.*;
 
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
@@ -14,6 +15,7 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
+import Pioches_Tresor.Tresor;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
@@ -23,6 +25,7 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import static Vues.Utils.Cartes.*;
+import Vues.VueAventurier;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -39,7 +42,11 @@ public class Controleur implements Observateur{
     private int niveauEau =0;
     private Aventurier aventurierCourant;
     private CarteTresors tresor= new CarteTresors();
-    private CarteInondations inondations= new CarteInondations(grille);
+    private CarteInondations inondations= new CarteInondations();
+    private Tresor cristal = new Tresor(CRISTAL.toString());
+    private Tresor statute = new Tresor(STATUE.toString());
+    private Tresor pierre = new Tresor(PIERRE.toString());
+    private Tresor calice = new Tresor(CALICE.toString());
 
     public Controleur() {
         
@@ -64,11 +71,12 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act == 0) {
+        if (getAct() == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
-            vueAventurier.btnAller.setEnabled(false);
-            vueAventurier.btnAssecher.setEnabled(false);
-            vueAventurier.btnAutreAction.setEnabled(false);
+            getVueAventurier().getBtnAller().setEnabled(false);
+            getVueAventurier().getBtnAssecher().setEnabled(false);
+            getVueAventurier().getBtnAutreAction().setEnabled(false);
+            act = 3;
         }
     }
 
@@ -142,7 +150,7 @@ public class Controleur implements Observateur{
                         System.out.println("Cette tuile n'est pas asséchable."); 
                     }
                 }
-            }else{
+            } else {
                 
                  for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -250,6 +258,13 @@ public class Controleur implements Observateur{
         return grille;
     }
 
+    public int getAct() {
+        return act;
+    }
+
+    public void setAct(int act) {
+        this.act = act;
+    }
     public int getNiveauEau() {
         return niveauEau;
     }
@@ -257,8 +272,6 @@ public class Controleur implements Observateur{
     public void setNiveauEau(int niveauEau) {
         this.niveauEau = niveauEau;
     }
-    
-    
     
     public void piocherTresor(){
         Boolean eauxPioche = false;
@@ -289,5 +302,16 @@ public class Controleur implements Observateur{
     
     public void piocherInnodation(){
         inondations.piocheInondation(getNiveauEau(),getGrille());       
+    }
+    
+    public void initGrille(Grille grille,CarteInondations inondations){
+    for (int i = 0; i < 5; i++){
+            inondations.getDefausseInondation().add(inondations.getPiocheInondation().get(0));
+            Tuile t1=grille.getTuile(inondations.getPiocheInondation().get(0).getNomCarte());
+            t1.setStatut(INONDEE);
+
+            
+            inondations.getPiocheInondation().remove(inondations.getPiocheInondation().get(0));
+        }
     }
 }

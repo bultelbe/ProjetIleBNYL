@@ -14,15 +14,15 @@ import javax.swing.JPanel;
  *
  * @author bultelbe
  */
-public class Pion extends JPanel{
+public class PionJoueur extends JPanel{
     private int diametre,x,y;
     private double distance;
     
+    private Color couleur;
     
-    
-    Pion(){
+    public PionJoueur(Color couleur){
         setBackground(Color.white);
-        
+        this.couleur=couleur;
   
     }
     
@@ -34,7 +34,7 @@ public class Pion extends JPanel{
         x=(dimension.width-diametre)/2;
         y=(dimension.height-diametre)/2;
         
-            g.setColor(Color.green);
+            g.setColor(couleur);
             g.fillOval(x, y,diametre,diametre);
             g.setColor(Color.black);
             g.drawOval(x, y,diametre,diametre);
