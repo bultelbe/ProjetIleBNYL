@@ -227,6 +227,8 @@ public class Controleur implements Observateur{
         }
         
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+        
+        getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
         
     }

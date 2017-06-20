@@ -33,20 +33,28 @@ public class Explorateur extends Aventurier {
     
     @Override
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
+        
         ArrayList<Tuile> tuilesAdj = super.assechementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
         
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
-        tuilesAssechables = tuilesDiag;
+        
+        for (Tuile t : tuilesDiag) {
+            if (t.getStatut() == INONDEE) tuilesAssechables.add(t);
+        }
+        
+        if (getPositionCourante().getStatut() == INONDEE && !tuilesAssechables.contains(getPositionCourante()))
         tuilesAssechables.add(getPositionCourante());
         
         for (Tuile t : tuilesAdj) {
-            if (t.getStatut() == INONDEE)
-            tuilesAssechables.add(t);
+            if (t.getStatut() == INONDEE && !tuilesAssechables.contains(t))
+                tuilesAssechables.add(t);
         }
+        
         return tuilesAssechables;
     }
+    
 
     @Override
     public Color getColor() {

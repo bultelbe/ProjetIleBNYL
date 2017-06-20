@@ -17,6 +17,7 @@ public class Plongeur extends Aventurier {
     
     @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
+        
         Tuile tuileL;
         ArrayList<Tuile> tuilesPossibles = super.deplacementsPossibles(grille);
         
@@ -26,14 +27,11 @@ public class Plongeur extends Aventurier {
         for (int i = 0; i < tuilesTrav.size(); i++) {
             tuileL = tuilesTrav.get(i);
             
-            if (tuileL.getStatut() != COULEE && !tuilesPossibles.contains(tuileL))
-                tuilesPossibles.add(tuileL);
-            
             for (Tuile tuile : grille.getListeTuileAdj(tuileL)) {
+                
                 if (tuile.getStatut() != COULEE && !tuilesPossibles.contains(tuile))
                     tuilesPossibles.add(tuile);
-            }
-            for (Tuile tuile : grille.getListeTuileAdjDiag(tuileL)) {
+                
                 if (tuile.getStatut() != ASSECHEE && !tuilesTrav.contains(tuile))
                     tuilesTrav.add(tuile);
             }

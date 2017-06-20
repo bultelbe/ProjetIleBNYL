@@ -48,8 +48,9 @@ public class VueAventurier  {
     private JLabel nomAvt;
     private JLabel nomTuile;
     private Observateur controleur;
-    private HashMap<Integer,JPanel> cases = new HashMap();
-    private HashMap<Integer,JPanel> pions = new HashMap();
+    private HashMap<Integer,JPanel> cases=new HashMap();
+    private HashMap<Integer,JPanel> pions=new HashMap();
+    private HashMap<Integer,JLabel> labels=new HashMap();
     private JButton [] boutonsTuiles;
     
     
@@ -194,7 +195,16 @@ public class VueAventurier  {
             
             if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
             } else {
-                if (grilleListe.getTuilesGrille().get(i).getStatut() == ASSECHEE) {
+                pions.get(i).removeAll();
+                
+                for(int k=0; k<6; k++){
+                    if(labels.get(i).getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
+                        PionJoueur pionJ = controleur.getJoueurs().get(k).getPionjoueur();
+                        pion.add(pionJ);
+                        pionJ.repaint();
+                    }
+                }
+                if (grilleListe.getTuilesGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
                        panel.setBackground(Color.DARK_GRAY);
                        pion.setBackground(Color.DARK_GRAY);
                        
@@ -206,6 +216,7 @@ public class VueAventurier  {
                         panel.setBackground(Color.BLUE);
                         pion.setBackground(Color.BLUE);
                     }
+                
 
                 panel.repaint();
             }
@@ -263,6 +274,9 @@ public class VueAventurier  {
                 }
             }
             
+            
+            
+            labels.put(i, nomCase);
             pions.put(i, panelPion);
             cases.put(i, panelCellule);
             return panelCellule ;
