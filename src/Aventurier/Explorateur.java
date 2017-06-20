@@ -51,7 +51,6 @@ public class Explorateur extends Aventurier {
             if (t.getStatut() == INONDEE && !tuilesAssechables.contains(t))
                 tuilesAssechables.add(t);
         }
-        
         return tuilesAssechables;
     }
     
