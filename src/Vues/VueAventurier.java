@@ -212,6 +212,7 @@ public class VueAventurier  {
         
         } 
     }
+    
  
     public JPanel createCellule(int i, Grille grilleListe) {
 
@@ -222,11 +223,6 @@ public class VueAventurier  {
             return panelCellule ;
             
         } else {
-            
-            
-            
-            
-            
             
             JPanel panelPion = new JPanel(new FlowLayout());
             JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase(), SwingConstants.CENTER);
@@ -258,8 +254,6 @@ public class VueAventurier  {
                 panelPion.setBackground(Color.BLUE);
             }
             
-   
-            
             for(int k=0; k<6; k++){
                 
                 if(nomCase.getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
@@ -267,11 +261,7 @@ public class VueAventurier  {
                     panelPion.add(pion);
                     pion.repaint();
                 }
-       
             }
-            
-            
-            
             
             pions.put(i, panelPion);
             cases.put(i, panelCellule);
@@ -279,7 +269,6 @@ public class VueAventurier  {
         }
     }
     
-
     public JPanel getGrilletuile() {
         return grilletuile;
     }
