@@ -113,6 +113,7 @@ public class CarteInondations {
                 t1.setStatut(COULEE);
                 defausseInondation.remove(t1);
             } 
+            System.out.println(t1.getNomCase() + " devient "+t1.getStatut());
             
             piocheInondation.remove(piocheInondation.get(0));
             if (piocheInondation.size()==0){
