@@ -25,6 +25,7 @@ import projetilebnyl.Observateur;
 import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 import java.awt.FlowLayout;
+import projetilebnyl.Observateur;
 
  
 public class VueAventurier  {
@@ -116,23 +117,15 @@ public class VueAventurier  {
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-            btnAller.setEnabled(false);
-            btnAssecher.setEnabled(false);
-            btnAutreAction.setEnabled(false);
+           
             controleur.traiterMessage(CLIC_BoutonAller);
-            btnAller.setEnabled(true);
-            btnAssecher.setEnabled(true);
-            btnAutreAction.setEnabled(true);
+          
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-            btnAller.setEnabled(false);
-            btnAssecher.setEnabled(false);
-            btnAutreAction.setEnabled(false);
+        
             controleur.traiterMessage(CLIC_BoutonAssecher);
-            btnAller.setEnabled(true);
-            btnAssecher.setEnabled(true);
-            btnAutreAction.setEnabled(true);
+          
         });
         
         this.btnAutreAction.addActionListener((ActionEvent e) -> {});
@@ -242,7 +235,7 @@ public class VueAventurier  {
                 panelCellule.setBackground(Color.BLUE);
                 panelPion.setBackground(Color.BLUE);
             }
-            Pion pion = new Pion();
+            //Pion pion = new Pion();
             pions.put(i, panelPion);
             cases.put(i, panelCellule);
             return panelCellule ;

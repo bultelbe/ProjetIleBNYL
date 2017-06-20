@@ -1,10 +1,10 @@
 package projetilebnyl;
 
 
+import Vues.VueAventurier;
 import Aventurier.*;
 import Pioches.*;
 
-import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
 import Aventurier.Navigateur;
@@ -69,7 +69,6 @@ public class Controleur implements Observateur{
             vueAventurier.btnAller.setEnabled(false);
             vueAventurier.btnAssecher.setEnabled(false);
             vueAventurier.btnAutreAction.setEnabled(false);
-            act = 3;
         }
     }
 
