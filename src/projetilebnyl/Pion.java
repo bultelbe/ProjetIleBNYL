@@ -5,8 +5,9 @@
  */
 package projetilebnyl;
 
-import com.sun.prism.paint.Paint;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 
 /**
@@ -14,18 +15,30 @@ import javax.swing.JPanel;
  * @author bultelbe
  */
 public class Pion extends JPanel{
-   
-    private String nomAvt;
-    private JPanel panel;
-    Pion(String nomAvt,Color color){
+    private int diametre,x,y;
+    private double distance;
+    
+    
+    
+    public Pion(){
+        setBackground(Color.white);
         
-        panel = new JPanel();
-        panel.setName(nomAvt);
-        panel.setBackground(color);
+  
     }
-
-    public String getNomAvt() {
-        return nomAvt;
+    
+    public void paintComponent(Graphics g) {
+        Dimension dimension = getSize(); // Taille de la zone de dessin
+        
+        // Calcul des coordonnées et du diamètre du bouton.
+        diametre=(Math.min(dimension.width,dimension.height)*90)/100;
+        x=(dimension.width-diametre)/2;
+        y=(dimension.height-diametre)/2;
+        
+            g.setColor(Color.green);
+            g.fillOval(x, y,diametre,diametre);
+            g.setColor(Color.black);
+            g.drawOval(x, y,diametre,diametre);
+    
     }
     
 }

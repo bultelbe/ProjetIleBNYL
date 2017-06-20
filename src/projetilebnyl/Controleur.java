@@ -71,11 +71,11 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act == 0) {
+        if (getAct() == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
-            vueAventurier.btnAller.setEnabled(false);
-            vueAventurier.btnAssecher.setEnabled(false);
-            vueAventurier.btnAutreAction.setEnabled(false);
+            getVueAventurier().getBtnAller().setEnabled(false);
+            getVueAventurier().getBtnAssecher().setEnabled(false);
+            getVueAventurier().getBtnAutreAction().setEnabled(false);
             act = 3;
         }
     }
@@ -150,7 +150,7 @@ public class Controleur implements Observateur{
                         System.out.println("Cette tuile n'est pas asséchable."); 
                     }
                 }
-            }else{
+            } else {
                 
                  for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -258,6 +258,13 @@ public class Controleur implements Observateur{
         return grille;
     }
 
+    public int getAct() {
+        return act;
+    }
+
+    public void setAct(int act) {
+        this.act = act;
+    }
     public int getNiveauEau() {
         return niveauEau;
     }
