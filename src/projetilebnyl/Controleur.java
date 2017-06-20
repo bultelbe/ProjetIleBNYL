@@ -5,7 +5,6 @@ import Pioches_Tresor.Carte;
 import Pioches_Tresor.CarteInondations;
 import Pioches_Tresor.CarteTresors;
 
-import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
 import Aventurier.Navigateur;
@@ -20,6 +19,7 @@ import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
+import Vues.VueAventurier;
 
 public class Controleur implements Observateur{
     public Grille grille;
