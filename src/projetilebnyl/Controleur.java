@@ -35,18 +35,24 @@ public class Controleur implements Observateur{
     private int act = 3;
     private int niveauEau =0;
     private Aventurier aventurierCourant;
-    private CarteTresors tresor= new CarteTresors();
-    private CarteInondations inondations= new CarteInondations();
+    private CarteTresors piocheCarteTresor= new CarteTresors();
+    private CarteInondations piocheCarteInondations= new CarteInondations();
     private Tresor cristal = new Tresor(CRISTAL.toString());
     private Tresor statute = new Tresor(STATUE.toString());
     private Tresor pierre = new Tresor(PIERRE.toString());
     private Tresor calice = new Tresor(CALICE.toString());
+    private Carte Helicoptere1= new Carte(HELICOPTERE);
+    private Carte Helicoptere2= new Carte(HELICOPTERE);
+    private Carte Helicoptere3= new Carte(HELICOPTERE);
 
     public Controleur() {
         
-        grille = new Grille();
-        
-        
+        grille = new Grille();        
+        initGrille();
+        piocheCarteTresor.addPioche(Helicoptere1);
+        piocheCarteTresor.addPioche(Helicoptere2);
+        piocheCarteTresor.addPioche(Helicoptere3);
+        initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
         spawnIngenieur = grille.getTuile("La Porte de Bronze");
@@ -260,6 +266,7 @@ public class Controleur implements Observateur{
     public void setAct(int act) {
         this.act = act;
     }
+    
     public int getNiveauEau() {
         return niveauEau;
     }
@@ -271,10 +278,9 @@ public class Controleur implements Observateur{
     public void piocherTresor() {
         Boolean eauxPioche = false;
         Carte eaux = new Carte(EAUX);
-        Carte pioche1 =tresor.piocheTresor();
-        
+        Carte pioche1 =piocheCarteTresor.piocheTresor();
         if (pioche1.getNomCarte()== eaux.getNomCarte()) {
-            tresor.defausseTresor(pioche1);
+            piocheCarteTresor.defausseTresor(pioche1);
             eauxPioche=true;
             setNiveauEau((getNiveauEau()+1));
             
@@ -282,10 +288,9 @@ public class Controleur implements Observateur{
         aventurierCourant.addCarte(pioche1);
         }
         if(getNiveauEau()<=9){
-            Carte pioche2 =tresor.piocheTresor();
-            
+            Carte pioche2 =piocheCarteTresor.piocheTresor();
             if (pioche2.getNomCarte()== eaux.getNomCarte()) {
-                tresor.defausseTresor(pioche2);
+                piocheCarteTresor.defausseTresor(pioche2);
                setNiveauEau((getNiveauEau()+1));
 
             } else {
@@ -293,23 +298,43 @@ public class Controleur implements Observateur{
             }
 
             if (eauxPioche){
-                inondations.remiseDefausse();
+                piocheCarteInondations.remiseDefausse();
             }
         }
     }
     
-    public void piocherInnodation() {
-        inondations.piocheInondation(getNiveauEau(),getGrille());       
+    public void piocherInnodation(){
+        piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());       
     }
     
-    public void initGrille(Grille grille,CarteInondations inondations){
+    public void initGrille(){
     for (int i = 0; i < 5; i++){
-            inondations.getDefausseInondation().add(inondations.getPiocheInondation().get(0));
-            Tuile t1=grille.getTuile(inondations.getPiocheInondation().get(0).getNomCarte());
+            piocheCarteInondations.getDefausseInondation().add(piocheCarteInondations.getPiocheInondation().get(0));
+            Tuile t1=grille.getTuile(piocheCarteInondations.getPiocheInondation().get(0).getNomCarte());
             t1.setStatut(INONDEE);
 
             
-            inondations.getPiocheInondation().remove(inondations.getPiocheInondation().get(0));
+            piocheCarteInondations.getPiocheInondation().remove(piocheCarteInondations.getPiocheInondation().get(0));
         }
     }
+
+    public void initTresor(){
+        cristal.setSanctuaire1(grille);
+        cristal.setSanctuaire2(grille);
+        statute.setSanctuaire1(grille);
+        statute.setSanctuaire2(grille);
+        pierre.setSanctuaire1(grille);
+        pierre.setSanctuaire2(grille);
+        calice.setSanctuaire1(grille);
+        calice.setSanctuaire2(grille);
+    }
+    
+    public boolean possibleMouvement(){
+        return aventurierCourant.deplacementsPossibles(grille).size()>0 ||(aventurierCourant.getCarteMain().contains(Helicoptere1)) || (aventurierCourant.getCarteMain().contains(Helicoptere2)) || (aventurierCourant.getCarteMain().contains(Helicoptere3));
+    }
+    
+    public boolean continuer(){
+        return (cristal.recuperable() && statute.recuperable() && pierre.recuperable() && calice.recuperable() && niveauEau<9 && grille.getTuile("Héliport").getStatut()!=COULEE && (possibleMouvement() || (!possibleMouvement() && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
+    }
+
 }

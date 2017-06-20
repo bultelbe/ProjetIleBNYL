@@ -38,7 +38,6 @@ public abstract class Aventurier {
         return ligne + 1;
     }
     
-
     public void setLigne(int ligne) {
         this.ligne = ligne - 1;
      }
@@ -101,7 +100,6 @@ public abstract class Aventurier {
     public ArrayList<Carte> getCarteMain() {
         return carteMain;
     }
-    
     
     public void addCarte(Carte carte){
         this.getCarteMain().add(carte);

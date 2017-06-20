@@ -9,21 +9,17 @@ public class Tuile {
 	private int ligne;
 	private EtatTuile statut;
         
-    Tuile(String nomCase) {
+    public Tuile(String nomCase) {
         this.nomCase = nomCase;
 
         this.statut = EtatTuile.ASSECHEE;
     }
     
-    Tuile(String nomCase, EtatTuile statut){
+    public Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
     }
-
-    public Tuile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-              
+            
         
     public String getNomCase() {
         return nomCase;
