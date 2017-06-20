@@ -234,26 +234,27 @@ public class VueAventurier  {
             JPanel panelCellule = new JPanel(new BorderLayout());
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase, BorderLayout.CENTER);
-            panelCellule.add(panelPion, BorderLayout.CENTER);
+            panelCellule.add(panelPion, BorderLayout.NORTH);
             
             
-            boutonsTuiles = new JButton[36];
+            /*boutonsTuiles = new JButton[36];
             if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
                 boutonsTuiles[i] = new JButton();
-                boutonsTuiles[i].add(nomCase, BorderLayout.CENTER);
-                panelCellule.add(boutonsTuiles[i], BorderLayout.CENTER);
-            }
+                
+                boutonsTuiles[i].add(nomCase);
+                panelCellule.add(boutonsTuiles[i]);
+            }*/
             
             
             if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {
-                boutonsTuiles[i].setBackground(Color.DARK_GRAY);
+                panelCellule.setBackground(Color.DARK_GRAY);
                 panelPion.setBackground(Color.DARK_GRAY);
                 
             } else if (grilleListe.tuiles.get(i).getStatut() == INONDEE) {
-                boutonsTuiles[i].setBackground(Color.ORANGE);
+                panelCellule.setBackground(Color.ORANGE);
                 panelPion.setBackground(Color.ORANGE);
             } else {
-                boutonsTuiles[i].setBackground(Color.BLUE);
+                panelCellule.setBackground(Color.BLUE);
                 panelPion.setBackground(Color.BLUE);
             }
             
