@@ -4,9 +4,7 @@ package projetilebnyl;
 import Pioches_Tresor.Carte;
 import Pioches_Tresor.CarteInondations;
 import Pioches_Tresor.CarteTresors;
-import Aventurier.*;
 
-import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
 import Aventurier.Navigateur;
@@ -17,27 +15,11 @@ import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
 import Pioches_Tresor.Tresor;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import static java.lang.Integer.parseInt;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
+import Vues.VueAventurier;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -243,6 +225,7 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
+        
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
         this.TourDeJeu();
         
@@ -292,7 +275,7 @@ public class Controleur implements Observateur{
         this.niveauEau = niveauEau;
     }
     
-    public void piocherTresor(){
+    public void piocherTresor() {
         Boolean eauxPioche = false;
         Carte eaux = new Carte(EAUX);
         Carte pioche1 =piocheCarteTresor.piocheTresor();
@@ -300,7 +283,8 @@ public class Controleur implements Observateur{
             piocheCarteTresor.defausseTresor(pioche1);
             eauxPioche=true;
             setNiveauEau((getNiveauEau()+1));
-        }else{
+            
+        } else {
         aventurierCourant.addCarte(pioche1);
         }
         if(getNiveauEau()<=9){
@@ -309,7 +293,7 @@ public class Controleur implements Observateur{
                 piocheCarteTresor.defausseTresor(pioche2);
                setNiveauEau((getNiveauEau()+1));
 
-            }else{
+            } else {
             aventurierCourant.addCarte(pioche2);
             }
 

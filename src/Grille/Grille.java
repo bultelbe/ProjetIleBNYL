@@ -34,7 +34,7 @@ public class Grille {
         private Tuile t24=new Tuile("Le Jardin des Murmures",INONDEE);
 
         public Grille() {
-               ArrayList<Tuile> liste= new ArrayList<>();
+               ArrayList<Tuile> liste = new ArrayList<>();
                
                 liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                 liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
@@ -63,7 +63,7 @@ public class Grille {
                }
         }
       
-        public ArrayList<Tuile> getGrille() {
+        public ArrayList<Tuile> getTuilesGrille() {
             return tuiles;
         }
 
@@ -228,8 +228,8 @@ public class Grille {
        
         public void afficheGrille(){
         //fonction servant uniquement a affiché la grille lors de la création du code
-        for (int i=0;i<(this.getGrille().size());++i){
-               this.getGrille().get(i).afficheTuile();
+        for (int i=0;i<(this.getTuilesGrille().size());++i){
+               this.getTuilesGrille().get(i).afficheTuile();
                System.out.println(" : "+i);
                
         }
