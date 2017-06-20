@@ -37,11 +37,13 @@ public class VueAventurier  {
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JPanel bigPanel;
+    private final JPanel panelCartes;
     public final JButton btnAller  ;
     public final JButton btnAssecher;
-    public final JButton btnAutreAction;
+    public final JButton btnCarteSpe;
     public final JButton btnTerminerTour;       
-    
+    public final JButton btnEchangeCarte;
+    public final JButton btnRecupTresor;
     private final JPanel position;
     private final JPanel grilletuile;
     
@@ -51,6 +53,7 @@ public class VueAventurier  {
     private HashMap<Integer,JPanel> cases=new HashMap();
     private HashMap<Integer,JPanel> pions=new HashMap();
     private HashMap<Integer,JLabel> labels=new HashMap();
+    private HashMap<Integer,JPanel> cartes=new HashMap();
     private JButton [] boutonsTuiles;
     
     
@@ -96,18 +99,22 @@ public class VueAventurier  {
         
         // =================================================================================
         // SUD : les boutons
-        this.panelBoutons = new JPanel(new GridLayout(2,2));
+        this.panelBoutons = new JPanel(new GridLayout(3,3));
         this.panelBoutons.setOpaque(false);
         mainPanel.add(this.panelBoutons, BorderLayout.SOUTH);
 
         this.btnAller = new JButton("Aller") ;
         this.btnAssecher = new JButton( "Assecher");
-        this.btnAutreAction = new JButton("AutreAction") ;
+        this.btnCarteSpe = new JButton("Carte spéciale") ;
         this.btnTerminerTour = new JButton("Terminer Tour") ;
+        this.btnEchangeCarte = new JButton("Echange de carte");
+        this.btnRecupTresor = new JButton("Récuperer le trésor");
         
         this.panelBoutons.add(btnAller);
         this.panelBoutons.add(btnAssecher);
-        this.panelBoutons.add(btnAutreAction);
+        this.panelBoutons.add(btnEchangeCarte);
+        this.panelBoutons.add(btnRecupTresor);
+        this.panelBoutons.add(btnCarteSpe);
         this.panelBoutons.add(btnTerminerTour);
         
         //On rajoute nos ActionListener sur les boutons de l'IHM
@@ -115,7 +122,7 @@ public class VueAventurier  {
         this.btnTerminerTour.addActionListener((ActionEvent e) -> {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
-            btnAutreAction.setEnabled(true);
+            btnCarteSpe.setEnabled(true);
             controleur.traiterMessage(CLIC_BoutonTerminer);
 
         });
@@ -132,10 +139,28 @@ public class VueAventurier  {
           
         });
         
-        this.btnAutreAction.addActionListener((ActionEvent e) -> {});
+        this.btnCarteSpe.addActionListener((ActionEvent e) -> {});
+        
+        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {});
+        
+        this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
         
         
-
+        // =================================================================================
+        // EST
+        
+        this.panelCartes = new JPanel(new GridLayout(9,1));
+        bigPanel.add(this.panelCartes, BorderLayout.EAST);
+        for(int i=0;i<9;i++){
+            JPanel panelCarte = new JPanel(new BorderLayout());
+            panelCarte.add(new JLabel("pas de cartes",SwingConstants.CENTER),BorderLayout.CENTER);
+            panelCarte.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+            panelCartes.add(panelCarte);
+            cartes.put(i, panelCarte);
+        }
+        
+        
+        
         this.window.setVisible(true);
         mainPanel.repaint();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -149,8 +174,8 @@ public class VueAventurier  {
         }
     }  
 
-     public JButton getBtnAutreAction() {
-        return btnAutreAction;
+     public JButton getBtnCarteSpe() {
+        return btnCarteSpe;
     }
 
     public void setPosition(String pos) {

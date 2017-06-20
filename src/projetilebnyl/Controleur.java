@@ -75,7 +75,7 @@ public class Controleur implements Observateur{
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
             getVueAventurier().getBtnAller().setEnabled(false);
             getVueAventurier().getBtnAssecher().setEnabled(false);
-            getVueAventurier().getBtnAutreAction().setEnabled(false);
+            getVueAventurier().getBtnCarteSpe().setEnabled(false);
             act = 3;
         }
     }
