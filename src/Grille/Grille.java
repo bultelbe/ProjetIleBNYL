@@ -8,33 +8,33 @@ import static Vues.Utils.EtatTuile.*;
 
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
-        private Tuile t1=new Tuile("Le Pont des Abimes",ASSECHEE);
-        private Tuile t2=new Tuile("La Porte de Bronze",INONDEE);
-        private Tuile t3=new Tuile("La Caverne Des Ombres",ASSECHEE);
-        private Tuile t4=new Tuile("La Porte de Fer",ASSECHEE);
-        private Tuile t5=new Tuile("La Porte d'Or",ASSECHEE);
-        private Tuile t6=new Tuile("Les Falaises de l'Oubli",ASSECHEE);
-        private Tuile t7=new Tuile("Le Palais de Corail",ASSECHEE);
-        private Tuile t8=new Tuile("La Porte d'Argent",ASSECHEE);
-        private Tuile t9=new Tuile("Les Dunes de L'Illusion",COULEE);
-        private Tuile t10=new Tuile("Héliport",ASSECHEE);
-        private Tuile t11=new Tuile("La Porte de Cuivre",ASSECHEE);
-        private Tuile t12=new Tuile("Le Jardin des Hurlements",ASSECHEE);
-        private Tuile t13=new Tuile("La Foret Pourpre",ASSECHEE);
-        private Tuile t14=new Tuile("Le Lagon Perdu",INONDEE);
-        private Tuile t15=new Tuile("Le Marais Brumeux",COULEE);
-        private Tuile t16=new Tuile("Observatoire",INONDEE);
-        private Tuile t17=new Tuile("Le Rocher Fantome",COULEE);
-        private Tuile t18=new Tuile("La Caverne du Brasier",INONDEE);
-        private Tuile t19=new Tuile("Le Temple du Soleil",ASSECHEE);
-        private Tuile t20=new Tuile("Le Temple de la Lune",COULEE);
-        private Tuile t21=new Tuile("Le Palais des Marées",ASSECHEE);
-        private Tuile t22=new Tuile("Le Val du Crépuscule",ASSECHEE);
-        private Tuile t23=new Tuile("La Tour du Guet",ASSECHEE);
-        private Tuile t24=new Tuile("Le Jardin des Murmures",INONDEE);
+        private Tuile t1=new Tuile("Le Pont des Abimes");
+        private Tuile t2=new Tuile("La Porte de Bronze");
+        private Tuile t3=new Tuile("La Caverne Des Ombres");
+        private Tuile t4=new Tuile("La Porte de Fer");
+        private Tuile t5=new Tuile("La Porte d'Or");
+        private Tuile t6=new Tuile("Les Falaises de l'Oubli");
+        private Tuile t7=new Tuile("Le Palais de Corail");
+        private Tuile t8=new Tuile("La Porte d'Argent");
+        private Tuile t9=new Tuile("Les Dunes de L'Illusion");
+        private Tuile t10=new Tuile("Héliport");
+        private Tuile t11=new Tuile("La Porte de Cuivre");
+        private Tuile t12=new Tuile("Le Jardin des Hurlements");
+        private Tuile t13=new Tuile("La Foret Pourpre");
+        private Tuile t14=new Tuile("Le Lagon Perdu");
+        private Tuile t15=new Tuile("Le Marais Brumeux");
+        private Tuile t16=new Tuile("Observatoire");
+        private Tuile t17=new Tuile("Le Rocher Fantome");
+        private Tuile t18=new Tuile("La Caverne du Brasier");
+        private Tuile t19=new Tuile("Le Temple du Soleil");
+        private Tuile t20=new Tuile("Le Temple de la Lune");
+        private Tuile t21=new Tuile("Le Palais des Marées");
+        private Tuile t22=new Tuile("Le Val du Crépuscule");
+        private Tuile t23=new Tuile("La Tour du Guet");
+        private Tuile t24=new Tuile("Le Jardin des Murmures");
 
         public Grille() {
-               ArrayList<Tuile> liste= new ArrayList<>();
+               ArrayList<Tuile> liste = new ArrayList<>();
                
                 liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                 liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
@@ -63,7 +63,7 @@ public class Grille {
                }
         }
       
-        public ArrayList<Tuile> getGrille() {
+        public ArrayList<Tuile> getTuilesGrille() {
             return tuiles;
         }
 
@@ -78,7 +78,7 @@ public class Grille {
                 // Cad lig !=0 && lig!=5 && col!=0 && col!=5 
                 // Sinon gére les exception
                     if (lig==2||lig==3){                       
-                        if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col)) ||((tuiles.get(i).getLigne()== lig ) && (tuiles.get(i).getColonne()== col-1))  ){
+                        if ( ((tuiles.get(i).getColonne()== col+ 1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col)) ||((tuiles.get(i).getLigne()== lig+1 ) && (tuiles.get(i).getColonne()== col))  ){
                             // Verifie si la tuile "tuiles.get(i)" est adjacente a la tuile positionCourante
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 // Verifie si la tuile n'est pas definie comme vide
@@ -89,7 +89,7 @@ public class Grille {
                     } 
                 }else if(col==5) {     
                     if (lig==2||lig==3){                       
-                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col)) ||((tuiles.get(i).getColonne()== col+1) && tuiles.get(i).getLigne()==lig )  ){
+                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col)) ||((tuiles.get(i).getColonne()== col) && tuiles.get(i).getLigne()==lig +1)  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
                             }                        
@@ -97,7 +97,7 @@ public class Grille {
                     }  
                 }else if(lig==0) { 
                     if (col==2||col==3){
-                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col))  ){
+                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig +1) && (tuiles.get(i).getColonne()== col))||((tuiles.get(i).getLigne()== lig ) && (tuiles.get(i).getColonne()== col+1))  ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
                             }                        
@@ -105,7 +105,7 @@ public class Grille {
                     }
                 }else if(lig==5) {   
                     if (col==2||col==3){                        
-                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col))  ){
+                        if ( ((tuiles.get(i).getColonne()== col-1) && tuiles.get(i).getLigne()==lig )  ||((tuiles.get(i).getLigne()== lig -1) && (tuiles.get(i).getColonne()== col)) ||((tuiles.get(i).getLigne()== lig ) && (tuiles.get(i).getColonne()== col+1)) ){
                             if (tuiles.get(i).getNomCase()!="Vide"){
                                 Liste.add(tuiles.get(i));
                             }                        
@@ -228,8 +228,8 @@ public class Grille {
        
         public void afficheGrille(){
         //fonction servant uniquement a affiché la grille lors de la création du code
-        for (int i=0;i<(this.getGrille().size());++i){
-               this.getGrille().get(i).afficheTuile();
+        for (int i=0;i<(this.getTuilesGrille().size());++i){
+               this.getTuilesGrille().get(i).afficheTuile();
                System.out.println(" : "+i);
                
         }

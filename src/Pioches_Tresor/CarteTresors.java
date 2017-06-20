@@ -1,6 +1,7 @@
 
-package Pioches;
+package Pioches_Tresor;
 
+import Vues.Utils.Cartes;
 import java.util.ArrayList;
 import java.util.Collections;
 import static Vues.Utils.Cartes.*;
@@ -37,11 +38,7 @@ public class CarteTresors {
             private Carte eaux1= new Carte(EAUX);
             private Carte eaux2= new Carte(EAUX);
             private Carte eaux3= new Carte(EAUX);
-            
-            private Carte Helicoptere1= new Carte(HELICOPTERE);
-            private Carte Helicoptere2= new Carte(HELICOPTERE);
-            private Carte Helicoptere3= new Carte(HELICOPTERE);
-            
+                     
             private Carte Sac1= new Carte(SABLE);
             private Carte Sac2= new Carte(SABLE);
     
@@ -68,9 +65,6 @@ public class CarteTresors {
         piocheTresor.add(calice5);
         piocheTresor.add(eaux1);
         piocheTresor.add(eaux2);
-        piocheTresor.add(Helicoptere1);
-        piocheTresor.add(Helicoptere2);
-        piocheTresor.add(Helicoptere3);
         piocheTresor.add(Sac1);
         piocheTresor.add(Sac2);
         Collections.shuffle(piocheTresor);
@@ -90,6 +84,10 @@ public class CarteTresors {
 
         public ArrayList<Carte> getDefausseTresor() {
             return defausseTresor;
+        }
+        
+        public void addPioche(Carte carte){
+            this.getDefausseTresor().add(carte);
         }
    
         
@@ -111,5 +109,6 @@ public class CarteTresors {
             Collections.shuffle(liste);
             setPiocheTresor(liste);
        }
+       
     
 }

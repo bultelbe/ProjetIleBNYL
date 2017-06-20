@@ -1,4 +1,4 @@
-package Pioches;
+package Pioches_Tresor;
 
 
 import Grille.Grille;
@@ -39,7 +39,7 @@ public class CarteInondations {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    public CarteInondations(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
+    public CarteInondations(){// INITIALISER APRES GRILLE !!!!!!!!!
                  
         
         piocheInondation.add(c1);
@@ -69,14 +69,6 @@ public class CarteInondations {
         
         Collections.shuffle(piocheInondation);
         
-        for (int i = 0; i < 5; i++){
-            defausseInondation.add(piocheInondation.get(0));
-            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
-            t1.setStatut(INONDEE);
-
-            
-            piocheInondation.remove(piocheInondation.get(0));
-        }
     }
     
     
@@ -121,6 +113,7 @@ public class CarteInondations {
                 t1.setStatut(COULEE);
                 defausseInondation.remove(t1);
             } 
+            System.out.println(t1.getNomCase() + " devient "+t1.getStatut());
             
             piocheInondation.remove(piocheInondation.get(0));
             if (piocheInondation.size()==0){

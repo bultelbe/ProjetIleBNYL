@@ -9,21 +9,17 @@ public class Tuile {
 	private int ligne;
 	private EtatTuile statut;
         
-    Tuile(String nomCase) {
+    public Tuile(String nomCase) {
         this.nomCase = nomCase;
 
         this.statut = EtatTuile.ASSECHEE;
     }
     
-    Tuile(String nomCase, EtatTuile statut){
+    public Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
     }
-
-    public Tuile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-              
+            
         
     public String getNomCase() {
         return nomCase;
@@ -45,30 +41,18 @@ public class Tuile {
         this.ligne = ligne - 1;
     }
 
-    public EtatTuile getStatut() {
+    public EtatTuile getStatut() { 
         return this.statut;
     }
 
 
     public void setStatut(EtatTuile statut) {
-	this.statut=statut;
+	this.statut = statut;
     }
 
     public void afficheTuile() {
-        int x = this.getColonne();
-        int y = this.getLigne();
-        String nom = this.getNomCase();
-        EtatTuile stat = this.getStatut();
-        String statut = "";
         
-        if (stat == ASSECHEE) {
-            statut="Séche";
-        } else if (stat == INONDEE) {
-            statut="Innondée";
-        } else if (stat == COULEE) {
-            statut="Coulée";
-        }
-        System.out.println("Nom de la tuile : " + nom + "\nAux coordonnées : \nX : " + x + "\nY : " + y + "\nStatut : "+ statut + "\n");
+        System.out.println("Nom de la tuile : " + this.getNomCase() + "\nAux coordonnées : \nX : " + this.getColonne() + "\nY : " + this.getLigne() + "\nStatut : "+ this.getStatut() + "\n");
     }
 }
 

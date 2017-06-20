@@ -2,10 +2,12 @@ package Aventurier;
 
 import Grille.Grille;
 import Grille.Tuile;
-import Pioches.Carte;
+import Pioches_Tresor.Carte;
 import java.awt.Color;
 import java.util.ArrayList;
 import static Vues.Utils.EtatTuile.*;
+import projetilebnyl.PionJoueur;
+
 
 public abstract class Aventurier {
     private String nomJ;
@@ -13,7 +15,7 @@ public abstract class Aventurier {
     private int ligne;
     private String noma;
     private ArrayList<Carte> carteMain;
-    
+    private PionJoueur pionjoueur;
     public Tuile positionCourante;
 
     public Aventurier(String nomJ, Tuile positionCourante, String noma) {
@@ -21,6 +23,7 @@ public abstract class Aventurier {
         this.positionCourante = positionCourante;
         this.noma = noma;
         this.carteMain = new ArrayList<>();
+        pionjoueur=new PionJoueur(this.getColor());
     }
 
     public void setColonne(int colonne) {
@@ -35,7 +38,6 @@ public abstract class Aventurier {
         return ligne + 1;
     }
     
-
     public void setLigne(int ligne) {
         this.ligne = ligne - 1;
      }
@@ -99,9 +101,16 @@ public abstract class Aventurier {
         return carteMain;
     }
     
-    
     public void addCarte(Carte carte){
         this.getCarteMain().add(carte);
+    }
+
+    public PionJoueur getPionjoueur() {
+        return pionjoueur;
+    }
+
+    public void setPionjoueur(PionJoueur pionjoueur) {
+        this.pionjoueur = pionjoueur;
     }
     
 }

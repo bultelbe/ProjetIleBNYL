@@ -1,10 +1,10 @@
 package projetilebnyl;
 
 
-import Aventurier.*;
-import Pioches.*;
+import Pioches_Tresor.Carte;
+import Pioches_Tresor.CarteInondations;
+import Pioches_Tresor.CarteTresors;
 
-import Vues.VueAventurier;
 import Aventurier.Plongeur;
 import Aventurier.Pilote;
 import Aventurier.Navigateur;
@@ -14,15 +14,12 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import static java.lang.Integer.parseInt;
+import Pioches_Tresor.Tresor;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import static Vues.Utils.Cartes.*;
+import static java.lang.Integer.parseInt;
+import Vues.VueAventurier;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -38,14 +35,24 @@ public class Controleur implements Observateur{
     private int act = 3;
     private int niveauEau =0;
     private Aventurier aventurierCourant;
-    private CarteTresors tresor= new CarteTresors();
-    private CarteInondations inondations= new CarteInondations(grille);
+    private CarteTresors piocheCarteTresor= new CarteTresors();
+    private CarteInondations piocheCarteInondations= new CarteInondations();
+    private Tresor cristal = new Tresor(CRISTAL.toString());
+    private Tresor statute = new Tresor(STATUE.toString());
+    private Tresor pierre = new Tresor(PIERRE.toString());
+    private Tresor calice = new Tresor(CALICE.toString());
+    private Carte Helicoptere1= new Carte(HELICOPTERE);
+    private Carte Helicoptere2= new Carte(HELICOPTERE);
+    private Carte Helicoptere3= new Carte(HELICOPTERE);
 
     public Controleur() {
         
-        grille = new Grille();
-        
-        
+        grille = new Grille();        
+        initGrille();
+        piocheCarteTresor.addPioche(Helicoptere1);
+        piocheCarteTresor.addPioche(Helicoptere2);
+        piocheCarteTresor.addPioche(Helicoptere3);
+        initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
         spawnIngenieur = grille.getTuile("La Porte de Bronze");
@@ -64,11 +71,11 @@ public class Controleur implements Observateur{
     
     public void TourDeJeu() {
 
-        if (act == 0) {
+        if (getAct() == 0) {
             System.out.println("Vous avez fini votre tour, Appuyez sur Terminer");
-            vueAventurier.btnAller.setEnabled(false);
-            vueAventurier.btnAssecher.setEnabled(false);
-            vueAventurier.btnAutreAction.setEnabled(false);
+            getVueAventurier().getBtnAller().setEnabled(false);
+            getVueAventurier().getBtnAssecher().setEnabled(false);
+            getVueAventurier().getBtnAutreAction().setEnabled(false);
             act = 3;
         }
     }
@@ -143,7 +150,7 @@ public class Controleur implements Observateur{
                         System.out.println("Cette tuile n'est pas asséchable."); 
                     }
                 }
-            }else{
+            } else {
                 
                  for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -174,24 +181,81 @@ public class Controleur implements Observateur{
         
         this.TourDeJeu();
     }
+    
 
     public void passerJoueurSuivant() {
         
-        act=3;
-        VueAventurier avt = getVueAventurier();
+        this.piocherInnodation();
+        this.getVueAventurier().updateCellules(getGrille());
         
+        for (int i = 0; i < joueurs.size(); i++) {
+            if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
+                System.out.println(joueurs.get(i).getNoma() + " doit immédiatement se déplacer sur une autre tuile !");
+                
+                if (possibleMouvement(joueurs.get(i)) == true) {
+                    act ++;
+                    joueurs.get(i).deplacementsPossibles(getGrille());
+                    deplacementJoueurObligatoire(joueurs.get(i));
+                }
+            }
+        }
+        piocherTresor();
+        
+        
+        act = 3;
+        VueAventurier avt = getVueAventurier();
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());        
+        
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
     }
+    
     
     public VueAventurier getVueAventurier() {
         return this.vueAventurier;
     }
     
-    public void setVueAvt (VueAventurier avt) {
-        this.vueAventurier = avt;
+    
+    public void setVueAvt (VueAventurier vueAvt) {
+        this.vueAventurier = vueAvt;
     }
 
+    
+    public void deplacementJoueurObligatoire(Aventurier avt) {
+        this.getVueAventurier().updateCellules(getGrille());
+        ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
+        tuilesPossibles = avt.deplacementsPossibles(grille);
+        
+        
+        for (Tuile t : tuilesPossibles) {
+            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
+        String tuileX = sc.nextLine();
+        int x = parseInt(tuileX);
+
+        System.out.print("\nY : ");
+        String tuileY = sc.nextLine();
+        int y = parseInt(tuileY);
+
+        Tuile t = grille.getTuile(x, y);
+
+        if (tuilesPossibles.contains(t)) {
+            avt.setPositionCourante(t);
+            System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+            act = act - 1;
+        } else {
+            System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
+        }
+        
+        getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
+        
+        getVueAventurier().updateCellules(grille);
+    }
+    
+    
+    
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -214,14 +278,17 @@ public class Controleur implements Observateur{
         if (tuilesPossibles.contains(t)) {
             aventurierCourant.setPositionCourante(t);
             System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-            act=act-1;
+            act = act - 1;
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
-        this.TourDeJeu();
         
+        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+        
+        getVueAventurier().updateCellules(grille);
+        this.TourDeJeu();
     }
+    
     
     public void traiterMessage(Message m) {
         switch(m) {
@@ -251,6 +318,14 @@ public class Controleur implements Observateur{
         return grille;
     }
 
+    public int getAct() {
+        return act;
+    }
+
+    public void setAct(int act) {
+        this.act = act;
+    }
+    
     public int getNiveauEau() {
         return niveauEau;
     }
@@ -259,36 +334,75 @@ public class Controleur implements Observateur{
         this.niveauEau = niveauEau;
     }
     
-    
-    
-    public void piocherTresor(){
+    public void piocherTresor() {
         Boolean eauxPioche = false;
         Carte eaux = new Carte(EAUX);
-        Carte pioche1 =tresor.piocheTresor();
+        Carte pioche1 =piocheCarteTresor.piocheTresor();
         if (pioche1.getNomCarte()== eaux.getNomCarte()) {
-            tresor.defausseTresor(pioche1);
+            piocheCarteTresor.defausseTresor(pioche1);
             eauxPioche=true;
             setNiveauEau((getNiveauEau()+1));
-        }else{
+            
+        } else {
         aventurierCourant.addCarte(pioche1);
         }
         if(getNiveauEau()<=9){
-            Carte pioche2 =tresor.piocheTresor();
+            Carte pioche2 =piocheCarteTresor.piocheTresor();
             if (pioche2.getNomCarte()== eaux.getNomCarte()) {
-                tresor.defausseTresor(pioche2);
+                piocheCarteTresor.defausseTresor(pioche2);
                setNiveauEau((getNiveauEau()+1));
 
-            }else{
+            } else {
             aventurierCourant.addCarte(pioche2);
             }
 
             if (eauxPioche){
-                inondations.remiseDefausse();
+                piocheCarteInondations.remiseDefausse();
             }
         }
     }
     
     public void piocherInnodation(){
-        inondations.piocheInondation(getNiveauEau(),getGrille());       
+        piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
+    
+    public void initGrille(){
+    for (int i = 0; i < 6; i++){
+            piocheCarteInondations.getDefausseInondation().add(piocheCarteInondations.getPiocheInondation().get(0));
+            Tuile t1=grille.getTuile(piocheCarteInondations.getPiocheInondation().get(0).getNomCarte());
+            t1.setStatut(INONDEE);
+
+            
+            piocheCarteInondations.getPiocheInondation().remove(piocheCarteInondations.getPiocheInondation().get(0));
+        }
+    }
+
+    public void initTresor(){
+        cristal.setSanctuaire1(grille);
+        cristal.setSanctuaire2(grille);
+        statute.setSanctuaire1(grille);
+        statute.setSanctuaire2(grille);
+        pierre.setSanctuaire1(grille);
+        pierre.setSanctuaire2(grille);
+        calice.setSanctuaire1(grille);
+        calice.setSanctuaire2(grille);
+    }
+    
+    
+    public boolean possibleMouvement(Aventurier avt){
+        return avt.deplacementsPossibles(grille).size() > 0 ||
+                (avt.getCarteMain().contains(Helicoptere1)) ||
+                (avt.getCarteMain().contains(Helicoptere2)) ||
+                (avt.getCarteMain().contains(Helicoptere3));
+    }
+    
+    
+    public boolean continuer(){
+        return (cristal.recuperable() && statute.recuperable() &&
+                pierre.recuperable() && calice.recuperable() &&
+                niveauEau < 9 && grille.getTuile("Héliport").getStatut() != COULEE &&
+                (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
+    }
+    
+
 }
