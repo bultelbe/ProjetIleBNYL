@@ -55,20 +55,8 @@ public class Tuile {
     }
 
     public void afficheTuile() {
-        int x = this.getColonne();
-        int y = this.getLigne();
-        String nom = this.getNomCase();
-        EtatTuile stat = this.getStatut();
-        String statut = "";
         
-        if (stat == ASSECHEE) {
-            statut="Séche";
-        } else if (stat == INONDEE) {
-            statut="Innondée";
-        } else if (stat == COULEE) {
-            statut="Coulée";
-        }
-        System.out.println("Nom de la tuile : " + nom + "\nAux coordonnées : \nX : " + x + "\nY : " + y + "\nStatut : "+ statut + "\n");
+        System.out.println("Nom de la tuile : " + this.getNomCase() + "\nAux coordonnées : \nX : " + this.getColonne() + "\nY : " + this.getLigne() + "\nStatut : "+ this.getStatut() + "\n");
     }
 }
 
