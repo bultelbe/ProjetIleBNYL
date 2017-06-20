@@ -38,8 +38,8 @@ public class Controleur implements Observateur{
     private int act = 3;
     private int niveauEau =0;
     private Aventurier aventurierCourant;
-    private CarteTresors tresor= new CarteTresors();
-    private CarteInondations inondations= new CarteInondations(grille);
+    private CarteTresors tresor = new CarteTresors();
+    private CarteInondations inondations = new CarteInondations(grille);
 
     public Controleur() {
         
@@ -143,7 +143,7 @@ public class Controleur implements Observateur{
                         System.out.println("Cette tuile n'est pas asséchable."); 
                     }
                 }
-            }else{
+            } else {
                 
                  for (Tuile t : tuilesAssechables) {
                             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());

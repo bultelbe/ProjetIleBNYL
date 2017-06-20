@@ -51,7 +51,7 @@ public class Tuile {
 
 
     public void setStatut(EtatTuile statut) {
-	this.statut=statut;
+	this.statut = statut;
     }
 
     public void afficheTuile() {

@@ -96,7 +96,7 @@ public class CarteTresors {
        public Carte piocheTresor(){
            Carte carteRet;
            
-           carteRet=piocheTresor.get(0);
+           carteRet = piocheTresor.get(0);
            piocheTresor.remove(piocheTresor.get(0));
            return carteRet;
            

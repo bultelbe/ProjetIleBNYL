@@ -39,7 +39,7 @@ public class CarteInondations {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    public CarteInondations(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
+    public CarteInondations(Grille grille) {// INITIALISER APRES GRILLE !!!!!!!!!
                  
         
         piocheInondation.add(c1);
@@ -71,7 +71,7 @@ public class CarteInondations {
         
         for (int i = 0; i < 5; i++){
             defausseInondation.add(piocheInondation.get(0));
-            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
+            Tuile t1 = grille.getTuile(piocheInondation.get(0).getNomCarte());
             t1.setStatut(INONDEE);
 
             

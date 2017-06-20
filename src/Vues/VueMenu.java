@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import projetilebnyl.Controleur;
 
 /**
  *
@@ -84,7 +85,12 @@ public class VueMenu {
             }
         });
         
+        window.setLocationRelativeTo(null);
         this.window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public static void main(String [] args) {
+        VueMenu vue = new VueMenu();
     }
 }
