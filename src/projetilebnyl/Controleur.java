@@ -186,10 +186,11 @@ public class Controleur implements Observateur{
     public void passerJoueurSuivant() {
         
         this.piocherInnodation();
-
+        this.getVueAventurier().updateCellules(getGrille());
+        
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
-                System.out.println(joueurs.get(i).getNoma() + " (" + joueurs.get(i).getColor() + ") " + " doit immédiatement se déplacer sur une autre tuile !");
+                System.out.println(joueurs.get(i).getNoma() + " doit immédiatement se déplacer sur une autre tuile !");
                 
                 if (possibleMouvement(joueurs.get(i)) == true) {
                     act ++;
@@ -206,8 +207,6 @@ public class Controleur implements Observateur{
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
         
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
-        getVueAventurier().updateCellules(grille);
-        
     }
     
     
@@ -222,9 +221,11 @@ public class Controleur implements Observateur{
 
     
     public void deplacementJoueurObligatoire(Aventurier avt) {
+        this.getVueAventurier().updateCellules(getGrille());
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
-
+        
+        
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
@@ -362,7 +363,7 @@ public class Controleur implements Observateur{
     }
     
     public void piocherInnodation(){
-        piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());       
+        piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
     
     public void initGrille(){
@@ -402,5 +403,6 @@ public class Controleur implements Observateur{
                 niveauEau < 9 && grille.getTuile("Héliport").getStatut() != COULEE &&
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
     }
+    
 
 }

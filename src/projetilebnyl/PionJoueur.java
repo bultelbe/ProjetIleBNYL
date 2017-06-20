@@ -40,5 +40,15 @@ public class PionJoueur extends JPanel{
             g.drawOval(x, y,diametre,diametre);
     
     }
+
+    public Color getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(Color couleur) {
+        this.couleur = couleur;
+    }
+    
+    
     
 }
