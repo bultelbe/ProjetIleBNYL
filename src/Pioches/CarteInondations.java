@@ -3,13 +3,13 @@ package Pioches;
 
 import Grille.Grille;
 import Grille.Tuile;
-import static Vues.Utils.EtatTuile.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import static Vues.Utils.EtatTuile.*;
 
 
-public class CarteInondation {
-    private String nomCarte;    
+public class CarteInondations {
+       
     public ArrayList<Carte> piocheInondation = new ArrayList<>();
     public ArrayList<Carte> defausseInondation = new ArrayList<>();
 
@@ -39,9 +39,8 @@ public class CarteInondation {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    CarteInondation(String nomCarte){
-        this.nomCarte = nomCarte;
-            
+    public CarteInondations(Grille grille){// INITIALISER APRES GRILLE !!!!!!!!!
+                 
         
         piocheInondation.add(c1);
         piocheInondation.add(c2);
@@ -69,7 +68,18 @@ public class CarteInondation {
         piocheInondation.add(c24);
         
         Collections.shuffle(piocheInondation);
+        
+        for (int i = 0; i < 5; i++){
+            defausseInondation.add(piocheInondation.get(0));
+            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
+            t1.setStatut(INONDEE);
+
+            
+            piocheInondation.remove(piocheInondation.get(0));
+        }
     }
+    
+    
     
     public ArrayList<Carte> getPiocheInondation() {
         return piocheInondation;
@@ -90,33 +100,57 @@ public class CarteInondation {
     
     
     public void piocheInondation (int niveauEau, Grille grille){
+        int nbPioche=0;
+        if(niveauEau==0||niveauEau==1){
+            nbPioche=2;
+        }else if (niveauEau==2||niveauEau==3||niveauEau==4){
+            nbPioche=3;
+        }else if (niveauEau==5|| niveauEau==6){
+            nbPioche=4;
+        }else if (niveauEau==7||niveauEau==8){
+            nbPioche=5;
+        }        
         
-        for (int i = 0; i < niveauEau; i++){
+        
+        for (int i = 0; i < nbPioche; i++){
             defausseInondation.add(piocheInondation.get(0));
             Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
-            
-            if (t1.getStatut() == ASSECHEE) {
+            if (t1.getStatut()==ASSECHEE){
                 t1.setStatut(INONDEE);
-            } else if (t1.getStatut() == INONDEE) {
+            } else if (t1.getStatut()==INONDEE){
                 t1.setStatut(COULEE);
-            }
+                defausseInondation.remove(t1);
+            } 
+            
             piocheInondation.remove(piocheInondation.get(0));
+            if (piocheInondation.size()==0){
+                this.remiseDefausse();
+            }
         }
+        
+        
     }
     
     
-    public void remisedefausse(){
+    public void remiseDefausse(){
         ArrayList<Carte> listePioche = this.getPiocheInondation();
         ArrayList<Carte> listeDefausse = this.getDefausseInondation();
         ArrayList<Carte> listeTemp=new ArrayList<>();
         Collections.shuffle(listeDefausse);
         listeTemp=listeDefausse;
-        
-        for (Carte c1 : listePioche) {
+        for (Carte c1 : listePioche){
             listeTemp.add(c1);
         }
         this.setPiocheInondation(listeTemp);
-        ArrayList<Carte> listeVide = new ArrayList<>();
+        ArrayList<Carte> listeVide= new ArrayList<>();
         setDefausseInondation(listeVide);
-    }
+        
+        
+    }    
+    
+    
+    
+    
+    
+    
 }

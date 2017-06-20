@@ -2,6 +2,7 @@ package Aventurier;
 
 import Grille.Grille;
 import Grille.Tuile;
+import Pioches.Carte;
 import java.awt.Color;
 import java.util.ArrayList;
 import static Vues.Utils.EtatTuile.*;
@@ -11,6 +12,7 @@ public abstract class Aventurier {
     private int colonne;
     private int ligne;
     private String noma;
+    private ArrayList<Carte> carteMain;
     
     public Tuile positionCourante;
 
@@ -18,6 +20,7 @@ public abstract class Aventurier {
         this.nomJ = nomJ;
         this.positionCourante = positionCourante;
         this.noma = noma;
+        this.carteMain = new ArrayList<>();
     }
 
     public void setColonne(int colonne) {
@@ -90,6 +93,15 @@ public abstract class Aventurier {
 
     public void setNomJ(String nomJ) {
         this.nomJ = nomJ;
+    }
+
+    public ArrayList<Carte> getCarteMain() {
+        return carteMain;
+    }
+    
+    
+    public void addCarte(Carte carte){
+        this.getCarteMain().add(carte);
     }
     
 }

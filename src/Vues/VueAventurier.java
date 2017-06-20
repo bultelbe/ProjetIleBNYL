@@ -1,6 +1,7 @@
 package Vues;
 
 import Grille.Grille;
+import Grille.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -21,7 +22,6 @@ import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
 import projetilebnyl.Observateur;
-import projetilebnyl.Tuile;
 import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 

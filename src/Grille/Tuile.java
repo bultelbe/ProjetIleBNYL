@@ -45,7 +45,7 @@ public class Tuile {
         this.ligne = ligne - 1;
     }
 
-    public EtatTuile getStatut() {
+    public EtatTuile getStatut() { x
         return this.statut;
     }
 
