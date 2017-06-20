@@ -1,6 +1,5 @@
 package Aventurier;
 
-import Aventurier.Aventurier;
 import Grille.Tuile;
 import java.awt.Color;
 import Vues.Utils;
