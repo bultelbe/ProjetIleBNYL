@@ -1,8 +1,10 @@
 package projetilebnyl;
 
 
+import Pioches_Tresor.Carte;
+import Pioches_Tresor.CarteInondations;
+import Pioches_Tresor.CarteTresors;
 import Aventurier.*;
-import Pioches.*;
 
 import Vues.VueAventurier;
 import Aventurier.Plongeur;
@@ -14,6 +16,7 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
+import Pioches_Tresor.Tresor;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import static java.lang.Integer.parseInt;
@@ -39,7 +42,11 @@ public class Controleur implements Observateur{
     private int niveauEau =0;
     private Aventurier aventurierCourant;
     private CarteTresors tresor= new CarteTresors();
-    private CarteInondations inondations= new CarteInondations(grille);
+    private CarteInondations inondations= new CarteInondations();
+    private Tresor cristal = new Tresor(CRISTAL.toString());
+    private Tresor statute = new Tresor(STATUE.toString());
+    private Tresor pierre = new Tresor(PIERRE.toString());
+    private Tresor calice = new Tresor(CALICE.toString());
 
     public Controleur() {
         
@@ -259,8 +266,6 @@ public class Controleur implements Observateur{
         this.niveauEau = niveauEau;
     }
     
-    
-    
     public void piocherTresor(){
         Boolean eauxPioche = false;
         Carte eaux = new Carte(EAUX);
@@ -290,5 +295,16 @@ public class Controleur implements Observateur{
     
     public void piocherInnodation(){
         inondations.piocheInondation(getNiveauEau(),getGrille());       
+    }
+    
+    public void initGrille(Grille grille,CarteInondations inondations){
+    for (int i = 0; i < 5; i++){
+            inondations.getDefausseInondation().add(inondations.getPiocheInondation().get(0));
+            Tuile t1=grille.getTuile(inondations.getPiocheInondation().get(0).getNomCarte());
+            t1.setStatut(INONDEE);
+
+            
+            inondations.getPiocheInondation().remove(inondations.getPiocheInondation().get(0));
+        }
     }
 }

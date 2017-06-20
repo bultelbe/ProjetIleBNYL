@@ -2,7 +2,7 @@ package Aventurier;
 
 import Grille.Grille;
 import Grille.Tuile;
-import Pioches.Carte;
+import Pioches_Tresor.Carte;
 import java.awt.Color;
 import java.util.ArrayList;
 import static Vues.Utils.EtatTuile.*;
