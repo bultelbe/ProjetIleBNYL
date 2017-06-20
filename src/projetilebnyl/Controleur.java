@@ -48,7 +48,7 @@ public class Controleur implements Observateur{
     public Controleur() {
         
         grille = new Grille();        
-        //initGrille();
+        initGrille();
         piocheCarteTresor.addPioche(Helicoptere1);
         piocheCarteTresor.addPioche(Helicoptere2);
         piocheCarteTresor.addPioche(Helicoptere3);
