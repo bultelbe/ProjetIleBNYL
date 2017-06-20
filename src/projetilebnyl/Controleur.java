@@ -226,6 +226,8 @@ public class Controleur implements Observateur{
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+        
+        getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
         
     }
