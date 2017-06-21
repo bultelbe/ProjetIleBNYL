@@ -202,12 +202,12 @@ public class Controleur implements Observateur{
                     
                 } else {
                     System.out.println("\nFin de partie ! Vous avez perdu.");
-                    getVueAventurier().btnAller.setEnabled(false);
-                    getVueAventurier().btnAssecher.setEnabled(false);
-                    getVueAventurier().btnCarteSpe.setEnabled(false);
-                    getVueAventurier().btnEchangeCarte.setEnabled(false);
-                    getVueAventurier().btnRecupTresor.setEnabled(false);
-                    getVueAventurier().btnTerminerTour.setEnabled(false);
+                    getVueAventurier().getBtnAller().setEnabled(false);
+                    getVueAventurier().getBtnAssecher().setEnabled(false);
+                    getVueAventurier().getBtnCarteSpe().setEnabled(false);
+                    getVueAventurier().getBtnEchangeCarte().setEnabled(false);
+                    getVueAventurier().getBtnRecupTresor().setEnabled(false);
+                    getVueAventurier().getBtnTerminerTour().setEnabled(false);
                     break;
                 }
             }
