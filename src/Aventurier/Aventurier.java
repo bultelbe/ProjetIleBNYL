@@ -100,7 +100,11 @@ public abstract class Aventurier {
     public ArrayList<Carte> getCarteMain() {
         return carteMain;
     }
-    
+
+    public void setCarteMain(ArrayList<Carte> carteMain) {
+        this.carteMain = carteMain;
+    }
+       
     public void addCarte(Carte carte){
         this.getCarteMain().add(carte);
     }
