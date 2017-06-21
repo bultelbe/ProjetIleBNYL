@@ -351,6 +351,9 @@ public class Controleur implements Observateur{
             case CLIC_BoutonValider:
                 deplace(getAventurierCourant());
                 break;
+            case CLIC_BoutonEchange:
+                echangeDeCarte();
+                break;
         }
     }
 
