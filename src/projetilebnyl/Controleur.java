@@ -182,7 +182,6 @@ public class Controleur implements Observateur{
         this.TourDeJeu();
     }
     
-
     public void passerJoueurSuivant() {
         
         this.piocherInnodation();
@@ -211,12 +210,10 @@ public class Controleur implements Observateur{
         return this.vueAventurier;
     }
     
-    
     public void setVueAvt (VueAventurier vueAvt) {
         this.vueAventurier = vueAvt;
     }
 
-    
     public void deplacementJoueurObligatoire(Aventurier avt) {
         this.getVueAventurier().updateCellules(getGrille());
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
@@ -250,9 +247,7 @@ public class Controleur implements Observateur{
         
         getVueAventurier().updateCellules(grille);
     }
-    
-    
-    
+      
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -285,8 +280,7 @@ public class Controleur implements Observateur{
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
-    
-    
+     
     public void traiterMessage(Message m) {
         switch(m) {
             case CLIC_BoutonAller:
@@ -389,15 +383,13 @@ public class Controleur implements Observateur{
         calice.setSanctuaire2(grille);
     }
     
-    
     public boolean possibleMouvement(Aventurier avt){
         return avt.deplacementsPossibles(grille).size() > 0 ||
                 (avt.getCarteMain().contains(Helicoptere1)) ||
                 (avt.getCarteMain().contains(Helicoptere2)) ||
                 (avt.getCarteMain().contains(Helicoptere3));
     }
-    
-    
+      
     public boolean continuer(){
         return (cristal.recuperable() && statute.recuperable() &&
                 pierre.recuperable() && calice.recuperable() &&
@@ -405,5 +397,31 @@ public class Controleur implements Observateur{
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
     }
     
+private boolean joueurHeliport(){
+        Boolean surHeliport=true;
+        for(Aventurier avt : joueurs){
+            if(avt.getPositionCourante().getNomCase()!= "Héliport"){
+                surHeliport=false;
+            }
+        }
+        return surHeliport;
+    }
+    
+    private boolean possedeHelico(){
+        boolean helico=false;
+        for(Aventurier avt : joueurs){
+            for(Carte c: avt.getCarteMain())
+                if(c.getNomCarte()== HELICOPTERE.toString()){
+                    helico=true;
+                }
+        }
+        return helico;
+    }
+
+    public boolean gagner(){
+        return(cristal.getRecupere() && statute.getRecupere() &&
+                pierre.getRecupere() && calice.getRecupere() &&
+                joueurHeliport() && possedeHelico());
+    }
 
 }
