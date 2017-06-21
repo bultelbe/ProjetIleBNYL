@@ -333,19 +333,6 @@ public class VueAventurier  {
         for(int i=0;i<controleur.getAventurierCourant().getCarteMain().size();i++){
             String nomCarte =controleur.getAventurierCourant().getCarteMain().get(i).getNomCarte();
             cartesLabels.get(i).setText(nomCarte);
-            
-            
-            
-            
-            /*while(j<cartesLabels.size()){
-                cartesLabels.get(j).setText("pas de cartes");
-                if( !("pas de cartes".equals(cartesLabels.get(j).getText()))){
-                        j=+1;
-                    }else{
-                        cartesLabels.get(j).setText(nomCarte);
-                        j=+1;
-                }
-            }*/
         }
     }
 
