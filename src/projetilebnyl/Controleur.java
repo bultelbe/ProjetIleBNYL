@@ -184,10 +184,8 @@ public class Controleur implements Observateur{
     
     public void passerJoueurSuivant() {
         
-        this.piocherInnodation();
-        this.getVueAventurier().updateCellules(getGrille());
-        
-        for (int i = 0; i < joueurs.size(); i++) {
+        this.piocherInnodation();        
+        /*for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 System.out.println(joueurs.get(i).getNoma() + " doit immédiatement quitter " + joueurs.get(i).getPositionCourante().getNomCase() + " et se déplacer sur une autre tuile !");
                 
@@ -197,13 +195,19 @@ public class Controleur implements Observateur{
                     deplacementJoueurObligatoire(joueurs.get(i));
                 }
             }
-        }
+        }*/
 
         piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
-
+        this.getVueAventurier().carteMainJoueurCourant();
+        this.getVueAventurier().updateCellules(getGrille());
+        
+        for(int i=0;i<this.getAventurierCourant().getCarteMain().size();i++){
+        
+        System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
+        }
     }
     
     public VueAventurier getVueAventurier() {
@@ -244,7 +248,6 @@ public class Controleur implements Observateur{
         }
         
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
-        
         getVueAventurier().updateCellules(grille);
     }
       
@@ -355,6 +358,7 @@ public class Controleur implements Observateur{
                 }
             }
         }
+        
     }
     
     public void piocherInnodation(){
