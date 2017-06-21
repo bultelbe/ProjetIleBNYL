@@ -20,6 +20,7 @@ import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.VueAventurier;
+import Vues.VueDeplacement;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -239,6 +240,13 @@ public class Controleur implements Observateur{
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
 
+        
+        
+        
+        
+        
+        
+        
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
@@ -272,7 +280,6 @@ public class Controleur implements Observateur{
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-        
         
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
@@ -312,6 +319,8 @@ public class Controleur implements Observateur{
             case CLIC_BoutonTerminer:
                 passerJoueurSuivant();
                 break;
+            case CLIC_BoutonValider:
+                deplacementJoueurObligatoire(getAventurierCourant());
         }
     }
 

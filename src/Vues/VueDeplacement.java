@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 import javax.swing.*;
 import projetilebnyl.Controleur;
+import static projetilebnyl.Message.CLIC_BoutonValider;
 
 /**
  *
@@ -29,7 +30,8 @@ public class VueDeplacement {
     private JLabel X;
     private JLabel Y;
     private Controleur c;
-
+    private int x=0;
+    private int y=0;
     /**
      * @param args the command line arguments
      */
@@ -88,8 +90,9 @@ public class VueDeplacement {
         valider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int x = parseInt(textX.getText());
-                int y = parseInt(textY.getText());
+                x= parseInt(textX.getText());
+                y = parseInt(textY.getText());
+                c.traiterMessage(CLIC_BoutonValider);
             }
         });
     }
@@ -97,6 +100,16 @@ public class VueDeplacement {
     public void afficher(){
         this.window.setVisible(true);
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+    
+    
     
     public static void main(String[] args) {
         // TODO code application logic here
