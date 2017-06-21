@@ -275,7 +275,7 @@ public class Controleur implements Observateur{
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
         
-        /*
+        
         getVueDeplacement().afficher();
     }
     
