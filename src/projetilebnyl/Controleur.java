@@ -273,6 +273,7 @@ public class Controleur implements Observateur{
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
         
+        
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
