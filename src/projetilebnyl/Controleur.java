@@ -458,27 +458,39 @@ public class Controleur implements Observateur{
         this.vueDeplacement = vueDeplacement;
     }
     
-    public void recuperTresor(Tresor tr){
-        int nbCarte=0;
-        if(aventurierCourant.getPositionCourante()== tr.getSanctuaire1() || aventurierCourant.getPositionCourante()== tr.getSanctuaire2()){
-            for(Carte c : aventurierCourant.getCarteMain()){
-                if (c.getNomCarte()==tr.getNom()){
-                    nbCarte=nbCarte+1;
-                }
-            }
-            
-            if (nbCarte>=4 ){
-                tr.setRecupere(true);
-                ArrayList<Carte> cpMain= new ArrayList();
+    public void recuperTresor(){
+        Tresor tr=null;
+        Tuile positionJ= aventurierCourant.getPositionCourante();
+        if(positionJ==cristal.getSanctuaire1() || positionJ==cristal.getSanctuaire2()){
+            tr=cristal;
+        }else if (positionJ==statute.getSanctuaire1() || positionJ==statute.getSanctuaire2()){
+            tr=statute;
+        }else if (positionJ==pierre.getSanctuaire1() || positionJ==pierre.getSanctuaire2()){
+            tr=pierre;
+        }else if (positionJ==calice.getSanctuaire1() || positionJ==calice.getSanctuaire2()){
+            tr=calice;
+        }
+        if(tr!=null){
+            int nbCarte=0;
+            if(aventurierCourant.getPositionCourante()== tr.getSanctuaire1() || aventurierCourant.getPositionCourante()== tr.getSanctuaire2()){
                 for(Carte c : aventurierCourant.getCarteMain()){
-                    if (c.getNomCarte()!=tr.getNom()){
-                        cpMain.add(c);
+                    if (c.getNomCarte()==tr.getNom()){
+                        nbCarte=nbCarte+1;
                     }
                 }
-                aventurierCourant.setCarteMain(cpMain);
-            }        
+
+                if (nbCarte>=4 ){
+                    tr.setRecupere(true);
+                    ArrayList<Carte> cpMain= new ArrayList();
+                    for(Carte c : aventurierCourant.getCarteMain()){
+                        if (c.getNomCarte()!=tr.getNom()){
+                            cpMain.add(c);
+                        }
+                    }
+                    aventurierCourant.setCarteMain(cpMain);
+                }        
+            }
         }
     }
-       
     
 }
