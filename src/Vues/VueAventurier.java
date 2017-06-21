@@ -243,7 +243,11 @@ public class VueAventurier  {
                     }
                 
 
-                panel.repaint();
+                //panel.repaint();
+                panel.invalidate();
+                pion.invalidate();
+                panel.validate();
+                pion.validate();
             }
         
         } 
