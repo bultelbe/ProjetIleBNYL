@@ -140,9 +140,13 @@ public class VueAventurier  {
           
         });
         
-        this.btnCarteSpe.addActionListener((ActionEvent e) -> {});
+        this.btnCarteSpe.addActionListener((ActionEvent e) -> {
+            
+        });
         
-        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {});
+        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {
+            controleur.traiterMessage(CLIC_BoutonEchange);
+        });
         
         this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
         
@@ -284,15 +288,6 @@ public class VueAventurier  {
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase, BorderLayout.CENTER);
             panelCellule.add(panelPion, BorderLayout.NORTH);
-            
-            
-            /*boutonsTuiles = new JButton[36];
-            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
-                boutonsTuiles[i] = new JButton();
-                
-                boutonsTuiles[i].add(nomCase);
-                panelCellule.add(boutonsTuiles[i]);
-            }*/
             
             
             if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {

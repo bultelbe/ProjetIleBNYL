@@ -14,7 +14,6 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
-import Pioches_Tresor.Tresor;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
@@ -52,9 +51,9 @@ public class Controleur implements Observateur{
         
         grille = new Grille();        
         initGrille();
-        piocheCarteTresor.addPioche(Helicoptere1);
-        piocheCarteTresor.addPioche(Helicoptere2);
-        piocheCarteTresor.addPioche(Helicoptere3);
+        piocheCarteTresor.addPiocheTresor(Helicoptere1);
+        piocheCarteTresor.addPiocheTresor(Helicoptere2);
+        piocheCarteTresor.addPiocheTresor(Helicoptere3);
         Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
@@ -309,6 +308,50 @@ public class Controleur implements Observateur{
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
+    
+    public void echangeDeCarte(){
+        ArrayList<Aventurier> echangeurs = new ArrayList<>();
+        
+        for(int i=0;i<joueurs.size();i++){
+            if(aventurierCourant.getPositionCourante()==joueurs.get(i).getPositionCourante() && aventurierCourant!=joueurs.get(i)){
+                echangeurs.add(joueurs.get(i));
+            }
+        }
+        
+        
+        for (Aventurier a : echangeurs) {
+            System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
+            System.out.println("Cartes en sa disposition : ");
+            for(Carte ca : a.getCarteMain()){
+            System.out.println("            "+ca.getNomCarte()+"\n");   
+            }
+        }
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
+        String aventurier = sc.nextLine();
+        
+        for (Aventurier a : echangeurs) {
+            if(aventurier==a.getNoma()){
+                System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                String carte= sc.nextLine();
+                for (Carte ca : aventurierCourant.getCarteMain()) {
+                    if(carte==ca.getNomCarte()){
+                        a.addCarte(ca);
+                        aventurierCourant.getCarteMain().remove(ca);
+                        act=act-1;
+                    }else{
+                        System.out.println("\nVous ne possédez pas cette carte");
+                    }
+                }
+            }else{
+                System.out.println("\nCet aventurier n'est pas disponible pour un échange");
+            }
+        }
+
+       
+        
+    }
      
     public void traiterMessage(Message m) {
         switch(m) {
@@ -368,17 +411,17 @@ public class Controleur implements Observateur{
                 setNiveauEau((getNiveauEau()+1));
 
             } else {
-            aventurierCourant.addCarte(pioche1);
+                aventurierCourant.addCarte(pioche1);
             }
             if (getNiveauEau()<=9 && piocheCarteTresor.getPiocheTresor().size() > 0) {
                 Carte pioche2 =piocheCarteTresor.piocheTresor();
                 
                 if (pioche2.getNomCarte()== eaux.getNomCarte()) {
                     piocheCarteTresor.defausseTresor(pioche2);
-                   setNiveauEau((getNiveauEau()+1));
+                    setNiveauEau((getNiveauEau()+1));
 
                 } else {
-                aventurierCourant.addCarte(pioche2);
+                    aventurierCourant.addCarte(pioche2);
                 }
 
                 if (eauxPioche){
