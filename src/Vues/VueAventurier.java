@@ -140,9 +140,13 @@ public class VueAventurier  {
           
         });
         
-        this.btnCarteSpe.addActionListener((ActionEvent e) -> {});
+        this.btnCarteSpe.addActionListener((ActionEvent e) -> {
+            
+        });
         
-        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {});
+        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {
+            controleur.traiterMessage(CLIC_BoutonEchange);
+        });
         
         this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
         
@@ -173,7 +177,6 @@ public class VueAventurier  {
         bigPanel.add(grilletuile,BorderLayout.CENTER);
         
         for (int i=0; i<36; i++) {
-            
              grilletuile.add(createCellule(i, controleur.getGrille()));
         }
     }  
@@ -224,8 +227,6 @@ public class VueAventurier  {
             cartenom.repaint();
             carte.repaint();
         }
-        
-        
         
         for (int i=0; i<36; i++) {
             JPanel panel = cases.get(i);
@@ -281,18 +282,41 @@ public class VueAventurier  {
             JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase(), SwingConstants.CENTER);
             nomCase.setForeground(Color.white);
             JPanel panelCellule = new JPanel(new BorderLayout());
+            
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase, BorderLayout.CENTER);
             panelCellule.add(panelPion, BorderLayout.NORTH);
             
+            /*panelCellule.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });*/
             
-            /*boutonsTuiles = new JButton[36];
-            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
-                boutonsTuiles[i] = new JButton();
-                
-                boutonsTuiles[i].add(nomCase);
-                panelCellule.add(boutonsTuiles[i]);
-            }*/
+            
+//            boutonsTuiles = new JButton[36];
+//            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
+//                boutonsTuiles[i] = new JButton();
+//                
+//                boutonsTuiles[i].add(nomCase);
+//                panelCellule.add(boutonsTuiles[i]);
+//            }
             
             
             if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {
@@ -337,19 +361,6 @@ public class VueAventurier  {
         for(int i=0;i<controleur.getAventurierCourant().getCarteMain().size();i++){
             String nomCarte =controleur.getAventurierCourant().getCarteMain().get(i).getNomCarte();
             cartesLabels.get(i).setText(nomCarte);
-            
-            
-            
-            
-            /*while(j<cartesLabels.size()){
-                cartesLabels.get(j).setText("pas de cartes");
-                if( !("pas de cartes".equals(cartesLabels.get(j).getText()))){
-                        j=+1;
-                    }else{
-                        cartesLabels.get(j).setText(nomCarte);
-                        j=+1;
-                }
-            }*/
         }
     }
 
