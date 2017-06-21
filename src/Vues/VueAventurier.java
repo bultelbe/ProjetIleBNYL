@@ -38,12 +38,12 @@ public class VueAventurier  {
     private final JPanel mainPanel;
     private final JPanel bigPanel;
     private final JPanel panelCartes;
-    public final JButton btnAller  ;
-    public final JButton btnAssecher;
-    public final JButton btnCarteSpe;
-    public final JButton btnTerminerTour;       
-    public final JButton btnEchangeCarte;
-    public final JButton btnRecupTresor;
+    private final JButton btnAller  ;
+    private final JButton btnAssecher;
+    private final JButton btnCarteSpe;
+    private final JButton btnTerminerTour;       
+    private final JButton btnEchangeCarte;
+    private final JButton btnRecupTresor;
     private final JPanel position;
     private final JPanel grilletuile;
     
@@ -181,9 +181,6 @@ public class VueAventurier  {
         }
     }  
 
-     public JButton getBtnCarteSpe() {
-        return btnCarteSpe;
-    }
 
     public void setPosition(String pos) {
         nomTuile.setText(pos);
@@ -199,6 +196,18 @@ public class VueAventurier  {
 
     public JButton getBtnTerminerTour() {
         return btnTerminerTour;
+    }
+
+    public JButton getBtnCarteSpe() {
+        return btnCarteSpe;
+    }
+
+    public JButton getBtnEchangeCarte() {
+        return btnEchangeCarte;
+    }
+
+    public JButton getBtnRecupTresor() {
+        return btnRecupTresor;
     }
     
     
@@ -257,11 +266,11 @@ public class VueAventurier  {
                     }
                 
 
-                //panel.repaint();
-                panel.invalidate();
+                panel.repaint();
+                /*panel.invalidate();
                 pion.invalidate();
                 panel.validate();
-                pion.validate();
+                pion.validate();*/
             }
         
         }
@@ -352,6 +361,8 @@ public class VueAventurier  {
     public JPanel getGrilletuile() {
         return grilletuile;
     }
+    
+    
     public void carteMainJoueurCourant(){
         
         for(int i=0;i<cartesLabels.size();i++){
