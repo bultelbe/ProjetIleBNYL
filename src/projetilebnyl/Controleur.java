@@ -48,6 +48,7 @@ public class Controleur implements Observateur{
     
     private VueDeplacement vueDeplacement;
 
+    
     public Controleur() {
         
         grille = new Grille();        
@@ -189,7 +190,7 @@ public class Controleur implements Observateur{
     public void passerJoueurSuivant() {
         
         this.piocherInnodation();        
-        /*for (int i = 0; i < joueurs.size(); i++) {
+        for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 
                 if (possibleMouvement(joueurs.get(i)) == true) {
@@ -198,9 +199,7 @@ public class Controleur implements Observateur{
                     act ++;
                     joueurs.get(i).deplacementsPossibles(getGrille());
                     deplacementJoueurObligatoire(joueurs.get(i));
-                    this.getVueAventurier().updateCellules(getGrille());
-                    getVueAventurier().updateAventurier(joueurs.get(i).getNomJ(), joueurs.get(i).getNoma(), joueurs.get(i).getColor(), joueurs.get(i).getPositionCourante().getNomCase());
-                
+                    
                 } else {
                     System.out.println("\nFin de partie ! Vous avez perdu.");
                     getVueAventurier().btnAller.setEnabled(false);
@@ -212,7 +211,7 @@ public class Controleur implements Observateur{
                     break;
                 }
             }
-        }*/
+        }
 
         piocherTresor();
         act = 3;
@@ -238,34 +237,21 @@ public class Controleur implements Observateur{
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
+        vueDeplacement = new VueDeplacement(this);
+
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
-        String tuileX = sc.nextLine();
-        int x = parseInt(tuileX);
-
-        System.out.print("\nY : ");
-        String tuileY = sc.nextLine();
-        int y = parseInt(tuileY);
-
-        Tuile t = grille.getTuile(x, y);
-
-        if (tuilesPossibles.contains(t)) {
-            avt.setPositionCourante(t);
-            System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-            act = act - 1;
-        } else {
-            System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
-        }
+        
+        getVueDeplacement().afficher();
 
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
 
         getVueAventurier().updateCellules(grille);
     }
        
+    
+    
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -280,9 +266,10 @@ public class Controleur implements Observateur{
     }
     
     
-    public void deplace() {        
+    
+    public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
-        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        tuilesPossibles = avt.deplacementsPossibles(grille);
         
         int x = getVueDeplacement().getX();
         int y = getVueDeplacement().getY();
@@ -290,20 +277,23 @@ public class Controleur implements Observateur{
         Tuile t = grille.getTuile(x, y);
 
         if (tuilesPossibles.contains(t)) {
-            aventurierCourant.setPositionCourante(t);
-            System.out.println("Vous vous êtes déplacés sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+            avt.setPositionCourante(t);
+            System.out.println(avt.getNoma() + " s'est déplacé sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
             act = act - 1;
+            
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
         
-        getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+        getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
         
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
     
-    public void echangeDeCarte(){
+    
+    
+    public void echangeDeCarte() {
         ArrayList<Aventurier> echangeurs = new ArrayList<>();
         
         for(int i=0;i<joueurs.size();i++){
@@ -311,8 +301,7 @@ public class Controleur implements Observateur{
                 echangeurs.add(joueurs.get(i));
             }
         }
-        
-        
+                
         for (Aventurier a : echangeurs) {
             System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
             System.out.println("Cartes en sa disposition : ");
@@ -326,14 +315,15 @@ public class Controleur implements Observateur{
         String aventurier = sc.nextLine();
         
         for (Aventurier a : echangeurs) {
-            if(aventurier==a.getNoma()){
+            if(aventurier==a.getNoma()) {
                 System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
                 String carte= sc.nextLine();
+                
                 for (Carte ca : aventurierCourant.getCarteMain()) {
-                    if(carte==ca.getNomCarte()){
+                    if(carte == ca.getNomCarte()) {
                         a.addCarte(ca);
                         aventurierCourant.getCarteMain().remove(ca);
-                        act=act-1;
+                        act = act-1;
                     }else{
                         System.out.println("\nVous ne possédez pas cette carte");
                     }
@@ -343,8 +333,6 @@ public class Controleur implements Observateur{
             }
         }
 
-       
-        
     }
      
     public void traiterMessage(Message m) {
@@ -361,7 +349,7 @@ public class Controleur implements Observateur{
                 passerJoueurSuivant();
                 break;
             case CLIC_BoutonValider:
-                deplace();
+                deplace(getAventurierCourant());
                 break;
         }
     }
