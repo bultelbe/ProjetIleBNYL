@@ -30,8 +30,8 @@ public class VueDeplacement {
     private JLabel X;
     private JLabel Y;
     private Controleur c;
-    private int x=0;
-    private int y=0;
+    private int x;
+    private int y;
     /**
      * @param args the command line arguments
      */
@@ -90,8 +90,8 @@ public class VueDeplacement {
         valider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                x= parseInt(textX.getText());
-                y = parseInt(textY.getText());
+                x = getX();
+                y = getY();
                 c.traiterMessage(CLIC_BoutonValider);
             }
         });
@@ -102,11 +102,11 @@ public class VueDeplacement {
     }
 
     public int getX() {
-        return x;
+        return parseInt(textX.getText());
     }
 
     public int getY() {
-        return y;
+        return parseInt(textY.getText());
     }
     
     

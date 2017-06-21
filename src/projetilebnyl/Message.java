@@ -14,6 +14,7 @@ public enum Message {
     CLIC_BoutonTerminer,
     CLIC_BoutonAssecher,
     CLIC_BoutonAutreAction,
+    CLIC_BoutonDemarrer,
     CLIC_BoutonValider;
     
 }
