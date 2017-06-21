@@ -13,6 +13,7 @@ import static java.lang.Integer.parseInt;
 import javax.swing.*;
 import projetilebnyl.Controleur;
 import static projetilebnyl.Message.CLIC_BoutonValider;
+import static java.lang.Integer.parseInt;
 
 /**
  *
@@ -30,14 +31,15 @@ public class VueDeplacement {
     private JLabel X;
     private JLabel Y;
     private Controleur c;
-    private int x;
-    private int y;
+    private Integer x;
+    private Integer y;
     /**
      * @param args the command line arguments
      */
     
-    
-    public VueDeplacement() {
+
+    public VueDeplacement(Controleur c) {
+        this.c = c;
         this.window = new JFrame();
         window.setSize(450, 250); 
         window.setTitle("Deplacement");
@@ -75,20 +77,15 @@ public class VueDeplacement {
             }
         }
         
-        valider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                x = getX();
-                y = getY();
-                c.traiterMessage(CLIC_BoutonValider);
-            }
-        });
+        
         
         southPanel.add(valider, SwingConstants.CENTER);
         
         mainPanel.add(grillePanel, BorderLayout.CENTER);
         mainPanel.add(seDeplacer, BorderLayout.NORTH);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
+        
+//        window.setLocationRelativeTo(null);
         
         window.add(mainPanel);
         
@@ -97,26 +94,28 @@ public class VueDeplacement {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
         
+        valider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                x = getX();
+                y = getY();
+                c.traiterMessage(CLIC_BoutonValider);
+                window.setVisible(false); 
+                window.dispose();
+            }
+        });
     }
     
-    public void afficher(){
+    public void afficher() {
         this.window.setVisible(true);
     }
-
+    
     public int getX() {
         return parseInt(textX.getText());
     }
-
+    
     public int getY() {
         return parseInt(textY.getText());
     }
-    
-    
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-        VueDeplacement V1 = new VueDeplacement();
-        V1.afficher();
-    }
-    
+        
 }

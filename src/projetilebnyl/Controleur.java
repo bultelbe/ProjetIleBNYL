@@ -14,7 +14,6 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
-import Pioches_Tresor.Tresor;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
@@ -53,9 +52,10 @@ public class Controleur implements Observateur{
         
         grille = new Grille();        
         initGrille();
-        piocheCarteTresor.addPioche(Helicoptere1);
-        piocheCarteTresor.addPioche(Helicoptere2);
-        piocheCarteTresor.addPioche(Helicoptere3);
+        piocheCarteTresor.addPiocheTresor(Helicoptere1);
+        piocheCarteTresor.addPiocheTresor(Helicoptere2);
+        piocheCarteTresor.addPiocheTresor(Helicoptere3);
+        Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
@@ -226,18 +226,15 @@ public class Controleur implements Observateur{
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-    
-    
+     
     public VueAventurier getVueAventurier() {
         return this.vueAventurier;
     }
-    
-    
+      
     public void setVueAvt (VueAventurier vueAvt) {
         this.vueAventurier = vueAvt;
     }
-
-    
+  
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -268,33 +265,27 @@ public class Controleur implements Observateur{
 
         getVueAventurier().updateCellules(grille);
     }
-    
-    
-    
+       
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement();
+        vueDeplacement = new VueDeplacement(this);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
         
-        
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
-        String tuileX = sc.nextLine();
-        int x = parseInt(tuileX);
-
-        System.out.print("\nY : ");
-        String tuileY = sc.nextLine();
-        int y = parseInt(tuileY);
-        
         /*
         getVueDeplacement().afficher();
-        int x = vueDeplacement.getX();
-        int y = vueDeplacement.getY();
-        */
+    }
+    
+    
+    public void deplace() {        
+        ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
+        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        
+        int x = getVueDeplacement().getX();
+        int y = getVueDeplacement().getY();
         
         Tuile t = grille.getTuile(x, y);
 
@@ -311,6 +302,50 @@ public class Controleur implements Observateur{
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
+    
+    public void echangeDeCarte(){
+        ArrayList<Aventurier> echangeurs = new ArrayList<>();
+        
+        for(int i=0;i<joueurs.size();i++){
+            if(aventurierCourant.getPositionCourante()==joueurs.get(i).getPositionCourante() && aventurierCourant!=joueurs.get(i)){
+                echangeurs.add(joueurs.get(i));
+            }
+        }
+        
+        
+        for (Aventurier a : echangeurs) {
+            System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
+            System.out.println("Cartes en sa disposition : ");
+            for(Carte ca : a.getCarteMain()){
+            System.out.println("            "+ca.getNomCarte()+"\n");   
+            }
+        }
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
+        String aventurier = sc.nextLine();
+        
+        for (Aventurier a : echangeurs) {
+            if(aventurier==a.getNoma()){
+                System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                String carte= sc.nextLine();
+                for (Carte ca : aventurierCourant.getCarteMain()) {
+                    if(carte==ca.getNomCarte()){
+                        a.addCarte(ca);
+                        aventurierCourant.getCarteMain().remove(ca);
+                        act=act-1;
+                    }else{
+                        System.out.println("\nVous ne possédez pas cette carte");
+                    }
+                }
+            }else{
+                System.out.println("\nCet aventurier n'est pas disponible pour un échange");
+            }
+        }
+
+       
+        
+    }
      
     public void traiterMessage(Message m) {
         switch(m) {
@@ -326,10 +361,7 @@ public class Controleur implements Observateur{
                 passerJoueurSuivant();
                 break;
             case CLIC_BoutonValider:
-                deplacementJoueurObligatoire(getAventurierCourant());
-                break;
-            case CLIC_BoutonDemarrer:
-                setNiveauEau(vueInscription.getNiveauEau());
+                deplace();
                 break;
         }
     }
@@ -374,17 +406,17 @@ public class Controleur implements Observateur{
                 setNiveauEau((getNiveauEau()+1));
 
             } else {
-            aventurierCourant.addCarte(pioche1);
+                aventurierCourant.addCarte(pioche1);
             }
             if (getNiveauEau()<=9 && piocheCarteTresor.getPiocheTresor().size() > 0) {
                 Carte pioche2 =piocheCarteTresor.piocheTresor();
                 
                 if (pioche2.getNomCarte()== eaux.getNomCarte()) {
                     piocheCarteTresor.defausseTresor(pioche2);
-                   setNiveauEau((getNiveauEau()+1));
+                    setNiveauEau((getNiveauEau()+1));
 
                 } else {
-                aventurierCourant.addCarte(pioche2);
+                    aventurierCourant.addCarte(pioche2);
                 }
 
                 if (eauxPioche){
@@ -469,5 +501,28 @@ public class Controleur implements Observateur{
     public void setVueDeplacement(VueDeplacement vueDeplacement) {
         this.vueDeplacement = vueDeplacement;
     }
+    
+    public void recuperTresor(Tresor tr){
+        int nbCarte=0;
+        if(aventurierCourant.getPositionCourante()== tr.getSanctuaire1() || aventurierCourant.getPositionCourante()== tr.getSanctuaire2()){
+            for(Carte c : aventurierCourant.getCarteMain()){
+                if (c.getNomCarte()==tr.getNom()){
+                    nbCarte=nbCarte+1;
+                }
+            }
+            
+            if (nbCarte>=4 ){
+                tr.setRecupere(true);
+                ArrayList<Carte> cpMain= new ArrayList();
+                for(Carte c : aventurierCourant.getCarteMain()){
+                    if (c.getNomCarte()!=tr.getNom()){
+                        cpMain.add(c);
+                    }
+                }
+                aventurierCourant.setCarteMain(cpMain);
+            }        
+        }
+    }
+       
     
 }
