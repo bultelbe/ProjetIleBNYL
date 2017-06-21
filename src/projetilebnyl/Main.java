@@ -5,6 +5,7 @@
  */
 package projetilebnyl;
 
+import Pioches_Tresor.Carte;
 import Vues.VueAventurier;
 
 /**
@@ -19,7 +20,7 @@ public class Main {
         Controleur controleur = new Controleur();
         VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor(), controleur);
         controleur.setVueAvt(vueAvt);
-        
+        System.out.println(vueAvt.getCartesLabels().get(0).getText());         
     }
     
 }

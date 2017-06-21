@@ -52,8 +52,9 @@ public class VueAventurier  {
     private Observateur controleur;
     private HashMap<Integer,JPanel> cases=new HashMap();
     private HashMap<Integer,JPanel> pions=new HashMap();
-    private HashMap<Integer,JLabel> labels=new HashMap();
     private HashMap<Integer,JPanel> cartes=new HashMap();
+    private HashMap<Integer,JLabel> labels=new HashMap();
+    private HashMap<Integer,JLabel> cartesLabels=new HashMap();
     private JButton [] boutonsTuiles;
     
     
@@ -153,13 +154,16 @@ public class VueAventurier  {
         bigPanel.add(this.panelCartes, BorderLayout.EAST);
         for(int i=0;i<9;i++){
             JPanel panelCarte = new JPanel(new BorderLayout());
-            panelCarte.add(new JLabel("pas de cartes",SwingConstants.CENTER),BorderLayout.CENTER);
+            JLabel carte = new JLabel("pas de cartes",SwingConstants.CENTER);
+            panelCarte.add(carte ,BorderLayout.CENTER);
             panelCarte.setBorder(BorderFactory.createLineBorder(Color.black, 1));
             panelCartes.add(panelCarte);
+            cartesLabels.put(i, carte);
             cartes.put(i, panelCarte);
+            
         }
         
-        
+        // =================================================================================
         
         this.window.setVisible(true);
         mainPanel.repaint();
@@ -214,6 +218,15 @@ public class VueAventurier  {
     
     public void updateCellules(Grille grilleListe) {
         
+        for(int i=0;i<cartes.size();i++){
+            JPanel carte = cartes.get(i);
+            JLabel cartenom = cartesLabels.get(i);
+            cartenom.repaint();
+            carte.repaint();
+        }
+        
+        
+        
         for (int i=0; i<36; i++) {
             JPanel panel = cases.get(i);
             JPanel pion = pions.get(i);
@@ -223,17 +236,17 @@ public class VueAventurier  {
                 pions.get(i).removeAll();
                 
                 for(int k=0; k<6; k++){
-                    if(labels.get(i).getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
+                    if(labels.get(i).getText() == controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                         PionJoueur pionJ = controleur.getJoueurs().get(k).getPionjoueur();
                         pion.add(pionJ);
                         pionJ.repaint();
                     }
                 }
-                if (grilleListe.getTuilesGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
+                if (grilleListe.getTuilesGrille().get(i).getStatut() == ASSECHEE) {
                        panel.setBackground(Color.DARK_GRAY);
                        pion.setBackground(Color.DARK_GRAY);
                        
-                    } else if (grilleListe.getTuilesGrille().get(i).getStatut()== EtatTuile.INONDEE) {
+                    } else if (grilleListe.getTuilesGrille().get(i).getStatut()== INONDEE) {
                         panel.setBackground(Color.ORANGE);
                         pion.setBackground(Color.ORANGE);
                     
@@ -243,10 +256,14 @@ public class VueAventurier  {
                     }
                 
 
-                panel.repaint();
+                //panel.repaint();
+                panel.invalidate();
+                pion.invalidate();
+                panel.validate();
+                pion.validate();
             }
         
-        } 
+        }
     }
     
  
@@ -311,5 +328,34 @@ public class VueAventurier  {
     public JPanel getGrilletuile() {
         return grilletuile;
     }
+    public void carteMainJoueurCourant(){
+        
+        for(int i=0;i<cartesLabels.size();i++){
+            cartesLabels.get(i).setText("pas de cartes");  
+        }
+        
+        for(int i=0;i<controleur.getAventurierCourant().getCarteMain().size();i++){
+            String nomCarte =controleur.getAventurierCourant().getCarteMain().get(i).getNomCarte();
+            cartesLabels.get(i).setText(nomCarte);
+            
+            
+            
+            
+            /*while(j<cartesLabels.size()){
+                cartesLabels.get(j).setText("pas de cartes");
+                if( !("pas de cartes".equals(cartesLabels.get(j).getText()))){
+                        j=+1;
+                    }else{
+                        cartesLabels.get(j).setText(nomCarte);
+                        j=+1;
+                }
+            }*/
+        }
+    }
+
+    public HashMap<Integer, JLabel> getCartesLabels() {
+        return cartesLabels;
+    }
+    
     
 }
