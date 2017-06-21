@@ -158,6 +158,9 @@ public class VueInscription {
             }
         }
         
+        
+        
+        
         boutonPanel = new JPanel(new BorderLayout());
         demarrer = new JButton("Démarrer");
         quitter = new JButton("Quitter");

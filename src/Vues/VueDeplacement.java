@@ -23,6 +23,8 @@ public class VueDeplacement {
     private JFrame window;
     private JPanel mainPanel;
     private JPanel grillePanel;
+    private JPanel areaPanel;
+    private JTextArea coordonee;
     private JTextField textX;
     private JTextField textY;
     private JButton valider;
@@ -41,7 +43,7 @@ public class VueDeplacement {
     public VueDeplacement(Controleur c) {
         this.c = c;
         this.window = new JFrame();
-        window.setSize(450, 250); 
+        window.setSize(600, 450); 
         window.setTitle("Deplacement");
         
         mainPanel = new JPanel(new BorderLayout());
@@ -77,10 +79,20 @@ public class VueDeplacement {
             }
         }
         
+        coordonee = new JTextArea(24,1);
+        //JScrollPane scroll = new JScrollPane(coordonee);
+        coordonee.setEditable(false);
         
+        for (Tuile t : c.getAventurierCourant().deplacementsPossibles(c.getGrille())){
+            coordonee.append(t.getNomCase() + " (" + t.getColonne() +','+ t.getLigne() + ") " + t.getStatut() + "\n");
+        }
+        
+        areaPanel = new JPanel(new BorderLayout());
+        //areaPanel.add(scroll,BorderLayout.EAST);
+        areaPanel.add(coordonee,BorderLayout.CENTER);
         
         southPanel.add(valider, SwingConstants.CENTER);
-        
+        mainPanel.add(areaPanel,BorderLayout.EAST);
         mainPanel.add(grillePanel, BorderLayout.CENTER);
         mainPanel.add(seDeplacer, BorderLayout.NORTH);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
