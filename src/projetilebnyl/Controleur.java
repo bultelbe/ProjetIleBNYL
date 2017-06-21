@@ -89,7 +89,7 @@ public class Controleur implements Observateur{
         } else {
             Scanner sc = new Scanner(System.in);
             
-            if (aventurierCourant.getNoma() == "Ingenieur") {
+            if ("Ingenieur".equals(aventurierCourant.getNoma())) {
                 
                 System.out.println("Combien de tuiles voulez-vous assécher (2 maximum) ?");
                 String nbrActions = sc.nextLine();
@@ -187,12 +187,25 @@ public class Controleur implements Observateur{
         this.piocherInnodation();        
         /*for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
-                System.out.println(joueurs.get(i).getNoma() + " doit immédiatement quitter " + joueurs.get(i).getPositionCourante().getNomCase() + " et se déplacer sur une autre tuile !");
                 
                 if (possibleMouvement(joueurs.get(i)) == true) {
+                    System.out.println(joueurs.get(i).getNoma() + " doit immédiatement quitter " + joueurs.get(i).getPositionCourante().getNomCase()
+                        + " et se déplacer sur une autre tuile !");
                     act ++;
                     joueurs.get(i).deplacementsPossibles(getGrille());
                     deplacementJoueurObligatoire(joueurs.get(i));
+                    this.getVueAventurier().updateCellules(getGrille());
+                    getVueAventurier().updateAventurier(joueurs.get(i).getNomJ(), joueurs.get(i).getNoma(), joueurs.get(i).getColor(), joueurs.get(i).getPositionCourante().getNomCase());
+                
+                } else {
+                    System.out.println("Fin de partie ! Vous avez perdu.");
+                    getVueAventurier().btnAller.setEnabled(false);
+                    getVueAventurier().btnAssecher.setEnabled(false);
+                    getVueAventurier().btnCarteSpe.setEnabled(false);
+                    getVueAventurier().btnEchangeCarte.setEnabled(false);
+                    getVueAventurier().btnRecupTresor.setEnabled(false);
+                    getVueAventurier().btnTerminerTour.setEnabled(false);
+                    break;
                 }
             }
         }*/
@@ -210,20 +223,20 @@ public class Controleur implements Observateur{
         }
     }
     
+    
     public VueAventurier getVueAventurier() {
         return this.vueAventurier;
     }
+    
     
     public void setVueAvt (VueAventurier vueAvt) {
         this.vueAventurier = vueAvt;
     }
 
+    
     public void deplacementJoueurObligatoire(Aventurier avt) {
-        this.getVueAventurier().updateCellules(getGrille());
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
-        
-        
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
@@ -246,11 +259,14 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        
+
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
+
         getVueAventurier().updateCellules(grille);
     }
-      
+    
+    
+    
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -361,7 +377,7 @@ public class Controleur implements Observateur{
         
     }
     
-    public void piocherInnodation(){
+    public void piocherInnodation() {
         piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
     
@@ -376,7 +392,7 @@ public class Controleur implements Observateur{
         }
     }
 
-    public void initTresor(){
+    public void initTresor() {
         cristal.setSanctuaire1(grille);
         cristal.setSanctuaire2(grille);
         statute.setSanctuaire1(grille);

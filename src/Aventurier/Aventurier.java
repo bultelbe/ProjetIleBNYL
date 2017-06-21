@@ -61,7 +61,7 @@ public abstract class Aventurier {
         
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         ArrayList<Tuile> tuilesAdj = new ArrayList<>();
-        tuilesAdj=(grille.getListeTuileAdj(positionCourante));
+        tuilesAdj = grille.getListeTuileAdj(positionCourante);
         
         for (Tuile t : tuilesAdj) {
             if (t.getStatut() != COULEE) {
