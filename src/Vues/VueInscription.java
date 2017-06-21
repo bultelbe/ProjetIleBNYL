@@ -63,6 +63,7 @@ public class VueInscription {
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
     public VueInscription (){
+        //this.c = c;
         this.window = new JFrame();
         window.setSize(600, 340); 
         window.setTitle("L'Île interdite");

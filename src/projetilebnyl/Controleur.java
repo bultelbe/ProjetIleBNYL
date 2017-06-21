@@ -18,13 +18,14 @@ import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
-import Vues.VueAventurier;
-import Vues.VueDeplacement;
+import Vues.*;
+
 
 public class Controleur implements Observateur{
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
+    public VueInscription vueInscription;
 
     private final Tuile spawnMessager;
     private final Tuile spawnPlongeur;
@@ -33,7 +34,7 @@ public class Controleur implements Observateur{
     private final Tuile spawnPilote;
     private final Tuile spawnExplorateur;
     private int act = 3;
-    private int niveauEau =0;
+    private int niveauEau;
     private Aventurier aventurierCourant;
     private CarteTresors piocheCarteTresor= new CarteTresors();
     private CarteInondations piocheCarteInondations= new CarteInondations();
@@ -268,25 +269,23 @@ public class Controleur implements Observateur{
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement();
+        vueDeplacement = new VueDeplacement(this);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-        /*
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
-        String tuileX = sc.nextLine();
-        int x = parseInt(tuileX);
-
-        System.out.print("\nY : ");
-        String tuileY = sc.nextLine();
-        int y = parseInt(tuileY);
-        */
+        
         
         getVueDeplacement().afficher();
-        int x = vueDeplacement.getX();
-        int y = vueDeplacement.getY();
+    }
+    
+    
+    public void deplace() {        
+        ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
+        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        
+        int x = getVueDeplacement().getX();
+        int y = getVueDeplacement().getY();
         
         Tuile t = grille.getTuile(x, y);
 
@@ -362,7 +361,8 @@ public class Controleur implements Observateur{
                 passerJoueurSuivant();
                 break;
             case CLIC_BoutonValider:
-                deplacementJoueurObligatoire(getAventurierCourant());
+                deplace();
+                break;
         }
     }
 
