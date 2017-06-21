@@ -161,52 +161,76 @@ public class VueInscription {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int niveauEau = 0;
-                
-                for (Integer i : ensembleDesBoutonsRadios.keySet()) {
-                    if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
-                        niveauEau = 0;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 1;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 2;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 3;
-                    }
-                }  
-                
-                System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
-                
-                String a1 = aventurier[choixAventurier1.getSelectedIndex()];
-                String a2 = aventurier[choixAventurier2.getSelectedIndex()];
-                String a3 = aventurier[choixAventurier3.getSelectedIndex()];
-                String a4 = aventurier[choixAventurier4.getSelectedIndex()];
+                int nbrJoueurs = 0;
                 
                 String nomA1 = champJoueur1.getText();
                 String nomA2 = champJoueur2.getText();
                 String nomA3 = champJoueur3.getText();
                 String nomA4 = champJoueur4.getText();
                 
-                
-                int nbrJoueurs = 0;
-                
                 if (champVide(nomA1) == false){
                     nbrJoueurs = nbrJoueurs+1;
-                    System.out.println(nomA1 + " a sélectionné : " + a1);
                 }
-                
+
                 if (champVide(nomA2) == false){
                     nbrJoueurs = nbrJoueurs+1;
-                    System.out.println(nomA2 + " a sélectionné : " + a2);
                 }
-                
+
                 if (champVide(nomA3) == false){
                     nbrJoueurs = nbrJoueurs+1;
-                    System.out.println(nomA3 + " a sélectionné : " + a3);
                 }
-                
+
                 if (champVide(nomA4) == false){
                     nbrJoueurs = nbrJoueurs+1;
-                    System.out.println(nomA4 + " a sélectionné : " + a4);
+                }
+
+                
+                
+                if (nbrJoueurs < 2){
+                    System.out.println("Il faut qu'il y ait au moins 2 joueurs !");
+                    System.out.println("Veuillez relancer le jeu.");
+                    demarrer.setEnabled(false);
+                    
+                } else {
+                    for (Integer i : ensembleDesBoutonsRadios.keySet()) {
+                        if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
+                            niveauEau = 0;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 1;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 2;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 3;
+                        }
+                    }  
+                
+                    System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
+
+                    String a1 = aventurier[choixAventurier1.getSelectedIndex()];
+                    String a2 = aventurier[choixAventurier2.getSelectedIndex()];
+                    String a3 = aventurier[choixAventurier3.getSelectedIndex()];
+                    String a4 = aventurier[choixAventurier4.getSelectedIndex()];
+
+
+
+                    if (champVide(nomA1) == false){
+                        System.out.println(nomA1 + " a sélectionné : " + a1);
+                    }
+
+                    if (champVide(nomA2) == false){
+                        System.out.println(nomA2 + " a sélectionné : " + a2);
+                    }
+
+                    if (champVide(nomA3) == false){
+                        System.out.println(nomA3 + " a sélectionné : " + a3);
+                    }
+
+                    if (champVide(nomA4) == false){
+                        System.out.println(nomA4 + " a sélectionné : " + a4);
+                    }
+
+                    System.out.println("Il y a " + nbrJoueurs + "joueurs");
+
                 }
             }
         });
