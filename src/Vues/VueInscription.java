@@ -188,8 +188,7 @@ public class VueInscription {
                 
                 if (nbrJoueurs < 2){
                     System.out.println("Il faut qu'il y ait au moins 2 joueurs !");
-                    System.out.println("Veuillez relancer le jeu.");
-                    demarrer.setEnabled(false);
+                    nbrJoueurs = 0;
                     
                 } else {
                     for (Integer i : ensembleDesBoutonsRadios.keySet()) {
@@ -229,7 +228,7 @@ public class VueInscription {
                         System.out.println(nomA4 + " a sélectionné : " + a4);
                     }
 
-                    System.out.println("Il y a " + nbrJoueurs + "joueurs");
+                    System.out.println("Il y a " + nbrJoueurs + " joueurs");
 
                 }
             }
