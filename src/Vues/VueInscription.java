@@ -40,13 +40,17 @@ public class VueInscription {
     private JLabel parametre;
     private JPanel boutonPanel;
     private String[] aventurier;
-    private int niveauEau;
+    private JTextField champJoueur1;
+    private JTextField champJoueur2;
+    private JTextField champJoueur3;
+    private JTextField champJoueur4;
+    
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
     public VueInscription (){
         this.window = new JFrame();
-        window.setSize(600, 290); 
+        window.setSize(600, 340); 
         window.setTitle("L'Île interdite");
         
         aventurier = new String[]{"Explorateur","Navigateur","Messager","Ingénieur","Plongeur","Pilote"};
@@ -73,16 +77,16 @@ public class VueInscription {
                 grilleAventurierPanel.add(new JLabel("JOUEUR 4 : ", SwingConstants.CENTER));
                 
             } else if (i == 8) {
-                JTextField champJoueur1 = new JTextField();
+                champJoueur1 = new JTextField();
                 grilleAventurierPanel.add(champJoueur1);
             } else if (i == 13) {
-                JTextField champJoueur2 = new JTextField();
+                champJoueur2 = new JTextField();
                 grilleAventurierPanel.add(champJoueur2);
             } else if (i == 18) {
-                JTextField champJoueur3 = new JTextField();
+                champJoueur3 = new JTextField();
                 grilleAventurierPanel.add(champJoueur3);
             } else if (i == 23) {
-                JTextField champJoueur4 = new JTextField();
+                champJoueur4 = new JTextField();
                 grilleAventurierPanel.add(champJoueur4);
                 
             } else if (i == 9){
@@ -98,7 +102,10 @@ public class VueInscription {
                 grilleAventurierPanel.add(new JLabel());
             }
         }
-        
+        choixAventurier1.setSelectedIndex(0);
+        choixAventurier2.setSelectedIndex(1);
+        choixAventurier3.setSelectedIndex(2);
+        choixAventurier4.setSelectedIndex(3);
         
     
         groupDifficulte = new ButtonGroup();
@@ -153,21 +160,89 @@ public class VueInscription {
         demarrer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int niveauEau = 0;
+                int nbrJoueurs = 0;
                 
-                for (Integer i : ensembleDesBoutonsRadios.keySet()) {
-                    if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
-                        niveauEau = 0;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 1;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 2;
-                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                        niveauEau = 3;
+                String nomA1 = champJoueur1.getText();
+                String nomA2 = champJoueur2.getText();
+                String nomA3 = champJoueur3.getText();
+                String nomA4 = champJoueur4.getText();
+                
+                if (champVide(nomA1) == false){
+                    nbrJoueurs = nbrJoueurs+1;
+                }
+
+                if (champVide(nomA2) == false){
+                    nbrJoueurs = nbrJoueurs+1;
+                }
+
+                if (champVide(nomA3) == false){
+                    nbrJoueurs = nbrJoueurs+1;
+                }
+
+                if (champVide(nomA4) == false){
+                    nbrJoueurs = nbrJoueurs+1;
+                }
+
+                
+                
+                if (nbrJoueurs < 2){
+                    System.out.println("Il faut qu'il y ait au moins 2 joueurs !");
+                    System.out.println("Veuillez relancer le jeu.");
+                    demarrer.setEnabled(false);
+                    
+                } else {
+                    for (Integer i : ensembleDesBoutonsRadios.keySet()) {
+                        if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
+                            niveauEau = 0;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 1;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 2;
+                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                            niveauEau = 3;
+                        }
+                    }  
+                
+                    System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
+
+                    String a1 = aventurier[choixAventurier1.getSelectedIndex()];
+                    String a2 = aventurier[choixAventurier2.getSelectedIndex()];
+                    String a3 = aventurier[choixAventurier3.getSelectedIndex()];
+                    String a4 = aventurier[choixAventurier4.getSelectedIndex()];
+
+
+
+                    if (champVide(nomA1) == false){
+                        System.out.println(nomA1 + " a sélectionné : " + a1);
                     }
-                }                
-                //System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
+
+                    if (champVide(nomA2) == false){
+                        System.out.println(nomA2 + " a sélectionné : " + a2);
+                    }
+
+                    if (champVide(nomA3) == false){
+                        System.out.println(nomA3 + " a sélectionné : " + a3);
+                    }
+
+                    if (champVide(nomA4) == false){
+                        System.out.println(nomA4 + " a sélectionné : " + a4);
+                    }
+
+                    System.out.println("Il y a " + nbrJoueurs + "joueurs");
+
+                }
             }
         });
+        /*
+        choixAventurier1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                choixAventurier2.getItemAt(choixAventurier1.getSelectedIndex()).
+            }
+           
+        });
+        */
         
         ensembleDesBoutonsRadios.get(1).setSelected(true);        
         
@@ -194,6 +269,18 @@ public class VueInscription {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
     
+    
+    public boolean champVide(String nom){
+        boolean vide = true;
+        if (nom != null){
+            for(int i =0; i < nom.length(); i++){
+                if (nom.charAt(i) != ' '){
+                    vide = false;
+                }
+            }
+        }
+        return vide;
+    }
     
     
     public void afficher(){
