@@ -16,16 +16,15 @@ public class Explorateur extends Aventurier {
     
     @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
-        ArrayList<Tuile> tuilesAdjDiag = new ArrayList<>();
-        tuilesAdjDiag = grille.getListeTuileAdjDiag(getPositionCourante());
+        ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
+        ArrayList<Tuile> tuilesDiag = new ArrayList<>();
+        tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
         
-        ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
-        
-        for (Tuile t : tuilesAdjDiag) {
+        for (Tuile t : tuilesDiag) {
             if (t.getStatut() != COULEE)
-                tuilesPossibles.add(t);
+                tuilesAdj.add(t);
         }
-        return tuilesPossibles;
+        return tuilesAdj;
     }
     
     
