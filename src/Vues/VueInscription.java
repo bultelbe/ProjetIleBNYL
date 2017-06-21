@@ -49,6 +49,15 @@ public class VueInscription {
     private int nbrJoueurs = 0;
     private int niveauEau = 0;
     private Controleur c;
+    private String a1;
+    private String a2;
+    private String a3;
+    private String a4;
+    private String nomA1;
+    private String nomA2;
+    private String nomA3;
+    private String nomA4;
+    
     
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
@@ -166,10 +175,10 @@ public class VueInscription {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                String nomA1 = champJoueur1.getText();
-                String nomA2 = champJoueur2.getText();
-                String nomA3 = champJoueur3.getText();
-                String nomA4 = champJoueur4.getText();
+                nomA1 = champJoueur1.getText();
+                nomA2 = champJoueur2.getText();
+                nomA3 = champJoueur3.getText();
+                nomA4 = champJoueur4.getText();
                 
                 if (champVide(nomA1) == false){
                     nbrJoueurs = nbrJoueurs+1;
@@ -208,10 +217,10 @@ public class VueInscription {
                 
                     System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
 
-                    String a1 = aventurier[choixAventurier1.getSelectedIndex()];
-                    String a2 = aventurier[choixAventurier2.getSelectedIndex()];
-                    String a3 = aventurier[choixAventurier3.getSelectedIndex()];
-                    String a4 = aventurier[choixAventurier4.getSelectedIndex()];
+                    a1 = aventurier[choixAventurier1.getSelectedIndex()];
+                    a2 = aventurier[choixAventurier2.getSelectedIndex()];
+                    a3 = aventurier[choixAventurier3.getSelectedIndex()];
+                    a4 = aventurier[choixAventurier4.getSelectedIndex()];
 
 
 
@@ -284,6 +293,38 @@ public class VueInscription {
 
     public int getNiveauEau() {
         return niveauEau;
+    }
+
+    public String getA1() {
+        return a1;
+    }
+
+    public String getA2() {
+        return a2;
+    }
+
+    public String getA3() {
+        return a3;
+    }
+
+    public String getA4() {
+        return a4;
+    }
+
+    public String getNomA1() {
+        return nomA1;
+    }
+
+    public String getNomA2() {
+        return nomA2;
+    }
+
+    public String getNomA3() {
+        return nomA3;
+    }
+
+    public String getNomA4() {
+        return nomA4;
     }
     
     

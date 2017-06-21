@@ -244,13 +244,6 @@ public class Controleur implements Observateur{
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
 
-        
-        
-        
-        
-        
-        
-        
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
@@ -280,11 +273,12 @@ public class Controleur implements Observateur{
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        vueDeplacement = new VueDeplacement();
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-        
+        /*
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
@@ -293,7 +287,12 @@ public class Controleur implements Observateur{
         System.out.print("\nY : ");
         String tuileY = sc.nextLine();
         int y = parseInt(tuileY);
-
+        */
+        
+        getVueDeplacement().afficher();
+        int x = vueDeplacement.getX();
+        int y = vueDeplacement.getY();
+        
         Tuile t = grille.getTuile(x, y);
 
         if (tuilesPossibles.contains(t)) {
