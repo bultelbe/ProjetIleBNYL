@@ -513,6 +513,7 @@ public class Controleur implements Observateur{
             
             if (nbCarte>=4 ){
                 tr.setRecupere(true);
+                System.out.println("Vous avez récupéré le trésor : "+tr.getNom() );
                 ArrayList<Carte> cpMain= new ArrayList();
                 for(Carte c : aventurierCourant.getCarteMain()){
                     if (c.getNomCarte()!=tr.getNom()){
