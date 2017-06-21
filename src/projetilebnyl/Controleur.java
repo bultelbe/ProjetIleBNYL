@@ -397,7 +397,7 @@ public class Controleur implements Observateur{
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
     }
     
-private boolean joueurHeliport(){
+    private boolean joueurHeliport(){
         Boolean surHeliport=true;
         for(Aventurier avt : joueurs){
             if(avt.getPositionCourante().getNomCase()!= "Héliport"){
