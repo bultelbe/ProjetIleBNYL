@@ -182,7 +182,6 @@ public class Controleur implements Observateur{
         this.TourDeJeu();
     }
     
-
     public void passerJoueurSuivant() {
         
         this.piocherInnodation();
@@ -194,12 +193,12 @@ public class Controleur implements Observateur{
                 if (possibleMouvement(joueurs.get(i)) == true) {
                     System.out.println(joueurs.get(i).getNoma() + " doit immédiatement quitter " + joueurs.get(i).getPositionCourante().getNomCase()
                         + " et se déplacer sur une autre tuile !");
-                
                     act ++;
                     joueurs.get(i).deplacementsPossibles(getGrille());
                     deplacementJoueurObligatoire(joueurs.get(i));
                     this.getVueAventurier().updateCellules(getGrille());
                     getVueAventurier().updateAventurier(joueurs.get(i).getNomJ(), joueurs.get(i).getNoma(), joueurs.get(i).getColor(), joueurs.get(i).getPositionCourante().getNomCase());
+                
                 } else {
                     System.out.println("Fin de partie ! Vous avez perdu.");
                     getVueAventurier().btnAller.setEnabled(false);
@@ -234,11 +233,6 @@ public class Controleur implements Observateur{
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
-        
-        if (avt.deplacementsPossibles(grille) == null) {
-            System.out.println("Fin de partie ! Vous avez perdu.");
-        } else {
-        
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
@@ -261,11 +255,11 @@ public class Controleur implements Observateur{
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile.");
         }
-        
+
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
-        
+
         getVueAventurier().updateCellules(grille);
-    }}
+    }
     
     
     
@@ -301,8 +295,7 @@ public class Controleur implements Observateur{
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
-    
-    
+     
     public void traiterMessage(Message m) {
         switch(m) {
             case CLIC_BoutonAller:
@@ -405,15 +398,13 @@ public class Controleur implements Observateur{
         calice.setSanctuaire2(grille);
     }
     
-    
     public boolean possibleMouvement(Aventurier avt){
         return avt.deplacementsPossibles(grille).size() > 0 ||
                 (avt.getCarteMain().contains(Helicoptere1)) ||
                 (avt.getCarteMain().contains(Helicoptere2)) ||
                 (avt.getCarteMain().contains(Helicoptere3));
     }
-    
-    
+      
     public boolean continuer(){
         return (cristal.recuperable() && statute.recuperable() &&
                 pierre.recuperable() && calice.recuperable() &&
@@ -421,5 +412,31 @@ public class Controleur implements Observateur{
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
     }
     
+    private boolean joueurHeliport(){
+        Boolean surHeliport=true;
+        for(Aventurier avt : joueurs){
+            if(avt.getPositionCourante().getNomCase()!= "Héliport"){
+                surHeliport=false;
+            }
+        }
+        return surHeliport;
+    }
+    
+    private boolean possedeHelico(){
+        boolean helico=false;
+        for(Aventurier avt : joueurs){
+            for(Carte c: avt.getCarteMain())
+                if(c.getNomCarte()== HELICOPTERE.toString()){
+                    helico=true;
+                }
+        }
+        return helico;
+    }
+
+    public boolean gagner(){
+        return(cristal.getRecupere() && statute.getRecupere() &&
+                pierre.getRecupere() && calice.getRecupere() &&
+                joueurHeliport() && possedeHelico());
+    }
 
 }

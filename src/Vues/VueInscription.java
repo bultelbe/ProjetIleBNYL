@@ -26,10 +26,10 @@ public class VueInscription {
     private JPanel mainPanel;
     private JPanel grilleAventurierPanel;
     private JPanel radioDifPanel;
-    private JComboBox choixAventurier1;
+    private JComboBox choixAventurier1;    
     private JComboBox choixAventurier2;
     private JComboBox choixAventurier3;
-    private JComboBox choixAventurier4;
+    private JComboBox choixAventurier4;    
     private JRadioButton buttonNovice;
     private JRadioButton buttonNormal;
     private JRadioButton buttonElite;
@@ -39,49 +39,26 @@ public class VueInscription {
     private JButton quitter;
     private JLabel parametre;
     private JPanel boutonPanel;
+    private String[] aventurier;
+    private int niveauEau;
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
     public VueInscription (){
         this.window = new JFrame();
-        window.setSize(600, 270); 
+        window.setSize(600, 290); 
         window.setTitle("L'Île interdite");
+        
+        aventurier = new String[]{"Explorateur","Navigateur","Messager","Ingénieur","Plongeur","Pilote"};
         
         mainPanel = new JPanel(new BorderLayout());
         grillePanel = new JPanel(new GridLayout(2,1));
         grilleAventurierPanel = new JPanel(new GridLayout(6,5));
         
-        choixAventurier1 = new JComboBox();        
-        choixAventurier1.addItem("Explorateur");
-        choixAventurier1.addItem("Navigateur");
-        choixAventurier1.addItem("Messager");
-        choixAventurier1.addItem("Ingénieur");
-        choixAventurier1.addItem("Plongeur");
-        choixAventurier1.addItem("Pilote");
-        
-        choixAventurier2 = new JComboBox();        
-        choixAventurier2.addItem("Explorateur");
-        choixAventurier2.addItem("Navigateur");
-        choixAventurier2.addItem("Messager");
-        choixAventurier2.addItem("Ingénieur");
-        choixAventurier2.addItem("Plongeur");
-        choixAventurier2.addItem("Pilote");
-        
-        choixAventurier3 = new JComboBox();        
-        choixAventurier3.addItem("Explorateur");
-        choixAventurier3.addItem("Navigateur");
-        choixAventurier3.addItem("Messager");
-        choixAventurier3.addItem("Ingénieur");
-        choixAventurier3.addItem("Plongeur");
-        choixAventurier3.addItem("Pilote");
-        
-        choixAventurier4 = new JComboBox();        
-        choixAventurier4.addItem("Explorateur");
-        choixAventurier4.addItem("Navigateur");
-        choixAventurier4.addItem("Messager");
-        choixAventurier4.addItem("Ingénieur");
-        choixAventurier4.addItem("Plongeur");
-        choixAventurier4.addItem("Pilote");
+        choixAventurier1 = new JComboBox(aventurier);
+        choixAventurier2 = new JComboBox(aventurier);
+        choixAventurier3 = new JComboBox(aventurier);
+        choixAventurier4 = new JComboBox(aventurier);
         
                
         for (int i=1; i<=30; i++) {
@@ -177,6 +154,18 @@ public class VueInscription {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                for (Integer i : ensembleDesBoutonsRadios.keySet()) {
+                    if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
+                        niveauEau = 0;
+                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                        niveauEau = 1;
+                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                        niveauEau = 2;
+                    } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                        niveauEau = 3;
+                    }
+                }                
+                //System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
             }
         });
         
