@@ -223,17 +223,17 @@ public class VueAventurier  {
                 pions.get(i).removeAll();
                 
                 for(int k=0; k<6; k++){
-                    if(labels.get(i).getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
+                    if(labels.get(i).getText() == controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                         PionJoueur pionJ = controleur.getJoueurs().get(k).getPionjoueur();
                         pion.add(pionJ);
                         pionJ.repaint();
                     }
                 }
-                if (grilleListe.getTuilesGrille().get(i).getStatut() == EtatTuile.ASSECHEE) {
+                if (grilleListe.getTuilesGrille().get(i).getStatut() == ASSECHEE) {
                        panel.setBackground(Color.DARK_GRAY);
                        pion.setBackground(Color.DARK_GRAY);
                        
-                    } else if (grilleListe.getTuilesGrille().get(i).getStatut()== EtatTuile.INONDEE) {
+                    } else if (grilleListe.getTuilesGrille().get(i).getStatut()== INONDEE) {
                         panel.setBackground(Color.ORANGE);
                         pion.setBackground(Color.ORANGE);
                     
