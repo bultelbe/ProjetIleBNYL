@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import projetilebnyl.Controleur;
+import static projetilebnyl.Message.CLIC_BoutonDemarrer;
 
 /**
  *
@@ -44,6 +46,9 @@ public class VueInscription {
     private JTextField champJoueur2;
     private JTextField champJoueur3;
     private JTextField champJoueur4;
+    private int nbrJoueurs = 0;
+    private int niveauEau = 0;
+    private Controleur c;
     
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
@@ -160,8 +165,6 @@ public class VueInscription {
         demarrer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int niveauEau = 0;
-                int nbrJoueurs = 0;
                 
                 String nomA1 = champJoueur1.getText();
                 String nomA2 = champJoueur2.getText();
@@ -229,19 +232,13 @@ public class VueInscription {
                     }
 
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
+                    
+                    c.traiterMessage(CLIC_BoutonDemarrer);
 
                 }
             }
         });
-        /*
-        choixAventurier1.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                choixAventurier2.getItemAt(choixAventurier1.getSelectedIndex()).
-            }
-           
-        });
-        */
+        
         
         ensembleDesBoutonsRadios.get(1).setSelected(true);        
         
@@ -279,6 +276,14 @@ public class VueInscription {
             }
         }
         return vide;
+    }
+
+    public int getNbrJoueurs() {
+        return nbrJoueurs;
+    }
+
+    public int getNiveauEau() {
+        return niveauEau;
     }
     
     
