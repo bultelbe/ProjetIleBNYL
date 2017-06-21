@@ -225,18 +225,15 @@ public class Controleur implements Observateur{
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-    
-    
+     
     public VueAventurier getVueAventurier() {
         return this.vueAventurier;
     }
-    
-    
+      
     public void setVueAvt (VueAventurier vueAvt) {
         this.vueAventurier = vueAvt;
     }
-
-    
+  
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -267,9 +264,7 @@ public class Controleur implements Observateur{
 
         getVueAventurier().updateCellules(grille);
     }
-    
-    
-    
+       
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -506,5 +501,28 @@ public class Controleur implements Observateur{
     public void setVueDeplacement(VueDeplacement vueDeplacement) {
         this.vueDeplacement = vueDeplacement;
     }
+    
+    public void recuperTresor(Tresor tr){
+        int nbCarte=0;
+        if(aventurierCourant.getPositionCourante()== tr.getSanctuaire1() || aventurierCourant.getPositionCourante()== tr.getSanctuaire2()){
+            for(Carte c : aventurierCourant.getCarteMain()){
+                if (c.getNomCarte()==tr.getNom()){
+                    nbCarte=nbCarte+1;
+                }
+            }
+            
+            if (nbCarte>=4 ){
+                tr.setRecupere(true);
+                ArrayList<Carte> cpMain= new ArrayList();
+                for(Carte c : aventurierCourant.getCarteMain()){
+                    if (c.getNomCarte()!=tr.getNom()){
+                        cpMain.add(c);
+                    }
+                }
+                aventurierCourant.setCarteMain(cpMain);
+            }        
+        }
+    }
+       
     
 }
