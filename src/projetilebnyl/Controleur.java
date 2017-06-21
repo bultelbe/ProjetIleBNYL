@@ -190,7 +190,7 @@ public class Controleur implements Observateur{
         
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
-                System.out.println(joueurs.get(i).getNoma() + " doit immédiatement se déplacer sur une autre tuile !");
+                System.out.println(joueurs.get(i).getNoma() + " doit immédiatement quitter " + joueurs.get(i).getPositionCourante().getNomCase() + " et se déplacer sur une autre tuile !");
                 
                 if (possibleMouvement(joueurs.get(i)) == true) {
                     act ++;
@@ -199,16 +199,13 @@ public class Controleur implements Observateur{
                 }
             }
         }
+
         piocherTresor();
-        
-        
         act = 3;
-        VueAventurier avt = getVueAventurier();
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
-        
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+
     }
-    
     
     public VueAventurier getVueAventurier() {
         return this.vueAventurier;
@@ -335,29 +332,33 @@ public class Controleur implements Observateur{
     }
     
     public void piocherTresor() {
-        Boolean eauxPioche = false;
-        Carte eaux = new Carte(EAUX);
-        Carte pioche1 =piocheCarteTresor.piocheTresor();
-        if (pioche1.getNomCarte()== eaux.getNomCarte()) {
-            piocheCarteTresor.defausseTresor(pioche1);
-            eauxPioche=true;
-            setNiveauEau((getNiveauEau()+1));
+        if (piocheCarteTresor.getPiocheTresor().size() > 0) {
+            Boolean eauxPioche = false;
+            Carte eaux = new Carte(EAUX);
+            Carte pioche1 =piocheCarteTresor.piocheTresor();
             
-        } else {
-        aventurierCourant.addCarte(pioche1);
-        }
-        if(getNiveauEau()<=9){
-            Carte pioche2 =piocheCarteTresor.piocheTresor();
-            if (pioche2.getNomCarte()== eaux.getNomCarte()) {
-                piocheCarteTresor.defausseTresor(pioche2);
-               setNiveauEau((getNiveauEau()+1));
+            if (pioche1.getNomCarte()== eaux.getNomCarte()) {
+                piocheCarteTresor.defausseTresor(pioche1);
+                eauxPioche=true;
+                setNiveauEau((getNiveauEau()+1));
 
             } else {
-            aventurierCourant.addCarte(pioche2);
+            aventurierCourant.addCarte(pioche1);
             }
+            if (getNiveauEau()<=9 && piocheCarteTresor.getPiocheTresor().size() > 0) {
+                Carte pioche2 =piocheCarteTresor.piocheTresor();
+                
+                if (pioche2.getNomCarte()== eaux.getNomCarte()) {
+                    piocheCarteTresor.defausseTresor(pioche2);
+                   setNiveauEau((getNiveauEau()+1));
 
-            if (eauxPioche){
-                piocheCarteInondations.remiseDefausse();
+                } else {
+                aventurierCourant.addCarte(pioche2);
+                }
+
+                if (eauxPioche){
+                    piocheCarteInondations.remiseDefausse();
+                }
             }
         }
     }
