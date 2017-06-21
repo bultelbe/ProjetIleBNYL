@@ -45,7 +45,6 @@ public class Tuile {
         return this.statut;
     }
 
-
     public void setStatut(EtatTuile statut) {
 	this.statut = statut;
     }
@@ -54,5 +53,6 @@ public class Tuile {
         
         System.out.println("Nom de la tuile : " + this.getNomCase() + "\nAux coordonnées : \nX : " + this.getColonne() + "\nY : " + this.getLigne() + "\nStatut : "+ this.getStatut() + "\n");
     }
+    
 }
 

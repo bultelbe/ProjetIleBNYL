@@ -140,9 +140,13 @@ public class VueAventurier  {
           
         });
         
-        this.btnCarteSpe.addActionListener((ActionEvent e) -> {});
+        this.btnCarteSpe.addActionListener((ActionEvent e) -> {
+            
+        });
         
-        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {});
+        this.btnEchangeCarte.addActionListener((ActionEvent e) -> {
+            controleur.traiterMessage(CLIC_BoutonEchange);
+        });
         
         this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
         
@@ -357,19 +361,6 @@ public class VueAventurier  {
         for(int i=0;i<controleur.getAventurierCourant().getCarteMain().size();i++){
             String nomCarte =controleur.getAventurierCourant().getCarteMain().get(i).getNomCarte();
             cartesLabels.get(i).setText(nomCarte);
-            
-            
-            
-            
-            /*while(j<cartesLabels.size()){
-                cartesLabels.get(j).setText("pas de cartes");
-                if( !("pas de cartes".equals(cartesLabels.get(j).getText()))){
-                        j=+1;
-                    }else{
-                        cartesLabels.get(j).setText(nomCarte);
-                        j=+1;
-                }
-            }*/
         }
     }
 

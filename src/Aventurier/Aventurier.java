@@ -16,7 +16,7 @@ public abstract class Aventurier {
     private String noma;
     private ArrayList<Carte> carteMain;
     private PionJoueur pionjoueur;
-    public Tuile positionCourante;
+    private Tuile positionCourante;
 
     public Aventurier(String nomJ, Tuile positionCourante, String noma) {
         this.nomJ = nomJ;
@@ -100,7 +100,11 @@ public abstract class Aventurier {
     public ArrayList<Carte> getCarteMain() {
         return carteMain;
     }
-    
+
+    public void setCarteMain(ArrayList<Carte> carteMain) {
+        this.carteMain = carteMain;
+    }
+       
     public void addCarte(Carte carte){
         this.getCarteMain().add(carte);
     }

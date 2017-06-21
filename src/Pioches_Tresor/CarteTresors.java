@@ -85,19 +85,21 @@ public class CarteTresors {
         public ArrayList<Carte> getDefausseTresor() {
             return defausseTresor;
         }
-        
-        public void addPioche(Carte carte){
-            this.getDefausseTresor().add(carte);
-        }
-   
-        
+           
        public Carte piocheTresor(){
            Carte carteRet;
            
            carteRet = piocheTresor.get(0);
            piocheTresor.remove(piocheTresor.get(0));
+           if (piocheTresor.size()==0){
+               remiseDefausse();
+           }
            return carteRet;
            
+       }
+       
+       public void addPiocheTresor(Carte carte){
+           getPiocheTresor().add(carte);
        }
        
        public void defausseTresor(Carte carte){

@@ -11,7 +11,7 @@ import Vues.Utils;
  *
  * @author thorey
  */
-public class Carte {
+public  class Carte {
     
     private String nomCarte;
 
