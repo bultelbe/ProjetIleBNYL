@@ -55,6 +55,7 @@ public class Controleur implements Observateur{
         piocheCarteTresor.addPioche(Helicoptere1);
         piocheCarteTresor.addPioche(Helicoptere2);
         piocheCarteTresor.addPioche(Helicoptere3);
+        Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");

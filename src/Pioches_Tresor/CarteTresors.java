@@ -87,7 +87,7 @@ public class CarteTresors {
         }
         
         public void addPioche(Carte carte){
-            this.getDefausseTresor().add(carte);
+            this.getPiocheTresor().add(carte);
         }
    
         
