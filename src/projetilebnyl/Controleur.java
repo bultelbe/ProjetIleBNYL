@@ -20,6 +20,7 @@ import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.VueAventurier;
+import Vues.VueDeplacement;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -44,6 +45,8 @@ public class Controleur implements Observateur{
     private Carte Helicoptere1= new Carte(HELICOPTERE);
     private Carte Helicoptere2= new Carte(HELICOPTERE);
     private Carte Helicoptere3= new Carte(HELICOPTERE);
+    
+    private VueDeplacement vueDeplacement;
 
     public Controleur() {
         
@@ -198,7 +201,7 @@ public class Controleur implements Observateur{
                     getVueAventurier().updateAventurier(joueurs.get(i).getNomJ(), joueurs.get(i).getNoma(), joueurs.get(i).getColor(), joueurs.get(i).getPositionCourante().getNomCase());
                 
                 } else {
-                    System.out.println("Fin de partie ! Vous avez perdu.");
+                    System.out.println("\nFin de partie ! Vous avez perdu.");
                     getVueAventurier().btnAller.setEnabled(false);
                     getVueAventurier().btnAssecher.setEnabled(false);
                     getVueAventurier().btnCarteSpe.setEnabled(false);
@@ -241,6 +244,13 @@ public class Controleur implements Observateur{
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
 
+        
+        
+        
+        
+        
+        
+        
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
@@ -274,7 +284,7 @@ public class Controleur implements Observateur{
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-
+        
         Scanner sc = new Scanner(System.in);
         System.out.print("\nRentrez les coordonnées de la Tuile où vous voulez aller. \nX : ");
         String tuileX = sc.nextLine();
@@ -313,6 +323,8 @@ public class Controleur implements Observateur{
             case CLIC_BoutonTerminer:
                 passerJoueurSuivant();
                 break;
+            case CLIC_BoutonValider:
+                deplacementJoueurObligatoire(getAventurierCourant());
         }
     }
 
@@ -444,4 +456,12 @@ public class Controleur implements Observateur{
                 joueurHeliport() && possedeHelico());
     }
 
+    public VueDeplacement getVueDeplacement() {
+        return vueDeplacement;
+    }
+
+    public void setVueDeplacement(VueDeplacement vueDeplacement) {
+        this.vueDeplacement = vueDeplacement;
+    }
+    
 }
