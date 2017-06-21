@@ -173,7 +173,6 @@ public class VueAventurier  {
         bigPanel.add(grilletuile,BorderLayout.CENTER);
         
         for (int i=0; i<36; i++) {
-            
              grilletuile.add(createCellule(i, controleur.getGrille()));
         }
     }  
@@ -224,8 +223,6 @@ public class VueAventurier  {
             cartenom.repaint();
             carte.repaint();
         }
-        
-        
         
         for (int i=0; i<36; i++) {
             JPanel panel = cases.get(i);
@@ -281,18 +278,41 @@ public class VueAventurier  {
             JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase(), SwingConstants.CENTER);
             nomCase.setForeground(Color.white);
             JPanel panelCellule = new JPanel(new BorderLayout());
+            
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase, BorderLayout.CENTER);
             panelCellule.add(panelPion, BorderLayout.NORTH);
             
+            /*panelCellule.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });*/
             
-            /*boutonsTuiles = new JButton[36];
-            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
-                boutonsTuiles[i] = new JButton();
-                
-                boutonsTuiles[i].add(nomCase);
-                panelCellule.add(boutonsTuiles[i]);
-            }*/
+            
+//            boutonsTuiles = new JButton[36];
+//            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
+//                boutonsTuiles[i] = new JButton();
+//                
+//                boutonsTuiles[i].add(nomCase);
+//                panelCellule.add(boutonsTuiles[i]);
+//            }
             
             
             if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {
