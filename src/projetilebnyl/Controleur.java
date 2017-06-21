@@ -14,12 +14,12 @@ import Aventurier.Explorateur;
 import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
-import Pioches_Tresor.Tresor;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.VueAventurier;
+import static java.lang.Integer.parseInt;
 
 public class Controleur implements Observateur{
     public Grille grille;
@@ -49,9 +49,10 @@ public class Controleur implements Observateur{
         
         grille = new Grille();        
         initGrille();
-        piocheCarteTresor.addPioche(Helicoptere1);
-        piocheCarteTresor.addPioche(Helicoptere2);
-        piocheCarteTresor.addPioche(Helicoptere3);
+        piocheCarteTresor.addPiocheTresor(Helicoptere1);
+        piocheCarteTresor.addPiocheTresor(Helicoptere2);
+        piocheCarteTresor.addPiocheTresor(Helicoptere3);
+        Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
@@ -337,17 +338,17 @@ public class Controleur implements Observateur{
                 setNiveauEau((getNiveauEau()+1));
 
             } else {
-            aventurierCourant.addCarte(pioche1);
+                aventurierCourant.addCarte(pioche1);
             }
             if (getNiveauEau()<=9 && piocheCarteTresor.getPiocheTresor().size() > 0) {
                 Carte pioche2 =piocheCarteTresor.piocheTresor();
                 
                 if (pioche2.getNomCarte()== eaux.getNomCarte()) {
                     piocheCarteTresor.defausseTresor(pioche2);
-                   setNiveauEau((getNiveauEau()+1));
+                    setNiveauEau((getNiveauEau()+1));
 
                 } else {
-                aventurierCourant.addCarte(pioche2);
+                    aventurierCourant.addCarte(pioche2);
                 }
 
                 if (eauxPioche){
