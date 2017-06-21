@@ -75,6 +75,15 @@ public class VueDeplacement {
             }
         }
         
+        valider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                x = getX();
+                y = getY();
+                c.traiterMessage(CLIC_BoutonValider);
+            }
+        });
+        
         southPanel.add(valider, SwingConstants.CENTER);
         
         mainPanel.add(grillePanel, BorderLayout.CENTER);
@@ -87,14 +96,7 @@ public class VueDeplacement {
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
-        valider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                x = getX();
-                y = getY();
-                c.traiterMessage(CLIC_BoutonValider);
-            }
-        });
+        
     }
     
     public void afficher(){

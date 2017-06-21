@@ -28,6 +28,8 @@ public class VueInscription {
     private JPanel mainPanel;
     private JPanel grilleAventurierPanel;
     private JPanel radioDifPanel;
+    private JPanel areaPanel;
+    
     private JComboBox choixAventurier1;    
     private JComboBox choixAventurier2;
     private JComboBox choixAventurier3;
@@ -63,6 +65,7 @@ public class VueInscription {
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
     public VueInscription (){
+        //this.c = c;
         this.window = new JFrame();
         window.setSize(600, 340); 
         window.setTitle("L'Île interdite");
@@ -259,7 +262,7 @@ public class VueInscription {
         
         parametre = new JLabel("Paramètrage de la partie : ", SwingConstants.CENTER);
         
-        mainPanel.add(grillePanel, BorderLayout.CENTER);
+        mainPanel.add(grillePanel, BorderLayout.WEST);
         mainPanel.add(boutonPanel,BorderLayout.SOUTH);
         mainPanel.add(parametre, BorderLayout.NORTH);
         
