@@ -77,7 +77,7 @@ public class Controleur implements Observateur {
 //        joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
 //        joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
 //        joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
-        aventurierCourant = joueurs.get(0);
+//        aventurierCourant = joueurs.get(0);
     }
     
     
@@ -461,27 +461,32 @@ public class Controleur implements Observateur {
                 
             case CLIC_BoutonDemarrer:
                 System.out.println("ghkjhjk");
-                for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+                for (int i = 0; i < m.nomA.size(); i++) {
         
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
-                        joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+                    if (m.nomA.get(i).equals("Messager"))
+                        joueurs.add(new Messager(m.nomJ.get(i), spawnMessager, "Messager"));
 
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
-                        joueurs.add(new Plongeur(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+                    if (m.nomA.get(i).equals("Plongeur"))
+                        joueurs.add(new Plongeur(m.nomJ.get(i), spawnPlongeur, "Plongeur"));
 
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
-                        joueurs.add(new Ingenieur(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+                    if (m.nomA.get(i).equals("Ingenieur"))
+                        joueurs.add(new Ingenieur(m.nomJ.get(i), spawnIngenieur, "Ingenieur"));
 
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
-                        joueurs.add(new Navigateur(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+                    if (m.nomA.get(i).equals("Navigateur"))
+                        joueurs.add(new Navigateur(m.nomJ.get(i), spawnNavigateur, "Navigateur"));
 
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
-                        joueurs.add(new Pilote(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+                    if (m.nomA.get(i).equals("Pilote"))
+                        joueurs.add(new Pilote(m.nomJ.get(i), spawnPilote, "Pilote"));
 
-                    if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
-                        joueurs.add(new Explorateur(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
-
+                    if (m.nomA.get(i).equals("Explorateur"))
+                        joueurs.add(new Explorateur(m.nomJ.get(i), spawnExplorateur, "Explorateur"));
                 }
+                
+                aventurierCourant = joueurs.get(0);
+                
+                VueAventurier vueAvt = new VueAventurier(joueurs.get(0).getNomJ(), joueurs.get(0).getNoma(), joueurs.get(0).getColor(), controleur);
+                controleur.setVueAvt(vueAvt);
+                
                 break;
             
             case CLIC_BoutonRecupTresor:

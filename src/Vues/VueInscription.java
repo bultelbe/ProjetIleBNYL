@@ -188,6 +188,11 @@ public class VueInscription {
                 nomJoueur3 = champJoueur3.getText();
                 nomJoueur4 = champJoueur4.getText();
                 
+                nomA1 = aventurier[choixAventurier1.getSelectedIndex()];
+                nomA2 = aventurier[choixAventurier2.getSelectedIndex()];
+                nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
+                nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
+                
                 if (champVide(nomJoueur1) == false){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA1);
@@ -233,10 +238,6 @@ public class VueInscription {
                 
                     System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
 
-                    nomA1 = aventurier[choixAventurier1.getSelectedIndex()];
-                    nomA2 = aventurier[choixAventurier2.getSelectedIndex()];
-                    nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
-                    nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
                     
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
                     
