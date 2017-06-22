@@ -23,14 +23,12 @@ public class Tresor {
     private Tuile sanctuaire2;
     private Color color;
     
-    
     //Constructeur
     public Tresor(String nom,Color color) {
         this.nom = nom;
         this.recupere = false;
         this.color=color;
     }
-
     
     //Place les différentes statues sur la grille
     public void setSanctuaire1(Grille grille) {
@@ -51,7 +49,6 @@ public class Tresor {
         this.setSanctuaire1(t1);
     }
 
-
     //Place les différentes statues sur la grille
     public void setSanctuaire2(Grille grille) {
         String nom=this.getNom();
@@ -67,7 +64,6 @@ public class Tresor {
         }
         this.setSanctuaire1(t1);
     }
-    
     
     //Gère si le trésor est récupérable ou non
     public boolean recuperable(){
