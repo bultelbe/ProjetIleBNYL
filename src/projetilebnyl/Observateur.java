@@ -19,4 +19,5 @@ public interface Observateur {
     public Aventurier getAventurierCourant();
     public ArrayList<Aventurier> getJoueurs();
     public Grille getGrille();
+    public ArrayList<Tresor> getTrésors();
 }
