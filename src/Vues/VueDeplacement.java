@@ -51,7 +51,7 @@ public class VueDeplacement {
         grillePanel = new JPanel(new GridLayout(6,6));
         southPanel = new JPanel();
         
-        seDeplacer= new JLabel(c.getAventurierCourant().getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
+        seDeplacer= new JLabel(aventurier.getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
         valider = new JButton("Valider"); 
         X = new JLabel("X : ");
         Y = new JLabel("Y : ");
