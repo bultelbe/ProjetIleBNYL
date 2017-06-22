@@ -36,7 +36,7 @@ public class Pilote extends Aventurier {
     }
     
 
-    @Override
+    //@Override
     public boolean getActionPilote() {
         return action;
     }
