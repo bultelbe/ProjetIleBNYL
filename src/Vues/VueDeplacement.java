@@ -43,14 +43,14 @@ public class VueDeplacement {
     public VueDeplacement(Controleur c) {
         this.c = c;
         this.window = new JFrame();
-        window.setSize(600, 450); 
+        window.setSize(700, 450); 
         window.setTitle("Deplacement");
         
         mainPanel = new JPanel(new BorderLayout());
-        grillePanel = new JPanel(new GridLayout(4,4));
+        grillePanel = new JPanel(new GridLayout(6,6));
         southPanel = new JPanel();
         
-        seDeplacer= new JLabel("Coordonnées de la tuile où vous souhaitez vous déplacez");        
+        seDeplacer= new JLabel(c.getAventurierCourant().getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
         valider = new JButton("Valider"); 
         X = new JLabel("X : ");
         Y = new JLabel("Y : ");
@@ -60,22 +60,22 @@ public class VueDeplacement {
         
         grillePanel.add(new JLabel());
         
-        for (int i = 0; i < 16; i++) {
-            if (i == 5) {
+        for (int i = 0; i < 36; i++) {
+            if (i == 8) {
                 //grillePanel.add(X, SwingConstants.CENTER);
                 grillePanel.add(new JLabel("X : ", SwingConstants.CENTER));
-            } else if (i == 6) {
+            } else if (i == 9) {
                 grillePanel.add(textX);
                 
-            } else if (i == 10) {
+            } else if (i == 22) {
                 //grillePanel.add(Y, SwingConstants.CENTER);
                 grillePanel.add(new JLabel("Y : ", SwingConstants.CENTER));
                 
-            } else if (i == 11) {
+            } else if (i == 23) {
                 grillePanel.add(textY);
             
             } else {
-                grillePanel.add(new JLabel());
+                grillePanel.add(new JLabel(" "));
             }
         }
         
@@ -84,7 +84,7 @@ public class VueDeplacement {
         coordonee.setEditable(false);
         
         for (Tuile t : c.getAventurierCourant().deplacementsPossibles(c.getGrille())){
-            coordonee.append(t.getNomCase() + " (" + t.getColonne() +','+ t.getLigne() + ") " + t.getStatut() + "\n");
+            coordonee.append(t.getNomCase() + " (" + t.getColonne() +','+ t.getLigne() + ") : " + t.getStatut() + "\n");
         }
         
         areaPanel = new JPanel(new BorderLayout());
