@@ -100,6 +100,56 @@ public class Controleur implements Observateur {
     }
     
     
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+
+    public Grille getGrille() {
+        return grille;
+    }
+
+    public int getAct() {
+        return act;
+    }
+    
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+    
+    public VueDeplacement getVueDeplacement() {
+        return vueDeplacement;
+    }
+ 
+    public VueAventurier getVueAventurier() {
+        return this.vueAventurier;
+    }
+    
+    
+    
+    public void setAct(int act) {
+        this.act = act;
+    }
+    
+    public void setNiveauEau(int niveauEau) {
+        this.niveauEau = niveauEau;
+    }
+   
+    public void setVueDeplacement(VueDeplacement vueDeplacement) {
+        this.vueDeplacement = vueDeplacement;
+    }
+      
+    public void setVueAvt (VueAventurier vueAvt) {
+        this.vueAventurier = vueAvt;
+    }
+    
+    
+    
+    
+    
     public void TourDeJeu() {
 
         if (getAct() == 0) {
@@ -114,7 +164,7 @@ public class Controleur implements Observateur {
     
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
-        tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
+        tuilesAssechables = aventurierCourant.assechementsPossibles(getGrille());
         
         if (tuilesAssechables.isEmpty()) {
             System.out.println("\nIl n'y a aucunes tuiles à assécher autour de vous.");
@@ -133,7 +183,7 @@ public class Controleur implements Observateur {
                         System.out.println("Vous asséchez deux case.");
                         
                         for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                         
                         System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -160,8 +210,8 @@ public class Controleur implements Observateur {
                     System.out.println("Vous ne pouvez asséchez qu'une case.");
                     
                     for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
-                        }
+                        t.afficheTuile();
+                    }
                     
                     System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
                     String tuileX = sc.nextLine();
@@ -185,7 +235,7 @@ public class Controleur implements Observateur {
             } else {
                 
                  for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                 
                 System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -252,15 +302,7 @@ public class Controleur implements Observateur {
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-     
-    public VueAventurier getVueAventurier() {
-        return this.vueAventurier;
-    }
-      
-    public void setVueAvt (VueAventurier vueAvt) {
-        this.vueAventurier = vueAvt;
-    }
-  
+       
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -276,9 +318,7 @@ public class Controleur implements Observateur {
 
         getVueAventurier().updateCellules(grille);
     }
-       
-    
-    
+        
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         vueDeplacement = new VueDeplacement(this,aventurierCourant);
@@ -314,8 +354,6 @@ public class Controleur implements Observateur {
         getVueDeplacement().afficher();
     }
     
-    
-    
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -338,9 +376,7 @@ public class Controleur implements Observateur {
         
         getVueAventurier().updateCellules(grille);
     }
-    
-    
-    
+       
     public void echangeDeCarte() {
         ArrayList<Aventurier> echangeurs = new ArrayList<>();
         
@@ -349,38 +385,52 @@ public class Controleur implements Observateur {
                 echangeurs.add(joueurs.get(i));
             }
         }
-                
-        for (Aventurier a : echangeurs) {
-            System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
-            System.out.println("Cartes en sa disposition : ");
-            for(Carte ca : a.getCarteMain()){
-            System.out.println("            "+ca.getNomCarte()+"\n");   
-            }
-        }
         
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
-        String aventurier = sc.nextLine();
-        
-        for (Aventurier a : echangeurs) {
-            if(aventurier==a.getNoma()) {
-                System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
-                String carte= sc.nextLine();
-                
-                for (Carte ca : aventurierCourant.getCarteMain()) {
-                    if(carte == ca.getNomCarte()) {
-                        a.addCarte(ca);
-                        aventurierCourant.getCarteMain().remove(ca);
-                        act = act-1;
+        if(!(echangeurs.isEmpty())){
+            if(!(aventurierCourant.getCarteMain().isEmpty())){    
+                for (Aventurier a : echangeurs) {
+                    System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
+                    System.out.println("Cartes en sa disposition : ");
+                    for(Carte ca : a.getCarteMain()){
+                    System.out.println("            "+ca.getNomCarte()+"\n");   
+                    }
+                }
+
+                Scanner sc = new Scanner(System.in);
+                System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
+                String aventurier = sc.nextLine();
+
+                for (Aventurier a : echangeurs) {
+                    if(aventurier.equals(a.getNoma())) {
+                        System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                        String carte= sc.nextLine();
+
+                        for (int i=0;i< aventurierCourant.getCarteMain().size();i++) {
+                            
+                            if(i!=aventurierCourant.getCarteMain().size()-1){
+                                if(carte.equals(aventurierCourant.getCarteMain().get(i).getNomCarte())) {
+                                    a.addCarte(aventurierCourant.getCarteMain().get(i));
+                                    aventurierCourant.getCarteMain().remove(aventurierCourant.getCarteMain().get(i));
+                                    act = act-1;
+                                    break;
+                                }
+                            }else{
+                                System.out.println("\nVous ne possédez pas cette carte");
+                            }
+                        }
+                        break;
                     }else{
-                        System.out.println("\nVous ne possédez pas cette carte");
+                        System.out.println("\nCet aventurier n'est pas disponible pour un échange");
                     }
                 }
             }else{
-                System.out.println("\nCet aventurier n'est pas disponible pour un échange");
+                System.out.println("Vous n'avez pas de cartes en main pour échanger");
             }
+        }else{
+            System.out.println("Il n'y a pes d'Aventuriers pour echanger des cartes sur cette case");
         }
 
+    this.getVueAventurier().updateCellules(grille);
     }
      
     public void traiterMessage(Message m) {
@@ -410,34 +460,6 @@ public class Controleur implements Observateur {
                 echangeDeCarte();
                 break;
         }
-    }
-
-    public ArrayList<Aventurier> getJoueurs() {
-        return joueurs;
-    }
-
-    public Aventurier getAventurierCourant() {
-        return aventurierCourant;
-    }
-
-    public Grille getGrille() {
-        return grille;
-    }
-
-    public int getAct() {
-        return act;
-    }
-
-    public void setAct(int act) {
-        this.act = act;
-    }
-    
-    public int getNiveauEau() {
-        return niveauEau;
-    }
-
-    public void setNiveauEau(int niveauEau) {
-        this.niveauEau = niveauEau;
     }
     
     public void piocherTresor() {
@@ -539,14 +561,6 @@ public class Controleur implements Observateur {
                 pierre.getRecupere() && calice.getRecupere() &&
                 joueurHeliport() && possedeHelico());
     }
-
-    public VueDeplacement getVueDeplacement() {
-        return vueDeplacement;
-    }
-
-    public void setVueDeplacement(VueDeplacement vueDeplacement) {
-        this.vueDeplacement = vueDeplacement;
-    }
     
     public void recuperTresor(){
         Tresor tr=null;
@@ -571,6 +585,7 @@ public class Controleur implements Observateur {
 
                 if (nbCarte>=4 ){
                     tr.setRecupere(true);
+                    System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
                     ArrayList<Carte> cpMain= new ArrayList();
                     for(Carte c : aventurierCourant.getCarteMain()){
                         if (c.getNomCarte()!=tr.getNom()){
