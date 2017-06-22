@@ -19,6 +19,7 @@ import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.*;
+import java.awt.Color;
 import static projetilebnyl.Message.TypeMessage.*;
 
 
@@ -39,10 +40,10 @@ public class Controleur implements Observateur {
     private Aventurier aventurierCourant;
     private CarteTresors piocheCarteTresor= new CarteTresors();
     private CarteInondations piocheCarteInondations= new CarteInondations();
-    private Tresor cristal = new Tresor(CRISTAL.toString());
-    private Tresor statute = new Tresor(STATUE.toString());
-    private Tresor pierre = new Tresor(PIERRE.toString());
-    private Tresor calice = new Tresor(CALICE.toString());
+    private Tresor cristal = new Tresor("Le Cristal ardent",Color.red);
+    private Tresor statute = new Tresor("La Statue du zéphyr",Color.yellow);
+    private Tresor pierre = new Tresor("La Pierre sacrée",Color.gray);
+    private Tresor calice = new Tresor("Le Calice de l’onde",Color.GREEN);
     private Carte Helicoptere1= new Carte(HELICOPTERE);
     private Carte Helicoptere2= new Carte(HELICOPTERE);
     private Carte Helicoptere3= new Carte(HELICOPTERE);
@@ -51,6 +52,7 @@ public class Controleur implements Observateur {
     
     private boolean actionPilote = true;
     
+    private ArrayList<Tresor> trésors = new ArrayList<>();
     public Controleur() {
         
         grille = new Grille();        
@@ -264,6 +266,7 @@ public class Controleur implements Observateur {
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
+        cristal.setRecupere(true);
         this.getVueAventurier().carteMainJoueurCourant();
         this.getVueAventurier().updateCellules(getGrille());
         
@@ -424,6 +427,7 @@ public class Controleur implements Observateur {
                 assechementCase();
                 break;
             case CLIC_BoutonAutreAction:
+                
                 break;
             case CLIC_BoutonTerminer:
                 passerJoueurSuivant();
@@ -625,5 +629,10 @@ public class Controleur implements Observateur {
     public void setActionPilote(boolean actionPilote) {
         this.actionPilote = actionPilote;
     }
+
+    public ArrayList<Tresor> getTrésors() {
+        return trésors;
+    }
+    
     
 }

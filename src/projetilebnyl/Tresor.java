@@ -9,6 +9,7 @@ import Grille.Grille;
 import Grille.Tuile;
 import static Vues.Utils.Cartes.*;
 import static Vues.Utils.EtatTuile.COULEE;
+import java.awt.Color;
 
 /**
  *
@@ -20,11 +21,13 @@ public class Tresor {
     private Boolean recupere;
     private Tuile sanctuaire1;
     private Tuile sanctuaire2;
+    private Color color;
     
 
-    public Tresor(String nom) {
+    public Tresor(String nom,Color color) {
         this.nom = nom;
         this.recupere = false;
+        this.color=color;
     }
 
     public String getNom() {
@@ -91,6 +94,10 @@ public class Tresor {
         if (this.getSanctuaire1().getStatut()== COULEE && this.getSanctuaire2().getStatut()== COULEE && this.getRecupere()==false){ acces=false;}
         
         return acces;
+    }
+
+    public Color getColor() {
+        return color;
     }
     
     
