@@ -225,9 +225,9 @@ public class VueInscription {
                     a2 = aventurier[choixAventurier2.getSelectedIndex()];
                     a3 = aventurier[choixAventurier3.getSelectedIndex()];
                     a4 = aventurier[choixAventurier4.getSelectedIndex()];
-
-
-
+                    
+                    
+                    
                     if (champVide(nomA1) == false){
                         System.out.println(nomA1 + " a sélectionné : " + a1);
                     }

@@ -21,7 +21,7 @@ import static java.lang.Integer.parseInt;
 import Vues.*;
 
 
-public class Controleur implements Observateur{
+public class Controleur implements Observateur {
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
@@ -48,6 +48,7 @@ public class Controleur implements Observateur{
     
     private VueDeplacement vueDeplacement;
 
+    private ArrayList<Tuile> spawns;
     
     public Controleur() {
         
@@ -64,6 +65,20 @@ public class Controleur implements Observateur{
         spawnNavigateur = grille.getTuile("La Porte d'Argent");
         spawnPilote = grille.getTuile("Héliport");
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
+        
+//        spawns.add(spawnMessager);
+//        spawns.add(spawnPlongeur);
+//        spawns.add(spawnIngenieur);
+//        spawns.add(spawnNavigateur);
+//        spawns.add(spawnPilote);
+//        spawns.add(spawnExplorateur);
+//        
+//        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+//            Aventurier avt1 = new getAventurier(getNomA1())(getVueInscription().getNomA1()(getVueInscription().getNomJ1(), getSpawns().get(i));
+//            
+//            
+//        }
+        
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
@@ -288,7 +303,6 @@ public class Controleur implements Observateur{
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
         
         getVueAventurier().updateCellules(grille);
-        this.TourDeJeu();
     }
     
     
@@ -349,7 +363,14 @@ public class Controleur implements Observateur{
                 passerJoueurSuivant();
                 break;
             case CLIC_BoutonValider:
-                deplace(getAventurierCourant());
+                for (int i = 0; i < joueurs.size(); i++) {
+                    if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
+                        deplace(joueurs.get(i));
+                    } else {
+                        deplace(getAventurierCourant());
+                        this.TourDeJeu();
+                    }
+                }
                 break;
             case CLIC_BoutonEchange:
                 echangeDeCarte();
@@ -527,5 +548,22 @@ public class Controleur implements Observateur{
             }
         }
     }
+
+    public VueInscription getVueInscription() {
+        return vueInscription;
+    }
+
+    public void setVueInscription(VueInscription vueInscription) {
+        this.vueInscription = vueInscription;
+    }
+
+    public ArrayList<Tuile> getSpawns() {
+        return spawns;
+    }
+
+    public void setSpawns(ArrayList<Tuile> spawns) {
+        this.spawns = spawns;
+    }
+
     
 }
