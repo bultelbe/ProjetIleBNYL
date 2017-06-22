@@ -61,13 +61,13 @@ public class VueInscription {
     private String nomJoueur3;
     private String nomJoueur4;
     
-    private ArrayList<String> nomsAventuriers;
-    private ArrayList<String> nomsJoueurs;
+    private ArrayList<String> nomsAventuriers = new ArrayList();
+    private ArrayList<String> nomsJoueurs = new ArrayList();
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
-    public VueInscription (){
-        //this.c = c;
+    public VueInscription (Controleur c){
+        this.c = c;
         this.window = new JFrame();
         window.setSize(600, 340); 
         window.setTitle("L'Île interdite");
@@ -240,8 +240,7 @@ public class VueInscription {
                     
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
                     
-                    Message m = new Message();
-                    
+                    Message m = new Message();                    
                     m.typeMessage = CLIC_BoutonDemarrer;
                     m.nomA = nomsAventuriers;
                     m.nomJ = nomsJoueurs;
@@ -356,13 +355,13 @@ public class VueInscription {
         this.nomsJoueurs = nomsJoueurs;
     }
     
-    
+    /*
     public static void main(String[] args) {
         // TODO code application logic here
         VueInscription V1 = new VueInscription();
         V1.afficher();
     }
-    
+    */
 }
 /*
  * To change this license header, choose License Headers in Project Properties.

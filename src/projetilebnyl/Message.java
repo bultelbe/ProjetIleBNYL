@@ -26,6 +26,8 @@ public class Message {
         CLIC_BoutonValider,
         CLIC_BoutonEchange,
         CLIC_BoutonRecupTresor;
+        
+        
     }
 
 }

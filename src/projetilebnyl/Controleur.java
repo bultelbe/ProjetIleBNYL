@@ -68,35 +68,15 @@ public class Controleur implements Observateur {
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
 
         
-//        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
-//        
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
-//            
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
-//            
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
-//            
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
-//            
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
-//            
-//            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
-//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
-//            
-//        }
         
         
-        joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
-        joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
-        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
-        joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
-        joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
-        joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
+        
+//        joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
+//        joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
+//        joueurs.add(new Ingenieur("Jean-Jack", spawnIngenieur, "Ingenieur"));
+//        joueurs.add(new Navigateur("Magelan", spawnNavigateur, "Navigateur"));
+//        joueurs.add(new Pilote("Jones", spawnPilote, "Pilote"));
+//        joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         aventurierCourant = joueurs.get(0);
     }
     
@@ -466,7 +446,28 @@ public class Controleur implements Observateur {
                 break;
                 
             case CLIC_BoutonDemarrer:
-                
+                System.out.println("ghkjhjk");
+                for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+        
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
+                        joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
+                        joueurs.add(new Plongeur(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
+                        joueurs.add(new Ingenieur(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
+                        joueurs.add(new Navigateur(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
+                        joueurs.add(new Pilote(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+
+                    if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
+                        joueurs.add(new Explorateur(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
+
+                }
                 break;
             
             case CLIC_BoutonRecupTresor:
