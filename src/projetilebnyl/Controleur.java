@@ -47,8 +47,6 @@ public class Controleur implements Observateur {
     private Carte Helicoptere3= new Carte(HELICOPTERE);
     
     private VueDeplacement vueDeplacement;
-
-    private ArrayList<Tuile> spawns;
     
     public Controleur() {
         
@@ -65,19 +63,29 @@ public class Controleur implements Observateur {
         spawnNavigateur = grille.getTuile("La Porte d'Argent");
         spawnPilote = grille.getTuile("Héliport");
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
+
         
-//        spawns.add(spawnMessager);
-//        spawns.add(spawnPlongeur);
-//        spawns.add(spawnIngenieur);
-//        spawns.add(spawnNavigateur);
-//        spawns.add(spawnPilote);
-//        spawns.add(spawnExplorateur);
-//        
-//        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
-//            Aventurier avt1 = new getAventurier(getNomA1())(getVueInscription().getNomA1()(getVueInscription().getNomJ1(), getSpawns().get(i));
-//            
-//            
-//        }
+        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+        
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
+            
+        }
         
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
@@ -88,6 +96,7 @@ public class Controleur implements Observateur {
         joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         aventurierCourant = joueurs.get(0);
     }
+    
     
     public void TourDeJeu() {
 
@@ -100,6 +109,7 @@ public class Controleur implements Observateur {
         }
     }
 
+    
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
@@ -556,14 +566,5 @@ public class Controleur implements Observateur {
     public void setVueInscription(VueInscription vueInscription) {
         this.vueInscription = vueInscription;
     }
-
-    public ArrayList<Tuile> getSpawns() {
-        return spawns;
-    }
-
-    public void setSpawns(ArrayList<Tuile> spawns) {
-        this.spawns = spawns;
-    }
-
     
 }

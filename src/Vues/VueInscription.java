@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import projetilebnyl.Controleur;
 import static projetilebnyl.Message.CLIC_BoutonDemarrer;
@@ -49,16 +50,17 @@ public class VueInscription {
     private int nbrJoueurs = 0;
     private int niveauEau = 0;
     private Controleur c;
-    private String a1;
-    private String a2;
-    private String a3;
-    private String a4;
+    private String nomA1;
+    private String nomA2;
+    private String nomA3;
+    private String nomA4;
     private String nomJoueur1;
     private String nomJoueur2;
     private String nomJoueur3;
     private String nomJoueur4;
     
-    
+    private ArrayList<String> nomsAventuriers;
+    private ArrayList<String> nomsJoueurs;
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
@@ -186,18 +188,26 @@ public class VueInscription {
                 
                 if (champVide(nomJoueur1) == false){
                     nbrJoueurs = nbrJoueurs+1;
+                    nomsAventuriers.add(nomA1);
+                    nomsJoueurs.add(nomJoueur1);
                 }
 
                 if (champVide(nomJoueur2) == false){
                     nbrJoueurs = nbrJoueurs+1;
+                    nomsAventuriers.add(nomA2);
+                    nomsJoueurs.add(nomJoueur2);
                 }
 
                 if (champVide(nomJoueur3) == false){
                     nbrJoueurs = nbrJoueurs+1;
+                    nomsAventuriers.add(nomA3);
+                    nomsJoueurs.add(nomJoueur3);
                 }
 
                 if (champVide(nomJoueur4) == false){
                     nbrJoueurs = nbrJoueurs+1;
+                    nomsAventuriers.add(nomA4);
+                    nomsJoueurs.add(nomJoueur4);
                 }
 
                 
@@ -221,29 +231,11 @@ public class VueInscription {
                 
                     System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
 
-                    a1 = aventurier[choixAventurier1.getSelectedIndex()];
-                    a2 = aventurier[choixAventurier2.getSelectedIndex()];
-                    a3 = aventurier[choixAventurier3.getSelectedIndex()];
-                    a4 = aventurier[choixAventurier4.getSelectedIndex()];
+                    nomA1 = aventurier[choixAventurier1.getSelectedIndex()];
+                    nomA2 = aventurier[choixAventurier2.getSelectedIndex()];
+                    nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
+                    nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
                     
-                    
-                    
-                    if (champVide(nomJoueur1) == false){
-                        System.out.println(nomJoueur1 + " a sélectionné : " + a1);
-                    }
-
-                    if (champVide(nomJoueur2) == false){
-                        System.out.println(nomJoueur2 + " a sélectionné : " + a2);
-                    }
-
-                    if (champVide(nomJoueur3) == false){
-                        System.out.println(nomJoueur3 + " a sélectionné : " + a3);
-                    }
-
-                    if (champVide(nomJoueur4) == false){
-                        System.out.println(nomJoueur4 + " a sélectionné : " + a4);
-                    }
-
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
                     
                     c.traiterMessage(CLIC_BoutonDemarrer);
@@ -299,20 +291,20 @@ public class VueInscription {
         return niveauEau;
     }
 
-    public String getA1() {
-        return a1;
+    public String getNomA1() {
+        return nomA1;
     }
 
-    public String getA2() {
-        return a2;
+    public String getNomA2() {
+        return nomA2;
     }
 
-    public String getA3() {
-        return a3;
+    public String getNomA3() {
+        return nomA3;
     }
 
-    public String getA4() {
-        return a4;
+    public String getNomA4() {
+        return nomA4;
     }
 
     public String getNomJoueur1() {
@@ -335,7 +327,26 @@ public class VueInscription {
     public void afficher(){
         this.window.setVisible(true);
     }
+
     
+    public ArrayList<String> getNomsAventuriers() {
+        return nomsAventuriers;
+    }
+
+    
+    public void setNomsAventuriers(ArrayList<String> nomsAventuriers) {
+        this.nomsAventuriers = nomsAventuriers;
+    }
+
+    
+    public ArrayList<String> getNomsJoueurs() {
+        return nomsJoueurs;
+    }
+
+    
+    public void setNomsJoueurs(ArrayList<String> nomsJoueurs) {
+        this.nomsJoueurs = nomsJoueurs;
+    }
     
     
     public static void main(String[] args) {
