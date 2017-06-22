@@ -246,6 +246,22 @@ public class Controleur implements Observateur {
     }
     
     public void passerJoueurSuivant() {
+        if(this.gagner()){
+           getVueAventurier().getBtnAller().setEnabled(false);
+           getVueAventurier().getBtnAssecher().setEnabled(false);
+           getVueAventurier().getBtnEchangeCarte().setEnabled(false);
+           getVueAventurier().getBtnRecupTresor().setEnabled(false);
+           getVueAventurier().getBtnTerminerTour().setEnabled(false); 
+           
+           getVueAventurier().ecranGagner();
+        }
+        
+        /*aventurierCourant.addCarte(Helicoptere1);
+        cristal.setRecupere(true);
+        calice.setRecupere(true);
+        pierre.setRecupere(true);
+        statue.setRecupere(true);*/
+        
         
         this.piocherInnodation();        
         for (int i = 0; i < joueurs.size(); i++) {
@@ -256,12 +272,12 @@ public class Controleur implements Observateur {
                         + " et se déplacer sur une autre tuile !");
                     joueurs.get(i).deplacementsPossibles(getGrille());
                     deplacementJoueurObligatoire(joueurs.get(i));
+                    act++;
                     
                 } else {
                     System.out.println("\nFin de partie ! Vous avez perdu.");
                     getVueAventurier().getBtnAller().setEnabled(false);
                     getVueAventurier().getBtnAssecher().setEnabled(false);
-                    getVueAventurier().getBtnCarteSpe().setEnabled(false);
                     getVueAventurier().getBtnEchangeCarte().setEnabled(false);
                     getVueAventurier().getBtnRecupTresor().setEnabled(false);
                     getVueAventurier().getBtnTerminerTour().setEnabled(false);
@@ -270,7 +286,7 @@ public class Controleur implements Observateur {
             }
         }
 
-       piocherTresor();
+        piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
@@ -358,7 +374,7 @@ public class Controleur implements Observateur {
         if (tuilesPossibles.contains(t)) {
             avt.setPositionCourante(t);
             System.out.println(avt.getNoma() + " s'est déplacé sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
-            
+            act=act-1;
             
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile."+ avt.getNoma());
@@ -367,6 +383,7 @@ public class Controleur implements Observateur {
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
         
         getVueAventurier().updateCellules(grille);
+        this.TourDeJeu();
     }
        
     public void echangeDeCarte() {

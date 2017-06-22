@@ -132,6 +132,9 @@ public class VueAventurier  {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnCarteSpe.setEnabled(true);
+            btnEchangeCarte.setEnabled(true);
+            btnCarteSpe.setEnabled(true);
+            btnRecupTresor.setEnabled(true);
             Message m = new Message();                    
             m.typeMessage = CLIC_BoutonTerminer;
             controleur.traiterMessage(m);
@@ -447,4 +450,16 @@ public class VueAventurier  {
     public void afficher(){
         this.window.setVisible(true);
     }
+    
+    public void ecranGagner(){
+        JFrame gagne = new JFrame();
+        gagne.setSize(400,100);
+        JLabel message = new JLabel("Bravo vous avez gagné, vous êtes un dieu !!");
+        gagne.add(message,SwingConstants.CENTER);
+        window.setVisible(false);
+        gagne.setVisible(true);
+        gagne.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        
+    }
+
 }
