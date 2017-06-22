@@ -41,7 +41,7 @@ public class Controleur implements Observateur {
     private CarteTresors piocheCarteTresor= new CarteTresors();
     private CarteInondations piocheCarteInondations= new CarteInondations();
     private Tresor cristal = new Tresor("Le Cristal ardent",Color.red);
-    private Tresor statute = new Tresor("La Statue du zéphyr",Color.yellow);
+    private Tresor statue = new Tresor("La Statue du zéphyr",Color.yellow);
     private Tresor pierre = new Tresor("La Pierre sacrée",Color.gray);
     private Tresor calice = new Tresor("Le Calice de l’onde",Color.GREEN);
     private Carte Helicoptere1= new Carte(HELICOPTERE);
@@ -53,14 +53,22 @@ public class Controleur implements Observateur {
     private boolean actionPilote = true;
     
     private ArrayList<Tresor> trésors = new ArrayList<>();
+    
+    
     public Controleur() {
+        trésors.add(pierre);
+        trésors.add(statue);
+        trésors.add(cristal);
+        trésors.add(calice);
         
         grille = new Grille();        
         initGrille();
+        
         piocheCarteTresor.addPiocheTresor(Helicoptere1);
         piocheCarteTresor.addPiocheTresor(Helicoptere2);
         piocheCarteTresor.addPiocheTresor(Helicoptere3);
         Collections.shuffle(piocheCarteTresor.getPiocheTresor());
+        
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
@@ -266,7 +274,6 @@ public class Controleur implements Observateur {
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
-        cristal.setRecupere(true);
         this.getVueAventurier().carteMainJoueurCourant();
         this.getVueAventurier().updateCellules(getGrille());
         
@@ -528,8 +535,8 @@ public class Controleur implements Observateur {
     public void initTresor() {
         cristal.setSanctuaire1(grille);
         cristal.setSanctuaire2(grille);
-        statute.setSanctuaire1(grille);
-        statute.setSanctuaire2(grille);
+        statue.setSanctuaire1(grille);
+        statue.setSanctuaire2(grille);
         pierre.setSanctuaire1(grille);
         pierre.setSanctuaire2(grille);
         calice.setSanctuaire1(grille);
@@ -544,7 +551,7 @@ public class Controleur implements Observateur {
     }
       
     public boolean continuer(){
-        return (cristal.recuperable() && statute.recuperable() &&
+        return (cristal.recuperable() && statue.recuperable() &&
                 pierre.recuperable() && calice.recuperable() &&
                 niveauEau < 9 && grille.getTuile("Héliport").getStatut() != COULEE &&
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
@@ -572,7 +579,7 @@ public class Controleur implements Observateur {
     }
 
     public boolean gagner(){
-        return(cristal.getRecupere() && statute.getRecupere() &&
+        return(cristal.getRecupere() && statue.getRecupere() &&
                 pierre.getRecupere() && calice.getRecupere() &&
                 joueurHeliport() && possedeHelico());
     }
@@ -582,8 +589,8 @@ public class Controleur implements Observateur {
         Tuile positionJ= aventurierCourant.getPositionCourante();
         if(positionJ==cristal.getSanctuaire1() || positionJ==cristal.getSanctuaire2()){
             tr=cristal;
-        }else if (positionJ==statute.getSanctuaire1() || positionJ==statute.getSanctuaire2()){
-            tr=statute;
+        }else if (positionJ==statue.getSanctuaire1() || positionJ==statue.getSanctuaire2()){
+            tr=statue;
         }else if (positionJ==pierre.getSanctuaire1() || positionJ==pierre.getSanctuaire2()){
             tr=pierre;
         }else if (positionJ==calice.getSanctuaire1() || positionJ==calice.getSanctuaire2()){

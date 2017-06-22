@@ -28,6 +28,7 @@ import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 import static Vues.Utils.EtatTuile.*;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import projetilebnyl.Message;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
@@ -64,7 +65,7 @@ public class VueAventurier  {
     private HashMap<Integer,JPanel> trésors=new HashMap();
     private HashMap<Integer,JLabel> labels=new HashMap();
     private HashMap<Integer,JLabel> cartesLabels=new HashMap();
-    private HashMap<Integer,JLabel> tresorsLabels=new HashMap();
+    private ArrayList<JLabel> tresorsLabels=new ArrayList();
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
         this.controleur = ctrl;
@@ -222,10 +223,10 @@ public class VueAventurier  {
         panelTresors.add(panelTresor3);
         panelTresors.add(panelTresor4);
         
-        tresorsLabels.put(0,nomTresor1);
-        tresorsLabels.put(1,nomTresor2);
-        tresorsLabels.put(2,nomTresor3);
-        tresorsLabels.put(3,nomTresor4);
+        tresorsLabels.add(nomTresor1);
+        tresorsLabels.add(nomTresor2);
+        tresorsLabels.add(nomTresor3);
+        tresorsLabels.add(nomTresor4);
         
         bigPanel.add(panelOuest,BorderLayout.WEST);
         // =================================================================================
@@ -292,9 +293,9 @@ public class VueAventurier  {
     public void updateCellules(Grille grilleListe) {
         
         for(int i=0; i<4; i++){
-            for(int j=0; i<4; j++){
-                if(tresorsLabels.get(i).getText().equals(controleur.getTrésors().get(j)) && controleur.getTrésors().get(j).getRecupere()){
-                    trésors.get(i).setBackground(controleur.getTrésors().get(j).getColor());
+            for(int j=0; j<4; j++){
+                if(!tresorsLabels.get(i).getText().equals(controleur.getTrésors().get(j)) && controleur.getTrésors().get(j).getRecupere()){
+                    trésors.get(j).setBackground(controleur.getTrésors().get(j).getColor());
                 }
             }
         }
