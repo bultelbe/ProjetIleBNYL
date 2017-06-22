@@ -252,7 +252,7 @@ public class Controleur implements Observateur {
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement(this);
+        vueDeplacement = new VueDeplacement(this,avt);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -270,7 +270,7 @@ public class Controleur implements Observateur {
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement(this);
+        vueDeplacement = new VueDeplacement(this,aventurierCourant);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -371,6 +371,9 @@ public class Controleur implements Observateur {
                         this.TourDeJeu();
                     }
                 }
+                break;
+            case CLIC_BoutonEchange:
+                echangeDeCarte();
                 break;
         }
     }
