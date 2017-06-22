@@ -13,6 +13,9 @@ import static java.lang.Integer.parseInt;
 import Vues.*;
 import java.awt.Color;
 import static projetilebnyl.Message.TypeMessage.*;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 
 
 public class Controleur implements Observateur {
@@ -206,7 +209,7 @@ public class Controleur implements Observateur {
                     getAventurierCourant().setActionPilote(false);  
         }
         
-        this.piocherInnodation();        
+        this.piocherInondation();        
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 
@@ -470,7 +473,7 @@ public class Controleur implements Observateur {
     
     
     //Permet la pioche de cartes Inondations
-    public void piocherInnodation() {
+    public void piocherInondation() {
         piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
     
@@ -662,7 +665,7 @@ public class Controleur implements Observateur {
         this.vueAventurier = vueAvt;
     }
     
-    public void utiliserCarteSpéciale(){
+    public void utiliserCarteSpeciale(){
         ArrayList<Carte> Main = aventurierCourant.getCarteMain();
         int nbHelicoPossible=0;
         int nbSacPossible=0;
