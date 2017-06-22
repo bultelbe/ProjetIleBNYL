@@ -1,17 +1,9 @@
 package projetilebnyl;
 
 
-import Pioches_Tresor.Carte;
-import Pioches_Tresor.CarteInondations;
-import Pioches_Tresor.CarteTresors;
+import Pioches_Tresor.*;
 
-import Aventurier.Plongeur;
-import Aventurier.Pilote;
-import Aventurier.Navigateur;
-import Aventurier.Messager;
-import Aventurier.Ingenieur;
-import Aventurier.Explorateur;
-import Aventurier.Aventurier;
+import Aventurier.*;
 import Grille.Grille;
 import Grille.Tuile;
 import java.util.*;
@@ -70,6 +62,8 @@ public class Controleur implements Observateur {
         Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         
         initTresor();
+        
+        //Déclare les différentes tuiles de départ de chacun des aventuriers
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
         spawnIngenieur = grille.getTuile("La Porte de Bronze");
@@ -79,56 +73,7 @@ public class Controleur implements Observateur {
     }
     
     
-    public ArrayList<Aventurier> getJoueurs() {
-        return joueurs;
-    }
-
-    public Aventurier getAventurierCourant() {
-        return aventurierCourant;
-    }
-
-    public Grille getGrille() {
-        return grille;
-    }
-
-    public int getAct() {
-        return act;
-    }
-    
-    public int getNiveauEau() {
-        return niveauEau;
-    }
-    
-    public VueDeplacement getVueDeplacement() {
-        return vueDeplacement;
-    }
- 
-    public VueAventurier getVueAventurier() {
-        return this.vueAventurier;
-    }
-    
-    
-    
-    public void setAct(int act) {
-        this.act = act;
-    }
-    
-    public void setNiveauEau(int niveauEau) {
-        this.niveauEau = niveauEau;
-    }
-   
-    public void setVueDeplacement(VueDeplacement vueDeplacement) {
-        this.vueDeplacement = vueDeplacement;
-    }
-      
-    public void setVueAvt (VueAventurier vueAvt) {
-        this.vueAventurier = vueAvt;
-    }
-    
-    
-    
-    
-    
+    //Gère le fait qu'un aventurier ait fait 3 actions
     public void TourDeJeu() {
 
         if (getAct() == 0) {
@@ -143,6 +88,7 @@ public class Controleur implements Observateur {
     }
 
     
+    //Gère l'assèchement de chacun des aventuriers à travers la console en mettant à jour la grille
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = aventurierCourant.assechementsPossibles(getGrille());
@@ -245,6 +191,8 @@ public class Controleur implements Observateur {
         this.TourDeJeu();
     }
     
+    
+    //Permet de terminer le tour en gérant les cartes Inondations et trésors
     public void passerJoueurSuivant() {
         if(this.gagner()){
            getVueAventurier().getBtnAller().setEnabled(false);
@@ -298,7 +246,9 @@ public class Controleur implements Observateur {
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-       
+     
+    
+    //Gère les déplacements d'un joueur lorsque celui se trouve sur une tuile qui devient coulée lorsqu'un tour est terminé
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -314,7 +264,7 @@ public class Controleur implements Observateur {
     }
         
     
-    
+    //Gère le déplacement de chacun des aventuriers suivant leurs capacités
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         vueDeplacement = new VueDeplacement(this, aventurierCourant);
@@ -361,7 +311,7 @@ public class Controleur implements Observateur {
     
     
     
-    
+    //Gère l'affichage de la fenêtre de saisie des coordonnées de la tuile où l'aventurier veut se deplacer
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -386,6 +336,7 @@ public class Controleur implements Observateur {
         this.TourDeJeu();
     }
        
+    //Gère un échange de cartes
     public void echangeDeCarte() {
         ArrayList<Aventurier> echangeurs = new ArrayList<>();
         
@@ -473,6 +424,8 @@ public class Controleur implements Observateur {
         }
     }
     
+    
+    //Initialise la vueAventurier
     public void lancerVueAventurier(Message m){
         for (int i = 0; i < m.nomA.size(); i++) {
         
@@ -501,6 +454,7 @@ public class Controleur implements Observateur {
         this.setVueAvt(vueAvt);
     }
     
+    //Permet la pioche de cartes Trésors
     public void piocherTresor() {
         if (piocheCarteTresor.getPiocheTresor().size() > 0) {
             Boolean eauxPioche = false;
@@ -534,10 +488,13 @@ public class Controleur implements Observateur {
         
     }
     
+    
+    //Permet la pioche de cartes Inondations
     public void piocherInnodation() {
         piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
     
+    //Initialise la grille
     public void initGrille(){
     for (int i = 0; i < 6; i++){
             piocheCarteInondations.getDefausseInondation().add(piocheCarteInondations.getPiocheInondation().get(0));
@@ -549,6 +506,7 @@ public class Controleur implements Observateur {
         }
     }
 
+    //Initialise les trésors
     public void initTresor() {
         cristal.setSanctuaire1(grille);
         cristal.setSanctuaire2(grille);
@@ -560,6 +518,7 @@ public class Controleur implements Observateur {
         calice.setSanctuaire2(grille);
     }
     
+    //Gère le fait qu'un Aventurier ait encore la possibilité (ou non) de se déplacer
     public boolean possibleMouvement(Aventurier avt){
         return avt.deplacementsPossibles(grille).size() > 0 ||
                 (avt.getCarteMain().contains(Helicoptere1)) ||
@@ -567,6 +526,7 @@ public class Controleur implements Observateur {
                 (avt.getCarteMain().contains(Helicoptere3));
     }
       
+    //Gère la fin de partie (Perdu)
     public boolean continuer(){
         return (cristal.recuperable() && statue.recuperable() &&
                 pierre.recuperable() && calice.recuperable() &&
@@ -574,6 +534,7 @@ public class Controleur implements Observateur {
                 (possibleMouvement(getAventurierCourant()) || (!possibleMouvement(getAventurierCourant()) && aventurierCourant.getPositionCourante().getStatut() != COULEE) ));
     }
     
+    //Renvoie vrai si tous les joueurs sont sur l'Héliport
     private boolean joueurHeliport(){
         Boolean surHeliport=true;
         for(Aventurier avt : joueurs){
@@ -584,6 +545,7 @@ public class Controleur implements Observateur {
         return surHeliport;
     }
     
+    //Renvoie vrai si un joueur possède une carte Hélicoptère
     private boolean possedeHelico(){
         boolean helico=false;
         for(Aventurier avt : joueurs){
@@ -595,12 +557,14 @@ public class Controleur implements Observateur {
         return helico;
     }
 
+    //Gère le fait de gagner la partie
     public boolean gagner(){
         return(cristal.getRecupere() && statue.getRecupere() &&
                 pierre.getRecupere() && calice.getRecupere() &&
                 joueurHeliport() && possedeHelico());
     }
     
+    ////Gère la récupération de trésors
     public void recuperTresor(){
         Tresor tr=null;
         Tuile positionJ= aventurierCourant.getPositionCourante();
@@ -637,7 +601,10 @@ public class Controleur implements Observateur {
             }
         }
     }
-
+    
+    
+    //Getters et Sttters
+    
     public VueInscription getVueInscription() {
         return vueInscription;
     }
@@ -658,5 +625,49 @@ public class Controleur implements Observateur {
         return trésors;
     }
     
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+
+    public Grille getGrille() {
+        return grille;
+    }
+
+    public int getAct() {
+        return act;
+    }
     
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+    
+    public VueDeplacement getVueDeplacement() {
+        return vueDeplacement;
+    }
+ 
+    public VueAventurier getVueAventurier() {
+        return this.vueAventurier;
+    }
+    
+    
+    
+    public void setAct(int act) {
+        this.act = act;
+    }
+    
+    public void setNiveauEau(int niveauEau) {
+        this.niveauEau = niveauEau;
+    }
+   
+    public void setVueDeplacement(VueDeplacement vueDeplacement) {
+        this.vueDeplacement = vueDeplacement;
+    }
+      
+    public void setVueAvt (VueAventurier vueAvt) {
+        this.vueAventurier = vueAvt;
+    }
 }

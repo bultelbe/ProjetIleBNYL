@@ -18,11 +18,7 @@ public class Main {
     public static void main(String [] args) {
         // Instanciation de la fenêtre 
         Controleur controleur = new Controleur();
-        //VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor(), controleur);
-        //controleur.setVueAvt(vueAvt);
-        VueInscription vueInscrip = new VueInscription(controleur);
-        //System.out.println(vueAvt.getCartesLabels().get(0).getText());         
-        
+        VueInscription vueInscrip = new VueInscription(controleur);      
     }
     
 }

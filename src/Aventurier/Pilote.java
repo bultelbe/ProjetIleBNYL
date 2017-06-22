@@ -8,14 +8,18 @@ import java.util.ArrayList;
 import Vues.Utils;
 import static Vues.Utils.EtatTuile.*;
 
+//Hérite d'Aventurier
 public class Pilote extends Aventurier {
     
     private boolean action = true;
 
+    //Constructeur
     public Pilote(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
 
+    
+    //Retourne une arrayList de tuiles correspondant à toutes les tuiles de la grille non coulées où le pilote peut aller
     @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();

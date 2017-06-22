@@ -19,6 +19,7 @@ public abstract class Aventurier {
     private Tuile positionCourante;
     private boolean actionPilote;
 
+    // Constructeur d'Aventurier
     public Aventurier(String nomJ, Tuile positionCourante, String noma) {
         this.nomJ = nomJ;
         this.positionCourante = positionCourante;
@@ -43,6 +44,7 @@ public abstract class Aventurier {
         this.ligne = ligne - 1;
      }
 
+    //Retourne une arrayList des tuiles Inondées positionnées sur les tuiles adjacentes à l'aventurier
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         
         ArrayList<Tuile> tuilesInondees = new ArrayList<>();
@@ -58,6 +60,8 @@ public abstract class Aventurier {
         return tuilesInondees;
     }
 
+    
+    //Retourne une ArrayList des tuiles non coulées positionnées sur les tuiles adjacentes à l'aventurier
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();

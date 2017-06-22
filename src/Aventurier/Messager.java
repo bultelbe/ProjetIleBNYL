@@ -4,8 +4,10 @@ import Grille.Tuile;
 import java.awt.Color;
 import Vues.Utils;
 
+//Hérite d'Aventurier
 public class Messager extends Aventurier {
 
+    //Constructeur
     public Messager(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }

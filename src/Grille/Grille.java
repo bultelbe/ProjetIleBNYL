@@ -6,6 +6,8 @@ import Grille.Tuile;
 import java.util.Vector;
 import static Vues.Utils.EtatTuile.*;
 
+
+//Déclaration de toutes les tuiles de la grille
 public class Grille {
 	public ArrayList<Tuile> tuiles = new ArrayList<>();
         private Tuile t1=new Tuile("Le Pont des Abimes");
@@ -33,17 +35,23 @@ public class Grille {
         private Tuile t23=new Tuile("La Tour du Guet");
         private Tuile t24=new Tuile("Le Jardin des Murmures");
 
+        //Constructeur
         public Grille() {
                ArrayList<Tuile> liste = new ArrayList<>();
                
+               //ajout des tuiles à une collection
                 liste.add(t1);liste.add(t2);liste.add(t3);liste.add(t4);liste.add(t5);liste.add(t6);liste.add(t7);liste.add(t8);liste.add(t9);liste.add(t10);
                 liste.add(t11);liste.add(t12);liste.add(t13);liste.add(t14);liste.add(t15);liste.add(t16);liste.add(t17);liste.add(t18);liste.add(t19);liste.add(t20);
                 liste.add(t21);liste.add(t22);liste.add(t23);liste.add(t24);
+                
+                //Permet de positionner les tuiles aléatoirement dans la collection
                Collections.shuffle(liste);
                int j =0;
                int col = 0;
-               int lig = 0;                    
-               for (int i=1; i<=36; ++i){
+               int lig = 0;
+               
+               //Créer la grille de 6 par 6 comprennant les tuiles vides
+               for (int i=1; i<=36; ++i) {
                    if(i==1 || i==2 || i==5 || i==6 || i==7 || i==12 || i==25 || i==30|| i==31 || i==32 | i==35 || i==36){
                         Tuile vide=new Tuile("Vide");
                         vide.setColonne(col);
@@ -67,6 +75,8 @@ public class Grille {
             return tuiles;
         }
 
+        
+        //Retourne une collection de tuiles correspondant aux tuiles adjacentes à la positionCourante
 	public ArrayList<Tuile> getListeTuileAdj(Tuile positionCourante) {
                 
                 ArrayList<Tuile> Liste = new ArrayList();
@@ -123,8 +133,10 @@ public class Grille {
                 return Liste;
 	}
 
+        
+        //Retourne une collection de tuiles correspondant aux tuiles sur les diagonales de la positionCourante d'un Aventurier
         public ArrayList<Tuile> getListeTuileDiag(Tuile positionCourante) {
-            //retourne une liste des   
+            
             ArrayList<Tuile> Liste = new ArrayList();
             int col = positionCourante.getColonne();
             int lig = positionCourante.getLigne();
@@ -178,6 +190,8 @@ public class Grille {
             return Liste;
 	}
                
+        
+        //Retourne une arrayList de tuiles comprennant les tuiles adjacentes et les tuiles diagonales
         public ArrayList<Tuile> getListeTuileAdjDiag(Tuile positionCourante) {
             ArrayList<Tuile> listReturn=new ArrayList();
             ArrayList<Tuile> listDiag;
@@ -191,8 +205,9 @@ public class Grille {
             return listReturn;
         }
         
+        
+        //Retourne toutes les tuiles non coulées de la grille
         public ArrayList<Tuile> getTuilesPossibles(){
-            // retourne la liste des tuiles qui ne sont pas couléé
             ArrayList<Tuile> liste = new ArrayList();
             for(Tuile t : tuiles) {
                 if(t.getNomCase()!="Vide"){
@@ -204,9 +219,9 @@ public class Grille {
             return liste;
         }
     
+        
+        //Retourne la tuile à partir d'une colonne et d'une ligne données
         public Tuile getTuile(int colonne, int ligne) {
-            // retourne la tuile à l'intersection de colonne et ligne
-            // sinon retourne null
             for(Tuile t : tuiles) {
                 if(t.getColonne() == colonne && t.getLigne() == ligne) {
                     return t;
@@ -215,6 +230,8 @@ public class Grille {
             return null;
         }
         
+        
+        //Retourne la tuile à partir d'un nom donné
         public Tuile getTuile(String nom){
             Tuile tuileRet=new Tuile("");
             for (Tuile T1:tuiles){
@@ -226,6 +243,7 @@ public class Grille {
             return tuileRet;
         }
        
+        //Affiche intégralement, dans la console, la grille
         public void afficheGrille(){
         //fonction servant uniquement a affiché la grille lors de la création du code
         for (int i=0;i<(this.getTuilesGrille().size());++i){

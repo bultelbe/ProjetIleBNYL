@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import Vues.Utils;
 import static Vues.Utils.EtatTuile.*;
 
+//Hérite d'Aventurier
 public class Plongeur extends Aventurier {
 
+    //Constructeur
     public Plongeur(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
 
     
+    //Retourne une ArrayList des tuiles non coulées où le plongeur peut aller grâce à sa capacité
     @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         

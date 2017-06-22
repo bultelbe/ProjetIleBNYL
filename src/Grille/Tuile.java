@@ -9,18 +9,20 @@ public class Tuile {
 	private int ligne;
 	private EtatTuile statut;
         
+    //Constructeurs
     public Tuile(String nomCase) {
         this.nomCase = nomCase;
-
         this.statut = EtatTuile.ASSECHEE;
     }
+    
     
     public Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
     }
             
-        
+    
+    //Getters et Setters des différents objets
     public String getNomCase() {
         return nomCase;
 	}

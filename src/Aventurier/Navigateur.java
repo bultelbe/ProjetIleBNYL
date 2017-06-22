@@ -5,8 +5,10 @@ import Grille.Tuile;
 import java.awt.Color;
 import Vues.Utils;
 
+//Hérite d'Aventurier
 public class Navigateur extends Aventurier {
 
+    //Constructeur
     public Navigateur(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
