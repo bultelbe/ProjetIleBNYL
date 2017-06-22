@@ -65,7 +65,6 @@ public class VueAventurier  {
     
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
-
         this.controleur = ctrl;
         
         this.window = new JFrame();

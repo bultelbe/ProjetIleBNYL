@@ -66,7 +66,6 @@ public class Controleur implements Observateur {
         spawnNavigateur = grille.getTuile("La Porte d'Argent");
         spawnPilote = grille.getTuile("Héliport");
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
-
         
         
         
