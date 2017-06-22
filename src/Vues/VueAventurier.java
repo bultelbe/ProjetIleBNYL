@@ -26,6 +26,12 @@ import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 import static Vues.Utils.EtatTuile.*;
 import java.awt.FlowLayout;
+import projetilebnyl.Message;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonEchange;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonRecupTresor;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonTerminer;
 import projetilebnyl.Observateur;
 
  
@@ -59,7 +65,6 @@ public class VueAventurier  {
     
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
-
         this.controleur = ctrl;
         
         this.window = new JFrame();
@@ -124,19 +129,23 @@ public class VueAventurier  {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnCarteSpe.setEnabled(true);
-            controleur.traiterMessage(CLIC_BoutonTerminer);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonTerminer;
+            controleur.traiterMessage(m);
 
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-           
-            controleur.traiterMessage(CLIC_BoutonAller);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonAller;
+            controleur.traiterMessage(m);
           
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-        
-            controleur.traiterMessage(CLIC_BoutonAssecher);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonAssecher;
+            controleur.traiterMessage(m);
           
         });
         
@@ -145,10 +154,16 @@ public class VueAventurier  {
         });
         
         this.btnEchangeCarte.addActionListener((ActionEvent e) -> {
-            controleur.traiterMessage(CLIC_BoutonEchange);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonEchange;
+            controleur.traiterMessage(m);
         });
         
-        this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
+        this.btnRecupTresor.addActionListener((ActionEvent e) -> {
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonRecupTresor;
+            controleur.traiterMessage(m);
+        });
         
         
         // =================================================================================
@@ -245,7 +260,7 @@ public class VueAventurier  {
             } else {
                 pions.get(i).removeAll();
                 
-                for(int k=0; k<6; k++){
+                for(int k=0; k<controleur.getJoueurs().size(); k++){
                     if(labels.get(i).getText() == controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                         PionJoueur pionJ = controleur.getJoueurs().get(k).getPionjoueur();
                         pion.add(pionJ);
@@ -340,7 +355,7 @@ public class VueAventurier  {
                 panelPion.setBackground(Color.BLUE);
             }
             
-            for(int k=0; k<6; k++){
+            for(int k=0; k<controleur.getJoueurs().size(); k++){
                 
                 if(nomCase.getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                     PionJoueur pion = controleur.getJoueurs().get(k).getPionjoueur();
@@ -379,5 +394,7 @@ public class VueAventurier  {
         return cartesLabels;
     }
     
-    
+    public void afficher(){
+        this.window.setVisible(true);
+    }
 }

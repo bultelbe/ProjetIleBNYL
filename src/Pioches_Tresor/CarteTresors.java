@@ -100,6 +100,10 @@ public class CarteTresors {
        
        public void addPiocheTresor(Carte carte){
            getPiocheTresor().add(carte);
+           
+           if (getPiocheTresor().size()==0){
+               remiseDefausse();
+           }
        }
        
        public void defausseTresor(Carte carte){

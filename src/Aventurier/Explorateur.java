@@ -19,10 +19,16 @@ public class Explorateur extends Aventurier {
         ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
+        /*
+        listDiag=this.getListeTuileDiag(positionCourante);
+            for(int i=0;i<listDiag.size();i++){
+                listReturn.add(listDiag.get(i));
+            }
         
-        for (Tuile t : tuilesDiag) {
-            if (t.getStatut() != COULEE)
-                tuilesAdj.add(t);
+        */
+        for (int i=0;i<tuilesDiag.size();i++) {
+            if (tuilesDiag.get(i).getStatut() != COULEE)
+                tuilesAdj.add(tuilesDiag.get(i));
         }
         return tuilesAdj;
     }
@@ -55,6 +61,16 @@ public class Explorateur extends Aventurier {
     @Override
     public Color getColor() {
         return Utils.Pion.VERT.getCouleur();
+    }
+
+    @Override
+    public boolean getActionPilote() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setActionPilote(boolean etat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

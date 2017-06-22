@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import projetilebnyl.Controleur;
-import static projetilebnyl.Message.CLIC_BoutonDemarrer;
+import projetilebnyl.Message;
+import static projetilebnyl.Message.*;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonDemarrer;
 
 /**
  *
@@ -59,13 +61,13 @@ public class VueInscription {
     private String nomJoueur3;
     private String nomJoueur4;
     
-    private ArrayList<String> nomsAventuriers;
-    private ArrayList<String> nomsJoueurs;
+    private ArrayList<String> nomsAventuriers = new ArrayList();
+    private ArrayList<String> nomsJoueurs = new ArrayList();
     
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios;
     
-    public VueInscription (){
-        //this.c = c;
+    public VueInscription (Controleur c){
+        this.c = c;
         this.window = new JFrame();
         window.setSize(600, 340); 
         window.setTitle("L'Île interdite");
@@ -186,25 +188,30 @@ public class VueInscription {
                 nomJoueur3 = champJoueur3.getText();
                 nomJoueur4 = champJoueur4.getText();
                 
-                if (champVide(nomJoueur1) == false){
+                nomA1 = aventurier[choixAventurier1.getSelectedIndex()];
+                nomA2 = aventurier[choixAventurier2.getSelectedIndex()];
+                nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
+                nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
+                
+                if (!champVide(nomJoueur1)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA1);
                     nomsJoueurs.add(nomJoueur1);
                 }
 
-                if (champVide(nomJoueur2) == false){
+                if (!champVide(nomJoueur2)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA2);
                     nomsJoueurs.add(nomJoueur2);
                 }
 
-                if (champVide(nomJoueur3) == false){
+                if (!champVide(nomJoueur3)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA3);
                     nomsJoueurs.add(nomJoueur3);
                 }
 
-                if (champVide(nomJoueur4) == false){
+                if (!champVide(nomJoueur4)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA4);
                     nomsJoueurs.add(nomJoueur4);
@@ -231,14 +238,16 @@ public class VueInscription {
                 
                     System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
 
-                    nomA1 = aventurier[choixAventurier1.getSelectedIndex()];
-                    nomA2 = aventurier[choixAventurier2.getSelectedIndex()];
-                    nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
-                    nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
                     
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
                     
-                    c.traiterMessage(CLIC_BoutonDemarrer);
+                    Message m = new Message();                    
+                    m.typeMessage = CLIC_BoutonDemarrer;
+                    m.nomA = nomsAventuriers;
+                    m.nomJ = nomsJoueurs;
+                    
+                    c.traiterMessage(m);
+                    window.setVisible(false);
 
                 }
             }
@@ -348,13 +357,13 @@ public class VueInscription {
         this.nomsJoueurs = nomsJoueurs;
     }
     
-    
+    /*
     public static void main(String[] args) {
         // TODO code application logic here
         VueInscription V1 = new VueInscription();
         V1.afficher();
     }
-    
+    */
 }
 /*
  * To change this license header, choose License Headers in Project Properties.

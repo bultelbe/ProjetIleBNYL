@@ -5,16 +5,32 @@
  */
 package projetilebnyl;
 
+import Aventurier.Aventurier;
+import java.util.ArrayList;
+
 /**
  *
  * @author schmuckl
  */
-public enum Message {
-    CLIC_BoutonAller,
-    CLIC_BoutonTerminer,
-    CLIC_BoutonAssecher,
-    CLIC_BoutonAutreAction,
-    CLIC_BoutonDemarrer,
-    CLIC_BoutonValider,
-    CLIC_BoutonEchange;
+
+public class Message {
+    public TypeMessage typeMessage;
+    public ArrayList<String> nomJ = new ArrayList();
+    public ArrayList<String> nomA = new ArrayList();
+    public Aventurier avt;
+    
+    public enum TypeMessage {
+        CLIC_BoutonAller,
+        CLIC_BoutonTerminer,
+        CLIC_BoutonAssecher,
+        CLIC_BoutonAutreAction,
+        CLIC_BoutonDemarrer,
+        CLIC_BoutonValider,
+        CLIC_BoutonEchange,
+        CLIC_BoutonRecupTresor;
+        
+        
+    }
+
 }
+

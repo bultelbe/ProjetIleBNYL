@@ -13,8 +13,9 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 import javax.swing.*;
 import projetilebnyl.Controleur;
-import static projetilebnyl.Message.CLIC_BoutonValider;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonValider;
 import static java.lang.Integer.parseInt;
+import projetilebnyl.Message;
 
 /**
  *
@@ -24,7 +25,6 @@ public class VueDeplacement {
     private JFrame window;
     private JPanel mainPanel;
     private JPanel grillePanel;
-    private JPanel centrePanel;
     private JPanel areaPanel;
     private JTextArea coordonee;
     private JTextField textX;
@@ -37,12 +37,14 @@ public class VueDeplacement {
     private Controleur c;
     private Integer x;
     private Integer y;
+    private Aventurier aventurier;
     /**
      * @param args the command line arguments
      */
     
 
     public VueDeplacement(Controleur c,Aventurier aventurier) {
+        this.aventurier=aventurier;
         this.c = c;
         this.window = new JFrame();
         window.setSize(600, 450); 
@@ -51,7 +53,7 @@ public class VueDeplacement {
         mainPanel = new JPanel(new BorderLayout());
         grillePanel = new JPanel(new GridLayout(6,6));
         southPanel = new JPanel();
-        centrePanel = new JPanel(new BorderLayout());
+
         
         seDeplacer= new JLabel(aventurier.getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
         valider = new JButton("Valider"); 
@@ -92,8 +94,7 @@ public class VueDeplacement {
         
         areaPanel = new JPanel(new BorderLayout());
         //areaPanel.add(scroll,BorderLayout.EAST);
-        areaPanel.add(coordonee,BorderLayout.CENTER);
-        //centrePanel.add()
+        areaPanel.add(coordonee,BorderLayout.CENTER);        
         
         southPanel.add(valider, SwingConstants.CENTER);
         mainPanel.add(areaPanel,BorderLayout.EAST);
@@ -115,7 +116,10 @@ public class VueDeplacement {
             public void actionPerformed(ActionEvent e) {
                 x = getX();
                 y = getY();
-                c.traiterMessage(CLIC_BoutonValider);
+                Message m = new Message();         
+                m.avt=getAventurier();
+                m.typeMessage = CLIC_BoutonValider;
+                c.traiterMessage(m);
                 window.setVisible(false); 
                 window.dispose();
             }
@@ -132,6 +136,10 @@ public class VueDeplacement {
     
     public int getY() {
         return parseInt(textY.getText());
+    }
+
+    public Aventurier getAventurier() {
+        return aventurier;
     }
         
 }

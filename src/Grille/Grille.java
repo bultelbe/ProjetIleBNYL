@@ -118,8 +118,15 @@ public class Grille {
                             }                    
                         }
                     }      
-                }                
+                }       
                 
+                
+                for(Tuile t: Liste){
+                t.afficheTuile();
+            }
+                System.out.println();
+                System.out.println();
+                System.out.println();
                 return Liste;
 	}
 
@@ -168,13 +175,20 @@ public class Grille {
                         }
                     }
                 }else{ // lig !=0 && lig!=5 && col!=0 && col!=5 
-                    if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig+1 )|| ((tuiles.get(i).getColonne()== col -1)&&tuiles.get(i).getLigne()== lig+1) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col-1) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col-1 ) ){
+                    if (((tuiles.get(i).getColonne()== col +1 )&&  tuiles.get(i).getLigne()== lig+1 )|| ((tuiles.get(i).getColonne()== col +1)&&tuiles.get(i).getLigne()== lig-1) || ((tuiles.get(i).getLigne()== lig +1)&&tuiles.get(i).getColonne()== col-1) ||((tuiles.get(i).getLigne()== lig -1)&&tuiles.get(i).getColonne()== col-1 ) ){
                         if (tuiles.get(i).getNomCase()!="Vide"){
                             Liste.add(tuiles.get(i));
                         }                        
                     }
                 }      
             }                
+            for(Tuile t: Liste){
+                t.afficheTuile();
+            }
+            System.out.println();
+            System.out.println();
+            System.out.println();
+
             return Liste;
 	}
                

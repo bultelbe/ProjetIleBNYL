@@ -26,19 +26,19 @@ public class Tuile {
 	}
 
     public int getColonne() {
-        return colonne + 1;
+        return colonne-1 ;
     }
 
     public void setColonne(int colonne) {
-        this.colonne = colonne - 1;
+        this.colonne = colonne+1;
     }
 
     public int getLigne() {
-        return ligne + 1;
+        return ligne -1;
     }
 
     public void setLigne(int ligne) {
-        this.ligne = ligne - 1;
+        this.ligne = ligne+1;
     }
 
     public EtatTuile getStatut() { 
