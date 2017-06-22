@@ -41,6 +41,7 @@ public class CarteTresors {
                      
             private Carte Sac1= new Carte(SABLE);
             private Carte Sac2= new Carte(SABLE);
+            
     
     public CarteTresors() {
         piocheTresor.add(cristal1);

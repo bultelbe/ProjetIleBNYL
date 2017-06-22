@@ -26,7 +26,7 @@ public class Pilote extends Aventurier {
         } else {
             tuilesPossibles.remove(getPositionCourante());
             tuilesPossibles = grille.getListeTuileAdj(getPositionCourante());
-            setActionPilote(false);
+            
         }
         return tuilesPossibles;
     }
