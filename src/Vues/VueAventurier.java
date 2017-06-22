@@ -282,10 +282,6 @@ public class VueAventurier  {
                 
 
                 panel.repaint();
-                /*panel.invalidate();
-                pion.invalidate();
-                panel.validate();
-                pion.validate();*/
             }
         
         }
@@ -310,37 +306,6 @@ public class VueAventurier  {
             panelCellule.setBorder(BorderFactory.createLineBorder(Color.white, 1));
             panelCellule.add(nomCase, BorderLayout.CENTER);
             panelCellule.add(panelPion, BorderLayout.NORTH);
-            
-            /*panelCellule.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                }
-            });*/
-            
-            
-//            boutonsTuiles = new JButton[36];
-//            if (controleur.getGrille().getTuilesGrille().get(i).getStatut() != null || controleur.getGrille().getTuilesGrille().get(i).getStatut() != COULEE) {
-//                boutonsTuiles[i] = new JButton();
-//                
-//                boutonsTuiles[i].add(nomCase);
-//                panelCellule.add(boutonsTuiles[i]);
-//            }
             
             
             if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {
