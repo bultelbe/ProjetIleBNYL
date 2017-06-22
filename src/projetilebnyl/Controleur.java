@@ -577,8 +577,9 @@ public class Controleur implements Observateur {
         }else if (positionJ==calice.getSanctuaire1() || positionJ==calice.getSanctuaire2()){
             tr=calice;
         }
-        if(tr!=null){
-            int nbCarte=0;
+        
+        if(tr!=null) {
+            int nbCarte = 0;
             if(aventurierCourant.getPositionCourante()== tr.getSanctuaire1() || aventurierCourant.getPositionCourante()== tr.getSanctuaire2()){
                 for(Carte c : aventurierCourant.getCarteMain()){
                     if (c.getNomCarte()==tr.getNom()){
@@ -586,7 +587,7 @@ public class Controleur implements Observateur {
                     }
                 }
 
-                if (nbCarte>=4 ){
+                if (nbCarte>=4) {
                     tr.setRecupere(true);
                     System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
                     act=act-1;
