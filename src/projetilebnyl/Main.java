@@ -6,7 +6,7 @@
 package projetilebnyl;
 
 import Pioches_Tresor.Carte;
-import Vues.VueAventurier;
+import Vues.*;
 
 /**
  *
@@ -18,9 +18,9 @@ public class Main {
     public static void main(String [] args) {
         // Instanciation de la fenêtre 
         Controleur controleur = new Controleur();
-        VueAventurier vueAvt = new VueAventurier(controleur.joueurs.get(0).getNomJ(), controleur.joueurs.get(0).getNoma(), controleur.joueurs.get(0).getColor(), controleur);
-        controleur.setVueAvt(vueAvt);
-        System.out.println(vueAvt.getCartesLabels().get(0).getText());         
+        VueInscription vueInscrip = new VueInscription();
+        
+        //System.out.println(vueAvt.getCartesLabels().get(0).getText());         
     }
     
 }

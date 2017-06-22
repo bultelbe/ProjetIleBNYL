@@ -19,6 +19,7 @@ import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.*;
+import static projetilebnyl.Message.TypeMessage.*;
 
 
 public class Controleur implements Observateur {
@@ -402,7 +403,7 @@ public class Controleur implements Observateur {
 
                 for (Aventurier a : echangeurs) {
                     if(aventurier.equals(a.getNoma())) {
-                        System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                        System.out.print("\nQuelle carte voulez-vous échanger avec l'aventurier "+a.getNoma()+" ? : ");
                         String carte= sc.nextLine();
 
                         for (int i=0;i< aventurierCourant.getCarteMain().size();i++) {
@@ -434,7 +435,7 @@ public class Controleur implements Observateur {
     }
      
     public void traiterMessage(Message m) {
-        switch(m) {
+        switch(m.typeMessage) {
             case CLIC_BoutonAller:
                 deplacementJoueur();
                 break;

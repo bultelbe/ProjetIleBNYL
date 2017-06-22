@@ -26,6 +26,11 @@ import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 import static Vues.Utils.EtatTuile.*;
 import java.awt.FlowLayout;
+import projetilebnyl.Message;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonEchange;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonTerminer;
 import projetilebnyl.Observateur;
 
  
@@ -124,19 +129,23 @@ public class VueAventurier  {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnCarteSpe.setEnabled(true);
-            controleur.traiterMessage(CLIC_BoutonTerminer);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonTerminer;
+            controleur.traiterMessage(m);
 
         });
         
         this.btnAller.addActionListener((ActionEvent e) -> {
-           
-            controleur.traiterMessage(CLIC_BoutonAller);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonAller;
+            controleur.traiterMessage(m);
           
         });
         
         this.btnAssecher.addActionListener((ActionEvent e) -> {
-        
-            controleur.traiterMessage(CLIC_BoutonAssecher);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonAssecher;
+            controleur.traiterMessage(m);
           
         });
         
@@ -145,7 +154,9 @@ public class VueAventurier  {
         });
         
         this.btnEchangeCarte.addActionListener((ActionEvent e) -> {
-            controleur.traiterMessage(CLIC_BoutonEchange);
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonEchange;
+            controleur.traiterMessage(m);
         });
         
         this.btnRecupTresor.addActionListener((ActionEvent e) -> {});

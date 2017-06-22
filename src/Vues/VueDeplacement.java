@@ -13,8 +13,9 @@ import java.awt.event.ActionListener;
 import static java.lang.Integer.parseInt;
 import javax.swing.*;
 import projetilebnyl.Controleur;
-import static projetilebnyl.Message.CLIC_BoutonValider;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonValider;
 import static java.lang.Integer.parseInt;
+import projetilebnyl.Message;
 
 /**
  *
@@ -113,7 +114,9 @@ public class VueDeplacement {
             public void actionPerformed(ActionEvent e) {
                 x = getX();
                 y = getY();
-                c.traiterMessage(CLIC_BoutonValider);
+                Message m = new Message();                    
+                m.typeMessage = CLIC_BoutonValider;
+                c.traiterMessage(m);
                 window.setVisible(false); 
                 window.dispose();
             }
