@@ -53,10 +53,10 @@ public class VueInscription {
     private String a2;
     private String a3;
     private String a4;
-    private String nomA1;
-    private String nomA2;
-    private String nomA3;
-    private String nomA4;
+    private String nomJoueur1;
+    private String nomJoueur2;
+    private String nomJoueur3;
+    private String nomJoueur4;
     
     
     
@@ -179,24 +179,24 @@ public class VueInscription {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                nomA1 = champJoueur1.getText();
-                nomA2 = champJoueur2.getText();
-                nomA3 = champJoueur3.getText();
-                nomA4 = champJoueur4.getText();
+                nomJoueur1 = champJoueur1.getText();
+                nomJoueur2 = champJoueur2.getText();
+                nomJoueur3 = champJoueur3.getText();
+                nomJoueur4 = champJoueur4.getText();
                 
-                if (champVide(nomA1) == false){
+                if (champVide(nomJoueur1) == false){
                     nbrJoueurs = nbrJoueurs+1;
                 }
 
-                if (champVide(nomA2) == false){
+                if (champVide(nomJoueur2) == false){
                     nbrJoueurs = nbrJoueurs+1;
                 }
 
-                if (champVide(nomA3) == false){
+                if (champVide(nomJoueur3) == false){
                     nbrJoueurs = nbrJoueurs+1;
                 }
 
-                if (champVide(nomA4) == false){
+                if (champVide(nomJoueur4) == false){
                     nbrJoueurs = nbrJoueurs+1;
                 }
 
@@ -228,20 +228,20 @@ public class VueInscription {
                     
                     
                     
-                    if (champVide(nomA1) == false){
-                        System.out.println(nomA1 + " a sélectionné : " + a1);
+                    if (champVide(nomJoueur1) == false){
+                        System.out.println(nomJoueur1 + " a sélectionné : " + a1);
                     }
 
-                    if (champVide(nomA2) == false){
-                        System.out.println(nomA2 + " a sélectionné : " + a2);
+                    if (champVide(nomJoueur2) == false){
+                        System.out.println(nomJoueur2 + " a sélectionné : " + a2);
                     }
 
-                    if (champVide(nomA3) == false){
-                        System.out.println(nomA3 + " a sélectionné : " + a3);
+                    if (champVide(nomJoueur3) == false){
+                        System.out.println(nomJoueur3 + " a sélectionné : " + a3);
                     }
 
-                    if (champVide(nomA4) == false){
-                        System.out.println(nomA4 + " a sélectionné : " + a4);
+                    if (champVide(nomJoueur4) == false){
+                        System.out.println(nomJoueur4 + " a sélectionné : " + a4);
                     }
 
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
@@ -315,20 +315,20 @@ public class VueInscription {
         return a4;
     }
 
-    public String getNomA1() {
-        return nomA1;
+    public String getNomJoueur1() {
+        return nomJoueur1;
     }
 
-    public String getNomA2() {
-        return nomA2;
+    public String getNomJoueur2() {
+        return nomJoueur2;
     }
 
-    public String getNomA3() {
-        return nomA3;
+    public String getNomJoueur3() {
+        return nomJoueur3;
     }
 
-    public String getNomA4() {
-        return nomA4;
+    public String getNomJoueur4() {
+        return nomJoueur4;
     }
     
     
