@@ -84,7 +84,7 @@ public class VueDeplacement {
             }
         }
         
-        coordonee = new JTextArea(24,1);
+        coordonee = new JTextArea(23,1);
         //JScrollPane scroll = new JScrollPane(coordonee);
         coordonee.setEditable(false);
         
