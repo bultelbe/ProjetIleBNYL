@@ -469,8 +469,8 @@ public class Controleur implements Observateur {
                     if (m.nomA.get(i).equals("Plongeur"))
                         joueurs.add(new Plongeur(m.nomJ.get(i), spawnPlongeur, "Plongeur"));
 
-                    if (m.nomA.get(i).equals("Ingenieur"))
-                        joueurs.add(new Ingenieur(m.nomJ.get(i), spawnIngenieur, "Ingenieur"));
+                    if (m.nomA.get(i).equals("Ingénieur"))
+                        joueurs.add(new Ingenieur(m.nomJ.get(i), spawnIngenieur, "Ingénieur"));
 
                     if (m.nomA.get(i).equals("Navigateur"))
                         joueurs.add(new Navigateur(m.nomJ.get(i), spawnNavigateur, "Navigateur"));

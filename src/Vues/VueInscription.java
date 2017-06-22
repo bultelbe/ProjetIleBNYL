@@ -193,25 +193,25 @@ public class VueInscription {
                 nomA3 = aventurier[choixAventurier3.getSelectedIndex()];
                 nomA4 = aventurier[choixAventurier4.getSelectedIndex()];
                 
-                if (champVide(nomJoueur1) == false){
+                if (!champVide(nomJoueur1)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA1);
                     nomsJoueurs.add(nomJoueur1);
                 }
 
-                if (champVide(nomJoueur2) == false){
+                if (!champVide(nomJoueur2)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA2);
                     nomsJoueurs.add(nomJoueur2);
                 }
 
-                if (champVide(nomJoueur3) == false){
+                if (!champVide(nomJoueur3)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA3);
                     nomsJoueurs.add(nomJoueur3);
                 }
 
-                if (champVide(nomJoueur4) == false){
+                if (!champVide(nomJoueur4)){
                     nbrJoueurs = nbrJoueurs+1;
                     nomsAventuriers.add(nomA4);
                     nomsJoueurs.add(nomJoueur4);
