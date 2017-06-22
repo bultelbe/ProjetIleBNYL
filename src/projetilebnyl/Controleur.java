@@ -302,12 +302,13 @@ public class Controleur implements Observateur {
         getVueAventurier().updateCellules(grille);
     }
         
+    
+    
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
-        vueDeplacement = new VueDeplacement(this,aventurierCourant);
-        
-        if (getAventurierCourant().getNoma() == "Pilote" && this.isActionPilote() == true) {
-            tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+        vueDeplacement = new VueDeplacement(this, aventurierCourant);
+
+        if (getAventurierCourant().getNoma() == "Pilote" && getAventurierCourant().getActionPilote() == true) {
             System.out.println("Voulez vous effectuer votre action spéciale ? (tapez oui ou non)");
             Scanner sc = new Scanner(System.in);
             String s1 = sc.nextLine();
@@ -318,16 +319,26 @@ public class Controleur implements Observateur {
                 
                 if (s2 == "oui") {
                     tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+                    getAventurierCourant().setActionPilote(false);
                 }
                 
             } else if (s1 == "oui") {
                 tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+                getAventurierCourant().setActionPilote(false);
+            } else if (s1 == "non") {
+                
             }
             
             setActionPilote(false);
             
-        } else if (getAventurierCourant().getNoma() != "Pilote") {
+        } else if (getAventurierCourant().getNoma() == "Pilote" && getAventurierCourant().getActionPilote() == false) {
+            setActionPilote(false);
             tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+            setActionPilote(true);
+        } else {
+            setActionPilote(false);
+            tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+            setActionPilote(true);
         }
         
         for (Tuile t : tuilesPossibles) {
@@ -336,6 +347,9 @@ public class Controleur implements Observateur {
         
         getVueDeplacement().afficher();
     }
+    
+    
+    
     
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        

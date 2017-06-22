@@ -17,13 +17,14 @@ public abstract class Aventurier {
     private ArrayList<Carte> carteMain;
     private PionJoueur pionjoueur;
     private Tuile positionCourante;
+    private boolean actionPilote;
 
     public Aventurier(String nomJ, Tuile positionCourante, String noma) {
         this.nomJ = nomJ;
         this.positionCourante = positionCourante;
         this.noma = noma;
         this.carteMain = new ArrayList<>();
-        pionjoueur=new PionJoueur(this.getColor());
+        pionjoueur = new PionJoueur(this.getColor());
     }
 
     public void setColonne(int colonne) {
@@ -116,5 +117,9 @@ public abstract class Aventurier {
     public void setPionjoueur(PionJoueur pionjoueur) {
         this.pionjoueur = pionjoueur;
     }
+    
+    public abstract boolean getActionPilote();
+    
+    public abstract void setActionPilote(boolean etat);
     
 }
