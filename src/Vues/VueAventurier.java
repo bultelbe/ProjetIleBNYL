@@ -319,6 +319,36 @@ public class VueAventurier  {
                 panelCellule.setBackground(Color.BLUE);
                 panelPion.setBackground(Color.BLUE);
             }
+            if("Le Temple du Soleil".equals(nomCase.getText()) ||"Le Temple de la Lune".equals(nomCase.getText())){
+                JPanel tresor1=new JPanel();
+                JLabel nomt1 = new JLabel("La Pierre sacrée");
+                tresor1.add(nomt1);
+                tresor1.setBackground(Color.GRAY);
+                panelCellule.add(tresor1,BorderLayout.SOUTH);
+            }
+            if("Le Jardin des Murmures".equals(nomCase.getText()) ||"Le Jardin des Hurlements".equals(nomCase.getText())){
+                JPanel tresor2=new JPanel();
+                JLabel nomt2 = new JLabel("La Statue du zéphyr");
+                tresor2.add(nomt2);
+                tresor2.setBackground(Color.YELLOW);
+                panelCellule.add(tresor2,BorderLayout.SOUTH);
+            }
+            
+            if("La Caverne du Brasier".equals(nomCase.getText()) ||"La Caverne Des Ombres".equals(nomCase.getText())){
+                JPanel tresor3=new JPanel();
+                JLabel nomt3 = new JLabel("Le Cristal Ardent");
+                tresor3.add(nomt3);
+                tresor3.setBackground(Color.red);
+                panelCellule.add(tresor3,BorderLayout.SOUTH);
+            }
+            
+            if("Le Palais de Corail".equals(nomCase.getText()) ||"Le Palais des Marées".equals(nomCase.getText())){
+                JPanel tresor4=new JPanel();
+                JLabel nomt4 = new JLabel("Le Calice de l'onde");
+                tresor4.add(nomt4);
+                tresor4.setBackground(Color.green);
+                panelCellule.add(tresor4,BorderLayout.SOUTH);
+            }
             
             for(int k=0; k<controleur.getJoueurs().size(); k++){
                 
