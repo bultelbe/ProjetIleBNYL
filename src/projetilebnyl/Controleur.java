@@ -74,6 +74,56 @@ public class Controleur implements Observateur{
         aventurierCourant = joueurs.get(0);
     }
     
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+
+    public Grille getGrille() {
+        return grille;
+    }
+
+    public int getAct() {
+        return act;
+    }
+    
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+    
+    public VueDeplacement getVueDeplacement() {
+        return vueDeplacement;
+    }
+ 
+    public VueAventurier getVueAventurier() {
+        return this.vueAventurier;
+    }
+    
+    
+    
+    public void setAct(int act) {
+        this.act = act;
+    }
+    
+    public void setNiveauEau(int niveauEau) {
+        this.niveauEau = niveauEau;
+    }
+   
+    public void setVueDeplacement(VueDeplacement vueDeplacement) {
+        this.vueDeplacement = vueDeplacement;
+    }
+      
+    public void setVueAvt (VueAventurier vueAvt) {
+        this.vueAventurier = vueAvt;
+    }
+    
+    
+    
+    
+    
     public void TourDeJeu() {
 
         if (getAct() == 0) {
@@ -87,7 +137,7 @@ public class Controleur implements Observateur{
 
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
-        tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
+        tuilesAssechables = aventurierCourant.assechementsPossibles(getGrille());
         
         if (tuilesAssechables.isEmpty()) {
             System.out.println("\nIl n'y a aucunes tuiles à assécher autour de vous.");
@@ -106,7 +156,7 @@ public class Controleur implements Observateur{
                         System.out.println("Vous asséchez deux case.");
                         
                         for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                         
                         System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -133,8 +183,8 @@ public class Controleur implements Observateur{
                     System.out.println("Vous ne pouvez asséchez qu'une case.");
                     
                     for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
-                        }
+                        t.afficheTuile();
+                    }
                     
                     System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
                     String tuileX = sc.nextLine();
@@ -158,7 +208,7 @@ public class Controleur implements Observateur{
             } else {
                 
                  for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                 
                 System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -225,15 +275,7 @@ public class Controleur implements Observateur{
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-     
-    public VueAventurier getVueAventurier() {
-        return this.vueAventurier;
-    }
-      
-    public void setVueAvt (VueAventurier vueAvt) {
-        this.vueAventurier = vueAvt;
-    }
-  
+       
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -249,9 +291,7 @@ public class Controleur implements Observateur{
 
         getVueAventurier().updateCellules(grille);
     }
-       
-    
-    
+        
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -264,8 +304,6 @@ public class Controleur implements Observateur{
         
         getVueDeplacement().afficher();
     }
-    
-    
     
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
@@ -290,9 +328,7 @@ public class Controleur implements Observateur{
         getVueAventurier().updateCellules(grille);
         this.TourDeJeu();
     }
-    
-    
-    
+       
     public void echangeDeCarte() {
         ArrayList<Aventurier> echangeurs = new ArrayList<>();
         
@@ -352,34 +388,6 @@ public class Controleur implements Observateur{
                 deplace(getAventurierCourant());
                 break;
         }
-    }
-
-    public ArrayList<Aventurier> getJoueurs() {
-        return joueurs;
-    }
-
-    public Aventurier getAventurierCourant() {
-        return aventurierCourant;
-    }
-
-    public Grille getGrille() {
-        return grille;
-    }
-
-    public int getAct() {
-        return act;
-    }
-
-    public void setAct(int act) {
-        this.act = act;
-    }
-    
-    public int getNiveauEau() {
-        return niveauEau;
-    }
-
-    public void setNiveauEau(int niveauEau) {
-        this.niveauEau = niveauEau;
     }
     
     public void piocherTresor() {
@@ -480,14 +488,6 @@ public class Controleur implements Observateur{
         return(cristal.getRecupere() && statute.getRecupere() &&
                 pierre.getRecupere() && calice.getRecupere() &&
                 joueurHeliport() && possedeHelico());
-    }
-
-    public VueDeplacement getVueDeplacement() {
-        return vueDeplacement;
-    }
-
-    public void setVueDeplacement(VueDeplacement vueDeplacement) {
-        this.vueDeplacement = vueDeplacement;
     }
     
     public void recuperTresor(){
