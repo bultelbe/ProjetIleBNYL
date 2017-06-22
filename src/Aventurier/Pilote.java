@@ -16,34 +16,28 @@ public class Pilote extends Aventurier {
         super(nomJ, positionCourante, noma);
     }
 
-    
-    public ArrayList<Tuile> getTuilesPossibles(Grille grille) {
+    @Override
+    public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
-        tuilesPossibles = grille.getTuilesPossibles();
         
-        if (getAction()) {
+        if (getActionPilote() == true) {
+            tuilesPossibles = grille.getTuilesPossibles();
             tuilesPossibles.remove(getPositionCourante());
         } else {
+            tuilesPossibles.remove(getPositionCourante());
             tuilesPossibles = grille.getListeTuileAdj(getPositionCourante());
+            setActionPilote(false);
         }
         return tuilesPossibles;
     }
     
-    @Override
-    public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
-        
-        return getTuilesPossibles(grille);
-    }
-    
-    public void resetAction() {
-        action = true;
-    }
 
-    public boolean getAction() {
+    @Override
+    public boolean getActionPilote() {
         return action;
     }
 
-    public void setAction(boolean etat) {
+    public void setActionPilote(boolean etat) {
         this.action = etat;
     }
 
@@ -51,6 +45,5 @@ public class Pilote extends Aventurier {
     public Color getColor() {
         return Utils.Pion.BLEU.getCouleur();
     }
-    
-    
+
 }
