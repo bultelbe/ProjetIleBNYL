@@ -78,6 +78,8 @@ public class CarteInondations {
     public ArrayList<Carte> getDefausseInondation() {
         return defausseInondation;
     }
+    
+    
 
     public void setPiocheInondation(ArrayList<Carte> piocheInondation) {
         this.piocheInondation = piocheInondation;
@@ -87,6 +89,7 @@ public class CarteInondations {
         this.defausseInondation = defausseInondation;
     }
      
+    
     public void piocheInondation (int niveauEau, Grille grille){
         int nbPioche=0;
         if(niveauEau==0||niveauEau==1){
@@ -120,6 +123,7 @@ public class CarteInondations {
         
     }
      
+    
     public void remiseDefausse(){
         ArrayList<Carte> listePioche = this.getPiocheInondation();
         ArrayList<Carte> listeDefausse = this.getDefausseInondation();

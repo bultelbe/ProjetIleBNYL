@@ -47,8 +47,6 @@ public class Controleur implements Observateur {
     private Carte Helicoptere3= new Carte(HELICOPTERE);
     
     private VueDeplacement vueDeplacement;
-
-    private ArrayList<Tuile> spawns;
     
     public Controleur() {
         
@@ -65,19 +63,29 @@ public class Controleur implements Observateur {
         spawnNavigateur = grille.getTuile("La Porte d'Argent");
         spawnPilote = grille.getTuile("Héliport");
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
+
         
-//        spawns.add(spawnMessager);
-//        spawns.add(spawnPlongeur);
-//        spawns.add(spawnIngenieur);
-//        spawns.add(spawnNavigateur);
-//        spawns.add(spawnPilote);
-//        spawns.add(spawnExplorateur);
-//        
-//        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
-//            Aventurier avt1 = new getAventurier(getNomA1())(getVueInscription().getNomA1()(getVueInscription().getNomJ1(), getSpawns().get(i));
-//            
-//            
-//        }
+        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+        
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
+            
+        }
         
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
@@ -88,6 +96,57 @@ public class Controleur implements Observateur {
         joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         aventurierCourant = joueurs.get(0);
     }
+    
+    
+    public ArrayList<Aventurier> getJoueurs() {
+        return joueurs;
+    }
+
+    public Aventurier getAventurierCourant() {
+        return aventurierCourant;
+    }
+
+    public Grille getGrille() {
+        return grille;
+    }
+
+    public int getAct() {
+        return act;
+    }
+    
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+    
+    public VueDeplacement getVueDeplacement() {
+        return vueDeplacement;
+    }
+ 
+    public VueAventurier getVueAventurier() {
+        return this.vueAventurier;
+    }
+    
+    
+    
+    public void setAct(int act) {
+        this.act = act;
+    }
+    
+    public void setNiveauEau(int niveauEau) {
+        this.niveauEau = niveauEau;
+    }
+   
+    public void setVueDeplacement(VueDeplacement vueDeplacement) {
+        this.vueDeplacement = vueDeplacement;
+    }
+      
+    public void setVueAvt (VueAventurier vueAvt) {
+        this.vueAventurier = vueAvt;
+    }
+    
+    
+    
+    
     
     public void TourDeJeu() {
 
@@ -100,9 +159,10 @@ public class Controleur implements Observateur {
         }
     }
 
+    
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
-        tuilesAssechables = aventurierCourant.assechementsPossibles(grille);
+        tuilesAssechables = aventurierCourant.assechementsPossibles(getGrille());
         
         if (tuilesAssechables.isEmpty()) {
             System.out.println("\nIl n'y a aucunes tuiles à assécher autour de vous.");
@@ -121,7 +181,7 @@ public class Controleur implements Observateur {
                         System.out.println("Vous asséchez deux case.");
                         
                         for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                         
                         System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -148,8 +208,8 @@ public class Controleur implements Observateur {
                     System.out.println("Vous ne pouvez asséchez qu'une case.");
                     
                     for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
-                        }
+                        t.afficheTuile();
+                    }
                     
                     System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
                     String tuileX = sc.nextLine();
@@ -173,7 +233,7 @@ public class Controleur implements Observateur {
             } else {
                 
                  for (Tuile t : tuilesAssechables) {
-                            System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+                            t.afficheTuile();
                         }
                 
                 System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
@@ -240,15 +300,7 @@ public class Controleur implements Observateur {
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-     
-    public VueAventurier getVueAventurier() {
-        return this.vueAventurier;
-    }
-      
-    public void setVueAvt (VueAventurier vueAvt) {
-        this.vueAventurier = vueAvt;
-    }
-  
+       
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
@@ -264,9 +316,7 @@ public class Controleur implements Observateur {
 
         getVueAventurier().updateCellules(grille);
     }
-       
-    
-    
+        
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
@@ -279,8 +329,6 @@ public class Controleur implements Observateur {
         
         getVueDeplacement().afficher();
     }
-    
-    
     
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
@@ -304,9 +352,7 @@ public class Controleur implements Observateur {
         
         getVueAventurier().updateCellules(grille);
     }
-    
-    
-    
+       
     public void echangeDeCarte() {
         ArrayList<Aventurier> echangeurs = new ArrayList<>();
         
@@ -390,34 +436,6 @@ public class Controleur implements Observateur {
                 echangeDeCarte();
                 break;
         }
-    }
-
-    public ArrayList<Aventurier> getJoueurs() {
-        return joueurs;
-    }
-
-    public Aventurier getAventurierCourant() {
-        return aventurierCourant;
-    }
-
-    public Grille getGrille() {
-        return grille;
-    }
-
-    public int getAct() {
-        return act;
-    }
-
-    public void setAct(int act) {
-        this.act = act;
-    }
-    
-    public int getNiveauEau() {
-        return niveauEau;
-    }
-
-    public void setNiveauEau(int niveauEau) {
-        this.niveauEau = niveauEau;
     }
     
     public void piocherTresor() {
@@ -519,14 +537,6 @@ public class Controleur implements Observateur {
                 pierre.getRecupere() && calice.getRecupere() &&
                 joueurHeliport() && possedeHelico());
     }
-
-    public VueDeplacement getVueDeplacement() {
-        return vueDeplacement;
-    }
-
-    public void setVueDeplacement(VueDeplacement vueDeplacement) {
-        this.vueDeplacement = vueDeplacement;
-    }
     
     public void recuperTresor(){
         Tresor tr=null;
@@ -571,14 +581,5 @@ public class Controleur implements Observateur {
     public void setVueInscription(VueInscription vueInscription) {
         this.vueInscription = vueInscription;
     }
-
-    public ArrayList<Tuile> getSpawns() {
-        return spawns;
-    }
-
-    public void setSpawns(ArrayList<Tuile> spawns) {
-        this.spawns = spawns;
-    }
-
     
 }
