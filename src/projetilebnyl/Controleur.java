@@ -366,14 +366,20 @@ public class Controleur implements Observateur {
                 for (int i = 0; i < joueurs.size(); i++) {
                     if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                         deplace(joueurs.get(i));
+                        break;
                     } else {
                         deplace(getAventurierCourant());
                         this.TourDeJeu();
+                        break;
                     }
                 }
                 break;
             case CLIC_BoutonEchange:
                 echangeDeCarte();
+                break;
+                
+            case CLIC_BoutonDemarrer:
+                
                 break;
         }
     }

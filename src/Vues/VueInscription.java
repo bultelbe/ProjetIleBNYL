@@ -11,7 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import projetilebnyl.Controleur;
-import static projetilebnyl.Message.CLIC_BoutonDemarrer;
+import projetilebnyl.Message;
+import static projetilebnyl.Message.*;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonDemarrer;
 
 /**
  *
@@ -246,7 +248,11 @@ public class VueInscription {
 
                     System.out.println("Il y a " + nbrJoueurs + " joueurs");
                     
-                    c.traiterMessage(CLIC_BoutonDemarrer);
+                    Message m = new Message();
+                    
+                    m.typeMessage = CLIC_BoutonDemarrer;
+                    
+                    c.traiterMessage(m);
 
                 }
             }
