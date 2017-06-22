@@ -65,7 +65,7 @@ public abstract class Aventurier {
         tuilesAdj = grille.getListeTuileAdj(positionCourante);
         
         for (Tuile t : tuilesAdj) {
-            if (t.getStatut() != COULEE) {
+            if (t.getStatut() == ASSECHEE ||t.getStatut() == INONDEE ) {
                 tuilesPossibles.add(t);
             }
         }
