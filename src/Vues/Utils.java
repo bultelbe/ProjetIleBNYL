@@ -5,10 +5,8 @@
  */
 package Vues;
 
-import projetilebnyl.Parameters;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 import Aventurier.Aventurier;

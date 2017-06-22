@@ -28,22 +28,6 @@ public abstract class Aventurier {
         pionjoueur = new PionJoueur(this.getColor());
     }
 
-    public void setColonne(int colonne) {
-        this.colonne = colonne - 1;
-    }
-
-    public int getColonne() {
-        return colonne + 1;
-    }
-
-    public int getLigne() {
-        return ligne + 1;
-    }
-    
-    public void setLigne(int ligne) {
-        this.ligne = ligne - 1;
-     }
-
     //Retourne une arrayList des tuiles Inondées positionnées sur les tuiles adjacentes à l'aventurier
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         
@@ -59,7 +43,6 @@ public abstract class Aventurier {
         }
         return tuilesInondees;
     }
-
     
     //Retourne une ArrayList des tuiles non coulées positionnées sur les tuiles adjacentes à l'aventurier
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
@@ -75,7 +58,13 @@ public abstract class Aventurier {
         }
         return tuilesPossibles;
     }
-
+    
+    //Ajoute une carte à la main
+    public void addCarte(Carte carte){
+        this.getCarteMain().add(carte);
+    }
+    
+    //Getter et setter
     public Tuile getPositionCourante() {
         return positionCourante;
     }
@@ -109,11 +98,7 @@ public abstract class Aventurier {
     public void setCarteMain(ArrayList<Carte> carteMain) {
         this.carteMain = carteMain;
     }
-       
-    public void addCarte(Carte carte){
-        this.getCarteMain().add(carte);
-    }
-
+    
     public PionJoueur getPionjoueur() {
         return pionjoueur;
     }
@@ -126,4 +111,19 @@ public abstract class Aventurier {
     
     public abstract void setActionPilote(boolean etat);
     
+    public void setColonne(int colonne) {
+        this.colonne = colonne - 1;
+    }
+
+    public int getColonne() {
+        return colonne + 1;
+    }
+
+    public int getLigne() {
+        return ligne + 1;
+    }
+    
+    public void setLigne(int ligne) {
+        this.ligne = ligne - 1;
+     }
 }

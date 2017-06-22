@@ -1,7 +1,6 @@
 package Grille;
 
 import Vues.Utils.EtatTuile;
-import static Vues.Utils.EtatTuile.*;
 
 public class Tuile {
 	private String nomCase;
@@ -15,12 +14,17 @@ public class Tuile {
         this.statut = EtatTuile.ASSECHEE;
     }
     
-    
     public Tuile(String nomCase, EtatTuile statut){
         this.nomCase=nomCase;
         this.statut=statut;
     }
-            
+    
+    
+    //Affichage dans la console des informations de la tuile
+    public void afficheTuile() {
+        
+        System.out.println("Nom de la tuile : " + this.getNomCase() + "\nAux coordonnées : \nX : " + this.getColonne() + "\nY : " + this.getLigne() + "\nStatut : "+ this.getStatut() + "\n");
+    }        
     
     //Getters et Setters des différents objets
     public String getNomCase() {
@@ -28,19 +32,19 @@ public class Tuile {
 	}
 
     public int getColonne() {
-        return colonne + 1;
+        return colonne-1 ;
     }
 
     public void setColonne(int colonne) {
-        this.colonne = colonne - 1;
+        this.colonne = colonne+1;
     }
 
     public int getLigne() {
-        return ligne + 1;
+        return ligne -1;
     }
 
     public void setLigne(int ligne) {
-        this.ligne = ligne - 1;
+        this.ligne = ligne+1;
     }
 
     public EtatTuile getStatut() { 
@@ -50,11 +54,5 @@ public class Tuile {
     public void setStatut(EtatTuile statut) {
 	this.statut = statut;
     }
-
-    public void afficheTuile() {
-        
-        System.out.println("Nom de la tuile : " + this.getNomCase() + "\nAux coordonnées : \nX : " + this.getColonne() + "\nY : " + this.getLigne() + "\nStatut : "+ this.getStatut() + "\n");
-    }
-    
 }
 

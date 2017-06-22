@@ -28,6 +28,7 @@ public class PionJoueur extends JPanel {
     }
     
     //Dessine le cercle des pions
+    @Override
     public void paintComponent(Graphics g) {
         Dimension dimension = getSize(); // Taille de la zone de dessin
         
@@ -43,6 +44,7 @@ public class PionJoueur extends JPanel {
     
     }
 
+    //Getter et setter de couleur
     public Color getCouleur() {
         return couleur;
     }
@@ -50,7 +52,4 @@ public class PionJoueur extends JPanel {
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
-    
-    
-    
 }

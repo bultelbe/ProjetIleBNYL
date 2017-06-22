@@ -9,10 +9,10 @@ import Grille.Tuile;
 import java.util.*;
 import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
-import static java.lang.Integer.parseInt;
 import Vues.*;
 import java.awt.Color;
 import static projetilebnyl.Message.TypeMessage.*;
+import static java.lang.Integer.parseInt;
 
 
 public class Controleur implements Observateur {
@@ -36,9 +36,7 @@ public class Controleur implements Observateur {
     private Tresor statue = new Tresor("La Statue du zéphyr",Color.yellow);
     private Tresor pierre = new Tresor("La Pierre sacrée",Color.gray);
     private Tresor calice = new Tresor("Le Calice de l’onde",Color.GREEN);
-    private Carte Helicoptere1= new Carte(HELICOPTERE);
-    private Carte Helicoptere2= new Carte(HELICOPTERE);
-    private Carte Helicoptere3= new Carte(HELICOPTERE);
+
     
     private VueDeplacement vueDeplacement;
     
@@ -55,12 +53,6 @@ public class Controleur implements Observateur {
         
         grille = new Grille();        
         initGrille();
-        
-        piocheCarteTresor.addPiocheTresor(Helicoptere1);
-        piocheCarteTresor.addPiocheTresor(Helicoptere2);
-        piocheCarteTresor.addPiocheTresor(Helicoptere3);
-        Collections.shuffle(piocheCarteTresor.getPiocheTresor());
-        
         initTresor();
         
         //Déclare les différentes tuiles de départ de chacun des aventuriers
@@ -86,7 +78,6 @@ public class Controleur implements Observateur {
             act = 3;
         }
     }
-
     
     //Gère l'assèchement de chacun des aventuriers à travers la console en mettant à jour la grille
     public void assechementCase() {
@@ -191,7 +182,6 @@ public class Controleur implements Observateur {
         this.TourDeJeu();
     }
     
-    
     //Permet de terminer le tour en gérant les cartes Inondations et trésors
     public void passerJoueurSuivant() {
         if(this.gagner()){
@@ -211,7 +201,11 @@ public class Controleur implements Observateur {
         statue.setRecupere(true);*/
         
         
-        this.piocherInnodation();        
+        if (getAventurierCourant().getNoma() == "Pilote" ){
+                    getAventurierCourant().setActionPilote(false);  
+        }
+        
+        this.piocherInondation();        
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 
@@ -234,19 +228,23 @@ public class Controleur implements Observateur {
             }
         }
 
-        piocherTresor();
+        if (getAventurierCourant().getNoma() == "Pilote" ){
+                    getAventurierCourant().setActionPilote(false);  
+        }
+        
+       piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
         this.getVueAventurier().carteMainJoueurCourant();
         this.getVueAventurier().updateCellules(getGrille());
         
+        
         for(int i=0;i<this.getAventurierCourant().getCarteMain().size();i++){
         
         System.out.println(this.getAventurierCourant().getCarteMain().get(i).getNomCarte());
         }
     }
-     
     
     //Gère les déplacements d'un joueur lorsque celui se trouve sur une tuile qui devient coulée lorsqu'un tour est terminé
     public void deplacementJoueurObligatoire(Aventurier avt) {
@@ -262,45 +260,15 @@ public class Controleur implements Observateur {
         
         getVueAventurier().updateCellules(grille);
     }
-        
     
     //Gère le déplacement de chacun des aventuriers suivant leurs capacités
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         vueDeplacement = new VueDeplacement(this, aventurierCourant);
 
-        if (getAventurierCourant().getNoma() == "Pilote" && getAventurierCourant().getActionPilote() == true) {
-            System.out.println("Voulez vous effectuer votre action spéciale ? (tapez oui ou non)");
-            Scanner sc = new Scanner(System.in);
-            String s1 = sc.nextLine();
-            
-            if (!"oui".equals(s1) && !"non".equals(s1)) {
-                System.out.println("Tapez oui ou non.");
-                String s2 = sc.nextLine();
-                
-                if (s2 == "oui") {
-                    tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
-                    getAventurierCourant().setActionPilote(false);
-                }
-                
-            } else if (s1 == "oui") {
-                tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
-                getAventurierCourant().setActionPilote(false);
-            } else if (s1 == "non") {
-                
-            }
-            
-            setActionPilote(false);
-            
-        } else if (getAventurierCourant().getNoma() == "Pilote" && getAventurierCourant().getActionPilote() == false) {
-            setActionPilote(false);
-            tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-            setActionPilote(true);
-        } else {
-            setActionPilote(false);
-            tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-            setActionPilote(true);
-        }
+        
+        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+
         
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -309,12 +277,11 @@ public class Controleur implements Observateur {
         getVueDeplacement().afficher();
     }
     
-    
-    
     //Gère l'affichage de la fenêtre de saisie des coordonnées de la tuile où l'aventurier veut se deplacer
     public void deplace(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();        
         tuilesPossibles = avt.deplacementsPossibles(grille);
+        Tuile Pilote = avt.getPositionCourante();
         
         int x = getVueDeplacement().getX();
         int y = getVueDeplacement().getY();
@@ -326,10 +293,16 @@ public class Controleur implements Observateur {
             System.out.println(avt.getNoma() + " s'est déplacé sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
             act=act-1;
             
+            System.out.println(avt.getNoma() + " s'est déplacé sur la tuile : " + t.getNomCase()+ "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");             
+            if (getAventurierCourant().getNoma() == "Pilote" &&  !grille.getListeTuileAdj(Pilote).contains(t)){
+                getAventurierCourant().setActionPilote(false);  
+            }
         } else {
             System.out.println("Vous ne pouvez pas vous déplacer sur cette Tuile."+ avt.getNoma());
         }
         
+        
+       
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
         
         getVueAventurier().updateCellules(grille);
@@ -392,38 +365,6 @@ public class Controleur implements Observateur {
 
     this.getVueAventurier().updateCellules(grille);
     }
-     
-    public void traiterMessage(Message m) {
-        switch(m.typeMessage) {
-            case CLIC_BoutonAller:
-                deplacementJoueur();
-                break;
-            case CLIC_BoutonAssecher:
-                assechementCase();
-                break;
-            case CLIC_BoutonAutreAction:
-                
-                break;
-            case CLIC_BoutonTerminer:
-                passerJoueurSuivant();
-                break;
-            case CLIC_BoutonValider:
-                deplace(m.avt);
-                break;
-            case CLIC_BoutonEchange:
-                echangeDeCarte();
-                break;
-                
-            case CLIC_BoutonDemarrer:
-                lancerVueAventurier(m);
-                break;
-            
-            case CLIC_BoutonRecupTresor:
-                recuperTresor();
-                break;
-        }
-    }
-    
     
     //Initialise la vueAventurier
     public void lancerVueAventurier(Message m){
@@ -456,41 +397,42 @@ public class Controleur implements Observateur {
     
     //Permet la pioche de cartes Trésors
     public void piocherTresor() {
-        if (piocheCarteTresor.getPiocheTresor().size() > 0) {
+        
             Boolean eauxPioche = false;
             Carte eaux = new Carte(EAUX);
-            Carte pioche1 =piocheCarteTresor.piocheTresor();
+            Carte pioche1 =piocheCarteTresor.piocherCarteTresor();
             
             if (pioche1.getNomCarte()== eaux.getNomCarte()) {
                 piocheCarteTresor.defausseTresor(pioche1);
                 eauxPioche=true;
                 setNiveauEau((getNiveauEau()+1));
-
+                
             } else {
                 aventurierCourant.addCarte(pioche1);
             }
-            if (getNiveauEau()<=9 && piocheCarteTresor.getPiocheTresor().size() > 0) {
-                Carte pioche2 =piocheCarteTresor.piocheTresor();
+            
+            if (getNiveauEau()<=9) {
+                 pioche1 =piocheCarteTresor.piocherCarteTresor();
                 
-                if (pioche2.getNomCarte()== eaux.getNomCarte()) {
-                    piocheCarteTresor.defausseTresor(pioche2);
+                if (pioche1.getNomCarte()== eaux.getNomCarte()) {
+                    piocheCarteTresor.defausseTresor(pioche1);
                     setNiveauEau((getNiveauEau()+1));
-
+                    eauxPioche=true;
                 } else {
-                    aventurierCourant.addCarte(pioche2);
+                    aventurierCourant.addCarte(pioche1);
                 }
 
                 if (eauxPioche){
                     piocheCarteInondations.remiseDefausse();
                 }
+
             }
-        }
+            
         
     }
-    
-    
+        
     //Permet la pioche de cartes Inondations
-    public void piocherInnodation() {
+    public void piocherInondation() {
         piocheCarteInondations.piocheInondation(getNiveauEau(),getGrille());
     }
     
@@ -520,10 +462,12 @@ public class Controleur implements Observateur {
     
     //Gère le fait qu'un Aventurier ait encore la possibilité (ou non) de se déplacer
     public boolean possibleMouvement(Aventurier avt){
-        return avt.deplacementsPossibles(grille).size() > 0 ||
-                (avt.getCarteMain().contains(Helicoptere1)) ||
-                (avt.getCarteMain().contains(Helicoptere2)) ||
-                (avt.getCarteMain().contains(Helicoptere3));
+        boolean helico=false;
+        for(Carte c:avt.getCarteMain()){
+            if(c.getNomCarte()=="Hélicoptère") helico=true;
+        }
+        
+        return avt.deplacementsPossibles(grille).size() > 0 && helico;
     }
       
     //Gère la fin de partie (Perdu)
@@ -564,10 +508,11 @@ public class Controleur implements Observateur {
                 joueurHeliport() && possedeHelico());
     }
     
-    ////Gère la récupération de trésors
+    //Gère la récupération de trésors
     public void recuperTresor(){
         Tresor tr=null;
         Tuile positionJ= aventurierCourant.getPositionCourante();
+        
         if(positionJ==cristal.getSanctuaire1() || positionJ==cristal.getSanctuaire2()){
             tr=cristal;
         }else if (positionJ==statue.getSanctuaire1() || positionJ==statue.getSanctuaire2()){
@@ -603,8 +548,127 @@ public class Controleur implements Observateur {
         }
     }
     
+    //Gère les l'utilisation de cartes spéciales 
+    public void utiliserCarteSpeciale(){
+        ArrayList<Carte> Main = aventurierCourant.getCarteMain();
+        int nbHelicoPossible=0;
+        int nbSacPossible=0;
+        Scanner sc = new Scanner(System.in);
+                
+        for(Carte c: Main){
+            if(c.getNomCarte()=="Hélicoptère"){
+                nbHelicoPossible++;
+            }else if (c.getNomCarte()=="Sac de sable"){
+                nbSacPossible++;
+            }
+        }
+        
+        if(nbHelicoPossible>0){
+            System.out.println("Vous avez "+nbHelicoPossible+" hélicoptére disponible");
+        }
+        
+        if(nbSacPossible>0){
+            System.out.println("Vous avez "+nbSacPossible+" sac de sable disponible");
+        }
+        System.out.println();
+        System.out.println("La quelle vouler vous utiliser ( Hélicoptère / Sac de sable)");
+        System.out.println();
+        String carteUtiliser =sc.nextLine();
+        System.out.println();
+        System.out.println();
+        if(carteUtiliser=="Hélicoptère"){
+            ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
+            vueDeplacement = new VueDeplacement(this, aventurierCourant);
+
+
+            tuilesPossibles = grille.getTuilesPossibles();
+
+
+            for (Tuile t : tuilesPossibles) {
+                System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+            }
+
+            getVueDeplacement().afficher();
+        }else if (carteUtiliser=="Sac de sable"){
+                
+            
+                ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
+                ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
+                tuilesPossibles = grille.getTuilesPossibles();
+                
+                 for (Tuile t : tuilesPossibles) {
+                    if (t.getStatut() == INONDEE) {
+                    tuilesAssechables.add(t);
+                    }
+                }
+                
+                System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+                String tuileX = sc.nextLine();
+                int x = parseInt(tuileX);
+
+                System.out.print("\nY : ");
+                String tuileY = sc.nextLine();
+                int y = parseInt(tuileY);
+
+                Tuile t = grille.getTuile(x, y);
+
+                if (tuilesAssechables.contains(t)) {
+                    t.setStatut(ASSECHEE);
+                    System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                    act=act-1;
+                } else {
+                    System.out.println("Cette tuile n'est pas asséchable.");
+
+                }
+                  
+            getVueAventurier().updateCellules(grille); 
+        }else{
+            System.out.println("Vous n'avez pas taper correctement");
+        }
+        
+
+
+    }
     
-    //Getters et Sttters
+    //Renvoie si l'action spéciale du pilote est utilisée
+    public boolean isActionPilote() {
+        return actionPilote;
+    }
+    
+    //Traite les messages
+    public void traiterMessage(Message m) {
+        switch(m.typeMessage) {
+            case CLIC_BoutonAller:
+                deplacementJoueur();
+                break;
+            case CLIC_BoutonAssecher:
+                assechementCase();
+                break;
+            case CLIC_BoutonAutreAction:
+                
+                break;
+            case CLIC_BoutonTerminer:
+                passerJoueurSuivant();
+                break;
+            case CLIC_BoutonValider:
+                deplace(m.avt);
+                break;
+            case CLIC_BoutonEchange:
+                echangeDeCarte();
+                break;
+                
+            case CLIC_BoutonDemarrer:
+                lancerVueAventurier(m);
+                break;
+            
+            case CLIC_BoutonRecupTresor:
+                recuperTresor();
+                break;
+        }
+    }
+    
+    
+    //Getters et Setters
     
     public VueInscription getVueInscription() {
         return vueInscription;
@@ -612,11 +676,7 @@ public class Controleur implements Observateur {
 
     public void setVueInscription(VueInscription vueInscription) {
         this.vueInscription = vueInscription;
-    }
-
-    public boolean isActionPilote() {
-        return actionPilote;
-    }
+    }    
 
     public void setActionPilote(boolean actionPilote) {
         this.actionPilote = actionPilote;
