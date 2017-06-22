@@ -245,6 +245,7 @@ public class VueInscription {
                     m.typeMessage = CLIC_BoutonDemarrer;
                     m.nomA = nomsAventuriers;
                     m.nomJ = nomsJoueurs;
+                    c.setNiveauEau(niveauEau);
                     
                     c.traiterMessage(m);
                     window.setVisible(false);
