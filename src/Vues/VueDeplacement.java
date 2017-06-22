@@ -24,7 +24,6 @@ public class VueDeplacement {
     private JFrame window;
     private JPanel mainPanel;
     private JPanel grillePanel;
-    private JPanel centrePanel;
     private JPanel areaPanel;
     private JTextArea coordonee;
     private JTextField textX;
@@ -51,7 +50,7 @@ public class VueDeplacement {
         mainPanel = new JPanel(new BorderLayout());
         grillePanel = new JPanel(new GridLayout(6,6));
         southPanel = new JPanel();
-        centrePanel = new JPanel(new BorderLayout());
+
         
         seDeplacer= new JLabel(aventurier.getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
         valider = new JButton("Valider"); 
@@ -92,8 +91,7 @@ public class VueDeplacement {
         
         areaPanel = new JPanel(new BorderLayout());
         //areaPanel.add(scroll,BorderLayout.EAST);
-        areaPanel.add(coordonee,BorderLayout.CENTER);
-        //centrePanel.add()
+        areaPanel.add(coordonee,BorderLayout.CENTER);        
         
         southPanel.add(valider, SwingConstants.CENTER);
         mainPanel.add(areaPanel,BorderLayout.EAST);

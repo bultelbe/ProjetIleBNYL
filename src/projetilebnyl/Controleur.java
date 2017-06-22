@@ -48,6 +48,8 @@ public class Controleur implements Observateur {
     
     private VueDeplacement vueDeplacement;
     
+    private boolean actionPilote = true;
+    
     public Controleur() {
         
         grille = new Grille();        
@@ -65,27 +67,27 @@ public class Controleur implements Observateur {
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
 
         
-        /*for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
-        
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
-            
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
-            
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
-            
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
-            
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
-            
-            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
-                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
-            
-        }*/
+//        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+//        
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+//            
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+//            
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+//            
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+//            
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+//            
+//            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
+//                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
+//            
+//        }
         
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
@@ -321,13 +323,35 @@ public class Controleur implements Observateur {
         
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
-        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
         vueDeplacement = new VueDeplacement(this,aventurierCourant);
-
+        
+        if (getAventurierCourant().getNoma() == "Pilote" && this.isActionPilote() == true) {
+            tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+            System.out.println("Voulez vous effectuer votre action spéciale ? (tapez oui ou non)");
+            Scanner sc = new Scanner(System.in);
+            String s1 = sc.nextLine();
+            
+            if (!"oui".equals(s1) && !"non".equals(s1)) {
+                System.out.println("Tapez oui ou non.");
+                String s2 = sc.nextLine();
+                
+                if (s2 == "oui") {
+                    tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+                }
+                
+            } else if (s1 == "oui") {
+                tuilesPossibles = getAventurierCourant().deplacementsPossibles(grille);
+            }
+            
+            setActionPilote(false);
+            
+        } else if (getAventurierCourant().getNoma() != "Pilote") {
+            tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        }
+        
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
         }
-        
         
         getVueDeplacement().afficher();
     }
@@ -428,14 +452,20 @@ public class Controleur implements Observateur {
                 for (int i = 0; i < joueurs.size(); i++) {
                     if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                         deplace(joueurs.get(i));
+                        break;
                     } else {
                         deplace(getAventurierCourant());
                         this.TourDeJeu();
+                        break;
                     }
                 }
                 break;
             case CLIC_BoutonEchange:
                 echangeDeCarte();
+                break;
+                
+            case CLIC_BoutonDemarrer:
+                
                 break;
             
             case CLIC_BoutonRecupTresor:
@@ -587,6 +617,14 @@ public class Controleur implements Observateur {
 
     public void setVueInscription(VueInscription vueInscription) {
         this.vueInscription = vueInscription;
+    }
+
+    public boolean isActionPilote() {
+        return actionPilote;
+    }
+
+    public void setActionPilote(boolean actionPilote) {
+        this.actionPilote = actionPilote;
     }
     
 }

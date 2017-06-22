@@ -29,13 +29,10 @@ public class Pilote extends Aventurier {
         return tuilesPossibles;
     }
     
+    @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
-        if (getAction() == false) {
-            return grille.getListeTuileAdj(getPositionCourante());
-        } else {
-            setAction(false);
-            return getTuilesPossibles(grille);
-        }
+        
+        return getTuilesPossibles(grille);
     }
     
     public void resetAction() {

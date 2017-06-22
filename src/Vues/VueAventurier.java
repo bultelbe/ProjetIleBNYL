@@ -383,5 +383,7 @@ public class VueAventurier  {
         return cartesLabels;
     }
     
-    
+    public void afficher(){
+        this.window.setVisible(true);
+    }
 }
