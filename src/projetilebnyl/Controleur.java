@@ -43,9 +43,6 @@ public class Controleur implements Observateur {
     private Tresor statute = new Tresor(STATUE.toString());
     private Tresor pierre = new Tresor(PIERRE.toString());
     private Tresor calice = new Tresor(CALICE.toString());
-    private Carte Helicoptere1= new Carte(HELICOPTERE);
-    private Carte Helicoptere2= new Carte(HELICOPTERE);
-    private Carte Helicoptere3= new Carte(HELICOPTERE);
 
     
     private VueDeplacement vueDeplacement;
@@ -56,10 +53,6 @@ public class Controleur implements Observateur {
         
         grille = new Grille();        
         initGrille();
-        piocheCarteTresor.addPiocheTresor(Helicoptere1);
-        piocheCarteTresor.addPiocheTresor(Helicoptere2);
-        piocheCarteTresor.addPiocheTresor(Helicoptere3);
-        Collections.shuffle(piocheCarteTresor.getPiocheTresor());
         initTresor();
         spawnMessager = grille.getTuile("La Porte d'Or");
         spawnPlongeur = grille.getTuile("La Porte de Fer");
