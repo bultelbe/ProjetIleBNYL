@@ -20,13 +20,7 @@ public class Explorateur extends Aventurier {
         ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
-        /*
-        listDiag=this.getListeTuileDiag(positionCourante);
-            for(int i=0;i<listDiag.size();i++){
-                listReturn.add(listDiag.get(i));
-            }
         
-        */
         for (int i=0;i<tuilesDiag.size();i++) {
             if (tuilesDiag.get(i).getStatut() != COULEE)
                 tuilesAdj.add(tuilesDiag.get(i));
