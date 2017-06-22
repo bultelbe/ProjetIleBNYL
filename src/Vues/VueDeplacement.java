@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Aventurier.Aventurier;
 import Grille.Tuile;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,11 +41,11 @@ public class VueDeplacement {
      */
     
 
-    public VueDeplacement(Controleur c) {
+    public VueDeplacement(Controleur c,Aventurier aventurier) {
         this.c = c;
         this.window = new JFrame();
         window.setSize(600, 450); 
-        window.setTitle("Deplacement");
+        window.setTitle("Deplacement de "+aventurier.getNomJ()+" : "+aventurier.getNoma());
         
         mainPanel = new JPanel(new BorderLayout());
         grillePanel = new JPanel(new GridLayout(4,4));
@@ -83,7 +84,7 @@ public class VueDeplacement {
         //JScrollPane scroll = new JScrollPane(coordonee);
         coordonee.setEditable(false);
         
-        for (Tuile t : c.getAventurierCourant().deplacementsPossibles(c.getGrille())){
+        for (Tuile t : aventurier.deplacementsPossibles(c.getGrille())){
             coordonee.append(t.getNomCase() + " (" + t.getColonne() +','+ t.getLigne() + ") " + t.getStatut() + "\n");
         }
         
