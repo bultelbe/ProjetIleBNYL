@@ -5,6 +5,7 @@
  */
 package projetilebnyl;
 
+import Aventurier.Aventurier;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,7 @@ public class Message {
     public TypeMessage typeMessage;
     public ArrayList<String> nomJ = new ArrayList();
     public ArrayList<String> nomA = new ArrayList();
+    public Aventurier avt;
     
     public enum TypeMessage {
         CLIC_BoutonAller,

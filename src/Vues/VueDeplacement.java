@@ -37,12 +37,14 @@ public class VueDeplacement {
     private Controleur c;
     private Integer x;
     private Integer y;
+    private Aventurier aventurier;
     /**
      * @param args the command line arguments
      */
     
 
     public VueDeplacement(Controleur c,Aventurier aventurier) {
+        this.aventurier=aventurier;
         this.c = c;
         this.window = new JFrame();
         window.setSize(600, 450); 
@@ -114,7 +116,8 @@ public class VueDeplacement {
             public void actionPerformed(ActionEvent e) {
                 x = getX();
                 y = getY();
-                Message m = new Message();                    
+                Message m = new Message();         
+                m.avt=getAventurier();
                 m.typeMessage = CLIC_BoutonValider;
                 c.traiterMessage(m);
                 window.setVisible(false); 
@@ -133,6 +136,10 @@ public class VueDeplacement {
     
     public int getY() {
         return parseInt(textY.getText());
+    }
+
+    public Aventurier getAventurier() {
+        return aventurier;
     }
         
 }

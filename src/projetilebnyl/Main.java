@@ -22,6 +22,7 @@ public class Main {
         //controleur.setVueAvt(vueAvt);
         VueInscription vueInscrip = new VueInscription(controleur);
         //System.out.println(vueAvt.getCartesLabels().get(0).getText());         
+        
     }
     
 }
