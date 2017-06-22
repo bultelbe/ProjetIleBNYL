@@ -1,13 +1,8 @@
 package Aventurier;
 
-import Aventurier.Aventurier;
-import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Scanner;
 import Vues.Utils;
-import static Vues.Utils.EtatTuile.*;
 
 //Hérite d'Aventurier
 public class Ingenieur extends Aventurier {
@@ -17,7 +12,7 @@ public class Ingenieur extends Aventurier {
         super(nomJ, positionCourante, noma);
     }
     
-
+    //Getter et setter
     @Override
     public Color getColor() {
         return Utils.Pion.ROUGE.getCouleur();
@@ -32,5 +27,4 @@ public class Ingenieur extends Aventurier {
     public void setActionPilote(boolean etat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -1,23 +1,19 @@
 package Aventurier;
 
-import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
 import java.util.ArrayList;
 import Vues.Utils;
-import static Vues.Utils.EtatTuile.*;
 
 //Hérite d'Aventurier
 public class Pilote extends Aventurier {
-    
     private boolean action = true;
 
     //Constructeur
     public Pilote(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
-
     
     //Retourne une arrayList de tuiles correspondant à toutes les tuiles de la grille non coulées où le pilote peut aller
     @Override
@@ -35,12 +31,13 @@ public class Pilote extends Aventurier {
         return tuilesPossibles;
     }
     
-
+    //Getter et setter
     @Override
     public boolean getActionPilote() {
         return action;
     }
 
+    @Override
     public void setActionPilote(boolean etat) {
         this.action = etat;
     }
@@ -49,5 +46,4 @@ public class Pilote extends Aventurier {
     public Color getColor() {
         return Utils.Pion.BLEU.getCouleur();
     }
-
 }

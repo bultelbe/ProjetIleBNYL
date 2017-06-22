@@ -12,6 +12,7 @@ public class Messager extends Aventurier {
         super(nomJ, positionCourante, noma);
     }
 
+    //Getter et setter
     @Override
     public Color getColor() {
         return Utils.Pion.BLANC.getCouleur();
