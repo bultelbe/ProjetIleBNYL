@@ -14,18 +14,20 @@ import javax.swing.JPanel;
  *
  * @author bultelbe
  */
-public class PionJoueur extends JPanel{
+public class PionJoueur extends JPanel {
     private int diametre,x,y;
     private double distance;
     
     private Color couleur;
     
+    //Constructeur
     public PionJoueur(Color couleur){
         setBackground(Color.white);
         this.couleur=couleur;
   
     }
     
+    //Dessine le cercle des pions
     public void paintComponent(Graphics g) {
         Dimension dimension = getSize(); // Taille de la zone de dessin
         

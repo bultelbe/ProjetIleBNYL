@@ -9,16 +9,14 @@ import java.util.Scanner;
 import Vues.Utils;
 import static Vues.Utils.EtatTuile.*;
 
+//Hérite d'Aventurier
 public class Ingenieur extends Aventurier {
 
+    //Constructeur
     public Ingenieur(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
     
-    
-    public ArrayList<Tuile> assechementsPossibles(Grille grille) {
-        return super.assechementsPossibles(grille);
-    }
 
     @Override
     public Color getColor() {

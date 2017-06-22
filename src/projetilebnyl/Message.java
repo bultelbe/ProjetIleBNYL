@@ -19,6 +19,7 @@ public class Message {
     public ArrayList<String> nomA = new ArrayList();
     public Aventurier avt;
     
+    //Liste des différents clic dont le message doit être traité
     public enum TypeMessage {
         CLIC_BoutonAller,
         CLIC_BoutonTerminer,

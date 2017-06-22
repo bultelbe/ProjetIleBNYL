@@ -13,7 +13,7 @@ public class CarteInondations {
     public ArrayList<Carte> piocheInondation = new ArrayList<>();
     public ArrayList<Carte> defausseInondation = new ArrayList<>();
 
-    
+    //Créer chacunes des cartes du jeu
     private Carte c1 = new Carte("Le Pont des Abimes");
     private Carte c2 = new Carte("La Porte de Bronze");
     private Carte c3 = new Carte("La Caverne Des Ombres");
@@ -39,9 +39,11 @@ public class CarteInondations {
     private Carte c23 = new Carte("La Tour du Guet");
     private Carte c24 = new Carte("Le Jardin des Murmures");
     
-    public CarteInondations(){// INITIALISER APRES GRILLE !!!!!!!!!
-                 
+    
+    //Constructeur
+    public CarteInondations() {
         
+        //Ajoute les cartes à une collection
         piocheInondation.add(c1);
         piocheInondation.add(c2);
         piocheInondation.add(c3);
@@ -67,29 +69,12 @@ public class CarteInondations {
         piocheInondation.add(c23);
         piocheInondation.add(c24);
         
+        //Mélange aléatoirement ces cartes
         Collections.shuffle(piocheInondation);
         
     }
     
-    public ArrayList<Carte> getPiocheInondation() {
-        return piocheInondation;
-    }
-
-    public ArrayList<Carte> getDefausseInondation() {
-        return defausseInondation;
-    }
-    
-    
-
-    public void setPiocheInondation(ArrayList<Carte> piocheInondation) {
-        this.piocheInondation = piocheInondation;
-    }
-
-    public void setDefausseInondation(ArrayList<Carte> defausseInondation) {
-        this.defausseInondation = defausseInondation;
-    }
-     
-    
+    //Gère le nombre de cartes piochées suivant le niveau d'eau du jeu
     public void piocheInondation (int niveauEau, Grille grille){
         int nbPioche=0;
         if(niveauEau==0||niveauEau==1){
@@ -102,18 +87,20 @@ public class CarteInondations {
             nbPioche=5;
         }        
         
-        
+        //Rend les tuiles concernées par la pioche, inondées ou coulées
         for (int i = 0; i < nbPioche; i++){
             defausseInondation.add(piocheInondation.get(0));
-            Tuile t1=grille.getTuile(piocheInondation.get(0).getNomCarte());
+            Tuile t1 = grille.getTuile(piocheInondation.get(0).getNomCarte());
             if (t1.getStatut()==ASSECHEE){
                 t1.setStatut(INONDEE);
             } else if (t1.getStatut()==INONDEE){
                 t1.setStatut(COULEE);
                 defausseInondation.remove(t1);
-            } 
-            System.out.println(t1.getNomCase() + " devient "+t1.getStatut());
+            }
+            System.out.println(t1.getNomCase() + " devient " + t1.getStatut());
             
+            //Supprimer de la pioche la carte inondation utilisée
+            //Remet à jour la pioche si celle-ci devient vide
             piocheInondation.remove(piocheInondation.get(0));
             if (piocheInondation.size()==0){
                 this.remiseDefausse();
@@ -124,20 +111,38 @@ public class CarteInondations {
     }
      
     
+    //Permet la "remise" à jour de la pioche
     public void remiseDefausse(){
         ArrayList<Carte> listePioche = this.getPiocheInondation();
         ArrayList<Carte> listeDefausse = this.getDefausseInondation();
-        ArrayList<Carte> listeTemp=new ArrayList<>();
+        ArrayList<Carte> listeTemp = new ArrayList<>();
         Collections.shuffle(listeDefausse);
         listeTemp=listeDefausse;
+        
         for (Carte c1 : listePioche){
             listeTemp.add(c1);
         }
         this.setPiocheInondation(listeTemp);
-        ArrayList<Carte> listeVide= new ArrayList<>();
+        ArrayList<Carte> listeVide = new ArrayList<>();
         setDefausseInondation(listeVide);
         
-        
-    }    
+    }
+    
+    
+    public ArrayList<Carte> getPiocheInondation() {
+        return piocheInondation;
+    }
+
+    public ArrayList<Carte> getDefausseInondation() {
+        return defausseInondation;
+    }
+
+    public void setPiocheInondation(ArrayList<Carte> piocheInondation) {
+        this.piocheInondation = piocheInondation;
+    }
+
+    public void setDefausseInondation(ArrayList<Carte> defausseInondation) {
+        this.defausseInondation = defausseInondation;
+    }
         
 }

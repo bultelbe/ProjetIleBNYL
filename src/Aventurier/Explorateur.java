@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import Vues.Utils;
 import static Vues.Utils.EtatTuile.*;
 
+//Hérite d'Aventurier
 public class Explorateur extends Aventurier {
 
+    //Constructeur
     public Explorateur(String nomJ, Tuile positionCourante,String noma) {
         super(nomJ, positionCourante, noma);
     }
@@ -19,10 +21,16 @@ public class Explorateur extends Aventurier {
         ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
+        /*
+        listDiag=this.getListeTuileDiag(positionCourante);
+            for(int i=0;i<listDiag.size();i++){
+                listReturn.add(listDiag.get(i));
+            }
         
-        for (Tuile t : tuilesDiag) {
-            if (t.getStatut() != COULEE)
-                tuilesAdj.add(t);
+        */
+        for (int i=0;i<tuilesDiag.size();i++) {
+            if (tuilesDiag.get(i).getStatut() != COULEE)
+                tuilesAdj.add(tuilesDiag.get(i));
         }
         return tuilesAdj;
     }
