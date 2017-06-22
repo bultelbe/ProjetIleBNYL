@@ -65,7 +65,7 @@ public class Controleur implements Observateur {
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
 
         
-        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+        /*for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
         
             if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
                 joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
@@ -85,7 +85,7 @@ public class Controleur implements Observateur {
             if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
                 joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
             
-        }
+        }*/
         
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
@@ -155,6 +155,8 @@ public class Controleur implements Observateur {
             getVueAventurier().getBtnAller().setEnabled(false);
             getVueAventurier().getBtnAssecher().setEnabled(false);
             getVueAventurier().getBtnCarteSpe().setEnabled(false);
+            getVueAventurier().getBtnEchangeCarte().setEnabled(false);
+            getVueAventurier().getBtnRecupTresor().setEnabled(false);
             act = 3;
         }
     }
@@ -288,7 +290,7 @@ public class Controleur implements Observateur {
             }
         }
 
-        piocherTresor();
+       piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
@@ -435,6 +437,10 @@ public class Controleur implements Observateur {
             case CLIC_BoutonEchange:
                 echangeDeCarte();
                 break;
+            
+            case CLIC_BoutonRecupTresor:
+                recuperTresor();
+                break;
         }
     }
     
@@ -562,6 +568,7 @@ public class Controleur implements Observateur {
                 if (nbCarte>=4 ){
                     tr.setRecupere(true);
                     System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
+                    act=act-1;
                     ArrayList<Carte> cpMain= new ArrayList();
                     for(Carte c : aventurierCourant.getCarteMain()){
                         if (c.getNomCarte()!=tr.getNom()){

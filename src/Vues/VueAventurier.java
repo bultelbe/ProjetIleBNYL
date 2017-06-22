@@ -124,6 +124,8 @@ public class VueAventurier  {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnCarteSpe.setEnabled(true);
+            btnEchangeCarte.setEnabled(true);
+            btnRecupTresor.setEnabled(true);
             controleur.traiterMessage(CLIC_BoutonTerminer);
 
         });
@@ -148,7 +150,9 @@ public class VueAventurier  {
             controleur.traiterMessage(CLIC_BoutonEchange);
         });
         
-        this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
+        this.btnRecupTresor.addActionListener((ActionEvent e) -> {
+            controleur.traiterMessage(CLIC_BoutonRecupTresor);
+        });
         
         
         // =================================================================================
