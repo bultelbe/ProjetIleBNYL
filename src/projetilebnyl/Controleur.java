@@ -315,38 +315,52 @@ public class Controleur implements Observateur {
                 echangeurs.add(joueurs.get(i));
             }
         }
-                
-        for (Aventurier a : echangeurs) {
-            System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
-            System.out.println("Cartes en sa disposition : ");
-            for(Carte ca : a.getCarteMain()){
-            System.out.println("            "+ca.getNomCarte()+"\n");   
-            }
-        }
         
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
-        String aventurier = sc.nextLine();
-        
-        for (Aventurier a : echangeurs) {
-            if(aventurier==a.getNoma()) {
-                System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
-                String carte= sc.nextLine();
-                
-                for (Carte ca : aventurierCourant.getCarteMain()) {
-                    if(carte == ca.getNomCarte()) {
-                        a.addCarte(ca);
-                        aventurierCourant.getCarteMain().remove(ca);
-                        act = act-1;
+        if(!(echangeurs.isEmpty())){
+            if(!(aventurierCourant.getCarteMain().isEmpty())){    
+                for (Aventurier a : echangeurs) {
+                    System.out.println("Nom : "+a.getNomJ()+" Capacité : "+ a.getNoma());
+                    System.out.println("Cartes en sa disposition : ");
+                    for(Carte ca : a.getCarteMain()){
+                    System.out.println("            "+ca.getNomCarte()+"\n");   
+                    }
+                }
+
+                Scanner sc = new Scanner(System.in);
+                System.out.print("\nRentrez le nom d'aventurier avec lequel vous voullez échanger des cartes : ");
+                String aventurier = sc.nextLine();
+
+                for (Aventurier a : echangeurs) {
+                    if(aventurier.equals(a.getNoma())) {
+                        System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                        String carte= sc.nextLine();
+
+                        for (int i=0;i< aventurierCourant.getCarteMain().size();i++) {
+                            
+                            if(i!=aventurierCourant.getCarteMain().size()-1){
+                                if(carte.equals(aventurierCourant.getCarteMain().get(i).getNomCarte())) {
+                                    a.addCarte(aventurierCourant.getCarteMain().get(i));
+                                    aventurierCourant.getCarteMain().remove(aventurierCourant.getCarteMain().get(i));
+                                    act = act-1;
+                                    break;
+                                }
+                            }else{
+                                System.out.println("\nVous ne possédez pas cette carte");
+                            }
+                        }
+                        break;
                     }else{
-                        System.out.println("\nVous ne possédez pas cette carte");
+                        System.out.println("\nCet aventurier n'est pas disponible pour un échange");
                     }
                 }
             }else{
-                System.out.println("\nCet aventurier n'est pas disponible pour un échange");
+                System.out.println("Vous n'avez pas de cartes en main pour échanger");
             }
+        }else{
+            System.out.println("Il n'y a pes d'Aventuriers pour echanger des cartes sur cette case");
         }
 
+    this.getVueAventurier().updateCellules(grille);
     }
      
     public void traiterMessage(Message m) {
@@ -537,6 +551,7 @@ public class Controleur implements Observateur {
 
                 if (nbCarte>=4 ){
                     tr.setRecupere(true);
+                    System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
                     ArrayList<Carte> cpMain= new ArrayList();
                     for(Carte c : aventurierCourant.getCarteMain()){
                         if (c.getNomCarte()!=tr.getNom()){
