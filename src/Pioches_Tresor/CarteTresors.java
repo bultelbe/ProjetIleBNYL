@@ -86,7 +86,7 @@ public class CarteTresors {
             return defausseTresor;
         }
            
-       public Carte piocheTresor(){
+       public Carte piocherCarteTresor(){
            Carte carteRet;
            
            carteRet = piocheTresor.get(0);
