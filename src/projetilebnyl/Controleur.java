@@ -653,8 +653,6 @@ public class Controleur implements Observateur {
         return this.vueAventurier;
     }
     
-    
-    
     public void setAct(int act) {
         this.act = act;
     }
