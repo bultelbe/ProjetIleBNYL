@@ -243,6 +243,8 @@ public class VueInscription {
                     Message m = new Message();
                     
                     m.typeMessage = CLIC_BoutonDemarrer;
+                    m.nomA = nomsAventuriers;
+                    m.nomJ = nomsJoueurs;
                     
                     c.traiterMessage(m);
 
