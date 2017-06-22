@@ -275,7 +275,7 @@ public class Controleur implements Observateur {
 
        piocherTresor();
         act = 3;
-        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
+        aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
         this.getVueAventurier().carteMainJoueurCourant();
         this.getVueAventurier().updateCellules(getGrille());
@@ -460,7 +460,7 @@ public class Controleur implements Observateur {
                 break;
                 
             case CLIC_BoutonDemarrer:
-                System.out.println("ghkjhjk");
+                //System.out.println("ghkjhjk");
                 for (int i = 0; i < m.nomA.size(); i++) {
         
                     if (m.nomA.get(i).equals("Messager"))
@@ -484,8 +484,8 @@ public class Controleur implements Observateur {
                 
                 aventurierCourant = joueurs.get(0);
                 
-                VueAventurier vueAvt = new VueAventurier(joueurs.get(0).getNomJ(), joueurs.get(0).getNoma(), joueurs.get(0).getColor(), controleur);
-                controleur.setVueAvt(vueAvt);
+                VueAventurier vueAvt = new VueAventurier(joueurs.get(0).getNomJ(), joueurs.get(0).getNoma(), joueurs.get(0).getColor(), this);
+                this.setVueAvt(vueAvt);
                 
                 break;
             

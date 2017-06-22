@@ -261,7 +261,7 @@ public class VueAventurier  {
             } else {
                 pions.get(i).removeAll();
                 
-                for(int k=0; k<6; k++){
+                for(int k=0; k<controleur.getJoueurs().size(); k++){
                     if(labels.get(i).getText() == controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                         PionJoueur pionJ = controleur.getJoueurs().get(k).getPionjoueur();
                         pion.add(pionJ);
@@ -356,7 +356,7 @@ public class VueAventurier  {
                 panelPion.setBackground(Color.BLUE);
             }
             
-            for(int k=0; k<6; k++){
+            for(int k=0; k<controleur.getJoueurs().size(); k++){
                 
                 if(nomCase.getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
                     PionJoueur pion = controleur.getJoueurs().get(k).getPionjoueur();

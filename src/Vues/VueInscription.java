@@ -247,6 +247,7 @@ public class VueInscription {
                     m.nomJ = nomsJoueurs;
                     
                     c.traiterMessage(m);
+                    window.setVisible(false);
 
                 }
             }
