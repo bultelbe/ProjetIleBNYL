@@ -16,6 +16,12 @@ import projetilebnyl.Controleur;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonValider;
 import static java.lang.Integer.parseInt;
 import projetilebnyl.Message;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 
 /**
  *
