@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Aventurier.Aventurier;
 import Grille.Tuile;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ public class VueDeplacement {
     private JFrame window;
     private JPanel mainPanel;
     private JPanel grillePanel;
+    private JPanel centrePanel;
     private JPanel areaPanel;
     private JTextArea coordonee;
     private JTextField textX;
@@ -40,17 +42,18 @@ public class VueDeplacement {
      */
     
 
-    public VueDeplacement(Controleur c) {
+    public VueDeplacement(Controleur c,Aventurier aventurier) {
         this.c = c;
         this.window = new JFrame();
         window.setSize(600, 450); 
-        window.setTitle("Deplacement");
+        window.setTitle("Deplacement de "+aventurier.getNomJ()+" : "+aventurier.getNoma());
         
         mainPanel = new JPanel(new BorderLayout());
-        grillePanel = new JPanel(new GridLayout(4,4));
+        grillePanel = new JPanel(new GridLayout(6,6));
         southPanel = new JPanel();
+        centrePanel = new JPanel(new BorderLayout());
         
-        seDeplacer= new JLabel("Coordonnées de la tuile où vous souhaitez vous déplacez");        
+        seDeplacer= new JLabel(aventurier.getNoma() + " veuillez rentrer les coordonnées de la tuile où vous souhaitez vous déplacez" +"\n" );        
         valider = new JButton("Valider"); 
         X = new JLabel("X : ");
         Y = new JLabel("Y : ");
@@ -60,22 +63,22 @@ public class VueDeplacement {
         
         grillePanel.add(new JLabel());
         
-        for (int i = 0; i < 16; i++) {
-            if (i == 5) {
+        for (int i = 0; i < 36; i++) {
+            if (i == 8) {
                 //grillePanel.add(X, SwingConstants.CENTER);
                 grillePanel.add(new JLabel("X : ", SwingConstants.CENTER));
-            } else if (i == 6) {
+            } else if (i == 9) {
                 grillePanel.add(textX);
                 
-            } else if (i == 10) {
+            } else if (i == 22) {
                 //grillePanel.add(Y, SwingConstants.CENTER);
                 grillePanel.add(new JLabel("Y : ", SwingConstants.CENTER));
                 
-            } else if (i == 11) {
+            } else if (i == 23) {
                 grillePanel.add(textY);
             
             } else {
-                grillePanel.add(new JLabel());
+                grillePanel.add(new JLabel(" "));
             }
         }
         
@@ -83,13 +86,14 @@ public class VueDeplacement {
         //JScrollPane scroll = new JScrollPane(coordonee);
         coordonee.setEditable(false);
         
-        for (Tuile t : c.getAventurierCourant().deplacementsPossibles(c.getGrille())){
+        for (Tuile t : aventurier.deplacementsPossibles(c.getGrille())){
             coordonee.append(t.getNomCase() + " (" + t.getColonne() +','+ t.getLigne() + ") " + t.getStatut() + "\n");
         }
         
         areaPanel = new JPanel(new BorderLayout());
         //areaPanel.add(scroll,BorderLayout.EAST);
         areaPanel.add(coordonee,BorderLayout.CENTER);
+        //centrePanel.add()
         
         southPanel.add(valider, SwingConstants.CENTER);
         mainPanel.add(areaPanel,BorderLayout.EAST);

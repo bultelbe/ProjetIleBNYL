@@ -30,7 +30,12 @@ public class Pilote extends Aventurier {
     }
     
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
-        return grille.getTuilesPossibles();
+        if (getAction() == false) {
+            return grille.getListeTuileAdj(getPositionCourante());
+        } else {
+            setAction(false);
+            return getTuilesPossibles(grille);
+        }
     }
     
     public void resetAction() {

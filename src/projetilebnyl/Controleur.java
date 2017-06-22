@@ -21,7 +21,7 @@ import static java.lang.Integer.parseInt;
 import Vues.*;
 
 
-public class Controleur implements Observateur{
+public class Controleur implements Observateur {
     public Grille grille;
     public ArrayList<Aventurier> joueurs = new ArrayList<>();
     public VueAventurier vueAventurier;
@@ -47,7 +47,6 @@ public class Controleur implements Observateur{
     private Carte Helicoptere3= new Carte(HELICOPTERE);
     
     private VueDeplacement vueDeplacement;
-
     
     public Controleur() {
         
@@ -64,6 +63,30 @@ public class Controleur implements Observateur{
         spawnNavigateur = grille.getTuile("La Porte d'Argent");
         spawnPilote = grille.getTuile("Héliport");
         spawnExplorateur = grille.getTuile("La Porte de Cuivre");
+
+        
+        for (int i = 0; i < vueInscription.getNbrJoueurs(); i++) {
+        
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Messager"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnMessager, "Messager"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Plongeur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPlongeur, "Plongeur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Ingenieur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnIngenieur, "Ingenieur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Navigateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnNavigateur, "Navigateur"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Pilote"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnPilote, "Pilote"));
+            
+            if (getVueInscription().getNomsAventuriers().get(i).equals("Explorateur"))
+                joueurs.add(new Messager(getVueInscription().getNomsJoueurs().get(i), spawnExplorateur, "Explorateur"));
+            
+        }
+        
         
         joueurs.add(new Messager("Goddefroy", spawnMessager, "Messager"));
         joueurs.add(new Plongeur("Duck", spawnPlongeur, "Plongeur"));
@@ -73,6 +96,7 @@ public class Controleur implements Observateur{
         joueurs.add(new Explorateur("Colonb", spawnExplorateur, "Explorateur"));
         aventurierCourant = joueurs.get(0);
     }
+    
     
     public ArrayList<Aventurier> getJoueurs() {
         return joueurs;
@@ -135,6 +159,7 @@ public class Controleur implements Observateur{
         }
     }
 
+    
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
         tuilesAssechables = aventurierCourant.assechementsPossibles(getGrille());
@@ -279,7 +304,7 @@ public class Controleur implements Observateur{
     public void deplacementJoueurObligatoire(Aventurier avt) {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = avt.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement(this);
+        vueDeplacement = new VueDeplacement(this,avt);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -295,7 +320,7 @@ public class Controleur implements Observateur{
     public void deplacementJoueur() {
         ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
         tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
-        vueDeplacement = new VueDeplacement(this);
+        vueDeplacement = new VueDeplacement(this,aventurierCourant);
 
         for (Tuile t : tuilesPossibles) {
             System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
@@ -326,7 +351,6 @@ public class Controleur implements Observateur{
         getVueAventurier().updateAventurier(avt.getNomJ(), avt.getNoma(), avt.getColor(), avt.getPositionCourante().getNomCase());
         
         getVueAventurier().updateCellules(grille);
-        this.TourDeJeu();
     }
        
     public void echangeDeCarte() {
@@ -385,7 +409,17 @@ public class Controleur implements Observateur{
                 passerJoueurSuivant();
                 break;
             case CLIC_BoutonValider:
-                deplace(getAventurierCourant());
+                for (int i = 0; i < joueurs.size(); i++) {
+                    if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
+                        deplace(joueurs.get(i));
+                    } else {
+                        deplace(getAventurierCourant());
+                        this.TourDeJeu();
+                    }
+                }
+                break;
+            case CLIC_BoutonEchange:
+                echangeDeCarte();
                 break;
         }
     }
@@ -523,6 +557,14 @@ public class Controleur implements Observateur{
                 }        
             }
         }
+    }
+
+    public VueInscription getVueInscription() {
+        return vueInscription;
+    }
+
+    public void setVueInscription(VueInscription vueInscription) {
+        this.vueInscription = vueInscription;
     }
     
 }
