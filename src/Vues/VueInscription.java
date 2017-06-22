@@ -404,7 +404,7 @@ public class VueInscription {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
     
-    
+    //Fonctions utiles :
     public boolean champVide(String nom){
     //Renvoie vrai si le champ est vide
         boolean vide = true;
@@ -417,7 +417,13 @@ public class VueInscription {
         }
         return vide;
     }
-
+    
+    public void afficher(){
+        //Affiche la fenêtre de parametrage
+        this.window.setVisible(true);
+    }
+    
+    //Getters et setters :
     public int getNbrJoueurs() {
         return nbrJoueurs;
     }
@@ -456,12 +462,7 @@ public class VueInscription {
 
     public String getNomJoueur4() {
         return nomJoueur4;
-    }
-    
-    public void afficher(){
-        //Affiche la fenêtre de parametrage
-        this.window.setVisible(true);
-    }
+    }   
     
     public ArrayList<String> getNomsAventuriers() {
         return nomsAventuriers;
