@@ -19,6 +19,7 @@ import static Vues.Utils.EtatTuile.*;
 import static Vues.Utils.Cartes.*;
 import static java.lang.Integer.parseInt;
 import Vues.*;
+import static projetilebnyl.Message.TypeMessage.*;
 
 
 public class Controleur implements Observateur {
@@ -157,6 +158,8 @@ public class Controleur implements Observateur {
             getVueAventurier().getBtnAller().setEnabled(false);
             getVueAventurier().getBtnAssecher().setEnabled(false);
             getVueAventurier().getBtnCarteSpe().setEnabled(false);
+            getVueAventurier().getBtnEchangeCarte().setEnabled(false);
+            getVueAventurier().getBtnRecupTresor().setEnabled(false);
             act = 3;
         }
     }
@@ -290,7 +293,7 @@ public class Controleur implements Observateur {
             }
         }
 
-        piocherTresor();
+       piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%6);
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());
@@ -416,7 +419,7 @@ public class Controleur implements Observateur {
 
                 for (Aventurier a : echangeurs) {
                     if(aventurier.equals(a.getNoma())) {
-                        System.out.print("\nQuelle carte voulez-vous échanger avec l'"+a.getNoma()+" ? : ");
+                        System.out.print("\nQuelle carte voulez-vous échanger avec l'aventurier "+a.getNoma()+" ? : ");
                         String carte= sc.nextLine();
 
                         for (int i=0;i< aventurierCourant.getCarteMain().size();i++) {
@@ -448,7 +451,7 @@ public class Controleur implements Observateur {
     }
      
     public void traiterMessage(Message m) {
-        switch(m) {
+        switch(m.typeMessage) {
             case CLIC_BoutonAller:
                 deplacementJoueur();
                 break;
@@ -464,14 +467,24 @@ public class Controleur implements Observateur {
                 for (int i = 0; i < joueurs.size(); i++) {
                     if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                         deplace(joueurs.get(i));
+                        break;
                     } else {
                         deplace(getAventurierCourant());
                         this.TourDeJeu();
+                        break;
                     }
                 }
                 break;
             case CLIC_BoutonEchange:
                 echangeDeCarte();
+                break;
+                
+            case CLIC_BoutonDemarrer:
+                
+                break;
+            
+            case CLIC_BoutonRecupTresor:
+                recuperTresor();
                 break;
         }
     }
@@ -600,6 +613,7 @@ public class Controleur implements Observateur {
                 if (nbCarte>=4 ){
                     tr.setRecupere(true);
                     System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
+                    act=act-1;
                     ArrayList<Carte> cpMain= new ArrayList();
                     for(Carte c : aventurierCourant.getCarteMain()){
                         if (c.getNomCarte()!=tr.getNom()){
