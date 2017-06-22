@@ -11,42 +11,47 @@ public class CarteTresors {
     private ArrayList<Carte> piocheTresor = new ArrayList<>();
     private ArrayList<Carte> defausseTresor = new ArrayList<>();
     
-            private Carte cristal1= new Carte(CRISTAL);
-            private Carte cristal2= new Carte(CRISTAL);
-            private Carte cristal3= new Carte(CRISTAL);
-            private Carte cristal4= new Carte(CRISTAL);
-            private Carte cristal5= new Carte(CRISTAL);
-            
-            private Carte statue1= new Carte(STATUE);
-            private Carte statue2= new Carte(STATUE);
-            private Carte statue3= new Carte(STATUE);
-            private Carte statue4= new Carte(STATUE);
-            private Carte statue5= new Carte(STATUE);
-            
-            private Carte pierre1= new Carte(PIERRE);
-            private Carte pierre2= new Carte(PIERRE);
-            private Carte pierre3= new Carte(PIERRE);
-            private Carte pierre4= new Carte(PIERRE);
-            private Carte pierre5= new Carte(PIERRE);
-            
-            private Carte calice1= new Carte(CALICE);
-            private Carte calice2= new Carte(CALICE);
-            private Carte calice3= new Carte(CALICE);
-            private Carte calice4= new Carte(CALICE);
-            private Carte calice5= new Carte(CALICE);
-                        
-            private Carte eaux1= new Carte(EAUX);
-            private Carte eaux2= new Carte(EAUX);
-            private Carte eaux3= new Carte(EAUX);
-                     
-            private Carte Sac1= new Carte(SABLE);
-            private Carte Sac2= new Carte(SABLE);
-            
-            private Carte Helicoptere1= new Carte(HELICOPTERE);
-            private Carte Helicoptere2= new Carte(HELICOPTERE);
-            private Carte Helicoptere3= new Carte(HELICOPTERE);
     
+    //Déclaration des différentes cartes trésors
+    private Carte cristal1= new Carte(CRISTAL);
+    private Carte cristal2= new Carte(CRISTAL);
+    private Carte cristal3= new Carte(CRISTAL);
+    private Carte cristal4= new Carte(CRISTAL);
+    private Carte cristal5= new Carte(CRISTAL);
+
+    private Carte statue1= new Carte(STATUE);
+    private Carte statue2= new Carte(STATUE);
+    private Carte statue3= new Carte(STATUE);
+    private Carte statue4= new Carte(STATUE);
+    private Carte statue5= new Carte(STATUE);
+
+    private Carte pierre1= new Carte(PIERRE);
+    private Carte pierre2= new Carte(PIERRE);
+    private Carte pierre3= new Carte(PIERRE);
+    private Carte pierre4= new Carte(PIERRE);
+    private Carte pierre5= new Carte(PIERRE);
+
+    private Carte calice1= new Carte(CALICE);
+    private Carte calice2= new Carte(CALICE);
+    private Carte calice3= new Carte(CALICE);
+    private Carte calice4= new Carte(CALICE);
+    private Carte calice5= new Carte(CALICE);
+
+    private Carte eaux1= new Carte(EAUX);
+    private Carte eaux2= new Carte(EAUX);
+    private Carte eaux3= new Carte(EAUX);
+
+    private Carte Sac1= new Carte(SABLE);
+    private Carte Sac2= new Carte(SABLE);
+    
+    private Carte Helicoptere1= new Carte(HELICOPTERE);
+    private Carte Helicoptere2= new Carte(HELICOPTERE);
+    private Carte Helicoptere3= new Carte(HELICOPTERE);
+    
+    
+    //Constructeur
     public CarteTresors() {
+        //Ajoute les cartes trésors à une collection
         piocheTresor.add(cristal1);
         piocheTresor.add(cristal2);
         piocheTresor.add(cristal3);
@@ -78,6 +83,42 @@ public class CarteTresors {
         Collections.shuffle(piocheTresor);
         } 
 
+    
+        //Constructeur
+        public Carte piocheTresor() {
+            Carte carteRet;
+
+            carteRet = piocheTresor.get(0);
+            piocheTresor.remove(piocheTresor.get(0));
+            
+            //Si il n'y a plus de cartes trésors dans la pioche, la remet à jour
+            if (piocheTresor.size()==0){
+                remiseDefausse();
+            }
+            return carteRet;
+
+        }
+
+        
+        public void addPiocheTresor(Carte carte){
+            getPiocheTresor().add(carte);
+            if (getPiocheTresor().size()==0){
+               remiseDefausse();
+           }
+        }
+
+        public void defausseTresor(Carte carte){
+            defausseTresor.add(carte);
+        }
+        
+        //Remet à jour la pioche trésor
+        public void remiseDefausse(){
+             ArrayList<Carte> liste = this.getDefausseTresor();
+             Collections.shuffle(liste);
+             setPiocheTresor(liste);
+        }
+        
+       
         public void setPiocheTresor(ArrayList<Carte> piocheTresor) {
             this.piocheTresor = piocheTresor;
         }
@@ -105,24 +146,6 @@ public class CarteTresors {
            return carteRet;
            
        }
-       
-       public void addPiocheTresor(Carte carte){
-           getPiocheTresor().add(carte);
-           
-           if (getPiocheTresor().size()==0){
-               remiseDefausse();
-           }
-       }
-       
-       public void defausseTresor(Carte carte){
-           defausseTresor.add(carte);
-       }
-    
-       public void remiseDefausse(){
-            ArrayList<Carte> liste = this.getDefausseTresor();
-            Collections.shuffle(liste);
-            setPiocheTresor(liste);
-       }
-       
+             
     
 }

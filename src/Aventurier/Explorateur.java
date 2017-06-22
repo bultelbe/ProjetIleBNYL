@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import Vues.Utils;
 import static Vues.Utils.EtatTuile.*;
 
+//Hérite d'Aventurier
 public class Explorateur extends Aventurier {
 
+    //Constructeur
     public Explorateur(String nomJ, Tuile positionCourante,String noma) {
         super(nomJ, positionCourante, noma);
     }

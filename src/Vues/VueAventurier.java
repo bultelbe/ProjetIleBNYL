@@ -1,5 +1,7 @@
 package Vues;
 
+
+import projetilebnyl.Tresor;
 import Grille.Grille;
 import Grille.Tuile;
 import java.awt.BorderLayout;
@@ -26,6 +28,7 @@ import static projetilebnyl.Message.*;
 import Vues.Utils.*;
 import static Vues.Utils.EtatTuile.*;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import projetilebnyl.Message;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
@@ -52,23 +55,23 @@ public class VueAventurier  {
     private final JButton btnRecupTresor;
     private final JPanel position;
     private final JPanel grilletuile;
-    
+    private final JPanel panelTresors;
     private JLabel nomAvt;
     private JLabel nomTuile;
     private Observateur controleur;
     private HashMap<Integer,JPanel> cases=new HashMap();
     private HashMap<Integer,JPanel> pions=new HashMap();
     private HashMap<Integer,JPanel> cartes=new HashMap();
+    private HashMap<Integer,JPanel> trésors=new HashMap();
     private HashMap<Integer,JLabel> labels=new HashMap();
     private HashMap<Integer,JLabel> cartesLabels=new HashMap();
-    private JButton [] boutonsTuiles;
-    
+    private ArrayList<JLabel> tresorsLabels=new ArrayList();
     
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
         this.controleur = ctrl;
         
         this.window = new JFrame();
-        window.setSize(900, 900);
+        window.setSize(1400, 900);
 
         window.setTitle(nomJoueur);
         bigPanel = new JPanel(new BorderLayout());
@@ -129,6 +132,9 @@ public class VueAventurier  {
             btnAller.setEnabled(true);
             btnAssecher.setEnabled(true);
             btnCarteSpe.setEnabled(true);
+            btnEchangeCarte.setEnabled(true);
+            btnCarteSpe.setEnabled(true);
+            btnRecupTresor.setEnabled(true);
             Message m = new Message();                    
             m.typeMessage = CLIC_BoutonTerminer;
             controleur.traiterMessage(m);
@@ -181,9 +187,53 @@ public class VueAventurier  {
             cartes.put(i, panelCarte);
             
         }
-        
         // =================================================================================
+        // OUEST
+        JPanel panelOuest = new JPanel(new BorderLayout());
+        JLabel titretrésor = new JLabel("Trésors récupérés",SwingConstants.CENTER);
+        JPanel titre = new JPanel();
+        titre.add(titretrésor);
+        panelOuest.add(titre, BorderLayout.NORTH);
+        this.panelTresors = new JPanel(new GridLayout(4,1));
+        panelOuest.add(panelTresors);
         
+        JPanel panelTresor1 = new JPanel(new BorderLayout());
+        JLabel nomTresor1 = new JLabel("La Pierre sacrée",SwingConstants.CENTER);
+        panelTresor1.add(nomTresor1);
+        panelTresor1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        trésors.put(0, panelTresor1);
+        
+        JPanel panelTresor2 = new JPanel(new BorderLayout());
+        JLabel nomTresor2 = new JLabel("La Statue du zéphyr",SwingConstants.CENTER);
+        panelTresor2.add(nomTresor2);
+        panelTresor2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        trésors.put(1, panelTresor2);
+        
+        JPanel panelTresor3 = new JPanel(new BorderLayout());
+        JLabel nomTresor3 = new JLabel("Le Cristal ardent",SwingConstants.CENTER);
+        panelTresor3.add(nomTresor3);
+        panelTresor3.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        trésors.put(2, panelTresor3);
+        
+        JPanel panelTresor4 = new JPanel(new BorderLayout());
+        JLabel nomTresor4 = new JLabel("Le Calice de l’onde",SwingConstants.CENTER);
+        panelTresor4.add(nomTresor4);
+        panelTresor4.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        trésors.put(3, panelTresor4);
+        
+        panelTresors.add(panelTresor1);
+        panelTresors.add(panelTresor2);
+        panelTresors.add(panelTresor3);
+        panelTresors.add(panelTresor4);
+        
+        tresorsLabels.add(nomTresor1);
+        tresorsLabels.add(nomTresor2);
+        tresorsLabels.add(nomTresor3);
+        tresorsLabels.add(nomTresor4);
+        
+        bigPanel.add(panelOuest,BorderLayout.WEST);
+        // =================================================================================
+        window.setLocationRelativeTo(null);
         this.window.setVisible(true);
         mainPanel.repaint();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -244,6 +294,14 @@ public class VueAventurier  {
     
     
     public void updateCellules(Grille grilleListe) {
+        
+        for(int i=0; i<4; i++){
+            for(int j=0; j<4; j++){
+                if(!tresorsLabels.get(i).getText().equals(controleur.getTrésors().get(j)) && controleur.getTrésors().get(j).getRecupere()){
+                    trésors.get(j).setBackground(controleur.getTrésors().get(j).getColor());
+                }
+            }
+        }
         
         for(int i=0;i<cartes.size();i++){
             JPanel carte = cartes.get(i);
@@ -392,4 +450,17 @@ public class VueAventurier  {
     public void afficher(){
         this.window.setVisible(true);
     }
+    
+    public void ecranGagner(){
+        JFrame gagne = new JFrame();
+        gagne.setSize(400,100);
+        JLabel message = new JLabel("Bravo vous avez gagné, vous êtes un dieu !!");
+        gagne.add(message,SwingConstants.CENTER);
+        window.setVisible(false);
+        gagne.setVisible(true);
+        gagne.setLocationRelativeTo(null);
+        gagne.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        
+    }
+
 }

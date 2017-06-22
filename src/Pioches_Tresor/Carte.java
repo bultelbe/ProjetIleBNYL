@@ -15,6 +15,7 @@ public  class Carte {
     
     private String nomCarte;
 
+    //Constructeurs
     public Carte(String nomCarte) {
         this.nomCarte = nomCarte;
     }
@@ -26,7 +27,9 @@ public  class Carte {
     public String getNomCarte() {
         return nomCarte;
     }
-    
-    
+
+    public void setNomCarte(String nomCarte) {
+        this.nomCarte = nomCarte;
+    }
     
 }

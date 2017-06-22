@@ -218,39 +218,147 @@ public class VueInscription {
                 }
 
                 
-                
-                if (nbrJoueurs < 2){
-                    System.out.println("Il faut qu'il y ait au moins 2 joueurs !");
-                    nbrJoueurs = 0;
+                if("Explorateur".equals(nomA1) && ("Explorateur".equals(nomA2)||"Explorateur".equals(nomA3)||"Explorateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");      
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Explorateur".equals(nomA2) && ("Explorateur".equals(nomA1)||"Explorateur".equals(nomA3)||"Explorateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Explorateur".equals(nomA3) && ("Explorateur".equals(nomA1)||"Explorateur".equals(nomA2)||"Explorateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Explorateur".equals(nomA4) && ("Explorateur".equals(nomA1)||"Explorateur".equals(nomA3)||"Explorateur".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
                     
+                } else if("Navigateur".equals(nomA1) && ("Navigateur".equals(nomA2)||"Navigateur".equals(nomA3)||"Navigateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !"); 
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Navigateur".equals(nomA2) && ("Navigateur".equals(nomA1)||"Navigateur".equals(nomA3)||"Navigateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Navigateur".equals(nomA3) && ("Navigateur".equals(nomA1)||"Navigateur".equals(nomA2)||"Navigateur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Navigateur".equals(nomA4) && ("Navigateur".equals(nomA1)||"Navigateur".equals(nomA3)||"Navigateur".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                
+                } else if("Messager".equals(nomA1) && ("Messager".equals(nomA2)||"Messager".equals(nomA3)||"Messager".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !"); 
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Messager".equals(nomA2) && ("Messager".equals(nomA1)||"Messager".equals(nomA3)||"Messager".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Messager".equals(nomA3) && ("Messager".equals(nomA1)||"Messager".equals(nomA2)||"Messager".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Messager".equals(nomA4) && ("Messager".equals(nomA1)||"Messager".equals(nomA3)||"Messager".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                
+                } else if("Ingénieur".equals(nomA1) && ("Ingénieur".equals(nomA2)||"Ingénieur".equals(nomA3)||"Ingénieur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Ingénieur".equals(nomA2) && ("Ingénieur".equals(nomA1)||"Ingénieur".equals(nomA3)||"Ingénieur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Ingénieur".equals(nomA3) && ("Ingénieur".equals(nomA1)||"Ingénieur".equals(nomA2)||"Ingénieur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Ingénieur".equals(nomA4) && ("Ingénieur".equals(nomA1)||"Ingénieur".equals(nomA3)||"Ingénieur".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                    
+                } else if("Plongeur".equals(nomA1) && ("Plongeur".equals(nomA2)||"Plongeur".equals(nomA3)||"Plongeur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Plongeur".equals(nomA2) && ("Plongeur".equals(nomA1)||"Plongeur".equals(nomA3)||"Plongeur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Plongeur".equals(nomA3) && ("Plongeur".equals(nomA1)||"Plongeur".equals(nomA2)||"Plongeur".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Plongeur".equals(nomA4) && ("Plongeur".equals(nomA1)||"Plongeur".equals(nomA3)||"Plongeur".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                    
+                } else if("Pilote".equals(nomA1) && ("Pilote".equals(nomA2)||"Pilote".equals(nomA3)||"Pilote".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Pilote".equals(nomA2) && ("Pilote".equals(nomA1)||"Pilote".equals(nomA3)||"Pilote".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Pilote".equals(nomA3) && ("Pilote".equals(nomA1)||"Pilote".equals(nomA2)||"Pilote".equals(nomA4))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                } else if ("Pilote".equals(nomA4) && ("Pilote".equals(nomA1)||"Pilote".equals(nomA3)||"Pilote".equals(nomA2))){
+                    System.out.println("Il ne peut y avoir qu'une seul même aventurier !");
+                    System.out.println("Veuillez redémarrez.");
+                    System.exit(0);
+                
                 } else {
-                    for (Integer i : ensembleDesBoutonsRadios.keySet()) {
-                        if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
-                            niveauEau = 0;
-                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                            niveauEau = 1;
-                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                            niveauEau = 2;
-                        } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
-                            niveauEau = 3;
-                        }
-                    }  
-                
-                    System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
+                    
+                    if (nbrJoueurs < 2){
+                        System.out.println("Il faut qu'il y ait au moins 2 joueurs !");
+                        nbrJoueurs = 0;
+                    } else {
+                        for (Integer i : ensembleDesBoutonsRadios.keySet()) {
+                            if (ensembleDesBoutonsRadios.get(i).getText() == "Novice" && ensembleDesBoutonsRadios.get(i).isSelected()){
+                                niveauEau = 0;
+                            } else if(ensembleDesBoutonsRadios.get(i).getText() == "Normal" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                                niveauEau = 1;
+                            } else if(ensembleDesBoutonsRadios.get(i).getText() == "Elite" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                                niveauEau = 2;
+                            } else if(ensembleDesBoutonsRadios.get(i).getText() == "Legendaire" && ensembleDesBoutonsRadios.get(i).isSelected()) {
+                                niveauEau = 3;
+                            }
+                        }  
 
-                    
-                    System.out.println("Il y a " + nbrJoueurs + " joueurs");
-                    
-                    Message m = new Message();                    
-                    m.typeMessage = CLIC_BoutonDemarrer;
-                    m.nomA = nomsAventuriers;
-                    m.nomJ = nomsJoueurs;
-                    c.setNiveauEau(niveauEau);
-                    
-                    c.traiterMessage(m);
-                    window.setVisible(false);
+                        System.out.println("Le niveau de niveau d'eau choisie est : " + niveauEau);
 
+
+                        System.out.println("Il y a " + nbrJoueurs + " joueurs");
+
+                        Message m = new Message();                    
+                        m.typeMessage = CLIC_BoutonDemarrer;
+                        m.nomA = nomsAventuriers;
+                        m.nomJ = nomsJoueurs;
+                        c.setNiveauEau(niveauEau);
+
+                        c.traiterMessage(m);
+                        window.setVisible(false);
+
+                    }
+                    
                 }
+                
+                    
+                
+                
             }
         });
         
@@ -357,18 +465,4 @@ public class VueInscription {
     public void setNomsJoueurs(ArrayList<String> nomsJoueurs) {
         this.nomsJoueurs = nomsJoueurs;
     }
-    
-    /*
-    public static void main(String[] args) {
-        // TODO code application logic here
-        VueInscription V1 = new VueInscription();
-        V1.afficher();
-    }
-    */
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
