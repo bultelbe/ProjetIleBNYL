@@ -30,6 +30,7 @@ import projetilebnyl.Message;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonEchange;
+import static projetilebnyl.Message.TypeMessage.CLIC_BoutonRecupTresor;
 import static projetilebnyl.Message.TypeMessage.CLIC_BoutonTerminer;
 import projetilebnyl.Observateur;
 
@@ -159,7 +160,11 @@ public class VueAventurier  {
             controleur.traiterMessage(m);
         });
         
-        this.btnRecupTresor.addActionListener((ActionEvent e) -> {});
+        this.btnRecupTresor.addActionListener((ActionEvent e) -> {
+            Message m = new Message();                    
+            m.typeMessage = CLIC_BoutonRecupTresor;
+            controleur.traiterMessage(m);
+        });
         
         
         // =================================================================================

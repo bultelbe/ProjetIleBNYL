@@ -24,7 +24,8 @@ public class Message {
         CLIC_BoutonAutreAction,
         CLIC_BoutonDemarrer,
         CLIC_BoutonValider,
-        CLIC_BoutonEchange;
+        CLIC_BoutonEchange,
+        CLIC_BoutonRecupTresor;
     }
 
 }
