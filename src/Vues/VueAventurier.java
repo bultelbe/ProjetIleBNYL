@@ -71,7 +71,7 @@ public class VueAventurier  {
         this.controleur = ctrl;
         
         this.window = new JFrame();
-        window.setSize(900, 900);
+        window.setSize(1400, 900);
 
         window.setTitle(nomJoueur);
         bigPanel = new JPanel(new BorderLayout());
@@ -233,7 +233,7 @@ public class VueAventurier  {
         
         bigPanel.add(panelOuest,BorderLayout.WEST);
         // =================================================================================
-        
+        window.setLocationRelativeTo(null);
         this.window.setVisible(true);
         mainPanel.repaint();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -458,6 +458,7 @@ public class VueAventurier  {
         gagne.add(message,SwingConstants.CENTER);
         window.setVisible(false);
         gagne.setVisible(true);
+        gagne.setLocationRelativeTo(null);
         gagne.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         
     }
