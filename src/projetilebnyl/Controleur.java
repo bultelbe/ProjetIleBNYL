@@ -100,7 +100,7 @@ public class Controleur implements Observateur {
         aventurierCourant = joueurs.get(0);
     }
     
-    
+ 
     public ArrayList<Aventurier> getJoueurs() {
         return joueurs;
     }
@@ -161,7 +161,6 @@ public class Controleur implements Observateur {
             act = 3;
         }
     }
-
     
     public void assechementCase() {
         ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
@@ -532,6 +531,7 @@ public class Controleur implements Observateur {
     public void recuperTresor(){
         Tresor tr=null;
         Tuile positionJ= aventurierCourant.getPositionCourante();
+        
         if(positionJ==cristal.getSanctuaire1() || positionJ==cristal.getSanctuaire2()){
             tr=cristal;
         }else if (positionJ==statute.getSanctuaire1() || positionJ==statute.getSanctuaire2()){
