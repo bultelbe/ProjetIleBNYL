@@ -303,7 +303,7 @@ public class Controleur implements Observateur {
         vueDeplacement = new VueDeplacement(this, aventurierCourant);
 
         
-            tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
+        tuilesPossibles = aventurierCourant.deplacementsPossibles(grille);
 
         
         for (Tuile t : tuilesPossibles) {
@@ -519,10 +519,12 @@ public class Controleur implements Observateur {
     }
     
     public boolean possibleMouvement(Aventurier avt){
-        return avt.deplacementsPossibles(grille).size() > 0 ||
-                (avt.getCarteMain().contains(Helicoptere1)) ||
-                (avt.getCarteMain().contains(Helicoptere2)) ||
-                (avt.getCarteMain().contains(Helicoptere3));
+        boolean helico=false;
+        for(Carte c:avt.getCarteMain()){
+            if(c.getNomCarte()=="Hélicoptère") helico=true;
+        }
+        
+        return avt.deplacementsPossibles(grille).size() > 0 && helico;
     }
       
     public boolean continuer(){
@@ -624,6 +626,83 @@ public class Controleur implements Observateur {
     }
     
     public void utiliserCarteSpéciale(){
+        ArrayList<Carte> Main = aventurierCourant.getCarteMain();
+        int nbHelicoPossible=0;
+        int nbSacPossible=0;
+        Scanner sc = new Scanner(System.in);
+                
+        for(Carte c: Main){
+            if(c.getNomCarte()=="Hélicoptère"){
+                nbHelicoPossible++;
+            }else if (c.getNomCarte()=="Sac de sable"){
+                nbSacPossible++;
+            }
+        }
         
+        if(nbHelicoPossible>0){
+            System.out.println("Vous avez "+nbHelicoPossible+" hélicoptére disponible");
+        }
+        
+        if(nbSacPossible>0){
+            System.out.println("Vous avez "+nbSacPossible+" sac de sable disponible");
+        }
+        System.out.println();
+        System.out.println("La quelle vouler vous utiliser ( Hélicoptère / Sac de sable)");
+        System.out.println();
+        String carteUtiliser =sc.nextLine();
+        System.out.println();
+        System.out.println();
+        if(carteUtiliser=="Hélicoptère"){
+            ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
+            vueDeplacement = new VueDeplacement(this, aventurierCourant);
+
+
+            tuilesPossibles = grille.getTuilesPossibles();
+
+
+            for (Tuile t : tuilesPossibles) {
+                System.out.println("\nNom : " + t.getNomCase() + "\nStatut : " + t.getStatut() + "\nX : " + t.getColonne() + "\nY : " + t.getLigne());
+            }
+
+            getVueDeplacement().afficher();
+        }else if (carteUtiliser=="Sac de sable"){
+                
+            
+                ArrayList<Tuile> tuilesPossibles = new ArrayList<>();
+                ArrayList<Tuile> tuilesAssechables = new ArrayList<>();
+                tuilesPossibles = grille.getTuilesPossibles();
+                
+                 for (Tuile t : tuilesPossibles) {
+                    if (t.getStatut() == INONDEE) {
+                    tuilesAssechables.add(t);
+                    }
+                }
+                
+                System.out.print("\nRentrez les coordonnées de la Tuile que vous voulez assécher. \nX : ");
+                String tuileX = sc.nextLine();
+                int x = parseInt(tuileX);
+
+                System.out.print("\nY : ");
+                String tuileY = sc.nextLine();
+                int y = parseInt(tuileY);
+
+                Tuile t = grille.getTuile(x, y);
+
+                if (tuilesAssechables.contains(t)) {
+                    t.setStatut(ASSECHEE);
+                    System.out.println("Vous avez asséché la tuile : " + t.getNomCase() + "\nAux coordonnées : (" + t.getColonne() + ", " + t.getLigne() + ")");
+                    act=act-1;
+                } else {
+                    System.out.println("Cette tuile n'est pas asséchable.");
+
+                }
+                  
+            getVueAventurier().updateCellules(grille); 
+        }else{
+            System.out.println("Vous n'avez pas taper correctement");
+        }
+        
+
+
     }
 }

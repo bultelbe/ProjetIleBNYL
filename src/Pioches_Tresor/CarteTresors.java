@@ -42,6 +42,9 @@ public class CarteTresors {
             private Carte Sac1= new Carte(SABLE);
             private Carte Sac2= new Carte(SABLE);
             
+            private Carte Helicoptere1= new Carte(HELICOPTERE);
+            private Carte Helicoptere2= new Carte(HELICOPTERE);
+            private Carte Helicoptere3= new Carte(HELICOPTERE);
     
     public CarteTresors() {
         piocheTresor.add(cristal1);
@@ -68,6 +71,10 @@ public class CarteTresors {
         piocheTresor.add(eaux2);
         piocheTresor.add(Sac1);
         piocheTresor.add(Sac2);
+        piocheTresor.add(Helicoptere1);
+        piocheTresor.add(Helicoptere2);
+        piocheTresor.add(Helicoptere3);
+        Collections.shuffle(piocheTresor);
         Collections.shuffle(piocheTresor);
         } 
 
