@@ -205,7 +205,7 @@ public class Controleur implements Observateur {
                     getAventurierCourant().setActionPilote(false);  
         }
         
-        //this.piocherInondation();        
+        this.piocherInondation();        
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 
