@@ -533,7 +533,15 @@ public class Controleur implements Observateur {
                 }
 
                 if (nbCarte>=4) {
-                    tr.setRecupere(true);
+                    if(tr==cristal){
+                        cristal.setRecupere(true);
+                    }else if(tr==statue){
+                        statue.setRecupere(true);
+                    }else if(tr==pierre){
+                        pierre.setRecupere(true);
+                    }else if(tr==calice){
+                        calice.setRecupere(true);
+                    }
                     System.out.println("Vous avez récupéré le trésor : "+tr.getNom());
                     act=act-1;
                     ArrayList<Carte> cpMain= new ArrayList();
