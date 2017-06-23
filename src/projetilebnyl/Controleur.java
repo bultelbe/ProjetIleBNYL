@@ -194,8 +194,8 @@ public class Controleur implements Observateur {
            getVueAventurier().ecranGagner();
         }
         
-        /*aventurierCourant.addCarte(Helicoptere1);
-        cristal.setRecupere(true);
+        
+        /*cristal.setRecupere(true);
         calice.setRecupere(true);
         pierre.setRecupere(true);
         statue.setRecupere(true);*/
@@ -205,7 +205,7 @@ public class Controleur implements Observateur {
                     getAventurierCourant().setActionPilote(false);  
         }
         
-        this.piocherInondation();        
+        //this.piocherInondation();        
         for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getPositionCourante().getStatut() == COULEE) {
                 
@@ -232,7 +232,7 @@ public class Controleur implements Observateur {
                     getAventurierCourant().setActionPilote(false);  
         }
         
-       piocherTresor();
+        piocherTresor();
         act = 3;
         aventurierCourant = joueurs.get(((joueurs.indexOf(aventurierCourant))+1)%this.getJoueurs().size());
         getVueAventurier().updateAventurier(aventurierCourant.getNomJ(), aventurierCourant.getNoma(), aventurierCourant.getColor(), aventurierCourant.getPositionCourante().getNomCase());

@@ -50,6 +50,7 @@ public class CarteTresors {
     public CarteTresors() {
         
         //Ajoute les cartes trésors à une collection
+        piocheTresor.add(Helicoptere1);
         piocheTresor.add(cristal1);
         piocheTresor.add(cristal2);
         piocheTresor.add(cristal3);
@@ -74,7 +75,6 @@ public class CarteTresors {
         piocheTresor.add(eaux2);
         piocheTresor.add(Sac1);
         piocheTresor.add(Sac2);
-        piocheTresor.add(Helicoptere1);
         piocheTresor.add(Helicoptere2);
         piocheTresor.add(Helicoptere3);
         Collections.shuffle(piocheTresor);
