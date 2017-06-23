@@ -1,6 +1,5 @@
 package Aventurier;
 
-import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
@@ -15,7 +14,6 @@ public class Plongeur extends Aventurier {
     public Plongeur(String nomJ, Tuile positionCourante, String noma) {
         super(nomJ, positionCourante, noma);
     }
-
     
     //Retourne une ArrayList des tuiles non coulées où le plongeur peut aller grâce à sa capacité
     @Override
@@ -44,6 +42,7 @@ public class Plongeur extends Aventurier {
         return tuilesPossibles;
     }
 
+    //Getter et setter
     @Override
     public Color getColor() {
         return Utils.Pion.NOIR.getCouleur();
@@ -58,5 +57,4 @@ public class Plongeur extends Aventurier {
     public void setActionPilote(boolean etat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

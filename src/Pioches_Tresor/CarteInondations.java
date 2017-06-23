@@ -71,7 +71,6 @@ public class CarteInondations {
         
         //Mélange aléatoirement ces cartes
         Collections.shuffle(piocheInondation);
-        
     }
     
     //Gère le nombre de cartes piochées suivant le niveau d'eau du jeu
@@ -128,7 +127,7 @@ public class CarteInondations {
         
     }
     
-    
+    //Getter et setter
     public ArrayList<Carte> getPiocheInondation() {
         return piocheInondation;
     }

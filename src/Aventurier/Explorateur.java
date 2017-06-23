@@ -1,6 +1,5 @@
 package Aventurier;
 
-import Aventurier.Aventurier;
 import Grille.Grille;
 import Grille.Tuile;
 import java.awt.Color;
@@ -16,26 +15,21 @@ public class Explorateur extends Aventurier {
         super(nomJ, positionCourante, noma);
     }
     
+    //Retourne une ArrayList des tuiles non coulées positionnées sur les tuiles adjacentes et diagonales à l'explorateur
     @Override
     public ArrayList<Tuile> deplacementsPossibles(Grille grille) {
         ArrayList<Tuile> tuilesAdj = super.deplacementsPossibles(grille);
         ArrayList<Tuile> tuilesDiag = new ArrayList<>();
         tuilesDiag = grille.getListeTuileDiag(getPositionCourante());
-        /*
-        listDiag=this.getListeTuileDiag(positionCourante);
-            for(int i=0;i<listDiag.size();i++){
-                listReturn.add(listDiag.get(i));
-            }
         
-        */
-        for (int i=0;i<tuilesDiag.size();i++) {
-            if (tuilesDiag.get(i).getStatut() != COULEE)
-                tuilesAdj.add(tuilesDiag.get(i));
+        for (Tuile t : tuilesDiag) {
+            if (t.getStatut() != COULEE)
+                tuilesAdj.add(t);
         }
         return tuilesAdj;
     }
     
-    
+    //Retourne une arrayList des tuiles Inondées positionnées sur les tuiles adjacentes et diagonales à l'explorateur
     @Override
     public ArrayList<Tuile> assechementsPossibles(Grille grille) {
         
@@ -59,7 +53,7 @@ public class Explorateur extends Aventurier {
         return tuilesAssechables;
     }
     
-
+    //Getter et setter
     @Override
     public Color getColor() {
         return Utils.Pion.VERT.getCouleur();
@@ -74,5 +68,4 @@ public class Explorateur extends Aventurier {
     public void setActionPilote(boolean etat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

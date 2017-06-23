@@ -9,17 +9,10 @@ import Aventurier.Aventurier;
 import Grille.Tuile;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import projetilebnyl.Controleur;
 import static projetilebnyl.Message.TypeMessage.*;
-import static java.lang.Integer.parseInt;
 import projetilebnyl.Message;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -125,7 +118,7 @@ public class VueDeplacement {
             m.typeMessage = CLIC_BoutonValider;
             c.traiterMessage(m);
             window.setVisible(false);
-            window.dispose();
+
         });
         
         //Ajout des panels à la fenêtre

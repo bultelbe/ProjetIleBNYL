@@ -24,6 +24,7 @@ public  class Carte {
         this.nomCarte=carte.toString();
     }
 
+    //Getter et setter de nomCarte
     public String getNomCarte() {
         return nomCarte;
     }
@@ -31,5 +32,4 @@ public  class Carte {
     public void setNomCarte(String nomCarte) {
         this.nomCarte = nomCarte;
     }
-    
 }

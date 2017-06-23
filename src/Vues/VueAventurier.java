@@ -1,64 +1,55 @@
 package Vues;
 
 
-import projetilebnyl.Tresor;
 import Grille.Grille;
-import Grille.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import projetilebnyl.PionJoueur;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.MatteBorder;
-import projetilebnyl.Observateur;
-import static projetilebnyl.Message.*;
-import Vues.Utils.*;
 import static Vues.Utils.EtatTuile.*;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 import projetilebnyl.Message;
-import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAller;
-import static projetilebnyl.Message.TypeMessage.CLIC_BoutonAssecher;
-import static projetilebnyl.Message.TypeMessage.CLIC_BoutonEchange;
-import static projetilebnyl.Message.TypeMessage.CLIC_BoutonRecupTresor;
-import static projetilebnyl.Message.TypeMessage.CLIC_BoutonTerminer;
+import static projetilebnyl.Message.TypeMessage.*;
 import projetilebnyl.Observateur;
 
  
 public class VueAventurier  {
-     
+    
+    //Déclaration de la fênetre et de ses composants
+    private final JFrame window;
     private final JPanel panelBoutons ;
     private final JPanel panelCentre ;
-    private final JFrame window;
     private final JPanel panelAventurier;
     private final JPanel mainPanel;
     private final JPanel bigPanel;
     private final JPanel panelCartes;
+    private final JPanel position;
+    private final JPanel grilletuile;
+    private final JPanel panelTresors;
+    
+    //Déclaration des boutons de la fênetre
     private final JButton btnAller  ;
     private final JButton btnAssecher;
     private final JButton btnCarteSpe;
     private final JButton btnTerminerTour;       
     private final JButton btnEchangeCarte;
-    private final JButton btnRecupTresor;
-    private final JPanel position;
-    private final JPanel grilletuile;
-    private final JPanel panelTresors;
+    private final JButton btnRecupTresor;    
+    
+    //Déclarations des labels nom d'aventurier et nom tuile
     private JLabel nomAvt;
-    private JLabel nomTuile;
-    private Observateur controleur;
+    private JLabel nomTuile;    
+    
+    //Déclaration des listes
     private HashMap<Integer,JPanel> cases=new HashMap();
     private HashMap<Integer,JPanel> pions=new HashMap();
     private HashMap<Integer,JPanel> cartes=new HashMap();
@@ -67,13 +58,15 @@ public class VueAventurier  {
     private HashMap<Integer,JLabel> cartesLabels=new HashMap();
     private ArrayList<JLabel> tresorsLabels=new ArrayList();
     
+    private Observateur controleur;
+    
     public VueAventurier (String nomJoueur, String nomAventurier, Color couleur, Observateur ctrl) {
         this.controleur = ctrl;
         
         this.window = new JFrame();
         window.setSize(1400, 900);
-
         window.setTitle(nomJoueur);
+        
         bigPanel = new JPanel(new BorderLayout());
         mainPanel = new JPanel(new BorderLayout());
         bigPanel.add(mainPanel,BorderLayout.SOUTH);
@@ -244,57 +237,22 @@ public class VueAventurier  {
         for (int i=0; i<36; i++) {
              grilletuile.add(createCellule(i, controleur.getGrille()));
         }
-    }  
-
-
-    public void setPosition(String pos) {
-        nomTuile.setText(pos);
-    }
-
-    public JButton getBtnAller() {
-        return btnAller;
-    }
+    } 
     
-    public JButton getBtnAssecher() {
-        return btnAssecher;
-    }
-
-    public JButton getBtnTerminerTour() {
-        return btnTerminerTour;
-    }
-
-    public JButton getBtnCarteSpe() {
-        return btnCarteSpe;
-    }
-
-    public JButton getBtnEchangeCarte() {
-        return btnEchangeCarte;
-    }
-
-    public JButton getBtnRecupTresor() {
-        return btnRecupTresor;
-    }
-    
-    
-    
+    //Fonctions utiles :
     public void updateAventurier(String nomJ, String noma, Color couleur,String nomT) {
+        //Paramètre la fenêtre pricipale avec le nom du joueur, le nom d'aventurier, sa couleur associée
+        //et la tuile sur laquelle il est.
         window.setTitle(nomJ);
         panelAventurier.setBackground(couleur);
         nomAvt.setText(noma);
         nomTuile.setText(nomT);
     }
-
-    public JLabel getNomAvt() {
-        return nomAvt;
-    }
-
-    public void setNomAvt(JLabel nomAvt) {
-        this.nomAvt = nomAvt;
-    }
-    
     
     public void updateCellules(Grille grilleListe) {
+        //Actualise la cellule
         
+        //Actualise l'affichage des trésors
         for(int i=0; i<4; i++){
             for(int j=0; j<4; j++){
                 if(!tresorsLabels.get(i).getText().equals(controleur.getTrésors().get(j)) && controleur.getTrésors().get(j).getRecupere()){
@@ -303,6 +261,7 @@ public class VueAventurier  {
             }
         }
         
+        //Actualise l'affichage des cartes
         for(int i=0;i<cartes.size();i++){
             JPanel carte = cartes.get(i);
             JLabel cartenom = cartesLabels.get(i);
@@ -310,12 +269,12 @@ public class VueAventurier  {
             carte.repaint();
         }
         
+        //Actualise l'affichage des pions
         for (int i=0; i<36; i++) {
             JPanel panel = cases.get(i);
             JPanel pion = pions.get(i);
             
-            if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35){
-            } else {
+            if (!(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35)){
                 pions.get(i).removeAll();
                 
                 for(int k=0; k<controleur.getJoueurs().size(); k++){
@@ -344,10 +303,11 @@ public class VueAventurier  {
         
         }
     }
-    
  
-    public JPanel createCellule(int i, Grille grilleListe) {
-
+    public JPanel createCellule(int i, Grille grilleListe) {        
+        //Création des cellules :
+        
+        //création des cellules vides
         if(i==0 || i==1 || i==4 || i==5 || i==6 || i==11 || i==24 || i==29|| i==30 || i==31 | i==34 || i==35) {   
             JPanel panelPion = new JPanel();
             JPanel panelCellule = new JPanel();
@@ -355,7 +315,9 @@ public class VueAventurier  {
             return panelCellule ;
             
         } else {
+            //création des cellules tuiles
             
+            //Ajout des pions
             JPanel panelPion = new JPanel(new FlowLayout());
             JLabel nomCase = new JLabel(grilleListe.tuiles.get(i).getNomCase(), SwingConstants.CENTER);
             nomCase.setForeground(Color.white);
@@ -365,18 +327,23 @@ public class VueAventurier  {
             panelCellule.add(nomCase, BorderLayout.CENTER);
             panelCellule.add(panelPion, BorderLayout.NORTH);
             
-            
-            if (grilleListe.tuiles.get(i).getStatut() == ASSECHEE) {
-                panelCellule.setBackground(Color.DARK_GRAY);
-                panelPion.setBackground(Color.DARK_GRAY);
-                
-            } else if (grilleListe.tuiles.get(i).getStatut() == INONDEE) {
-                panelCellule.setBackground(Color.ORANGE);
-                panelPion.setBackground(Color.ORANGE);
-            } else {
-                panelCellule.setBackground(Color.BLUE);
-                panelPion.setBackground(Color.BLUE);
+            //Coloration en gris des cellules assechées, en orange des cellules inondées et en bleu des cellules coulées
+            if (null != grilleListe.tuiles.get(i).getStatut()) switch (grilleListe.tuiles.get(i).getStatut()) {
+                case ASSECHEE:
+                    panelCellule.setBackground(Color.DARK_GRAY);
+                    panelPion.setBackground(Color.DARK_GRAY);
+                    break;
+                case INONDEE:
+                    panelCellule.setBackground(Color.ORANGE);
+                    panelPion.setBackground(Color.ORANGE);
+                    break;
+                default:
+                    panelCellule.setBackground(Color.BLUE);
+                    panelPion.setBackground(Color.BLUE);
+                    break;
             }
+            
+            //Ajout des trésors aux tuiles correspondantes :
             if("Le Temple du Soleil".equals(nomCase.getText()) ||"Le Temple de la Lune".equals(nomCase.getText())){
                 JPanel tresor1=new JPanel();
                 JLabel nomt1 = new JLabel("La Pierre sacrée");
@@ -384,6 +351,7 @@ public class VueAventurier  {
                 tresor1.setBackground(Color.GRAY);
                 panelCellule.add(tresor1,BorderLayout.SOUTH);
             }
+            
             if("Le Jardin des Murmures".equals(nomCase.getText()) ||"Le Jardin des Hurlements".equals(nomCase.getText())){
                 JPanel tresor2=new JPanel();
                 JLabel nomt2 = new JLabel("La Statue du zéphyr");
@@ -408,30 +376,26 @@ public class VueAventurier  {
                 panelCellule.add(tresor4,BorderLayout.SOUTH);
             }
             
-            for(int k=0; k<controleur.getJoueurs().size(); k++){
+            //Placement des pions en fonction de la position joueur courant correspondant
+            for(int k=0; k < controleur.getJoueurs().size(); k++){
                 
-                if(nomCase.getText()==controleur.getJoueurs().get(k).getPositionCourante().getNomCase()){
+                if(nomCase.getText().equals(controleur.getJoueurs().get(k).getPositionCourante().getNomCase())){
                     PionJoueur pion = controleur.getJoueurs().get(k).getPionjoueur();
                     panelPion.add(pion);
                     pion.repaint();
                 }
             }
             
-            
-            
             labels.put(i, nomCase);
             pions.put(i, panelPion);
             cases.put(i, panelCellule);
+            
             return panelCellule ;
         }
     }
     
-    public JPanel getGrilletuile() {
-        return grilletuile;
-    }
-    
-    
     public void carteMainJoueurCourant(){
+        //Gère l'affichage des noms des cartes dans la main de l'aventurier
         
         for(int i=0;i<cartesLabels.size();i++){
             cartesLabels.get(i).setText("pas de cartes");  
@@ -442,16 +406,10 @@ public class VueAventurier  {
             cartesLabels.get(i).setText(nomCarte);
         }
     }
-
-    public HashMap<Integer, JLabel> getCartesLabels() {
-        return cartesLabels;
-    }
-    
-    public void afficher(){
-        this.window.setVisible(true);
-    }
     
     public void ecranGagner(){
+        //Affichage d'une fenêtre s'il ya victiore
+        
         JFrame gagne = new JFrame();
         gagne.setSize(400,100);
         JLabel message = new JLabel("Bravo vous avez gagné, vous êtes un dieu !!");
@@ -462,5 +420,54 @@ public class VueAventurier  {
         gagne.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         
     }
+    
+    public void afficher(){
+        //Affiche la fenêtre
+        this.window.setVisible(true);
+    }
+    
+    //Getters et setters :
+    public void setPosition(String pos) {
+        nomTuile.setText(pos);
+    }
 
+    public JButton getBtnAller() {
+        return btnAller;
+    }
+    
+    public JButton getBtnAssecher() {
+        return btnAssecher;
+    }
+
+    public JButton getBtnTerminerTour() {
+        return btnTerminerTour;
+    }
+
+    public JButton getBtnCarteSpe() {
+        return btnCarteSpe;
+    }
+
+    public JButton getBtnEchangeCarte() {
+        return btnEchangeCarte;
+    }
+
+    public JButton getBtnRecupTresor() {
+        return btnRecupTresor;
+    }
+    
+    public JLabel getNomAvt() {
+        return nomAvt;
+    }
+
+    public void setNomAvt(JLabel nomAvt) {
+        this.nomAvt = nomAvt;
+    }
+    
+    public JPanel getGrilletuile() {
+        return grilletuile;
+    }
+
+    public HashMap<Integer, JLabel> getCartesLabels() {
+        return cartesLabels;
+    }
 }
